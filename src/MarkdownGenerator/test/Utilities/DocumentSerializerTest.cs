@@ -1,9 +1,10 @@
 using System;
+using System.IO;
 using Xunit;
 using Grynwald.MarkdownGenerator.Model;
-using static Grynwald.MarkdownGenerator.Model.MdDSL;
 using Grynwald.MarkdownGenerator.Utilities;
-using System.IO;
+using static Grynwald.MarkdownGenerator.Model.MdDSL;
+using System.Linq;
 
 namespace Grynwald.MarkdownGenerator.Test.Model
 {
@@ -53,7 +54,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Simple_lists_are_serialized_as_expected() =>
+        public void Bullet_lists_are_serialized_as_expected() =>
             AssertToStringEquals(
                 "- Item 1\r\n" +
                 "- Item 2\r\n",
@@ -64,7 +65,18 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Lists_are_surrounded_by_blank_lines() =>
+        public void Ordered_lists_are_serialized_as_expected() =>
+            AssertToStringEquals(
+                "1. Item 1\r\n" +
+                "2. Item 2\r\n",
+                Document(
+                    OrderedList(
+                        ListItem("Item 1"),
+                        ListItem("Item 2")))
+            );
+
+        [Fact]
+        public void Bullet_lists_are_surrounded_by_blank_lines() =>
             AssertToStringEquals(
                 "# Heading\r\n" +
                 "\r\n" +
@@ -82,7 +94,25 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Multi_level_lists_are_serialized_as_expected_01() =>
+        public void Ordered_lists_are_surrounded_by_blank_lines() =>
+            AssertToStringEquals(
+                "# Heading\r\n" +
+                "\r\n" +
+                "1. Item 1\r\n" +
+                "2. Item 2\r\n" +
+                "\r\n" +
+                "Paragraph\r\n",
+                Document(
+                    Heading("Heading", 1),
+                    OrderedList(
+                        ListItem("Item 1"),
+                        ListItem("Item 2")
+                    ),
+                    Paragraph("Paragraph"))
+            );
+
+        [Fact]
+        public void Multi_level_bullet_lists_are_serialized_as_expected_01() =>
             AssertToStringEquals(
                 "- Item 1\r\n" +
                 "  - Item 1.1\r\n" +
@@ -99,7 +129,24 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Multi_level_lists_are_serialized_as_expected_02() =>
+        public void Multi_level_ordered_lists_are_serialized_as_expected_01() =>
+            AssertToStringEquals(
+                "1. Item 1\r\n" +
+                "  1. Item 1.1\r\n" +
+                "  2. Item 1.2\r\n" +
+                "2. Item 2\r\n",
+                Document(
+                    OrderedList(
+                        ListItem(
+                            Paragraph("Item 1"),
+                            OrderedList(
+                                ListItem("Item 1.1"),
+                                ListItem("Item 1.2"))),
+                        ListItem("Item 2")))
+            );
+
+        [Fact]
+        public void Multi_bullet_level_lists_are_serialized_as_expected_02() =>
             AssertToStringEquals(
                 "- Item 1\r\n" +
                 "  - Item 1.1\r\n" +
@@ -120,7 +167,45 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Paragraphs_in_lists_can_contain_multiple_lines() =>
+        public void Multi_level_ordered_lists_are_serialized_as_expected_02() =>
+            AssertToStringEquals(
+                "1. Item 1\r\n" +
+                "  1. Item 1.1\r\n" +
+                "    1. Item 1.1.1\r\n" +
+                "  2. Item 1.2\r\n" +
+                "2. Item 2\r\n",
+                Document(
+                    OrderedList(
+                        ListItem(
+                            Paragraph("Item 1"),
+                            OrderedList(
+                                ListItem(
+                                    Paragraph("Item 1.1"),
+                                    OrderedList(
+                                        ListItem("Item 1.1.1"))),
+                                ListItem("Item 1.2"))),
+                        ListItem("Item 2")))
+            );
+
+        [Fact]
+        public void Ordered_lists_can_contain_bullet_lists() =>
+            AssertToStringEquals(
+                "1. Item 1\r\n" +
+                "  - Item 1.1\r\n" +
+                "  - Item 1.2\r\n" +
+                "2. Item 2\r\n",
+                Document(
+                    OrderedList(
+                        ListItem(
+                            Paragraph("Item 1"),
+                            BulletList(
+                                ListItem("Item 1.1"),
+                                ListItem("Item 1.2"))),
+                        ListItem("Item 2")))
+            );
+
+        [Fact]
+        public void Paragraphs_in_bullet_lists_can_contain_multiple_lines() =>
             AssertToStringEquals(
                 "- Item 1 consists of  \r\n" +
                 "  multiple lines\r\n" +
@@ -137,13 +222,43 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Multiple_paragraphs_in_list_items_are_serialized_correctly() =>
+        public void Paragraphs_in_ordered_lists_can_contain_multiple_lines() =>
+            AssertToStringEquals(
+                "1. Item 1 consists of  \r\n" +
+                "   multiple lines\r\n" +
+                "  1. Item 1.1  \r\n" +
+                "     as well\r\n",
+                Document(
+                    OrderedList(
+                        ListItem(
+                            Paragraph("Item 1 consists of\r\nmultiple lines"),
+                            OrderedList(
+                                ListItem(
+                                    Paragraph("Item 1.1\r\nas well"))
+                                ))))
+            );
+
+        [Fact]
+        public void Multiple_paragraphs_in_bullet_list_items_are_serialized_correctly() =>
             AssertToStringEquals(
                 "- Paragraph 1\r\n" +
                 "\r\n" +
                 "  Paragraph 2\r\n",
                 Document(
                     BulletList(
+                        ListItem(
+                            Paragraph("Paragraph 1"),
+                            Paragraph("Paragraph 2"))))
+            );
+
+        [Fact]
+        public void Multiple_paragraphs_in_ordered_list_items_are_serialized_correctly() =>
+            AssertToStringEquals(
+                "1. Paragraph 1\r\n" +
+                "\r\n" +
+                "   Paragraph 2\r\n",
+                Document(
+                    OrderedList(
                         ListItem(
                             Paragraph("Paragraph 1"),
                             Paragraph("Paragraph 2"))))
@@ -204,7 +319,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
-        public void Lists_can_contain_tables() =>
+        public void Bullet_lists_can_contain_tables() =>
             AssertToStringEquals(
                 "- ListItem1\r\n" +
                 "\r\n" +
@@ -221,7 +336,44 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                                 Row("Cell1"),
                                 Row("Cell3", "Cell4"))))));
 
+        [Fact]
+        public void Ordered_lists_can_contain_tables() =>
+            AssertToStringEquals(
+                "1. ListItem1\r\n" +
+                "\r\n" +
+                "   | Column1 | Column2 |\r\n" +
+                "   |---------|---------|\r\n" +
+                "   | Cell1   |         |\r\n" +
+                "   | Cell3   | Cell4   |\r\n",
+                Document(
+                    OrderedList(
+                        ListItem(
+                            Paragraph("ListItem1"),
+                            Table(
+                                Row("Column1", "Column2"),
+                                Row("Cell1"),
+                                Row("Cell3", "Cell4"))))));
 
+
+        [Fact]
+        public void Ordered_lists_with_more_than_10_items_are_serialized_as_expected() =>
+            AssertToStringEquals(
+                "1. Item\r\n" +
+                "2. Item\r\n" +
+                "3. Item\r\n" +
+                "4. Item\r\n" +
+                "5. Item\r\n" +
+                "6. Item\r\n" +
+                "7. Item\r\n" +
+                "8. Item\r\n" +
+                "9. Item\r\n" +
+                "10. Item\r\n" +
+                "11. Item\r\n",
+                Document(
+                    OrderedList(Enumerable.Repeat("Item", 11).Select(ListItem))
+                )
+            );
+        
 
         private void AssertToStringEquals(string expected, MdDocument document)
         {

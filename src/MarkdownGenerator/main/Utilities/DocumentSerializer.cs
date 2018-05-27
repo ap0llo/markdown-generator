@@ -117,16 +117,20 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 // (blank lines may have been requested by block in parent list item)
                 m_Writer.CancelRequestBlankLine();
             }
-
-            // lists are indented with two spaces, 
-            // the first list level is not indented            
-            var firstLinePrefix = new String(' ', (m_ListLevel * 2) - 2) + "- ";
-            var otherLinesPrefix = new String(' ', m_ListLevel * 2);
-
-            var isFirstListItem = true;
-
+            
+            
+            var listItemNumber = 1;
             foreach (var listItem in list)
             {
+                // list item marker is a dash for bulleted lists and the number followed by a period for ordered lists
+                var listItemMarker = list.Kind == MdListKind.Bullet ? "- " : $"{listItemNumber}. ";
+
+                // lists are indented with two spaces per level but the first list level is not indented 
+                // the first line of a list item is prefixed with the list item marker
+                // while the following lines are indented with the width of the list item marker
+                var firstLinePrefix = new String(' ', (m_ListLevel * 2) - 2) + listItemMarker;                
+                var otherLinesPrefix = new String(' ', firstLinePrefix.Length);
+
                 // add the preifx 
                 m_Writer.PushPrefix(firstLinePrefix);
 
@@ -137,7 +141,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 {
                     // blank lines before top level lists ( = before the first item)
                     // should not be supressed
-                    if (isFirstListItem && m_ListLevel == 1)
+                    if (listItemNumber == 1 && m_ListLevel == 1)
                         return;
 
                     // while no other line was written, suppress blank lines
@@ -147,17 +151,18 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
                 // event handler to update the prefix after the first line of a list item
                 void OnLineWritten(object s, EventArgs e)
-                {                    
-                    if(!lineWritten)
-                    {
-                        // after the first line in a list item is written
-                        // replace the prefix to not include '-'
-                        m_Writer.PopPrefix();
-                        m_Writer.PushPrefix(otherLinesPrefix);
+                {
+                    // no need to update the prefix after the first line
+                    if (lineWritten)
+                        return;
 
-                        // no action after first line required => unsubscribe from event
-                        lineWritten = true;
-                    }
+                    // after the first line in a list item is written
+                    // replace the prefix to not include '-'
+                    m_Writer.PopPrefix();
+                    m_Writer.PushPrefix(otherLinesPrefix);
+
+                    // no action after first line required => unsubscribe from event
+                    lineWritten = true;
                 }
                 
                 // attach event handlers
@@ -177,7 +182,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 // prevent blank lines from being inserted after list items
                 m_Writer.CancelRequestBlankLine();
 
-                isFirstListItem = false;
+                listItemNumber += 1;
             }
             
 

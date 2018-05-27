@@ -6,6 +6,8 @@ namespace Grynwald.MarkdownGenerator.Model
 {
     public sealed class MdOrderedList : MdList
     {
+        internal override MdListKind Kind => MdListKind.Ordered;
+
         public MdOrderedList(params MdListItem[] content) : base(content)
         {
         }
