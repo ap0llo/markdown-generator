@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MarkdownBuilder.Model
+namespace Grynwald.MarkdownGenerator.Model
 {
     /// <summary>
     /// Represents a table in a Markdown document (GitHub flavoured Markdown)

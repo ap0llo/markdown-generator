@@ -1,9 +1,9 @@
 using System;
 using Xunit;
-using MarkdownBuilder.Model;
-using static MarkdownBuilder.Model.MdDSL;
+using Grynwald.MarkdownGenerator.Model;
+using static Grynwald.MarkdownGenerator.Model.MdDSL;
 
-namespace MarkdownBuilder.Test.Model
+namespace Grynwald.MarkdownGenerator.Test.Model
 {
     public class MdDocumentTest
     {

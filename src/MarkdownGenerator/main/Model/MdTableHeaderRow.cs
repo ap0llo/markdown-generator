@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MarkdownBuilder.Model
+namespace Grynwald.MarkdownGenerator.Model
 {
     public class MdTableHeaderRow : MdTableRow
     {

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MarkdownBuilder.Model
+namespace Grynwald.MarkdownGenerator.Model
 {
     public class MdContainerBlock : MdBlock, IEnumerable<MdBlock>
     {

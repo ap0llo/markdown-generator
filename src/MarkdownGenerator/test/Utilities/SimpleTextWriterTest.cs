@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text;
 using Xunit;
-using MarkdownBuilder.Utilities;
+using Grynwald.MarkdownGenerator.Utilities;
 
-namespace MarkdownBuilder.Test.Utilities
+namespace Grynwald.MarkdownGenerator.Test.Utilities
 {
     public class SimpleTextWriterTest : IDisposable
     {        

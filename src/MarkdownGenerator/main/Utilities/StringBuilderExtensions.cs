@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MarkdownBuilder.Utilities
+namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal static class StringBuilderExtensions
     {

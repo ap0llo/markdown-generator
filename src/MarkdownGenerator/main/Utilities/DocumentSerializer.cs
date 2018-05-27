@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Text;
-using MarkdownBuilder.Model;
+using Grynwald.MarkdownGenerator.Model;
 
-namespace MarkdownBuilder.Utilities
+namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class DocumentSerializer
     {

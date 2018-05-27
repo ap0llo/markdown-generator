@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MarkdownBuilder.Model
+namespace Grynwald.MarkdownGenerator.Model
 {
     public static class MdDSL
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MarkdownBuilder.Model
+namespace Grynwald.MarkdownGenerator.Model
 {
     public sealed class MdHeading : MdLeafBlock
     {

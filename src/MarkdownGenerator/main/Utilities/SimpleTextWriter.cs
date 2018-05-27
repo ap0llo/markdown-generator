@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MarkdownBuilder.Utilities
+namespace Grynwald.MarkdownGenerator.Utilities
 {
     // TODO: Find a better name
     internal sealed class SimpleTextWriter 

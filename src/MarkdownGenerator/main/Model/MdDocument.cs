@@ -1,10 +1,10 @@
-﻿using MarkdownBuilder.Utilities;
+﻿using Grynwald.MarkdownGenerator.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MarkdownBuilder.Model
+namespace Grynwald.MarkdownGenerator.Model
 {
     public class MdDocument
     {
