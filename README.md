@@ -1,10 +1,10 @@
 # MarkdownGenerator
 
-Most Markdown libraaries focus on parsing markdwon inputs and converting them to html.
-In contrast MarkdownGenerator is library to programatically generate markdown files.
+Most Markdown libraries focus on parsing markdown inputs and converting them to html.
+In contrast MarkdownGenerator is library to programmatically generate markdown files.
 
 The library implements markdown features as described in the [CommonMark spec](https://spec.commonmark.org/0.28/).
-Additionally the library supports tables as defined in [GitHub flavoured markdown](https://github.github.com/gfm/).
+Additionally the library supports tables as defined in [GitHub flavored markdown](https://github.github.com/gfm/).
 
 ## Installation
 
@@ -15,7 +15,7 @@ MarkdownGenerator is distributed as NuGet package.
 
 ## Usage / Examples
 
-The library folows the CommonMark terminology for element names. See the [CommonMark spec](https://spec.commonmark.org/0.28/)
+The library follows the CommonMark terminology for element names. See the [CommonMark spec](https://spec.commonmark.org/0.28/)
 for full documentation
 
 **Example:** Create a new instance of `MdDocument`, add a heading and a paragraph and then save the document to a file
@@ -57,7 +57,7 @@ Document(
 
 ## Building from source
 
-MarkdownGenerator is a .NET Standard libary and can be buildt using the .NET SDK (tested with Visual Studio 15.7)
+MarkdownGenerator is a .NET Standard library and can be built using the .NET SDK (tested with Visual Studio 15.7)
 
 ```bat
   dotnet restore .\src\MarkdownGenerator.sln
@@ -71,7 +71,7 @@ The version of the library is automatically derived from git and the information
 [Nerdbank.GitVersioning](https://github.com/AArnott/Nerdbank.GitVersioning):
 
 - The master branch  always contains the latest version. Packages produced from master are always
-  marked as pre-relase versions (using the `-prerelease` suffix).
+  marked as pre-release versions (using the `-prerelease` suffix).
 - Stable versions are built from release branches. Build from release branches will have no `-prerelease` suffix
 - Builds from any other branch will have both the `-prerelease` and the git commit hash included
   in the version string
