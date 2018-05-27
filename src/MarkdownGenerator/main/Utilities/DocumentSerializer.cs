@@ -18,35 +18,35 @@ namespace Grynwald.MarkdownGenerator.Utilities
         }
 
 
-        public void Serialize(MdDocument document) => Save(document.Root);
+        public void Serialize(MdDocument document) => Serialize(document.Root);
 
 
-        private void Save(MdBlock block)
+        public void Serialize(MdBlock block)
         {
             switch(block)
             {
                 case MdList list:
-                    Save(list);
+                    Serialize(list);
                     break;
 
                 case MdContainerBlock containerBlock:
-                    Save(containerBlock);
+                    Serialize(containerBlock);
                     break;
 
                 case MdHeading heading:
-                    Save(heading);
+                    Serialize(heading);
                     break;
 
                 case MdParagraph paragraph:
-                    Save(paragraph);
+                    Serialize(paragraph);
                     break;
 
                 case MdCodeBlock codeBlock:
-                    Save(codeBlock);
+                    Serialize(codeBlock);
                     break;
 
                 case MdTable table:
-                    Save(table);
+                    Serialize(table);
                     break;
 
                 default:
@@ -55,15 +55,15 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         }
 
-        private void Save(MdContainerBlock containerBlock)
+        public void Serialize(MdContainerBlock containerBlock)
         {
             foreach(var block in containerBlock)
             {
-                Save(block);
+                Serialize(block);
             }
         }
 
-        private void Save(MdHeading block)
+        public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
 
@@ -72,7 +72,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             m_Writer.RequestBlankLine();
         }
 
-        private void Save(MdParagraph paragraph)
+        public void Serialize(MdParagraph paragraph)
         {
             m_Writer.RequestBlankLine();
 
@@ -95,7 +95,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         }
 
-        private void Save(MdList list)
+        public void Serialize(MdList list)
         {
             m_ListLevel += 1;
             
@@ -158,7 +158,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.BlankLineRequested += OnBlankLineRequested;
 
                 // wetie list item
-                Save(listItem);
+                Serialize(listItem);
 
                 // detach event handlers
                 m_Writer.LineWritten -= OnLineWritten;
@@ -181,7 +181,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             m_ListLevel -= 1;
         }
 
-        private void Save(MdCodeBlock codeBlock)
+        public void Serialize(MdCodeBlock codeBlock)
         {
             m_Writer.WriteLine($"```{codeBlock.InfoString ?? ""}");
             
@@ -194,7 +194,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             m_Writer.WriteLine("```");
         }
 
-        private void Save(MdTable table)
+        public void Serialize(MdTable table)
         {
 
             //TODO: Remove line breaks from cells

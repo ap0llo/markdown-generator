@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
@@ -9,6 +7,7 @@ namespace Grynwald.MarkdownGenerator.Model
         public string Text { get; }
 
         public string InfoString { get; }
+
 
         public MdCodeBlock(string text, string infoString = null)
         {
