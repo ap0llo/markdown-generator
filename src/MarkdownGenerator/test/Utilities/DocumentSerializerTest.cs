@@ -373,7 +373,21 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                     OrderedList(Enumerable.Repeat("Item", 11).Select(ListItem))
                 )
             );
-        
+
+        [Fact]
+        public void ThematicBreaks_are_serialized_as_expected() =>
+            AssertToStringEquals(
+                "Paragraph\r\n" +
+                "\r\n" +
+                "---\r\n" +
+                "\r\n" +
+                "Paragraph\r\n",
+                Document(
+                    Paragraph("Paragraph"),
+                    ThematicBreak(),
+                    Paragraph("Paragraph"))
+            );
+
 
         private void AssertToStringEquals(string expected, MdDocument document)
         {

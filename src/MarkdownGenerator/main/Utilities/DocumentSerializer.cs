@@ -49,6 +49,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     Serialize(table);
                     break;
 
+                case MdThematicBreak thematicBreak:
+                    Serialize(thematicBreak);
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported block type {block.GetType().FullName}");
             }
@@ -70,6 +74,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 Serialize(block);
             }
         }
+
         public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
@@ -169,7 +174,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.LineWritten += OnLineWritten;
                 m_Writer.BlankLineRequested += OnBlankLineRequested;
 
-                // wetie list item
+                // write list item
                 Serialize(listItem);
 
                 // detach event handlers
@@ -258,6 +263,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }            
         }
 
+        public void Serialize(MdThematicBreak thematicBreak)
+        {
+            m_Writer.WriteLine("---");
+        }
         
     }
 }

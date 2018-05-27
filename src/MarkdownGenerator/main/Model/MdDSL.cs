@@ -64,6 +64,8 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
 
+        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();
+
 
         public static string Link(string title, string url) => $"[{title}]({url})";        
     }
