@@ -1,12 +1,69 @@
 # MarkdownGenerator
 
-## Usage
+Most Markdown libraaries focus on parsing markdwon inputs and converting them to html.
+In contrast MarkdownGenerator is library to programatically generate markdown files.
 
-*TODO*
+The library implements markdown features as described in the [CommonMark spec](https://spec.commonmark.org/0.28/).
+Additionally the library supports tables as defined in [GitHub flavoured markdown](https://github.github.com/gfm/).
+
+## Installation
+
+MarkdownGenerator is distributed as NuGet package.
+
+- Prerelease builds are available on [MyGet](https://www.myget.org/feed/Packages/ap0llo-markdown-generator)
+- Release versions are available on [Nuget.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
+
+## Usage / Examples
+
+The library folows the CommonMark terminology for element names. See the [CommonMark spec](https://spec.commonmark.org/0.28/)
+for full documentation
+
+**Example:** Create a new instance of `MdDocument`, add a heading and a paragraph and then save the document to a file
+
+```csharp
+using Grynwald.MarkdownGenerator.Model;
+
+var document = new MdDocument();
+document.Add(new MdHeading("Heading", 1));
+document.Add(new MdParagraph("Hello world!"));
+document.Save("HelloWorld.md")
+```
+
+Blocks can also be passed to the constructor allowing documents to be created in a single document:
+
+```csharp
+using Grynwald.MarkdownGenerator.Model;
+
+var document = new MdDocument(
+  new MdHeading("Heading", 1),
+  new MdParagraph("Hello world!")
+);
+document.Save("HelloWorld.md")
+```
+
+To further streamline document creation, the class `Grynwald.MarkdownGenerator.FactoryMethods` provides factory
+methods for all block types that are useful when using static imports:
+
+```csharp
+using Grynwald.MarkdownGenerator.Model;
+
+Document(
+  Heading("Heading", 1),
+  Paragraph("Hello world!")
+).Save("HelloWorld.md");
+```
+
+**A full list of supported block types is available [here](./docs/blocktypes.md).**
 
 ## Building from source
 
-*TODO*
+MarkdownGenerator is a .NET Standard libary and can be buildt using the .NET SDK (tested with Visual Studio 15.7)
+
+```bat
+  dotnet restore .\src\MarkdownGenerator.sln
+
+  dotnet build .\src\MarkdownGenerator.sln
+```
 
 ## Versioning and Branching
 
