@@ -22,15 +22,15 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <summary>
         /// The table's header row
         /// </summary>
-        public MdTableHeaderRow HeaderRow { get; }
+        public MdTableRow HeaderRow { get; }
 
 
-        public MdTable(MdTableHeaderRow headerRow, params MdTableRow[] rows)
+        public MdTable(MdTableRow headerRow, params MdTableRow[] rows)
             : this(headerRow, (IEnumerable<MdTableRow>)rows)
         {
         }
 
-        public MdTable(MdTableHeaderRow headerRow, IEnumerable<MdTableRow> rows)
+        public MdTable(MdTableRow headerRow, IEnumerable<MdTableRow> rows)
         {
             HeaderRow = headerRow ?? throw new ArgumentNullException(nameof(headerRow));
             m_Rows = new LinkedList<MdTableRow>(rows ?? throw new ArgumentNullException(nameof(rows)));

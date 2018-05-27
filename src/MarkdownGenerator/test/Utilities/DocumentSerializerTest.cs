@@ -185,7 +185,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "| Cell1   | Cell2   |\r\n",
                 Document(
                     Table(
-                        HeaderRow("Column1", "Column2"),
+                        Row("Column1", "Column2"),
                         Row("Cell1", "Cell2")))
             );
 
@@ -198,7 +198,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "| Cell3   | Cell4   |\r\n",
                 Document(
                     Table(
-                        HeaderRow("Column1", "Column2"),
+                        Row("Column1", "Column2"),
                         Row("Cell1"),
                         Row("Cell3", "Cell4")))
             );
@@ -217,7 +217,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                         ListItem(
                             Paragraph("ListItem1"),
                             Table(
-                                HeaderRow("Column1", "Column2"),
+                                Row("Column1", "Column2"),
                                 Row("Cell1"),
                                 Row("Cell3", "Cell4"))))));
 

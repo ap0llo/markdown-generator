@@ -48,21 +48,16 @@ namespace Grynwald.MarkdownGenerator.Model
         public static MdListItem ListItem(string content) => new MdListItem(content);
 
 
-        public static MdTable Table(MdTableHeaderRow headerRow, params MdTableRow[] rows) =>
+        public static MdTable Table(MdTableRow headerRow, params MdTableRow[] rows) =>
             new MdTable(headerRow, rows);
 
-        public static MdTable Table(MdTableHeaderRow headerRow, IEnumerable<MdTableRow> rows) =>
+        public static MdTable Table(MdTableRow headerRow, IEnumerable<MdTableRow> rows) =>
             new MdTable(headerRow, rows);
 
 
         public static MdTableRow Row(params string[] cells) => new MdTableRow(cells);
 
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
-
-
-        public static MdTableHeaderRow HeaderRow(params string[] cells) => new MdTableHeaderRow(cells);
-
-        public static MdTableHeaderRow HeaderRow(IEnumerable<string> cells) => new MdTableHeaderRow(cells);
 
 
         public static string Link(string title, string url) => $"[{title}]({url})";        
