@@ -4,17 +4,21 @@ using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    public class MdList : MdBlock, IEnumerable<MdListItem>
+    /// <summary>
+    /// Represents an (unordered) list
+    /// </summary>
+    public sealed class MdList : MdBlock, IEnumerable<MdListItem>
     {
         readonly LinkedList<MdListItem> m_ListItems;
 
-
+        /// <summary>
+        /// The lit's items
+        /// </summary>
         public IEnumerable<MdListItem> Items => m_ListItems;
 
 
         public MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>) content)
-        {        
-        }
+        { }
 
         public MdList(IEnumerable<MdListItem> content)
         {
@@ -24,10 +28,12 @@ namespace Grynwald.MarkdownGenerator.Model
             m_ListItems = new LinkedList<MdListItem>(content);
         }
 
-
-        public void Add(MdListItem block)
+        /// <summary>
+        /// Adds the specified item to the list
+        /// </summary>
+        public void Add(MdListItem item)
         {            
-            m_ListItems.AddLast(block);
+            m_ListItems.AddLast(item);
         }
 
         public IEnumerator<MdListItem> GetEnumerator() => m_ListItems.GetEnumerator();

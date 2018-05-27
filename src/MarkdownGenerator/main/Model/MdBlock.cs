@@ -1,10 +1,21 @@
-﻿using Grynwald.MarkdownGenerator.Utilities;
-using System.IO;
+﻿using System.IO;
+using Grynwald.MarkdownGenerator.Utilities;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
+    /// <summary>
+    /// A block in a markdown document. 
+    /// Blocks are the basic buidling units of markdown documents. 
+    /// A document consists of one or more blocks.
+    /// </summary>
     public abstract class MdBlock
     {
+
+        // private protected constructor => class cannot be derived from outside this assembly
+        private protected MdBlock()
+        {
+        }
+
         public override string ToString()
         {
             using (var stringWriter = new StringWriter())

@@ -2,10 +2,19 @@
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    public class MdCodeBlock : MdLeafBlock
+    /// <summary>
+    /// Represents a fenced code block 
+    /// </summary>
+    public sealed class MdCodeBlock : MdLeafBlock
     {
+        /// <summary>
+        /// The content of the code block
+        /// </summary>
         public string Text { get; }
 
+        /// <summary>
+        /// The info string for the code block (typically used to specify the language of the code in the block)
+        /// </summary>
         public string InfoString { get; }
 
 

@@ -4,17 +4,22 @@ using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
+    //TODO: seal class
+    /// <summary>
+    /// A block that can contains other blocks
+    /// </summary>
     public class MdContainerBlock : MdBlock, IEnumerable<MdBlock>
     {
         readonly LinkedList<MdBlock> m_Blocks;
 
-
+        /// <summary>
+        /// The container's sub-blocks
+        /// </summary>
         public IEnumerable<MdBlock> Blocks => m_Blocks;
 
 
         public MdContainerBlock(params MdBlock[] content) : this((IEnumerable<MdBlock>) content)
-        {            
-        }
+        { }
 
         public MdContainerBlock(IEnumerable<MdBlock> content)
         {

@@ -6,8 +6,14 @@ using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    public class MdDocument
+    /// <summary>
+    /// A markdown document
+    /// </summary>
+    public sealed class MdDocument
     {
+        /// <summary>
+        /// The root container block containing all of the document's blocks
+        /// </summary>
         public MdContainerBlock Root { get; }
 
 
@@ -20,6 +26,9 @@ namespace Grynwald.MarkdownGenerator.Model
         public MdDocument(IEnumerable<MdBlock> content) : this(new MdContainerBlock(content))
         { }
 
+        // MdList implements IEnumerable<MdListItem> so this constructor is necessary to prevent ambiguities
+        public MdDocument(MdList list) : this((MdBlock)list)
+        { }
 
         public void Save(string path)
         {
@@ -39,18 +48,17 @@ namespace Grynwald.MarkdownGenerator.Model
 
         private void Save(TextWriter writer)
         {
-            var visitor = new DocumentSerializer(writer);
-            visitor.Serialize(this);           
+            var serializer = new DocumentSerializer(writer);
+            serializer.Serialize(this);           
         }
 
         public override string ToString()
-        {
-            var stringBuilder = new StringBuilder();
-            using (var stringWriter = new StringWriter(stringBuilder))
+        {            
+            using (var stringWriter = new StringWriter())
             {
                 Save(stringWriter);                
+                return stringWriter.ToString();            
             }
-            return stringBuilder.ToString();            
         }
     }
 }

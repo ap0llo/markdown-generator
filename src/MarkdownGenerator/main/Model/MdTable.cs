@@ -6,15 +6,22 @@ using System.Linq;
 namespace Grynwald.MarkdownGenerator.Model
 {
     /// <summary>
-    /// Represents a table in a Markdown document (GitHub flavoured Markdown)
+    /// Represents a table in a Markdown document.
+    /// CommonMark does not specify a table format, but tables are common in GitHub flavoured Markdown
     /// </summary>
-    public class MdTable : MdLeafBlock, IEnumerable<MdTableRow>
+    public sealed class MdTable : MdLeafBlock, IEnumerable<MdTableRow>
     {        
-        private readonly LinkedList<MdTableRow> m_Rows;
+        readonly LinkedList<MdTableRow> m_Rows;
 
 
+        /// <summary>
+        /// The number of columns in tha table
+        /// </summary>
         public int ColumnCount => Math.Max(HeaderRow.ColumnCount, m_Rows.Max(x => x.ColumnCount));
         
+        /// <summary>
+        /// The table's header row
+        /// </summary>
         public MdTableHeaderRow HeaderRow { get; }
 
 
@@ -34,12 +41,20 @@ namespace Grynwald.MarkdownGenerator.Model
 
         IEnumerator IEnumerable.GetEnumerator() => m_Rows.GetEnumerator();
 
+        /// <summary>
+        /// Gets the width of the specified column. 
+        /// The width of a column is the width of the widest cell in any row of the column.
+        /// </summary>
+        /// <param name="column">The index of the column</param>
         public int GetColumnWidth(int column)
         {
-            if (column >= ColumnCount)
-                throw new ArgumentException(nameof(column));
+            if (column < 0)
+                throw new ArgumentOutOfRangeException(nameof(column));
 
-            return Math.Max(HeaderRow.GetColumnWidth(column), m_Rows.Max(r => r.GetColumnWidth(column)));
+            if (column >= ColumnCount)
+                throw new ArgumentOutOfRangeException(nameof(column), $"The table has only {ColumnCount} columns");
+
+            return Math.Max(HeaderRow.GetColumnWidthOrDefault(column), m_Rows.Max(r => r.GetColumnWidthOrDefault(column)));
         }
     }
 }

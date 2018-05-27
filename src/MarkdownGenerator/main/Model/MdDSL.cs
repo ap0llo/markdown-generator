@@ -2,6 +2,14 @@
 
 namespace Grynwald.MarkdownGenerator.Model
 {
+    /// <summary>
+    /// Defines static factory methods for blocks in markdown documents.
+    /// When imported via "using static", this allows for more readable 
+    /// construction of documents, e.g.
+    ///   new MdDocument(new MdParagraph("My content")) 
+    /// can be rewritten as
+    ///   Document(Paragraph("My Content"))
+    /// </summary>
     public static class MdDSL
     {
         public static MdDocument Document(MdContainerBlock root) => new MdDocument(root);
@@ -27,6 +35,7 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public static MdCodeBlock CodeBlock(string text, string infoString) => new MdCodeBlock(text, infoString);
 
+
         public static MdList List(params MdListItem[] items) => new MdList(items);
 
         public static MdList List(IEnumerable<MdListItem> items) => new MdList(items);
@@ -36,7 +45,7 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public static MdListItem ListItem(IEnumerable<MdBlock> content) => new MdListItem(content);
 
-        public static MdListItem ListItem(string content) => ListItem(Paragraph(content));
+        public static MdListItem ListItem(string content) => new MdListItem(content);
 
 
         public static MdTable Table(MdTableHeaderRow headerRow, params MdTableRow[] rows) =>
@@ -45,16 +54,17 @@ namespace Grynwald.MarkdownGenerator.Model
         public static MdTable Table(MdTableHeaderRow headerRow, IEnumerable<MdTableRow> rows) =>
             new MdTable(headerRow, rows);
 
+
         public static MdTableRow Row(params string[] cells) => new MdTableRow(cells);
 
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
+
 
         public static MdTableHeaderRow HeaderRow(params string[] cells) => new MdTableHeaderRow(cells);
 
         public static MdTableHeaderRow HeaderRow(IEnumerable<string> cells) => new MdTableHeaderRow(cells);
 
 
-        public static string Link(string title, string destination) => $"[{title}]({destination})";
-        
+        public static string Link(string title, string url) => $"[{title}]({url})";        
     }
 }

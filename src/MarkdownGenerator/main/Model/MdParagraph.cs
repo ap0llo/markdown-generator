@@ -2,8 +2,14 @@
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    public class MdParagraph : MdBlock
+    /// <summary>
+    /// Represents a paragraph in a document
+    /// </summary>
+    public sealed class MdParagraph : MdBlock
     {                
+        /// <summary>
+        /// The paragraph's text
+        /// </summary>
         public string Text { get; }
 
 

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    public class MdTableHeaderRow : MdTableRow
+    /// <summary>
+    /// Represent the header row in a table
+    /// </summary>
+    public sealed class MdTableHeaderRow : MdTableRow
     {
         public MdTableHeaderRow(IEnumerable<string> cells) : base(cells)
-        {
-        }
+        { }
 
         public MdTableHeaderRow(params string[] cells) : base(cells)
-        {
-        }
+        { }
     }
 }
