@@ -400,7 +400,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void BlockQuotes_can_contain_lists() =>
             AssertToStringEquals(
                 "> Quote\r\n" +
-                "> \r\n" +
+                ">\r\n" +
                 "> - Item1\r\n" +
                 "> - Item2\r\n",
                 Document(
@@ -411,17 +411,33 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                             ListItem("Item2"))))
             );
 
-        //TODO: Lists in block quotes
         [Fact]
-        public void Lists_can_contain_BlockQuotes() =>
+        public void Bullet_lists_can_contain_BlockQuotes() =>
             AssertToStringEquals(
                 "- Item1\r\n" +
                 "\r\n" +
                 "  > Quote1\r\n" +
-                "  > \r\n" +
+                "  >\r\n" +
                 "  > Quote2\r\n",
                 Document(
                     BulletList(
+                        ListItem(
+                            Paragraph("Item1"),
+                            BlockQuote(
+                                Paragraph("Quote1"),
+                                Paragraph("Quote2")))))
+            );
+
+        [Fact]
+        public void Ordered_lists_can_contain_BlockQuotes() =>
+            AssertToStringEquals(
+                "1. Item1\r\n" +
+                "\r\n" +
+                "   > Quote1\r\n" +
+                "   >\r\n" +
+                "   > Quote2\r\n",
+                Document(
+                    OrderedList(
                         ListItem(
                             Paragraph("Item1"),
                             BlockQuote(

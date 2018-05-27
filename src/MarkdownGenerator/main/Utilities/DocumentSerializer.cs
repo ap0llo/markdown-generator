@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Grynwald.MarkdownGenerator.Model;
 
@@ -8,18 +7,17 @@ namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class DocumentSerializer
     {
-        private readonly SimpleTextWriter m_Writer;
+        private readonly PrefixTextWriter m_Writer;
         private int m_ListLevel = 0;
 
 
         public DocumentSerializer(TextWriter writer)
         {
-            m_Writer = new SimpleTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
+            m_Writer = new PrefixTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
         }
 
 
         public void Serialize(MdDocument document) => Serialize(document.Root);
-
 
         public void Serialize(MdBlock block)
         {
@@ -72,29 +70,14 @@ namespace Grynwald.MarkdownGenerator.Utilities
         }
 
         public void Serialize(MdBlockQuote blockQuote)
-        {
-            var prefix = (m_Writer.CurrentPrefix ?? "") + "> ";
-            m_Writer.PushPrefix(prefix);
-
-            var prefixSet = false;
-            void OnBeforeLineWritten(object sender, EventArgs args)
-            {
-                if (prefixSet)
-                    return;
-
-                m_Writer.PushBlankLinePrefix(prefix);
-                prefixSet = true;
-            }
-            m_Writer.BeforeLineWritten += OnBeforeLineWritten;
-
-            
+        {         
+            m_Writer.PushPrefixHandler(new BlockQuotePrefixHandler());
             foreach (var block in blockQuote)
             {
                 Serialize(block);
             }
-            m_Writer.PopPrefix();
-            if(prefixSet)
-                m_Writer.PushBlankLinePrefix(prefix);
+            m_Writer.PopPrefixHandler();
+            
         }
 
         public void Serialize(MdListItem listItem)
@@ -153,21 +136,14 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.CancelRequestBlankLine();
             }
 
-            var previousPrefix = m_Writer.CurrentPrefix ?? "";
-            
+            // add prefix handler for the list
+            var prefixHandler = new ListPrefixHandler(list.Kind);
+            m_Writer.PushPrefixHandler(prefixHandler);
+
             var listItemNumber = 1;
             foreach (var listItem in list)
             {
-                // list item marker is a dash for bulleted lists and the number followed by a period for ordered lists
-                var listItemMarker = list.Kind == MdListKind.Bullet ? "- " : $"{listItemNumber}. ";
-                
-                // the first line of a list item is prefixed with the list item marker
-                // while the following lines are indented with the width of the list item marker                
-                var firstLinePrefix = previousPrefix + listItemMarker;                
-                var otherLinesPrefix = previousPrefix + new String(' ', listItemMarker.Length);
-
-                // add the preifx 
-                m_Writer.PushPrefix(firstLinePrefix);
+                prefixHandler.BeginListItem();
 
                 var lineWritten = false;
 
@@ -187,15 +163,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 // event handler to update the prefix after the first line of a list item
                 void OnLineWritten(object s, EventArgs e)
                 {
-                    // no need to update the prefix after the first line
-                    if (lineWritten)
-                        return;
-
-                    // after the first line in a list item is written
-                    // replace the prefix to not include '-'
-                    m_Writer.PopPrefix();
-                    m_Writer.PushPrefix(otherLinesPrefix);
-
                     // no action after first line required => unsubscribe from event
                     lineWritten = true;
                 }
@@ -210,16 +177,15 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 // detach event handlers
                 m_Writer.LineWritten -= OnLineWritten;
                 m_Writer.BlankLineRequested -= OnBlankLineRequested;
-
-                // restore prefix before list
-                m_Writer.PopPrefix();
-
+                
                 // prevent blank lines from being inserted after list items
                 m_Writer.CancelRequestBlankLine();
 
                 listItemNumber += 1;
             }
-            
+
+            // remove prefix handler
+            m_Writer.PopPrefixHandler();
 
             // top-level lists should be surrounded by blank lines
             if (m_ListLevel == 1)
