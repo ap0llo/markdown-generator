@@ -36,9 +36,9 @@ namespace Grynwald.MarkdownGenerator.Model
         public static MdCodeBlock CodeBlock(string text, string infoString) => new MdCodeBlock(text, infoString);
 
 
-        public static MdList List(params MdListItem[] items) => new MdList(items);
+        public static MdBulletList BulletList(params MdListItem[] items) => new MdBulletList(items);
 
-        public static MdList List(IEnumerable<MdListItem> items) => new MdList(items);
+        public static MdBulletList BulletList(IEnumerable<MdListItem> items) => new MdBulletList(items);
 
 
         public static MdListItem ListItem(params MdBlock[] content) => new MdListItem(content);

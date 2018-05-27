@@ -58,7 +58,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "- Item 1\r\n" +
                 "- Item 2\r\n",
                 Document(
-                    List(
+                    BulletList(
                         ListItem("Item 1"),
                         ListItem("Item 2")))
             );
@@ -74,7 +74,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "Paragraph\r\n",
                 Document(
                     Heading("Heading", 1),
-                    List(
+                    BulletList(
                         ListItem("Item 1"),
                         ListItem("Item 2")
                     ),
@@ -89,10 +89,10 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "  - Item 1.2\r\n" +
                 "- Item 2\r\n",
                 Document(                    
-                    List(
+                    BulletList(
                         ListItem(
                             Paragraph("Item 1"),
-                            List(
+                            BulletList(
                                 ListItem("Item 1.1"),
                                 ListItem("Item 1.2"))),
                         ListItem("Item 2")))
@@ -107,13 +107,13 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "  - Item 1.2\r\n" +
                 "- Item 2\r\n",
                 Document(
-                    List(
+                    BulletList(
                         ListItem(
                             Paragraph("Item 1"),
-                            List(
+                            BulletList(
                                 ListItem(
                                     Paragraph("Item 1.1"),
-                                    List(
+                                    BulletList(
                                         ListItem("Item 1.1.1"))),
                                 ListItem("Item 1.2"))),
                         ListItem("Item 2")))
@@ -127,10 +127,10 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "  - Item 1.1  \r\n" +
                 "    as well\r\n",                 
                 Document(
-                    List(
+                    BulletList(
                         ListItem(
                             Paragraph("Item 1 consists of\r\nmultiple lines"),
-                            List(
+                            BulletList(
                                 ListItem(
                                     Paragraph("Item 1.1\r\nas well"))
                                 ))))
@@ -143,7 +143,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "\r\n" +
                 "  Paragraph 2\r\n",
                 Document(
-                    List(
+                    BulletList(
                         ListItem(
                             Paragraph("Paragraph 1"),
                             Paragraph("Paragraph 2"))))
@@ -213,7 +213,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "  | Cell1   |         |\r\n" +
                 "  | Cell3   | Cell4   |\r\n",
                 Document(
-                    List(
+                    BulletList(
                         ListItem(
                             Paragraph("ListItem1"),
                             Table(

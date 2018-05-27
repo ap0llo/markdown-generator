@@ -5,9 +5,9 @@ using System.Collections.Generic;
 namespace Grynwald.MarkdownGenerator.Model
 {
     /// <summary>
-    /// Represents an (unordered) list
+    /// Base class for ordered and bullet lists
     /// </summary>
-    public sealed class MdList : MdBlock, IEnumerable<MdListItem>
+    public abstract class MdList : MdBlock, IEnumerable<MdListItem>
     {
         readonly LinkedList<MdListItem> m_ListItems;
 
@@ -17,10 +17,12 @@ namespace Grynwald.MarkdownGenerator.Model
         public IEnumerable<MdListItem> Items => m_ListItems;
 
 
-        public MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>) content)
+        // private protected constructor => class cannot be derived from outside this assembly
+        private protected MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>) content)
         { }
 
-        public MdList(IEnumerable<MdListItem> content)
+        // private protected constructor => class cannot be derived from outside this assembly
+        private protected MdList(IEnumerable<MdListItem> content)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
