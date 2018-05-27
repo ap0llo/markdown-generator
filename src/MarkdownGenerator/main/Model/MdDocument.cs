@@ -30,6 +30,10 @@ namespace Grynwald.MarkdownGenerator.Model
         public MdDocument(MdList list) : this((MdBlock)list)
         { }
 
+        // MdBlockQuote implements IEnumerable<MdListItem> so this constructor is necessary to prevent ambiguities
+        public MdDocument(MdBlockQuote list) : this((MdBlock)list)
+        { }
+
         public void Save(string path)
         {
             using(var stream = File.Open(path, FileMode.Create))            

@@ -132,8 +132,8 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Multi_level_ordered_lists_are_serialized_as_expected_01() =>
             AssertToStringEquals(
                 "1. Item 1\r\n" +
-                "  1. Item 1.1\r\n" +
-                "  2. Item 1.2\r\n" +
+                "   1. Item 1.1\r\n" +
+                "   2. Item 1.2\r\n" +
                 "2. Item 2\r\n",
                 Document(
                     OrderedList(
@@ -170,9 +170,9 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Multi_level_ordered_lists_are_serialized_as_expected_02() =>
             AssertToStringEquals(
                 "1. Item 1\r\n" +
-                "  1. Item 1.1\r\n" +
-                "    1. Item 1.1.1\r\n" +
-                "  2. Item 1.2\r\n" +
+                "   1. Item 1.1\r\n" +
+                "      1. Item 1.1.1\r\n" +
+                "   2. Item 1.2\r\n" +
                 "2. Item 2\r\n",
                 Document(
                     OrderedList(
@@ -191,8 +191,8 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Ordered_lists_can_contain_bullet_lists() =>
             AssertToStringEquals(
                 "1. Item 1\r\n" +
-                "  - Item 1.1\r\n" +
-                "  - Item 1.2\r\n" +
+                "   - Item 1.1\r\n" +
+                "   - Item 1.2\r\n" +
                 "2. Item 2\r\n",
                 Document(
                     OrderedList(
@@ -226,8 +226,8 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             AssertToStringEquals(
                 "1. Item 1 consists of  \r\n" +
                 "   multiple lines\r\n" +
-                "  1. Item 1.1  \r\n" +
-                "     as well\r\n",
+                "   1. Item 1.1  \r\n" +
+                "      as well\r\n",
                 Document(
                     OrderedList(
                         ListItem(
@@ -388,6 +388,46 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                     Paragraph("Paragraph"))
             );
 
+
+        [Fact]
+        public void BlockQuotes_are_serialized_as_expected() =>
+            AssertToStringEquals(
+                "> Quote\r\n",
+                Document(BlockQuote("Quote"))
+            );
+
+        [Fact]
+        public void BlockQuotes_can_contain_lists() =>
+            AssertToStringEquals(
+                "> Quote\r\n" +
+                "> \r\n" +
+                "> - Item1\r\n" +
+                "> - Item2\r\n",
+                Document(
+                    BlockQuote(
+                        Paragraph("Quote"),
+                        BulletList(
+                            ListItem("Item1"),
+                            ListItem("Item2"))))
+            );
+
+        //TODO: Lists in block quotes
+        [Fact]
+        public void Lists_can_contain_BlockQuotes() =>
+            AssertToStringEquals(
+                "- Item1\r\n" +
+                "\r\n" +
+                "  > Quote1\r\n" +
+                "  > \r\n" +
+                "  > Quote2\r\n",
+                Document(
+                    BulletList(
+                        ListItem(
+                            Paragraph("Item1"),
+                            BlockQuote(
+                                Paragraph("Quote1"),
+                                Paragraph("Quote2")))))
+            );
 
         private void AssertToStringEquals(string expected, MdDocument document)
         {

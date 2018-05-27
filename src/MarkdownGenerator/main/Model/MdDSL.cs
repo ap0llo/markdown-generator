@@ -14,11 +14,13 @@ namespace Grynwald.MarkdownGenerator.Model
     {
         public static MdDocument Document(MdContainerBlock root) => new MdDocument(root);
 
-        public static MdDocument Document(params MdBlock[] content) => Document(Container(content));
+        public static MdDocument Document(params MdBlock[] content) => new MdDocument(Container(content));
 
-        public static MdDocument Document(IEnumerable<MdBlock> content) => Document(Container(content));
+        public static MdDocument Document(IEnumerable<MdBlock> content) => new MdDocument(Container(content));
 
-        public static MdDocument Document(MdList list) => Document((MdBlock) list);
+        public static MdDocument Document(MdList list) => new MdDocument((MdBlock) list);
+
+        public static MdDocument Document(MdBlockQuote blockQuote) => new MdDocument((MdBlock)blockQuote);
 
 
         public static MdContainerBlock Container(params MdBlock[] content) => new MdContainerBlock(content);
@@ -51,6 +53,13 @@ namespace Grynwald.MarkdownGenerator.Model
         public static MdListItem ListItem(IEnumerable<MdBlock> content) => new MdListItem(content);
 
         public static MdListItem ListItem(string content) => new MdListItem(content);
+
+
+        public static MdBlockQuote BlockQuote(params MdBlock[] content) => new MdBlockQuote(content);
+
+        public static MdBlockQuote BlockQuote(IEnumerable<MdBlock> content) => new MdBlockQuote(content);
+
+        public static MdBlockQuote BlockQuote(string content) => new MdBlockQuote(content);
 
 
         public static MdTable Table(MdTableRow headerRow, params MdTableRow[] rows) =>

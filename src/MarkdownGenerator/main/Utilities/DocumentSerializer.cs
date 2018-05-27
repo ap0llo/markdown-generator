@@ -53,6 +53,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     Serialize(thematicBreak);
                     break;
 
+                case MdBlockQuote blockQuote:
+                    Serialize(blockQuote);
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported block type {block.GetType().FullName}");
             }
@@ -65,6 +69,32 @@ namespace Grynwald.MarkdownGenerator.Utilities
             {
                 Serialize(block);
             }
+        }
+
+        public void Serialize(MdBlockQuote blockQuote)
+        {
+            var prefix = (m_Writer.CurrentPrefix ?? "") + "> ";
+            m_Writer.PushPrefix(prefix);
+
+            var prefixSet = false;
+            void OnBeforeLineWritten(object sender, EventArgs args)
+            {
+                if (prefixSet)
+                    return;
+
+                m_Writer.PushBlankLinePrefix(prefix);
+                prefixSet = true;
+            }
+            m_Writer.BeforeLineWritten += OnBeforeLineWritten;
+
+            
+            foreach (var block in blockQuote)
+            {
+                Serialize(block);
+            }
+            m_Writer.PopPrefix();
+            if(prefixSet)
+                m_Writer.PushBlankLinePrefix(prefix);
         }
 
         public void Serialize(MdListItem listItem)
@@ -122,19 +152,19 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 // (blank lines may have been requested by block in parent list item)
                 m_Writer.CancelRequestBlankLine();
             }
-            
+
+            var previousPrefix = m_Writer.CurrentPrefix ?? "";
             
             var listItemNumber = 1;
             foreach (var listItem in list)
             {
                 // list item marker is a dash for bulleted lists and the number followed by a period for ordered lists
                 var listItemMarker = list.Kind == MdListKind.Bullet ? "- " : $"{listItemNumber}. ";
-
-                // lists are indented with two spaces per level but the first list level is not indented 
+                
                 // the first line of a list item is prefixed with the list item marker
-                // while the following lines are indented with the width of the list item marker
-                var firstLinePrefix = new String(' ', (m_ListLevel * 2) - 2) + listItemMarker;                
-                var otherLinesPrefix = new String(' ', firstLinePrefix.Length);
+                // while the following lines are indented with the width of the list item marker                
+                var firstLinePrefix = previousPrefix + listItemMarker;                
+                var otherLinesPrefix = previousPrefix + new String(' ', listItemMarker.Length);
 
                 // add the preifx 
                 m_Writer.PushPrefix(firstLinePrefix);
@@ -266,7 +296,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdThematicBreak thematicBreak)
         {
             m_Writer.WriteLine("---");
-        }
-        
+        }       
     }
 }
