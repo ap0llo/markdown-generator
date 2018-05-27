@@ -4,47 +4,15 @@ using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    //TODO: seal class
     /// <summary>
     /// A block that can contains other blocks
     /// </summary>
-    public class MdContainerBlock : MdBlock, IEnumerable<MdBlock>
+    public sealed class MdContainerBlock : MdContainerBlockBase
     {
-        readonly LinkedList<MdBlock> m_Blocks;
-
-        /// <summary>
-        /// The container's sub-blocks
-        /// </summary>
-        public IEnumerable<MdBlock> Blocks => m_Blocks;
-
-
-        public MdContainerBlock(params MdBlock[] content) : this((IEnumerable<MdBlock>) content)
+        public MdContainerBlock(params MdBlock[] content) : base(content)
         { }
 
-        public MdContainerBlock(IEnumerable<MdBlock> content)
-        {
-            if (content == null)
-                throw new ArgumentNullException(nameof(content));
-
-            m_Blocks = new LinkedList<MdBlock>(content);            
-        }
-
-
-        public void Add(MdBlock block)
-        {            
-            m_Blocks.AddLast(block);
-        }
-
-        public void Add(params MdBlock[] blocks)
-        {
-            for (var i = 0; i < blocks.Length; i++)
-            {
-                m_Blocks.AddLast(blocks[i]);
-            }
-        }
-
-        public IEnumerator<MdBlock> GetEnumerator() => m_Blocks.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => m_Blocks.GetEnumerator();
+        public MdContainerBlock(IEnumerable<MdBlock> content) :base(content)
+        { }
     }
 }

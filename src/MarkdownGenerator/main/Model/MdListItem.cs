@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator.Model
     /// <summary>
     /// Represents a item in an (unordered) list
     /// </summary>
-    public sealed class MdListItem : MdContainerBlock
+    public sealed class MdListItem : MdContainerBlockBase
     {
         public MdListItem(params MdBlock[] items) : base(items)
         { }
