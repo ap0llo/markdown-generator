@@ -41,6 +41,11 @@ namespace Grynwald.MarkdownGenerator.Model
         public static MdBulletList BulletList(IEnumerable<MdListItem> items) => new MdBulletList(items);
 
 
+        public static MdOrderedList OrderedList(params MdListItem[] items) => new MdOrderedList(items);
+
+        public static MdOrderedList OrderedList(IEnumerable<MdListItem> items) => new MdOrderedList(items);
+
+
         public static MdListItem ListItem(params MdBlock[] content) => new MdListItem(content);
 
         public static MdListItem ListItem(IEnumerable<MdBlock> content) => new MdListItem(content);
