@@ -45,7 +45,7 @@ To further streamline document creation, the class `Grynwald.MarkdownGenerator.F
 methods for all block types that are useful when using static imports:
 
 ```csharp
-using Grynwald.MarkdownGenerator.Model;
+using static Grynwald.MarkdownGenerator.FactoryMethods;
 
 Document(
   Heading("Heading", 1),
