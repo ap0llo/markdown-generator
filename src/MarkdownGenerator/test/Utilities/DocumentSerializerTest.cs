@@ -1,10 +1,9 @@
-using System;
 using System.IO;
+using System.Linq;
 using Xunit;
 using Grynwald.MarkdownGenerator.Model;
 using Grynwald.MarkdownGenerator.Utilities;
-using static Grynwald.MarkdownGenerator.Model.MdDSL;
-using System.Linq;
+using static Grynwald.MarkdownGenerator.FactoryMethods;
 
 namespace Grynwald.MarkdownGenerator.Test.Model
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Grynwald.MarkdownGenerator.Model;
 
-namespace Grynwald.MarkdownGenerator.Model
+namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Defines static factory methods for blocks in markdown documents.
@@ -10,7 +11,7 @@ namespace Grynwald.MarkdownGenerator.Model
     /// can be rewritten as
     ///   Document(Paragraph("My Content"))
     /// </summary>
-    public static class MdDSL
+    public static class FactoryMethods
     {
         public static MdDocument Document(MdContainerBlock root) => new MdDocument(root);
 
