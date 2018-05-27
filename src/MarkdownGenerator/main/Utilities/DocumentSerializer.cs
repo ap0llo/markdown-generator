@@ -63,6 +63,13 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }
         }
 
+        public void Serialize(MdListItem listItem)
+        {
+            foreach (var block in listItem)
+            {
+                Serialize(block);
+            }
+        }
         public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
