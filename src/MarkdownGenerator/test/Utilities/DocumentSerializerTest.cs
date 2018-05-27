@@ -2,10 +2,12 @@ using System;
 using Xunit;
 using Grynwald.MarkdownGenerator.Model;
 using static Grynwald.MarkdownGenerator.Model.MdDSL;
+using Grynwald.MarkdownGenerator.Utilities;
+using System.IO;
 
 namespace Grynwald.MarkdownGenerator.Test.Model
 {
-    public class MdDocumentTest
+    public class DocumentSerializerTest
     {
         [Fact]
         public void Headings_are_serialized_as_expected() => 
@@ -223,8 +225,15 @@ namespace Grynwald.MarkdownGenerator.Test.Model
 
         private void AssertToStringEquals(string expected, MdDocument document)
         {
-            var actual = document.ToString();            
-            Assert.Equal(expected, actual);
+            using (var writer = new StringWriter())
+            {
+                var serializer = new DocumentSerializer(writer);
+                serializer.Serialize(document);
+
+                var actual = writer.ToString();            
+                Assert.Equal(expected, actual);
+            }
+
         }
     }
 }
