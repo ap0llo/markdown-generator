@@ -11,6 +11,7 @@
     <Description>A utility library to programatically generate markdown files</Description>
 
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <NoWarn>$(NoWarn),1591</NoWarn>
 
     <!-- SourceLink (https://github.com/dotnet/sourcelink) settings -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>    
