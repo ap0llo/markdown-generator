@@ -4,5 +4,10 @@
   "publicReleaseRefSpec": [
     "^refs/heads/master$", // do not include git commit in version when building from master
     "^refs/heads/release-\\d+\\.\\d+" // do not include git commit in version when building from master
-  ]
+  ],
+  "cloudBuild": {
+    "buildNumber": {
+      "enabled": true
+    }
+  }
 }
