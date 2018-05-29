@@ -295,7 +295,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Tables_are_serialized_as_expected_01() =>
             AssertToStringEquals(
                 "| Column1 | Column2 |\r\n" +
-                "|---------|---------|\r\n" +
+                "| ------- | ------- |\r\n" +
                 "| Cell1   | Cell2   |\r\n",
                 Document(
                     Table(
@@ -307,7 +307,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Tables_are_serialized_as_expected_02() =>
             AssertToStringEquals(
                 "| Column1 | Column2 |\r\n" +
-                "|---------|---------|\r\n" +
+                "| ------- | ------- |\r\n" +
                 "| Cell1   |         |\r\n" +
                 "| Cell3   | Cell4   |\r\n",
                 Document(
@@ -323,7 +323,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "- ListItem1\r\n" +
                 "\r\n" +
                 "  | Column1 | Column2 |\r\n" +
-                "  |---------|---------|\r\n" +
+                "  | ------- | ------- |\r\n" +
                 "  | Cell1   |         |\r\n" +
                 "  | Cell3   | Cell4   |\r\n",
                 Document(
@@ -341,7 +341,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 "1. ListItem1\r\n" +
                 "\r\n" +
                 "   | Column1 | Column2 |\r\n" +
-                "   |---------|---------|\r\n" +
+                "   | ------- | ------- |\r\n" +
                 "   | Cell1   |         |\r\n" +
                 "   | Cell3   | Cell4   |\r\n",
                 Document(
@@ -352,7 +352,6 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                                 Row("Column1", "Column2"),
                                 Row("Cell1"),
                                 Row("Cell3", "Cell4"))))));
-
 
         [Fact]
         public void Ordered_lists_with_more_than_10_items_are_serialized_as_expected() =>
@@ -386,7 +385,6 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                     ThematicBreak(),
                     Paragraph("Paragraph"))
             );
-
 
         [Fact]
         public void BlockQuotes_are_serialized_as_expected() =>
@@ -443,6 +441,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                                 Paragraph("Quote1"),
                                 Paragraph("Quote2")))))
             );
+
 
         private void AssertToStringEquals(string expected, MdDocument document)
         {

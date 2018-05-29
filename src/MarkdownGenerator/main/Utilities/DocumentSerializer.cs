@@ -246,8 +246,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
             var separatorLineBuilder = new StringBuilder();
             separatorLineBuilder.Append("|");
             for (var i = 0; i < tableColumnCount; i++)
-            {                
-                separatorLineBuilder.AppendRepeat('-', table.GetColumnWidth(i) + 2);
+            {
+                separatorLineBuilder.Append(' ');
+                separatorLineBuilder.AppendRepeat('-', table.GetColumnWidth(i));
+                separatorLineBuilder.Append(' ');
                 separatorLineBuilder.Append("|");
             }
             m_Writer.WriteLine(separatorLineBuilder.ToString());
