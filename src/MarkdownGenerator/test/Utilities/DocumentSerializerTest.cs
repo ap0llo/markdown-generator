@@ -304,6 +304,34 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
 
         [Fact]
+        public void Table_cell_contents_are_escaped() =>
+            AssertToStringEquals(
+                "| Column1 |\r\n" +
+                "| ------- |\r\n" +
+                "| Cel\\|l1 |\r\n",
+                Document(
+                    Table(
+                        Row("Column1"),
+                        Row("Cel|l1")))
+            );
+
+        [Theory]
+        [InlineData("\r")]
+        [InlineData("\n")]
+        [InlineData("\r\n")]
+        public void Line_breaks_are_removed_from_table_cells(string lineBreak) =>
+            AssertToStringEquals(
+                "| Column1     |\r\n" +
+                "| ----------- |\r\n" +
+                "| Part1 Part2 |\r\n",
+                Document(
+                    Table(
+                        Row("Column1"),
+                        Row($"Part1{lineBreak}Part2")))
+            );
+
+
+        [Fact]
         public void Tables_are_serialized_as_expected_02() =>
             AssertToStringEquals(
                 "| Column1 | Column2 |\r\n" +
@@ -334,6 +362,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                                 Row("Column1", "Column2"),
                                 Row("Cell1"),
                                 Row("Cell3", "Cell4"))))));
+
 
         [Fact]
         public void Ordered_lists_can_contain_tables() =>
@@ -457,3 +486,4 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         }
     }
 }
+

@@ -215,7 +215,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
             var tableColumnCount = table.ColumnCount;
 
-            void SaveRow(MdTableRow row )
+            void SaveRow(MdTableRow row)
             {
                 var lineBuilder = new StringBuilder();
 
