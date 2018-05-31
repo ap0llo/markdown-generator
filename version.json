@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/AArnott/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
   "version": "1.0-prerelease",
   "publicReleaseRefSpec": [
-    "^refs/heads/master$", // do not include git commit in version when building from master
-    "^refs/heads/release-\\d+\\.\\d+" // do not include git commit in version when building from master
+    "^refs/heads/master$", 
+    "^refs/heads/release-\\d+\\.\\d+"
   ],
   "cloudBuild": {
     "buildNumber": {
