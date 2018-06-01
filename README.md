@@ -1,5 +1,7 @@
 # MarkdownGenerator
 
+![NuGet](https://img.shields.io/nuget/v/Grynwald.MarkdownGenerator.svg)
+
 Most Markdown libraries focus on parsing markdown inputs and converting them to html.
 In contrast MarkdownGenerator is library to programmatically generate markdown files.
 
@@ -11,7 +13,7 @@ Additionally the library supports tables as defined in [GitHub flavored markdown
 MarkdownGenerator is distributed as NuGet package.
 
 - Prerelease builds are available on [MyGet](https://www.myget.org/feed/Packages/ap0llo-markdown-generator)
-- Release versions are available on [Nuget.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
+- Release versions are available on [NuGet.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
 
 ## Usage / Examples
 
