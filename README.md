@@ -1,6 +1,6 @@
 # MarkdownGenerator
 
-![NuGet](https://img.shields.io/nuget/v/Grynwald.MarkdownGenerator.svg)
+[![NuGet](https://img.shields.io/nuget/v/Grynwald.MarkdownGenerator.svg)](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
 
 Most Markdown libraries focus on parsing markdown inputs and converting them to html.
 In contrast MarkdownGenerator is library to programmatically generate markdown files.
