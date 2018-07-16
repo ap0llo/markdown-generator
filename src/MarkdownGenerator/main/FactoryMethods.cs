@@ -77,6 +77,17 @@ namespace Grynwald.MarkdownGenerator
         public static MdThematicBreak ThematicBreak() => new MdThematicBreak();
 
 
-        public static string Link(string title, string url) => $"[{title}]({url})";        
+        public static string Link(string title, string url) => $"[{title}]({url})";
+
+        public static string Image(string description, string url) => $"![{description}]({url})";
+
+        public static string Emphasis(string text) => $"*{text}*";
+
+        public static string Italic(string text) => Emphasis(text);
+
+        public static string StrongEmphasis(string text) => $"**{text}**";
+
+        public static string Bold(string text) => StrongEmphasis(text);
+
     }
 }
