@@ -5,8 +5,8 @@ The factory methods are defined in the class `Grynwald.MarkdownGenerator.Factory
 
 ## Document
 
-A new markdown document is initialized using either the `Document` factory method or by initializing 
-a instance of `MdDocument`.
+A new markdown document is initialized using either the `Document` factory
+method or by initializing a instance of `MdDocument`.
 
 ## Blocks
 
