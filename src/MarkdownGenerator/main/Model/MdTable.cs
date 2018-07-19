@@ -56,5 +56,14 @@ namespace Grynwald.MarkdownGenerator.Model
 
             return Math.Max(HeaderRow.GetColumnWidthOrDefault(column), m_Rows.Max(r => r.GetColumnWidthOrDefault(column)));
         }
+
+
+        public void Add(MdTableRow row)
+        {
+            if (row == null)
+                throw new ArgumentNullException(nameof(row));
+
+            m_Rows.AddLast(row);
+        }
     }
 }
