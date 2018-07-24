@@ -63,18 +63,41 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
 
-        //TODO: Escape link text
-        private void Serialize(MdLinkSpan span) => m_Writer.Write($"[{span.Text}]({span.Uri})");
-
-        //TODO: Escape image description
-        private void Serialize(MdImageSpan span) => m_Writer.Write($"![{span.Description}]({span.Uri})");
-
-        //TODO: Escape emphasized content
-        private void Serialize(MdEmphasisSpan span) => m_Writer.Write($"*{span.Text}*");
-
-        //TODO: Escape emphasized content
-        private void Serialize(MdStrongEmphasisSpan span) => m_Writer.Write($"**{span.Text}**");
+        private void Serialize(MdLinkSpan span)
+        {
+            m_Writer.Write("[");
+            Serialize(span.Text);
+            m_Writer.Write("]");
+            m_Writer.Write("(");
+            m_Writer.Write(span.Uri);
+            m_Writer.Write(")");
+        }
         
+        private void Serialize(MdImageSpan span)
+        {
+            m_Writer.Write("![");
+            Serialize(span.Description);
+            m_Writer.Write("]");
+            m_Writer.Write("(");
+            m_Writer.Write(span.Uri);
+            m_Writer.Write(")");            
+        }
+        
+        private void Serialize(MdEmphasisSpan span)
+        {
+            m_Writer.Write("*");
+            Serialize(span.Text);
+            m_Writer.Write("*");            
+        }
+
+        //TODO: Escape emphasized content
+        private void Serialize(MdStrongEmphasisSpan span)
+        {
+            m_Writer.Write("**");
+            Serialize(span.Text);
+            m_Writer.Write("**");
+        }
+
         private void Serialize(MdTextSpan span)
         {
             var text = span.Text;

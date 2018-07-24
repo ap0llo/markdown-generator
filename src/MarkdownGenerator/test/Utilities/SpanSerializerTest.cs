@@ -34,6 +34,19 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         }
 
         [Theory]
+        [MarkdownSpecialCharacterData]
+        public void Link_text_is_escaped(char charToEscape)
+        {
+            var title = $"prefix{charToEscape}suffix";
+            var link = "file.md";
+            var span = new MdLinkSpan(title, link);
+
+            var expectedValue = $"[prefix\\{charToEscape}suffix]({link})";
+
+            AssertToStringEquals(expectedValue, span);
+        }
+
+        [Theory]
         [InlineData("http://example.com/image.jpg")] // absolute uri
         [InlineData("./image.png")]                  // relative path
         public void ImageSpan_is_serialized_as_expected(string link)
@@ -42,6 +55,19 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             var expectedValue = $"![{description}]({link})";
 
             var span = new MdImageSpan(description, link);
+
+            AssertToStringEquals(expectedValue, span);
+        }
+
+        [Theory]
+        [MarkdownSpecialCharacterData]
+        public void Image_description_text_is_escaped(char charToEscape)
+        {
+            var description = $"prefix{charToEscape}suffix";
+            var link = "file.png";
+            var span = new MdImageSpan(description, link);
+
+            var expectedValue = $"![prefix\\{charToEscape}suffix]({link})";
 
             AssertToStringEquals(expectedValue, span);
         }
@@ -55,6 +81,18 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             AssertToStringEquals($"*{text}*", span);
         }
 
+        [Theory]
+        [MarkdownSpecialCharacterData]
+        public void Emphasis_text_is_escaped(char charToEscape)
+        {
+            var text = $"prefix{charToEscape}suffix";            
+            var span = new MdEmphasisSpan(text);
+
+            var expectedValue = $"*prefix\\{charToEscape}suffix*";
+
+            AssertToStringEquals(expectedValue, span);
+        }
+
         [Fact]
         public void StrongEmphasisSpan_is_serialized_as_expected()
         {
@@ -62,6 +100,19 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             var span = new MdStrongEmphasisSpan(text);
 
             AssertToStringEquals($"**{text}**", span);
+        }
+
+
+        [Theory]
+        [MarkdownSpecialCharacterData]
+        public void StrongEmphasis_text_is_escaped(char charToEscape)
+        {
+            var text = $"prefix{charToEscape}suffix";
+            var span = new MdStrongEmphasisSpan(text);
+
+            var expectedValue = $"**prefix\\{charToEscape}suffix**";
+
+            AssertToStringEquals(expectedValue, span);
         }
 
         [Fact]
@@ -88,7 +139,7 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         }
 
         [Theory]
-        [CharData(@"<>/\*_-=#`~[]!")]
+        [MarkdownSpecialCharacterData]
         public void Characters_in_TextSpan_are_escaped(char character)
         {
             AssertToStringEquals(

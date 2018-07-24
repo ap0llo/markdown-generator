@@ -6,13 +6,10 @@ using Xunit.Sdk;
 
 namespace Grynwald.MarkdownGenerator.Test.Utilities
 {
-    public class CharDataAttribute : DataAttribute
+    public class MarkdownSpecialCharacterDataAttribute : DataAttribute
     {
-        private readonly char[] m_Chars;
-
-        public CharDataAttribute(string chars) => 
-            m_Chars = chars.ToCharArray();
-
+        private readonly char[] m_Chars = @"<>/\*_-=#`~[]!".ToCharArray();
+        
         public override IEnumerable<object[]> GetData(MethodInfo testMethod) => 
             m_Chars.Select(c => new object[] { c });
     }
