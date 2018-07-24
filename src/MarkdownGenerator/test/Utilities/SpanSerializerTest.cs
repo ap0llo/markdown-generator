@@ -34,8 +34,8 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         }
 
         [Theory]
-        [InlineData("http://example.com/")] // absolute uri
-        [InlineData("./other_file.md")]     // relative path
+        [InlineData("http://example.com/image.jpg")] // absolute uri
+        [InlineData("./image.png")]                  // relative path
         public void ImageSpan_is_serialized_as_expected(string link)
         {
             var description = "Description";
