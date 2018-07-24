@@ -3,7 +3,7 @@
 namespace Grynwald.MarkdownGenerator.Model
 {
     /// <summary>
-    /// Represents emphasized text
+    /// Represents emphasized/italic text
     /// </summary>
     public sealed class MdEmphasisSpan : MdSpan
     {

@@ -15,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
     ///   Document(Paragraph("My Content"))
     /// </code>
     /// </summary>
-    public static class FactoryMethods
+    public static partial class FactoryMethods
     {
         public static MdDocument Document(MdContainerBlock root) => new MdDocument(root);
 
@@ -78,20 +78,7 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
 
-        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();
-
-
-        public static string Link(string title, string url) => $"[{title}]({url})";
-
-        public static string Image(string description, string url) => $"![{description}]({url})";
-
-        public static string Emphasis(string text) => $"*{text}*";
-
-        public static string Italic(string text) => Emphasis(text);
-
-        public static string StrongEmphasis(string text) => $"**{text}**";
-
-        public static string Bold(string text) => StrongEmphasis(text);
+        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();      
 
     }
 }

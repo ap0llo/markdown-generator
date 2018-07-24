@@ -3,7 +3,7 @@
 namespace Grynwald.MarkdownGenerator.Model
 {
     /// <summary>
-    /// Represents strongly-emphasized content
+    /// Represents strongly-emphasized/bold content
     /// </summary>
     public sealed class MdStrongEmphasisSpan : MdSpan
     {
