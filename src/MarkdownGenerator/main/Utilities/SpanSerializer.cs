@@ -31,6 +31,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     Serialize(linkSpan);
                     break;
 
+                case MdImageSpan imageSpan:
+                    Serialize(imageSpan);
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported span type {span.GetType().FullName}");
             }
@@ -48,6 +52,9 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         //TODO: Escape link text
         private void Serialize(MdLinkSpan span) => m_Writer.Write($"[{span.Text}]({span.Uri})");
+
+        //TODO: Escape image description
+        private void Serialize(MdImageSpan span) => m_Writer.Write($"![{span.Description}]({span.Uri})");
 
        
     }

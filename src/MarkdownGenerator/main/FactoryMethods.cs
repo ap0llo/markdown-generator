@@ -7,9 +7,13 @@ namespace Grynwald.MarkdownGenerator
     /// Defines static factory methods for blocks in markdown documents.
     /// When imported via "using static", this allows for more readable 
     /// construction of documents, e.g.
+    /// <code>
     ///   new MdDocument(new MdParagraph("My content")) 
+    /// </code>
     /// can be rewritten as
+    /// <code>
     ///   Document(Paragraph("My Content"))
+    /// </code>
     /// </summary>
     public static class FactoryMethods
     {
