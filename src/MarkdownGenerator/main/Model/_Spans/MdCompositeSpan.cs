@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
+    /// <summary>
+    /// Represents a list or inline-elements
+    /// </summary>
     public sealed class MdCompositeSpan : MdSpan, IEnumerable<MdSpan>
     {
         private readonly LinkedList<MdSpan> m_Spans;
@@ -11,10 +14,15 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public IEnumerable<MdSpan> Spans { get; }
 
-
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
+        /// </summary>
         public MdCompositeSpan(params MdSpan[] spans) : this((IEnumerable<MdSpan>) spans)
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
+        /// </summary>
         public MdCompositeSpan(IEnumerable<MdSpan> spans)
         {
             if (spans == null)
@@ -24,6 +32,9 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
 
+        /// <summary>
+        /// Adds a new element to the composite span
+        /// </summary>
         public void Add(MdSpan span)
         {
             if (span == null)
