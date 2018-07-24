@@ -20,6 +20,19 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             AssertToStringEquals(value, span);
         }
 
+        [Fact]
+        public void CompositeTextSpan_is_serialized_unchanged()
+        {
+            var value1 = "Some markdown, perhaps with a [Link](http://example.com). ";
+            var value2 = "Some more markdown";
+
+            var span = new MdCompositeTextSpan(
+                new MdRawTextSpan(value1),
+                new MdRawTextSpan(value2));
+
+            AssertToStringEquals(value1 + value2, span);
+        }
+
 
         private void AssertToStringEquals(string expected, MdTextSpan span)
         {

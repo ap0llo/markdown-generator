@@ -19,6 +19,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             switch (span)
             {
+                case MdCompositeTextSpan compositeSpan:
+                    Serialize(compositeSpan);
+                    break;
+
                 case MdRawTextSpan rawTextSpan:
                     Serialize(rawTextSpan);
                     break;
@@ -30,5 +34,13 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
 
         private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
+
+        private void Serialize(MdCompositeTextSpan compositeSpan)
+        {
+            foreach(var span in compositeSpan)
+            {
+                Serialize(span);
+            }
+        }
     }
 }
