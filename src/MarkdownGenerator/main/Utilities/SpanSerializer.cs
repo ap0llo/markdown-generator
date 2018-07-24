@@ -47,6 +47,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     Serialize(textSpan);
                     break;
 
+                case MdCodeSpan codeSpan:
+                    Serialize(codeSpan);
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported span type {span.GetType().FullName}");
             }
@@ -90,7 +94,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
             m_Writer.Write("*");            
         }
 
-        //TODO: Escape emphasized content
         private void Serialize(MdStrongEmphasisSpan span)
         {
             m_Writer.Write("**");
@@ -127,6 +130,13 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 }
                 m_Writer.Write(text[i]);
             }
+        }
+
+        private void Serialize(MdCodeSpan span)
+        {
+            m_Writer.Write("`");
+            m_Writer.Write(span.Text);
+            m_Writer.Write("`");            
         }
     }
 }

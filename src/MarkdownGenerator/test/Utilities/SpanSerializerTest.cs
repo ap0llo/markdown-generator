@@ -130,7 +130,7 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
 
 
         [Fact]
-        public void TextSpan_is_serailaized_as_expected()
+        public void TextSpan_is_serialized_as_expected()
         {
             var text = "Text without special characters";
             var span = new MdTextSpan(text);
@@ -147,6 +147,30 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
                 new MdTextSpan($"prefix{character}suffix")
             );
         }
+
+
+        [Fact]
+        public void Code_spans_are_serialized_as_expected()
+        {
+            var text = "Code span content";
+            var span = new MdCodeSpan(text);
+
+            AssertToStringEquals($"`{text}`", span);
+        }
+
+
+        [Theory]
+        [MarkdownSpecialCharacterData]
+        public void Code_span_text_is_NOT_escaped(char charToEscape)
+        {
+            var text = $"prefix{charToEscape}suffix";
+            var span = new MdCodeSpan(text);
+
+            var expectedValue = $"`prefix{charToEscape}suffix`";
+
+            AssertToStringEquals(expectedValue, span);
+        }
+
 
         private void AssertToStringEquals(string expected, MdSpan span)
         {
