@@ -11,8 +11,8 @@ in `version.json` using [Nerdbank.GitVersioning](https://github.com/AArnott/Nerd
 - Builds from any other branch will have both the `-prerelease` and the git 
   commit hash included in the version string
 
-The `Set-Version.ps1` script can be used to create a new release branch and 
-update the version on *master*.  The script will:
+The `Set-Version.ps1` script from the `scripts` foldercan be used to create a new 
+release branch and update the version on *master*.  The script will:
 
 - read `version.json` to determine the current version of the branch 
   (typically *master*)
