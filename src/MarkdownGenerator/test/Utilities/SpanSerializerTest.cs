@@ -65,7 +65,7 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         }
 
         [Fact]
-        public void CompositeSpan_is_serialized_unchanged()
+        public void CompositeSpan_is_serialized_as_expected()
         {
             var value1 = "Some markdown, perhaps with a [Link](http://example.com). ";
             var value2 = "Some more markdown";
@@ -77,6 +77,25 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             AssertToStringEquals(value1 + value2, span);
         }
 
+
+        [Fact]
+        public void TextSpan_is_serailaized_as_expected()
+        {
+            var text = "Text without special characters";
+            var span = new MdTextSpan(text);
+
+            AssertToStringEquals(text, span);
+        }
+
+        [Theory]
+        [CharData(@"<>/\*_-=#`~[]!")]
+        public void Characters_in_TextSpan_are_escaped(char character)
+        {
+            AssertToStringEquals(
+                $"prefix\\{character}suffix", 
+                new MdTextSpan($"prefix{character}suffix")
+            );
+        }
 
         private void AssertToStringEquals(string expected, MdSpan span)
         {
