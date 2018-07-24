@@ -1,13 +1,17 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Grynwald.MarkdownGenerator.Model;
 
 namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class SpanSerializer
     {
+        private static readonly Regex s_LineBreakPattern = new Regex(@"(\s)*[\r\n]+(\s)*", RegexOptions.Compiled);
+        private static readonly Regex s_TrailingLineBreakRegex = new Regex(@"[\r\n]+$", RegexOptions.Compiled);
 
         private readonly TextWriter m_Writer;
+        private int m_RemoveLineBreaks = 0;
 
         public SpanSerializer(TextWriter writer)
         {
@@ -49,6 +53,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
                 case MdCodeSpan codeSpan:
                     Serialize(codeSpan);
+                    break;
+
+                case MdSingleLineSpan singleLineSpan:
+                    Serialize(singleLineSpan);
                     break;
 
                 default:
@@ -104,7 +112,21 @@ namespace Grynwald.MarkdownGenerator.Utilities
         private void Serialize(MdTextSpan span)
         {
             var text = span.Text;
-            for(var i = 0; i < text.Length; i++)
+
+            if(m_RemoveLineBreaks > 0)
+            {
+                // remove trailing line breaks
+                text = s_TrailingLineBreakRegex.Replace(text, "");
+
+                // replace other line breaks with spaces. 
+                // If linebreaks are folowed/precedded by whitespace
+                // replace whitespace and line break with a single
+                // space
+                text = s_LineBreakPattern.Replace(text, " ");
+            }
+
+            
+            for (var i = 0; i < text.Length; i++)
             {
                 switch (text[i])
                 {
@@ -122,6 +144,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     case '[':
                     case ']':
                     case '!':                        
+                    case '|':                        
                         m_Writer.Write('\\');
                         break;
 
@@ -138,5 +161,13 @@ namespace Grynwald.MarkdownGenerator.Utilities
             m_Writer.Write(span.Text);
             m_Writer.Write("`");            
         }
+
+        private void Serialize(MdSingleLineSpan singleLineSpan)
+        {
+            m_RemoveLineBreaks += 1;
+            Serialize(singleLineSpan.Content);
+            m_RemoveLineBreaks -= 1;
+        }
+
     }
 }

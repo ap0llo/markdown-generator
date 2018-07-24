@@ -12,7 +12,7 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
     /// </summary>
     public class MarkdownSpecialCharacterDataAttribute : DataAttribute
     {
-        private readonly char[] m_Chars = @"<>/\*_-=#`~[]!".ToCharArray();
+        private readonly char[] m_Chars = @"<>/\*_-=#`~[]!|".ToCharArray();
         
         public override IEnumerable<object[]> GetData(MethodInfo testMethod) => 
             m_Chars.Select(c => new object[] { c });
