@@ -11,18 +11,28 @@ namespace Grynwald.MarkdownGenerator.Model
     /// </summary>
     public sealed class MdTable : MdLeafBlock, IEnumerable<MdTableRow>
     {        
-        readonly LinkedList<MdTableRow> m_Rows;
-
+        private readonly LinkedList<MdTableRow> m_Rows;
 
         /// <summary>
-        /// The number of columns in tha table
+        /// Gets the number of columns in the table
         /// </summary>
         public int ColumnCount => Math.Max(HeaderRow.ColumnCount, m_Rows.Max(x => x.ColumnCount));
-        
+
         /// <summary>
-        /// The table's header row
+        /// Gets the number of rows in the table
+        /// </summary>
+        public int RowCount => m_Rows.Count;
+
+        /// <summary>
+        /// Gets the table's header row
         /// </summary>
         public MdTableRow HeaderRow { get; }
+        
+        /// <summary>
+        /// Gets the table's rows
+        /// </summary>
+        /// <remarks>Does not include the header row</remarks>
+        public IEnumerable<MdTableRow> Rows => m_Rows;
 
 
         public MdTable(MdTableRow headerRow, params MdTableRow[] rows)
@@ -40,24 +50,7 @@ namespace Grynwald.MarkdownGenerator.Model
         public IEnumerator<MdTableRow> GetEnumerator() => m_Rows.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => m_Rows.GetEnumerator();
-
-        /// <summary>
-        /// Gets the width of the specified column. 
-        /// The width of a column is the width of the widest cell in any row of the column.
-        /// </summary>
-        /// <param name="column">The index of the column</param>
-        public int GetColumnWidth(int column)
-        {
-            if (column < 0)
-                throw new ArgumentOutOfRangeException(nameof(column));
-
-            if (column >= ColumnCount)
-                throw new ArgumentOutOfRangeException(nameof(column), $"The table has only {ColumnCount} columns");
-
-            return Math.Max(HeaderRow.GetColumnWidthOrDefault(column), m_Rows.Max(r => r.GetColumnWidthOrDefault(column)));
-        }
-
-
+        
         public void Add(MdTableRow row)
         {
             if (row == null)

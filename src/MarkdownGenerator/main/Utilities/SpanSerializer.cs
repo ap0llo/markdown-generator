@@ -9,111 +9,117 @@ namespace Grynwald.MarkdownGenerator.Utilities
     {
         private static readonly Regex s_LineBreakPattern = new Regex(@"(\s)*[\r\n]+(\s)*", RegexOptions.Compiled);
         private static readonly Regex s_TrailingLineBreakRegex = new Regex(@"[\r\n]+$", RegexOptions.Compiled);
-
-        private readonly TextWriter m_Writer;
-        private int m_RemoveLineBreaks = 0;
-
-        public SpanSerializer(TextWriter writer)
+        
+        
+        public SpanSerializer()
         {
-            m_Writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
 
-        public void Serialize(MdSpan span)
+        public string ConvertToString(MdSpan span)
+        {
+            using (var stringWriter = new StringWriter())
+            {                
+                WriteTo(span, stringWriter, false);
+                return stringWriter.ToString();
+            }
+        }
+        
+
+        private void WriteTo(MdSpan span, TextWriter writer, bool removeLineBreaks)
         {
             switch (span)
             {
                 case MdCompositeSpan compositeSpan:
-                    Serialize(compositeSpan);
+                    WriteTo(compositeSpan, writer, removeLineBreaks);
                     break;
 
                 case MdRawTextSpan rawTextSpan:
-                    Serialize(rawTextSpan);
+                    WriteTo(rawTextSpan, writer, removeLineBreaks);
                     break;
 
                 case MdLinkSpan linkSpan:
-                    Serialize(linkSpan);
+                    WriteTo(linkSpan, writer, removeLineBreaks);
                     break;
 
                 case MdImageSpan imageSpan:
-                    Serialize(imageSpan);
+                    WriteTo(imageSpan, writer, removeLineBreaks);
                     break;
 
                 case MdEmphasisSpan emphasisSpan:
-                    Serialize(emphasisSpan);
+                    WriteTo(emphasisSpan, writer, removeLineBreaks);
                     break;
 
                 case MdStrongEmphasisSpan strongEmphasisSpan:
-                    Serialize(strongEmphasisSpan);
+                    WriteTo(strongEmphasisSpan, writer, removeLineBreaks);
                     break;
 
                 case MdTextSpan textSpan:
-                    Serialize(textSpan);
+                    WriteTo(textSpan, writer, removeLineBreaks);
                     break;
 
                 case MdCodeSpan codeSpan:
-                    Serialize(codeSpan);
+                    WriteTo(codeSpan, writer, removeLineBreaks);
                     break;
 
                 case MdSingleLineSpan singleLineSpan:
-                    Serialize(singleLineSpan);
+                    WriteTo(singleLineSpan, writer, removeLineBreaks);
                     break;
 
                 default:
                     throw new NotSupportedException($"Unsupported span type {span.GetType().FullName}");
             }
-        }
+        }        
 
-
-        private void Serialize(MdCompositeSpan compositeSpan)
+        private void WriteTo(MdCompositeSpan compositeSpan, TextWriter writer, bool removeLineBreaks)
         {
             foreach (var span in compositeSpan)
             {
-                Serialize(span);
+                WriteTo(span, writer, removeLineBreaks);
             }
         }
 
-        private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
+        private void WriteTo(MdRawTextSpan span, TextWriter writer, bool removeLineBreaks) => writer.Write(span.RawMarkdown);
 
-        private void Serialize(MdLinkSpan span)
+        private void WriteTo(MdLinkSpan span, TextWriter writer, bool removeLineBreaks)
         {
-            m_Writer.Write("[");
-            Serialize(span.Text);
-            m_Writer.Write("]");
-            m_Writer.Write("(");
-            m_Writer.Write(span.Uri);
-            m_Writer.Write(")");
+            writer.Write("[");
+            WriteTo(span.Text, writer, removeLineBreaks);
+            writer.Write("]");
+            writer.Write("(");
+            writer.Write(span.Uri);
+            writer.Write(")");
         }
         
-        private void Serialize(MdImageSpan span)
+        private void WriteTo(MdImageSpan span, TextWriter writer, bool removeLineBreaks)
         {
-            m_Writer.Write("![");
-            Serialize(span.Description);
-            m_Writer.Write("]");
-            m_Writer.Write("(");
-            m_Writer.Write(span.Uri);
-            m_Writer.Write(")");            
+            writer.Write("![");
+            WriteTo(span.Description, writer, removeLineBreaks);
+            writer.Write("]");
+            writer.Write("(");
+            writer.Write(span.Uri);
+            writer.Write(")");            
         }
         
-        private void Serialize(MdEmphasisSpan span)
+        private void WriteTo(MdEmphasisSpan span, TextWriter writer, bool removeLineBreaks)
         {
-            m_Writer.Write("*");
-            Serialize(span.Text);
-            m_Writer.Write("*");            
+            writer.Write("*");
+            WriteTo(span.Text, writer, removeLineBreaks);
+            writer.Write("*");            
         }
 
-        private void Serialize(MdStrongEmphasisSpan span)
+        private void WriteTo(MdStrongEmphasisSpan span, TextWriter writer, bool removeLineBreaks)
         {
-            m_Writer.Write("**");
-            Serialize(span.Text);
-            m_Writer.Write("**");
+            writer.Write("**");
+            WriteTo(span.Text, writer, removeLineBreaks);
+            writer.Write("**");
         }
 
-        private void Serialize(MdTextSpan span)
+        private void WriteTo(MdTextSpan span, TextWriter writer, bool removeLineBreaks)
         {
             var text = span.Text;
 
-            if(m_RemoveLineBreaks > 0)
+            if(removeLineBreaks)
             {
                 // remove trailing line breaks
                 text = s_TrailingLineBreakRegex.Replace(text, "");
@@ -145,28 +151,26 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     case ']':
                     case '!':                        
                     case '|':                        
-                        m_Writer.Write('\\');
+                        writer.Write('\\');
                         break;
 
                     default:
                         break;
                 }
-                m_Writer.Write(text[i]);
+                writer.Write(text[i]);
             }
         }
 
-        private void Serialize(MdCodeSpan span)
+        private void WriteTo(MdCodeSpan span, TextWriter writer, bool removeLineBreaks)
         {
-            m_Writer.Write("`");
-            m_Writer.Write(span.Text);
-            m_Writer.Write("`");            
+            writer.Write("`");
+            writer.Write(span.Text);
+            writer.Write("`");            
         }
 
-        private void Serialize(MdSingleLineSpan singleLineSpan)
+        private void WriteTo(MdSingleLineSpan singleLineSpan, TextWriter writer, bool removeLineBreaks)
         {
-            m_RemoveLineBreaks += 1;
-            Serialize(singleLineSpan.Content);
-            m_RemoveLineBreaks -= 1;
+            WriteTo(singleLineSpan.Content, writer, true);
         }
 
     }

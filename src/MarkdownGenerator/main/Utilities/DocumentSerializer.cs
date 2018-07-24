@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Grynwald.MarkdownGenerator.Model;
 
@@ -8,11 +9,18 @@ namespace Grynwald.MarkdownGenerator.Utilities
     internal class DocumentSerializer
     {
         private readonly PrefixTextWriter m_Writer;
+        private readonly SpanSerializer m_SpanSerializer;
         private int m_ListLevel = 0;
 
 
-        public DocumentSerializer(TextWriter writer)
+        public DocumentSerializer(TextWriter writer) : this(new SpanSerializer(), writer)
         {
+            
+        }
+
+        public DocumentSerializer(SpanSerializer spanSerializer, TextWriter writer)
+        {
+            m_SpanSerializer = spanSerializer ?? throw new ArgumentNullException(nameof(spanSerializer));
             m_Writer = new PrefixTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
         }
 
@@ -92,7 +100,8 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             m_Writer.RequestBlankLine();
 
-            m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text}");
+            var text = m_SpanSerializer.ConvertToString(block.Text);
+            m_Writer.WriteLine($"{new String('#', block.Level)} {text}");
 
             m_Writer.RequestBlankLine();
         }
@@ -101,7 +110,8 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             m_Writer.RequestBlankLine();
 
-            var lines = paragraph.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var text = m_SpanSerializer.ConvertToString(paragraph.Text);            
+            var lines = text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             if (lines.Length == 0)
                 return;
@@ -208,54 +218,69 @@ namespace Grynwald.MarkdownGenerator.Utilities
         }
 
         public void Serialize(MdTable table)
-        {
+        {      
+            // convert table to string
+            var tableAsString = new[] { table.HeaderRow }.Union(table.Rows)
+                    .Select(row =>
+                        row.Cells
+                            .Select(c => m_SpanSerializer.ConvertToString(c))
+                            .ToArray())
+                    .ToArray();
 
-            //TODO: Remove line breaks from cells
-            //TODO: Escape |
-
-            var tableColumnCount = table.ColumnCount;
-
-            void SaveRow(MdTableRow row)
-            {
-                var lineBuilder = new StringBuilder();
-
-                lineBuilder.Append("|");
-                for (var i = 0; i < tableColumnCount; i++)
+            // determine the maxmum width of every column
+            var columnWidths = new int[table.ColumnCount];
+            for (var rowIndex = 0; rowIndex < tableAsString.Length; rowIndex++)
+            {                
+                for (var columnIndex = 0; columnIndex < tableAsString[rowIndex].Length; columnIndex++)
                 {
-                    if (i < row.ColumnCount)
+                    columnWidths[columnIndex] = Math.Max(
+                        columnWidths[columnIndex],
+                        tableAsString[rowIndex][columnIndex].Length);
+                }
+            }            
+
+            // helper functions that writes a single row to the output
+            void SaveRow(string[] row)
+            {                
+                var lineBuilder = new StringBuilder();                
+                lineBuilder.Append("|");
+                for (var i = 0; i < columnWidths.Length; i++)
+                {                   
+                    // current row has a cell for column i
+                    if (i < row.Length)
                     {
                         lineBuilder.Append(" ");
-                        lineBuilder.Append(row[i].PadRight(table.GetColumnWidth(i)));
+                        lineBuilder.Append(row[i].PadRight(columnWidths[i]));
                         lineBuilder.Append(" ");
                     }                        
+                    // row has less columns than the table => write out empty cell
                     else
                     {
-                        lineBuilder.AppendRepeat(' ', table.GetColumnWidth(i) + 2);
+                        lineBuilder.AppendRepeat(' ', columnWidths[i] + 2);
                     }
 
                     lineBuilder.Append("|");
                 }
-
                 m_Writer.WriteLine(lineBuilder.ToString());
             }
 
             // save header row
-            SaveRow(table.HeaderRow);
+            SaveRow(tableAsString[0]);
 
             // write separator between header and table
             var separatorLineBuilder = new StringBuilder();
             separatorLineBuilder.Append("|");
-            for (var i = 0; i < tableColumnCount; i++)
+            for (var i = 0; i < columnWidths.Length; i++)
             {
                 separatorLineBuilder.Append(' ');
-                separatorLineBuilder.AppendRepeat('-', table.GetColumnWidth(i));
+                separatorLineBuilder.AppendRepeat('-', columnWidths[i]);
                 separatorLineBuilder.Append(' ');
                 separatorLineBuilder.Append("|");
             }
             m_Writer.WriteLine(separatorLineBuilder.ToString());
             
             // write table rows
-            foreach(var row in table)
+            foreach(var row in tableAsString.Skip(1))
             {
                 SaveRow(row);
             }            
@@ -265,5 +290,9 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             m_Writer.WriteLine("---");
         }       
+
+
+
+        
     }
 }

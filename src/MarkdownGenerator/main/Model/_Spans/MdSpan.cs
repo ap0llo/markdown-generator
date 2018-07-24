@@ -8,19 +8,16 @@ namespace Grynwald.MarkdownGenerator.Model
     /// </summary>
     public abstract class MdSpan
     {
+        private readonly SpanSerializer m_SpanSerializer = new SpanSerializer();
+
+
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdSpan()
         {
         }
 
-        public override string ToString()
-        {
-            using (var stringWriter = new StringWriter())
-            {
-                var documentSerializer = new SpanSerializer(stringWriter);
-                documentSerializer.Serialize(this);
-                return stringWriter.ToString();
-            }
-        }
+
+        public override string ToString() =>
+            m_SpanSerializer.ConvertToString(this);
     }
 }

@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Model
-{
-    //TODO: seal class
+{    
     /// <summary>
     /// A block that can contains other blocks
     /// </summary>

@@ -2,26 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Grynwald.MarkdownGenerator.Model
-{
-    //TODO: make class sealed
+{    
     /// <summary>
     /// Represent a row in a table
     /// </summary>
-    public class MdTableRow : IEnumerable<string>
+    public sealed class MdTableRow : IEnumerable<MdSpan>
     {
-        static readonly Regex s_LineBreakPattern = new Regex(@"(\s)*[\r\n]+(\s)*", RegexOptions.Compiled);
-        static readonly Regex s_TrailingLineBreakRegex = new Regex(@"[\r\n]+$", RegexOptions.Compiled);
-        static readonly Regex s_PipePattern = new Regex(@"\|", RegexOptions.Compiled);
-
-        readonly List<string> m_Cells;
+        private readonly List<MdSpan> m_Cells;
 
         /// <summary>
         /// The row's cell values
         /// </summary>
-        public IEnumerable<string> Cells => m_Cells;
+        public IEnumerable<MdSpan> Cells => m_Cells;
 
         /// <summary>
         /// Gets the number of coumns in the row
@@ -32,54 +26,40 @@ namespace Grynwald.MarkdownGenerator.Model
         /// Gets the value in the specified column
         /// </summary>
         /// <param name="column">The index of the column which's value to get</param>
-        public string this[int column] => m_Cells[column];
+        public MdSpan this[int column] => m_Cells[column];
 
 
         public MdTableRow(params string[] cells) : this((IEnumerable<string>)cells)
         { }
 
-        public MdTableRow(IEnumerable<string> cells)
+        public MdTableRow(IEnumerable<string> cells) : this(cells.Select(str => new MdTextSpan(str)))
+        { }
+
+        public MdTableRow(params MdSpan[] cells) : this((IEnumerable<MdSpan>)cells)
+        { }
+
+        public MdTableRow(IEnumerable<MdSpan> cells)
         {
             if (cells == null)
                 throw new ArgumentNullException(nameof(cells));
 
-            m_Cells = new List<string>(cells.Select(EscapeCellContent));            
+            // wrap the cells into MdSingleLineSpan instances so line breaks are removed
+            // when writeing the table to the output
+            m_Cells = new List<MdSpan>(cells.Select(span => new MdSingleLineSpan(span)));            
         }
 
         /// <summary>
         /// Adds a column to the row
         /// </summary>
-        public void Add(string cell) => m_Cells.Add(EscapeCellContent(cell));
-
-        public IEnumerator<string> GetEnumerator() => m_Cells.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
+        public void Add(string cell) => Add(new MdTextSpan(cell));
 
         /// <summary>
-        /// Gets the width of the specified column
+        /// Adds a column to the row
         /// </summary>
-        /// <returns>Retunrs the width of the specified column or 0 if the column index is greater than the number of columns</returns>
-        internal int GetColumnWidthOrDefault(int column)
-        {
-            return column < m_Cells.Count ? m_Cells[column].Length : 0;
-        }
+        public void Add(MdSpan cell) => m_Cells.Add(new MdSingleLineSpan(cell));
 
-        string EscapeCellContent(string value)
-        {
-            // remove trailing line breaks
-            value = s_TrailingLineBreakRegex.Replace(value, "");
+        public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
 
-            // replace other line breaks with spaces. 
-            // If linebreaks are folowed/precedded by whitespace
-            // replace whitespace and line break with a single
-            // space
-            value = s_LineBreakPattern.Replace(value, " ");
-
-            // escape pipe (| -> \|)
-            value = s_PipePattern.Replace(value, @"\|");
-
-            return value;
-        }
-
+        IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();        
     }
 }

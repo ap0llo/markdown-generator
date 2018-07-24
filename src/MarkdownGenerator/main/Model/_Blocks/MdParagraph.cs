@@ -10,11 +10,18 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <summary>
         /// The paragraph's text
         /// </summary>
-        public string Text { get; }
+        public MdSpan Text { get; }
 
 
-        public MdParagraph(string text) =>
-            //TODO: handle blank lines within paragraph  
+        public MdParagraph(string text) : this(new MdTextSpan(text))
+        { }
+
+        public MdParagraph(params MdSpan[] spans) : this(new MdCompositeSpan(spans))
+        { }
+
+        public MdParagraph(MdSpan text) =>            
             Text = text ?? throw new ArgumentNullException(nameof(text));
+
+        
     }
 }

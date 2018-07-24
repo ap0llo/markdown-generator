@@ -13,6 +13,9 @@ namespace Grynwald.MarkdownGenerator.Model
         public MdListItem(IEnumerable<MdBlock> items) : base(items)
         { }
 
+        public MdListItem(params MdSpan[] content) : this(new MdParagraph(content))
+        { }
+
         public MdListItem(string content) : this(new MdParagraph(content))
         { }
     }

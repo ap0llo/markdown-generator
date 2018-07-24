@@ -199,10 +199,8 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         {
             using (var writer = new StringWriter())
             {
-                var serializer = new SpanSerializer(writer);
-                serializer.Serialize(span);
-
-                var actual = writer.ToString();
+                var serializer = new SpanSerializer();                
+                var actual = serializer.ConvertToString(span);
                 Assert.Equal(expected, actual);
             }
         }
