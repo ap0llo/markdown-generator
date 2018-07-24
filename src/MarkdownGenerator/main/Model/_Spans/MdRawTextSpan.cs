@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
-    public sealed class MdRawTextSpan : MdTextSpan
+    public sealed class MdRawTextSpan : MdSpan
     {
         public string RawMarkdown { get; }
 

@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test.Utilities
 {
-    public class TextSpanSerializerTest
+    public class SpanSerializerTest
     {
 
         [Fact]
@@ -21,12 +21,12 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         }
 
         [Fact]
-        public void CompositeTextSpan_is_serialized_unchanged()
+        public void CompositeSpan_is_serialized_unchanged()
         {
             var value1 = "Some markdown, perhaps with a [Link](http://example.com). ";
             var value2 = "Some more markdown";
 
-            var span = new MdCompositeTextSpan(
+            var span = new MdCompositeSpan(
                 new MdRawTextSpan(value1),
                 new MdRawTextSpan(value2));
 
@@ -34,11 +34,11 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         }
 
 
-        private void AssertToStringEquals(string expected, MdTextSpan span)
+        private void AssertToStringEquals(string expected, MdSpan span)
         {
             using (var writer = new StringWriter())
             {
-                var serializer = new TextSpanSerializer(writer);
+                var serializer = new SpanSerializer(writer);
                 serializer.Serialize(span);
 
                 var actual = writer.ToString();

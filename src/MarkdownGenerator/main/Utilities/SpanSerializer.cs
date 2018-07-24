@@ -4,22 +4,22 @@ using Grynwald.MarkdownGenerator.Model;
 
 namespace Grynwald.MarkdownGenerator.Utilities
 {
-    internal class TextSpanSerializer
+    internal class SpanSerializer
     {
 
         private readonly TextWriter m_Writer;
 
-        public TextSpanSerializer(TextWriter writer)
+        public SpanSerializer(TextWriter writer)
         {
             m_Writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
 
-        public void Serialize(MdTextSpan span)
+        public void Serialize(MdSpan span)
         {
             switch (span)
             {
-                case MdCompositeTextSpan compositeSpan:
+                case MdCompositeSpan compositeSpan:
                     Serialize(compositeSpan);
                     break;
 
@@ -35,7 +35,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
 
-        private void Serialize(MdCompositeTextSpan compositeSpan)
+        private void Serialize(MdCompositeSpan compositeSpan)
         {
             foreach(var span in compositeSpan)
             {
