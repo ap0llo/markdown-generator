@@ -35,6 +35,14 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     Serialize(imageSpan);
                     break;
 
+                case MdEmphasisSpan emphasisSpan:
+                    Serialize(emphasisSpan);
+                    break;
+
+                case MdStrongEmphasisSpan strongEmphasisSpan:
+                    Serialize(strongEmphasisSpan);
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported span type {span.GetType().FullName}");
             }
@@ -48,6 +56,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 Serialize(span);
             }
         }
+
         private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
 
         //TODO: Escape link text
@@ -56,6 +65,11 @@ namespace Grynwald.MarkdownGenerator.Utilities
         //TODO: Escape image description
         private void Serialize(MdImageSpan span) => m_Writer.Write($"![{span.Description}]({span.Uri})");
 
-       
+        //TODO: Escape emphasized content
+        private void Serialize(MdEmphasisSpan span) => m_Writer.Write($"*{span.Text}*");
+
+        //TODO: Escape emphasized content
+        private void Serialize(MdStrongEmphasisSpan span) => m_Writer.Write($"**{span.Text}**");
+
     }
 }

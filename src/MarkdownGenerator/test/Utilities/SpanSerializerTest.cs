@@ -1,16 +1,15 @@
-﻿using Grynwald.MarkdownGenerator.Model;
-using Grynwald.MarkdownGenerator.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Grynwald.MarkdownGenerator.Model;
+using Grynwald.MarkdownGenerator.Utilities;
 using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test.Utilities
 {
     public class SpanSerializerTest
     {
-
         [Fact]
         public void RawTextSpan_is_serialized_unchanged()
         {
@@ -45,6 +44,24 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             var span = new MdImageSpan(description, link);
 
             AssertToStringEquals(expectedValue, span);
+        }
+
+        [Fact]
+        public void EmphasisSpan_is_serialized_as_expected()
+        {
+            var text = "Some text";
+            var span = new MdEmphasisSpan(text);
+
+            AssertToStringEquals($"*{text}*", span);
+        }
+
+        [Fact]
+        public void StrongEmphasisSpan_is_serialized_as_expected()
+        {
+            var text = "Some text";
+            var span = new MdStrongEmphasisSpan(text);
+
+            AssertToStringEquals($"**{text}**", span);
         }
 
         [Fact]
