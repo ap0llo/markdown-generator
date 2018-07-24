@@ -20,6 +20,22 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             AssertToStringEquals(value, span);
         }
 
+        [Theory]
+        [InlineData("http://example.com/")] // absolute uri
+        [InlineData("./other_file.md")]     // relative path
+        [InlineData("xref:some_topic")]     // DocFX cross-reference
+        public void LinkSpan_is_serialized_as_expected(string link)
+        {
+            var text = "Link Title";
+            var expectedValue = $"[{text}]({link})";
+
+            var span = new MdLinkSpan(text, link);
+
+            AssertToStringEquals(expectedValue, span);
+        }
+
+
+
         [Fact]
         public void CompositeSpan_is_serialized_unchanged()
         {

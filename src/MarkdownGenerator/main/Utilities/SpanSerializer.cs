@@ -27,20 +27,28 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     Serialize(rawTextSpan);
                     break;
 
+                case MdLinkSpan linkSpan:
+                    Serialize(linkSpan);
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported span type {span.GetType().FullName}");
             }
         }
 
 
-        private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
-
         private void Serialize(MdCompositeSpan compositeSpan)
         {
-            foreach(var span in compositeSpan)
+            foreach (var span in compositeSpan)
             {
                 Serialize(span);
             }
         }
+        private void Serialize(MdRawTextSpan span) => m_Writer.Write(span.RawMarkdown);
+
+        //TODO: Escape link text
+        private void Serialize(MdLinkSpan span) => m_Writer.Write($"[{span.Text}]({span.Uri})");
+
+       
     }
 }
