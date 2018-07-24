@@ -1,0 +1,40 @@
+queue: Hosted VS2017
+
+steps:
+- task: BatchScript@1
+  displayName: Set environment variables
+  inputs:
+    filename: '$(Build.SourcesDirectory)\scripts\vsts.set-environment-variables.bat'
+    modifyEnvironment: true
+  
+- task: DotNetCoreInstaller@0
+  displayName: Use .NET Core SDK 2.1
+  inputs:
+    version: 2.1.302
+
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*.Test.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Pack
+  inputs:
+    command: pack
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
