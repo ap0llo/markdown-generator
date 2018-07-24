@@ -38,3 +38,7 @@ steps:
     command: pack
     projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts'
+
