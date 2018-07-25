@@ -35,8 +35,15 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdHeading Heading(string text, int level) => new MdHeading(text, level);
 
+        public static MdHeading Heading(MdSpan text, int level) => new MdHeading(text, level);
+
 
         public static MdParagraph Paragraph(string text) => new MdParagraph(text);
+
+        public static MdParagraph Paragraph(MdSpan text) => new MdParagraph(text);
+
+        public static MdParagraph Paragraph(params MdSpan[] text) => new MdParagraph(text);
+
 
         public static MdCodeBlock CodeBlock(string text) => new MdCodeBlock(text, null);
 
@@ -59,12 +66,16 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdListItem ListItem(string content) => new MdListItem(content);
 
+        public static MdListItem ListItem(params MdSpan[] content) => new MdListItem(content);
+
 
         public static MdBlockQuote BlockQuote(params MdBlock[] content) => new MdBlockQuote(content);
 
         public static MdBlockQuote BlockQuote(IEnumerable<MdBlock> content) => new MdBlockQuote(content);
 
         public static MdBlockQuote BlockQuote(string content) => new MdBlockQuote(content);
+
+        public static MdBlockQuote BlockQuote(params MdSpan[] content) => new MdBlockQuote(content);
 
 
         public static MdTable Table(MdTableRow headerRow, params MdTableRow[] rows) =>
@@ -77,6 +88,11 @@ namespace Grynwald.MarkdownGenerator
         public static MdTableRow Row(params string[] cells) => new MdTableRow(cells);
 
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
+
+        public static MdTableRow Row(params MdSpan[] cells) => new MdTableRow(cells);
+
+        public static MdTableRow Row(IEnumerable<MdSpan> cells) => new MdTableRow(cells);
+
 
         public static MdThematicBreak ThematicBreak() => new MdThematicBreak();      
 

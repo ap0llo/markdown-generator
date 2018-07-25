@@ -11,10 +11,10 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
     public class SpanSerializerTest
     {
         [Fact]
-        public void RawTextSpan_is_serialized_unchanged()
+        public void RawMarkdownSpan_is_serialized_unchanged()
         {
             var value = "Some markdown, perhaps with a [Link](http://example.com)";
-            var span = new MdRawTextSpan(value);
+            var span = new MdRawMarkdownSpan(value);
 
             AssertToStringEquals(value, span);
         }
@@ -122,8 +122,8 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             var value2 = "Some more markdown";
 
             var span = new MdCompositeSpan(
-                new MdRawTextSpan(value1),
-                new MdRawTextSpan(value2));
+                new MdRawMarkdownSpan(value1),
+                new MdRawMarkdownSpan(value2));
 
             AssertToStringEquals(value1 + value2, span);
         }

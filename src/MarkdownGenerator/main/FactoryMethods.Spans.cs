@@ -43,5 +43,18 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdStrongEmphasisSpan Bold(MdSpan text) => StrongEmphasis(text);
 
+
+        public static MdCodeSpan CodeSpan(string text) => new MdCodeSpan(text);
+
+
+        public static MdCompositeSpan CompositeSpan(params MdSpan[] spans) => new MdCompositeSpan(spans);
+
+        public static MdCompositeSpan CompositeSpan(IEnumerable<MdSpan> spans) => new MdCompositeSpan(spans);
+
+
+        public static MdRawMarkdownSpan RawMarkdown(string content) => new MdRawMarkdownSpan(content);
+
+
+        public static MdTextSpan Text(string text) => new MdTextSpan(text);
     }
 }

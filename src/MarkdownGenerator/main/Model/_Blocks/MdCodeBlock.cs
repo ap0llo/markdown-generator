@@ -18,7 +18,10 @@ namespace Grynwald.MarkdownGenerator.Model
         public string InfoString { get; }
 
 
-        public MdCodeBlock(string text, string infoString = null)
+        public MdCodeBlock(string text) : this(text, null)
+        { }
+
+        public MdCodeBlock(string text, string infoString)
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));
             InfoString = infoString;

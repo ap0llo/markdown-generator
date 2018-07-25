@@ -34,7 +34,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     WriteTo(compositeSpan, writer, removeLineBreaks);
                     break;
 
-                case MdRawTextSpan rawTextSpan:
+                case MdRawMarkdownSpan rawTextSpan:
                     WriteTo(rawTextSpan, writer, removeLineBreaks);
                     break;
 
@@ -79,7 +79,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }
         }
 
-        private void WriteTo(MdRawTextSpan span, TextWriter writer, bool removeLineBreaks) => writer.Write(span.RawMarkdown);
+        private void WriteTo(MdRawMarkdownSpan span, TextWriter writer, bool removeLineBreaks) => writer.Write(span.Content);
 
         private void WriteTo(MdLinkSpan span, TextWriter writer, bool removeLineBreaks)
         {
