@@ -66,6 +66,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     WriteTo(singleLineSpan, writer, removeLineBreaks);
                     break;
 
+                case MdEmptySpan emptySpan:
+                    // do nothing
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported span type {span.GetType().FullName}");
             }
