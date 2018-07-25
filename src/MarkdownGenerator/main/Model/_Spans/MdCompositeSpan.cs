@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
@@ -9,10 +10,10 @@ namespace Grynwald.MarkdownGenerator.Model
     /// </summary>
     public sealed class MdCompositeSpan : MdSpan, IEnumerable<MdSpan>
     {
-        private readonly LinkedList<MdSpan> m_Spans;
+        private readonly List<MdSpan> m_Spans;
 
 
-        public IEnumerable<MdSpan> Spans { get; }
+        public IReadOnlyList<MdSpan> Spans => m_Spans;
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
@@ -28,7 +29,7 @@ namespace Grynwald.MarkdownGenerator.Model
             if (spans == null)
                 throw new ArgumentNullException(nameof(spans));
 
-            m_Spans = new LinkedList<MdSpan>(spans);
+            m_Spans = new List<MdSpan>(spans);
         }
 
 
@@ -40,9 +41,10 @@ namespace Grynwald.MarkdownGenerator.Model
             if (span == null)
                 throw new ArgumentNullException(nameof(span));
 
-            m_Spans.AddLast(span);
+            m_Spans.Add(span);
         }
 
+        public override MdSpan Copy() => new MdCompositeSpan(m_Spans.Select(x => x.Copy()));
 
         public IEnumerator<MdSpan> GetEnumerator() => m_Spans.GetEnumerator();
 

@@ -16,6 +16,7 @@ namespace Grynwald.MarkdownGenerator.Model
         {
         }
 
+        public abstract MdSpan Copy();
 
         public override string ToString() =>
             m_SpanSerializer.ConvertToString(this);

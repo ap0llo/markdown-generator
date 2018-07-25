@@ -18,5 +18,8 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <param name="text">The content of the code span. The value will not be escaped.</param>
         public MdCodeSpan(string text) => 
             Text = text ?? throw new ArgumentNullException(nameof(text));
+
+
+        public override MdSpan Copy() => new MdCodeSpan(Text);
     }
 }

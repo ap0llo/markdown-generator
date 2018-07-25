@@ -11,5 +11,7 @@ namespace Grynwald.MarkdownGenerator.Model
         private MdEmptySpan()
         {
         }
+
+        public override MdSpan Copy() => Instance;
     }
 }

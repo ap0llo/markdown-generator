@@ -52,6 +52,9 @@ namespace Grynwald.MarkdownGenerator.Model
         {
             Description = description ?? throw new ArgumentNullException(nameof(description));
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));
-        }        
+        }
+
+        public override MdSpan Copy() => new MdImageSpan(Description.Copy(), Uri);
+
     }
 }
