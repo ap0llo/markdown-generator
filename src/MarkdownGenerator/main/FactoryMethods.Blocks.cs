@@ -33,6 +33,10 @@ namespace Grynwald.MarkdownGenerator
         public static MdContainerBlock Container(IEnumerable<MdBlock> content) => new MdContainerBlock(content);
 
         
+        public static MdHeading Heading(int level, MdSpan text) => new MdHeading(level, text);
+
+        public static MdHeading Heading(int level, params MdSpan[] text) => new MdHeading(level, text);
+
         public static MdHeading Heading(MdSpan text, int level) => new MdHeading(text, level);
 
         

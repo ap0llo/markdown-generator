@@ -31,5 +31,21 @@ namespace Grynwald.MarkdownGenerator.Model
             Level = level;
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdHeading"/>
+        /// </summary>
+        /// <param name="level">The heading's level. Value must be in the range [1,6]</param>
+        /// <param name="text">The text of the heading. Must not be null.</param>
+        public MdHeading(int level, MdSpan text) : this(text, level)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdHeading"/>
+        /// </summary>
+        /// <param name="level">The heading's level. Value must be in the range [1,6]</param>
+        /// <param name="text">The text of the heading. Must not be null.</param>
+        public MdHeading(int level, params MdSpan[] text) : this(new MdCompositeSpan(text), level)
+        { }
+
     }
 }
