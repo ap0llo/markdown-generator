@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
@@ -48,6 +49,16 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public IEnumerator<MdSpan> GetEnumerator() => m_Spans.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => m_Spans.GetEnumerator();        
+        IEnumerator IEnumerable.GetEnumerator() => m_Spans.GetEnumerator();
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+            foreach(var span in Spans)
+            {
+                stringBuilder.Append(span.ToString());
+            }
+            return stringBuilder.ToString();
+        }
     }
 }

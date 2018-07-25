@@ -22,5 +22,7 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
         public override MdSpan Copy() => new MdRawMarkdownSpan(Content);
+
+        public override string ToString() => Content;
     }
 }

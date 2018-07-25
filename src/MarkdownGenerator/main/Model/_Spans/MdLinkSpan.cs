@@ -56,5 +56,7 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
         public override MdSpan Copy() => new MdLinkSpan(Text.Copy(), Uri);
+
+        public override string ToString() => $"[{Text}]({Uri})";
     }
 }

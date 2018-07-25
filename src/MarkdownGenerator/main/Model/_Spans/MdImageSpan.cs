@@ -56,5 +56,6 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public override MdSpan Copy() => new MdImageSpan(Description.Copy(), Uri);
 
+        public override string ToString() => $"![{Description}]({Uri})";
     }
 }
