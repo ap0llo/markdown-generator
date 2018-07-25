@@ -32,14 +32,10 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdContainerBlock Container(IEnumerable<MdBlock> content) => new MdContainerBlock(content);
 
-
-        public static MdHeading Heading(string text, int level) => new MdHeading(text, level);
-
+        
         public static MdHeading Heading(MdSpan text, int level) => new MdHeading(text, level);
 
-
-        public static MdParagraph Paragraph(string text) => new MdParagraph(text);
-
+        
         public static MdParagraph Paragraph(MdSpan text) => new MdParagraph(text);
 
         public static MdParagraph Paragraph(params MdSpan[] text) => new MdParagraph(text);
@@ -64,6 +60,12 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdListItem ListItem(IEnumerable<MdBlock> content) => new MdListItem(content);
 
+        public static MdListItem ListItem(MdSpan content) => new MdListItem(content);
+
+        // Although there is an implict converstion from string to MdSpan
+        // the compiler does not seem to match the method in all situation,
+        // so this overload is still necessary
+        // e.g. (new [] { "foo", "bar" }).Select(ListItem) does not work without this overload
         public static MdListItem ListItem(string content) => new MdListItem(content);
 
         public static MdListItem ListItem(params MdSpan[] content) => new MdListItem(content);
@@ -73,7 +75,7 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdBlockQuote BlockQuote(IEnumerable<MdBlock> content) => new MdBlockQuote(content);
 
-        public static MdBlockQuote BlockQuote(string content) => new MdBlockQuote(content);
+        public static MdBlockQuote BlockQuote(MdSpan content) => new MdBlockQuote(content);
 
         public static MdBlockQuote BlockQuote(params MdSpan[] content) => new MdBlockQuote(content);
 
@@ -84,9 +86,7 @@ namespace Grynwald.MarkdownGenerator
         public static MdTable Table(MdTableRow headerRow, IEnumerable<MdTableRow> rows) =>
             new MdTable(headerRow, rows);
 
-
-        public static MdTableRow Row(params string[] cells) => new MdTableRow(cells);
-
+        
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
 
         public static MdTableRow Row(params MdSpan[] cells) => new MdTableRow(cells);
