@@ -17,7 +17,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Cell_contents_are_escaped(string rawValue, string expectedValue)
         {
             var row = new MdTableRow(rawValue);
-            Assert.Equal(expectedValue, row.Cells.Single());
+            Assert.Equal(expectedValue, row.Cells.Single().ToString());
         }
 
 
@@ -41,7 +41,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         public void Line_breaks_are_removed_from_cells(string rawValue, string expectedValue)
         {
             var row = new MdTableRow(rawValue);
-            Assert.Equal(expectedValue, row.Cells.Single());
+            Assert.Equal(expectedValue, row.Cells.Single().ToString());
         }
     }
 }

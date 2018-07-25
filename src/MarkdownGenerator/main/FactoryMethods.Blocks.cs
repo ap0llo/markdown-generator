@@ -7,11 +7,15 @@ namespace Grynwald.MarkdownGenerator
     /// Defines static factory methods for blocks in markdown documents.
     /// When imported via "using static", this allows for more readable 
     /// construction of documents, e.g.
+    /// <code>
     ///   new MdDocument(new MdParagraph("My content")) 
+    /// </code>
     /// can be rewritten as
+    /// <code>
     ///   Document(Paragraph("My Content"))
+    /// </code>
     /// </summary>
-    public static class FactoryMethods
+    public static partial class FactoryMethods
     {
         public static MdDocument Document(MdContainerBlock root) => new MdDocument(root);
 
@@ -31,8 +35,15 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdHeading Heading(string text, int level) => new MdHeading(text, level);
 
+        public static MdHeading Heading(MdSpan text, int level) => new MdHeading(text, level);
+
 
         public static MdParagraph Paragraph(string text) => new MdParagraph(text);
+
+        public static MdParagraph Paragraph(MdSpan text) => new MdParagraph(text);
+
+        public static MdParagraph Paragraph(params MdSpan[] text) => new MdParagraph(text);
+
 
         public static MdCodeBlock CodeBlock(string text) => new MdCodeBlock(text, null);
 
@@ -55,12 +66,16 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdListItem ListItem(string content) => new MdListItem(content);
 
+        public static MdListItem ListItem(params MdSpan[] content) => new MdListItem(content);
+
 
         public static MdBlockQuote BlockQuote(params MdBlock[] content) => new MdBlockQuote(content);
 
         public static MdBlockQuote BlockQuote(IEnumerable<MdBlock> content) => new MdBlockQuote(content);
 
         public static MdBlockQuote BlockQuote(string content) => new MdBlockQuote(content);
+
+        public static MdBlockQuote BlockQuote(params MdSpan[] content) => new MdBlockQuote(content);
 
 
         public static MdTable Table(MdTableRow headerRow, params MdTableRow[] rows) =>
@@ -74,20 +89,12 @@ namespace Grynwald.MarkdownGenerator
 
         public static MdTableRow Row(IEnumerable<string> cells) => new MdTableRow(cells);
 
-        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();
+        public static MdTableRow Row(params MdSpan[] cells) => new MdTableRow(cells);
+
+        public static MdTableRow Row(IEnumerable<MdSpan> cells) => new MdTableRow(cells);
 
 
-        public static string Link(string title, string url) => $"[{title}]({url})";
-
-        public static string Image(string description, string url) => $"![{description}]({url})";
-
-        public static string Emphasis(string text) => $"*{text}*";
-
-        public static string Italic(string text) => Emphasis(text);
-
-        public static string StrongEmphasis(string text) => $"**{text}**";
-
-        public static string Bold(string text) => StrongEmphasis(text);
+        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();      
 
     }
 }
