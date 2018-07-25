@@ -53,6 +53,8 @@ namespace Grynwald.MarkdownGenerator.Model
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));
-        }        
+        }
+
+        public override MdSpan Copy() => new MdLinkSpan(Text.Copy(), Uri);
     }
 }

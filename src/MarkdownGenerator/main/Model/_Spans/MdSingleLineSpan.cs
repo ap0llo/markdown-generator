@@ -17,5 +17,7 @@ namespace Grynwald.MarkdownGenerator.Model
         {
             Content = content ?? throw new ArgumentNullException(nameof(content));
         }
+
+        public override MdSpan Copy() => new MdSingleLineSpan(Content.Copy());
     }
 }

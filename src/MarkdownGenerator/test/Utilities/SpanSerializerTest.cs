@@ -195,6 +195,13 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
             AssertToStringEquals(expected, singleLine);
         }
 
+        [Fact]
+        public void EmptySpan_is_serialized_as_expeted()
+        {
+            AssertToStringEquals(string.Empty, MdEmptySpan.Instance);
+        }
+
+
         private void AssertToStringEquals(string expected, MdSpan span)
         {
             using (var writer = new StringWriter())

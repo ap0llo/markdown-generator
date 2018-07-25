@@ -27,5 +27,7 @@ namespace Grynwald.MarkdownGenerator.Model
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));
         }
+
+        public override MdSpan Copy() => new MdEmphasisSpan(Text.Copy());
     }
 }
