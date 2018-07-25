@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Xunit.Sdk;
 
-namespace Grynwald.MarkdownGenerator.Test.Utilities
+namespace Grynwald.MarkdownGenerator.Test
 {
     /// <summary>
     /// Data attribute that supplies characters that need to be escaped in a
