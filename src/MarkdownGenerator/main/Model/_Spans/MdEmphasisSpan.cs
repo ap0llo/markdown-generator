@@ -29,5 +29,7 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
         public override MdSpan Copy() => new MdEmphasisSpan(Text.Copy());
+
+        public override string ToString() => $"*{Text}*";
     }
 }

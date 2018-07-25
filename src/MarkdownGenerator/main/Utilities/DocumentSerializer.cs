@@ -8,19 +8,12 @@ namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class DocumentSerializer
     {
-        private readonly PrefixTextWriter m_Writer;
-        private readonly SpanSerializer m_SpanSerializer;
+        private readonly PrefixTextWriter m_Writer;        
         private int m_ListLevel = 0;
 
-
-        public DocumentSerializer(TextWriter writer) : this(new SpanSerializer(), writer)
+        
+        public DocumentSerializer(TextWriter writer)
         {
-            
-        }
-
-        public DocumentSerializer(SpanSerializer spanSerializer, TextWriter writer)
-        {
-            m_SpanSerializer = spanSerializer ?? throw new ArgumentNullException(nameof(spanSerializer));
             m_Writer = new PrefixTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
         }
 
@@ -99,19 +92,15 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
-
-            var text = m_SpanSerializer.ConvertToString(block.Text);
-            m_Writer.WriteLine($"{new String('#', block.Level)} {text}");
-
+            m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text}");
             m_Writer.RequestBlankLine();
         }
 
         public void Serialize(MdParagraph paragraph)
         {
             m_Writer.RequestBlankLine();
-
-            var text = m_SpanSerializer.ConvertToString(paragraph.Text);            
-            var lines = text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            
+            var lines = paragraph.Text.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             if (lines.Length == 0)
                 return;
@@ -223,7 +212,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             var tableAsString = new[] { table.HeaderRow }.Union(table.Rows)
                     .Select(row =>
                         row.Cells
-                            .Select(c => m_SpanSerializer.ConvertToString(c))
+                            .Select(c => c.ToString())
                             .ToArray())
                     .ToArray();
 

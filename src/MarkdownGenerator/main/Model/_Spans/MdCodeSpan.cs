@@ -21,5 +21,8 @@ namespace Grynwald.MarkdownGenerator.Model
 
 
         public override MdSpan Copy() => new MdCodeSpan(Text);
+
+        public override string ToString() => $"`{Text}`";
+
     }
 }

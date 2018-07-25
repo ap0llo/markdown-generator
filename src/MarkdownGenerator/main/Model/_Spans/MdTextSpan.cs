@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Model
 {
@@ -24,5 +25,39 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
         public override MdSpan Copy() => new MdTextSpan(Text);
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+            for (var i = 0; i < Text.Length; i++)
+            {
+                switch (Text[i])
+                {
+                    case '\\':
+                    case '/':
+                    case '<':
+                    case '>':
+                    case '*':
+                    case '_':
+                    case '-':
+                    case '=':
+                    case '#':
+                    case '`':
+                    case '~':
+                    case '[':
+                    case ']':
+                    case '!':
+                    case '|':
+                        stringBuilder.Append('\\');
+                        break;
+
+                    default:
+                        break;
+                }
+                stringBuilder.Append(Text[i]);
+            }
+
+            return stringBuilder.ToString();
+        }
     }
 }
