@@ -23,5 +23,24 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 new MdTextSpan($"prefix{character}suffix").ToString()
             );
         }
+
+
+        [Theory]
+        [InlineData("Some string")]
+        [InlineData("")]
+        [InlineData(null)]
+        public void String_can_be_implicitly_converted_to_MdTextSpan(string str)
+        {
+            MdTextSpan span = str;
+
+            if (str == null)
+            {
+                Assert.Null(span);
+            }
+            else
+            {
+                Assert.Equal(str, span.Text);
+            }
+        }
     }
 }

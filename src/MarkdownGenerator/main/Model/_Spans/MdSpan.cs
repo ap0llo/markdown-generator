@@ -14,5 +14,7 @@
 
         // force re-implementation of ToString()
         public abstract override string ToString();
+
+        public static implicit operator MdSpan(string text) => text == null ? null : new MdTextSpan(text);
     }
 }

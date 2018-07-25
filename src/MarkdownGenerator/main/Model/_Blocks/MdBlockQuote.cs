@@ -10,10 +10,10 @@ namespace Grynwald.MarkdownGenerator.Model
         public MdBlockQuote(IEnumerable<MdBlock> content) : base(content)
         { }
 
-        public MdBlockQuote(params MdSpan[] content) : this(new MdParagraph(content))
+        public MdBlockQuote(MdSpan content) : this(new MdParagraph(content))
         { }
 
-        public MdBlockQuote(string content) : this(new MdParagraph(content))
-        { }        
+        public MdBlockQuote(params MdSpan[] content) : this(new MdParagraph(content))
+        { }
     }
 }

@@ -43,5 +43,60 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             var row = new MdTableRow(rawValue);
             Assert.Equal(expectedValue, row.Cells.Single().ToString());
         }
-    }
+
+
+        [Fact]
+        public void MdTableRow_can_be_initialized_with_string_content_01()
+        {
+            var row = new MdTableRow("Content");
+
+            Assert.Single(row.Cells);
+
+            Assert.IsType<MdSingleLineSpan>(row.Cells.Single());
+            var singleLineSpan = (MdSingleLineSpan)row.Cells.Single();
+
+            Assert.IsType<MdTextSpan>(singleLineSpan.Content);
+            var textSpan = (MdTextSpan)singleLineSpan.Content;
+            Assert.Equal("Content", textSpan.Text);
+        }
+
+        [Fact]
+        public void MdTableRow_can_be_initialized_with_string_content_02()
+        {
+            var row = new MdTableRow("Content1", "Content2");
+            
+            Assert.Equal(2, row.ColumnCount);
+            Assert.IsType<MdSingleLineSpan>(row[0]);
+            Assert.IsType<MdSingleLineSpan>(row[1]);
+
+            var singleLineSpan1 = (MdSingleLineSpan)row[0];
+            var singleLineSpan2 = (MdSingleLineSpan)row[1];
+
+            Assert.IsType<MdTextSpan>(singleLineSpan1.Content);
+            Assert.IsType<MdTextSpan>(singleLineSpan2.Content);
+
+            Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
+            Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
+        }
+
+        [Fact]
+        public void MdTableRow_can_be_initialized_with_string_content_03()
+        {
+            var cells = (IEnumerable<string>)new[] { "Content1", "Content2" };
+            var row = new MdTableRow(cells);
+
+            Assert.Equal(2, row.ColumnCount);
+            Assert.IsType<MdSingleLineSpan>(row[0]);
+            Assert.IsType<MdSingleLineSpan>(row[1]);
+
+            var singleLineSpan1 = (MdSingleLineSpan)row[0];
+            var singleLineSpan2 = (MdSingleLineSpan)row[1];
+
+            Assert.IsType<MdTextSpan>(singleLineSpan1.Content);
+            Assert.IsType<MdTextSpan>(singleLineSpan2.Content);
+
+            Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
+            Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
+        }
+    }    
 }

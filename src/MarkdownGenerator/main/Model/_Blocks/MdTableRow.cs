@@ -28,10 +28,7 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <param name="column">The index of the column which's value to get</param>
         public MdSpan this[int column] => m_Cells[column];
 
-
-        public MdTableRow(params string[] cells) : this((IEnumerable<string>)cells)
-        { }
-
+        
         public MdTableRow(IEnumerable<string> cells) : this(cells.Select(str => new MdTextSpan(str)))
         { }
 

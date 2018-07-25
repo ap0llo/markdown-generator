@@ -14,7 +14,7 @@ namespace Grynwald.MarkdownGenerator.Model
 
 
         public MdParagraph(string text) : this(new MdTextSpan(text))
-        { }
+        { }        
 
         public MdParagraph(params MdSpan[] spans) : this(new MdCompositeSpan(spans))
         { }

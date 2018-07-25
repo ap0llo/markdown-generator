@@ -59,5 +59,7 @@ namespace Grynwald.MarkdownGenerator.Model
 
             return stringBuilder.ToString();
         }
+
+        public static implicit operator MdTextSpan(string text) => text == null ? null : new MdTextSpan(text);
     }
 }

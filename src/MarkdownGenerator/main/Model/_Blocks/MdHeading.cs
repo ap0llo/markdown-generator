@@ -15,15 +15,7 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <summary>
         /// The level of the heading, 1 being the top-most heading
         /// </summary>
-        public int Level { get; }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdHeading"/>
-        /// </summary>
-        /// <param name="text">The content of the heading. Value will be escaped.</param>
-        /// <param name="level">The heading's level. Value must be in the range [1,6]</param>
-        public MdHeading(string text, int level) : this(new MdTextSpan(text), level)
-        { }
+        public int Level { get; }        
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdHeading"/>
