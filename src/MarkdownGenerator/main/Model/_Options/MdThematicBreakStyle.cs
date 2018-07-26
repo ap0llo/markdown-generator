@@ -3,18 +3,19 @@
     public enum MdThematicBreakStyle
     {
         /// <summary>
-        /// Use '---' for thematic breaks (default)
+        /// Use '___' for thematic breaks (default)
         /// </summary>
-        Dash = 0,
+        Underscore = 0,
+
+        /// <summary>
+        /// Use '---' for thematic breaks
+        /// </summary>
+        Dash = 2,
 
         /// <summary>
         /// Use '***' for thematic breaks
         /// </summary>
         Asterisk = 1,
 
-        /// <summary>
-        /// Use '___' for thematic breaks
-        /// </summary>
-        Underscore = 2
     }
 }

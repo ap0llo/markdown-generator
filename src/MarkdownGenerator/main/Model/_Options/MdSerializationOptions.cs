@@ -10,7 +10,7 @@
         /// <summary>
         /// Gets or sets the style to use for thematic breaks
         /// </summary>
-        public MdThematicBreakStyle ThematicBreakStyle { get; set; } = MdThematicBreakStyle.Dash;
+        public MdThematicBreakStyle ThematicBreakStyle { get; set; } = MdThematicBreakStyle.Underscore;
 
         /// <summary>
         /// Gets or sets the style for headings

@@ -407,7 +407,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             AssertToStringEquals(
                 "Paragraph\r\n" +
                 "\r\n" +
-                "---\r\n" +
+                "___\r\n" +
                 "\r\n" +
                 "Paragraph\r\n",
                 Document(
