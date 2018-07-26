@@ -28,15 +28,38 @@ namespace Grynwald.MarkdownGenerator.Model
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
 
-        public override string ToString()
-        {
-            var text = Text.ToString();
-            return String.IsNullOrEmpty(text) ? String.Empty : $"**{Text}**";
-        }
+        public override string ToString() => ToString(MdEmphasisStyle.Asterisk);
 
-        public override string ToString(MdSerializationOptions options) => ToString();
+        public override string ToString(MdSerializationOptions options) => ToString(options.EmphasisStyle);
 
 
         internal override MdSpan DeepCopy() => new MdStrongEmphasisSpan(Text.DeepCopy());
+
+
+        private string ToString(MdEmphasisStyle style)
+        {
+            var text = Text.ToString();
+
+            if (String.IsNullOrEmpty(text))
+            {
+                return String.Empty;
+            }
+
+            char emphasisChar;
+            switch (style)
+            {
+                case MdEmphasisStyle.Asterisk:
+                    emphasisChar = '*';
+                    break;
+                case MdEmphasisStyle.Underscore:
+                    emphasisChar = '_';
+                    break;
+
+                default:
+                    throw new ArgumentException($"Unsupported value: {style}", nameof(style));
+            }
+
+            return $"{emphasisChar}{emphasisChar}{text}{emphasisChar}{emphasisChar}";
+        }
     }
 }

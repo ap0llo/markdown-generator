@@ -14,6 +14,26 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         }
 
         [Theory]
+        [InlineData(MdEmphasisStyle.Asterisk, '*')]
+        [InlineData(MdEmphasisStyle.Underscore, '_')]
+        public void ToString_respects_EmphasisStyle_from_serialization_options(MdEmphasisStyle emphasisStyle, char emphasisCharater)
+        {
+            var text = "Some text";
+            var span = new MdEmphasisSpan(text);
+
+            var options = new MdSerializationOptions()
+            {
+                EmphasisStyle = emphasisStyle
+            };
+
+            var expected = $"{emphasisCharater}{text}{emphasisCharater}";
+            var actual = span.ToString(options);
+
+            Assert.Equal(expected, actual);
+        }
+
+
+        [Theory]
         [MarkdownSpecialCharacterData]
         public void ToString_escapes_special_characters(char charToEscape)
         {

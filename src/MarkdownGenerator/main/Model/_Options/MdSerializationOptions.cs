@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Grynwald.MarkdownGenerator.Model
+﻿namespace Grynwald.MarkdownGenerator.Model
 {
     public class MdSerializationOptions
     {
+        public MdEmphasisStyle EmphasisStyle { get; set; } = MdEmphasisStyle.Asterisk;
     }
 }
