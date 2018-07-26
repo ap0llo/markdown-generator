@@ -154,7 +154,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }
 
             // add prefix handler for the list
-            var prefixHandler = new ListPrefixHandler(list.Kind, m_Options.BulletListStyle, m_Options.OrderedListStyle);
+            var prefixHandler = list.Kind == MdListKind.Bullet
+                ? (ListPrefixHandler) new BulletListPrefixHandler(m_Options.BulletListStyle)
+                : (ListPrefixHandler) new OrderedListPrefixHandler(m_Options.OrderedListStyle);
+            
             m_Writer.PushPrefixHandler(prefixHandler);
 
             var listItemNumber = 1;
