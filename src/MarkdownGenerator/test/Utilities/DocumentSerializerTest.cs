@@ -489,6 +489,24 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
         }
 
+        [Theory]
+        [InlineData(MdThematicBreakStyle.Dash, "---")]
+        [InlineData(MdThematicBreakStyle.Asterisk, "***")]
+        [InlineData(MdThematicBreakStyle.Underscore, "___")]
+        public void Serializer_respects_ThematicBreakStyle_serialization_option(MdThematicBreakStyle style, string expectedBreak)
+        {
+            var options = new MdSerializationOptions()
+            {
+                ThematicBreakStyle = style
+            };
+
+            AssertToStringEquals(
+                $"{expectedBreak}\r\n",
+                Document(ThematicBreak()),
+                options
+            );
+        }
+
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
         {            
             using (var writer = new StringWriter())

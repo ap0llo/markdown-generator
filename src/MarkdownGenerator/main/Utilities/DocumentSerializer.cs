@@ -282,7 +282,23 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         public void Serialize(MdThematicBreak thematicBreak)
         {
-            m_Writer.WriteLine("---");
+            switch (m_Options.ThematicBreakStyle)
+            {
+                case MdThematicBreakStyle.Dash:
+                    m_Writer.WriteLine("---");
+                    break;
+
+                case MdThematicBreakStyle.Asterisk:
+                    m_Writer.WriteLine("***");
+                    break;
+
+                case MdThematicBreakStyle.Underscore:
+                    m_Writer.WriteLine("___");
+                    break;
+
+                default:
+                    throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
+            }            
         }       
 
 
