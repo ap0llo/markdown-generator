@@ -39,6 +39,8 @@ namespace Grynwald.MarkdownGenerator.Model
             return content;
         }
 
+        public override string ToString(MdSerializationOptions options) => ToString();
+
 
         internal override MdSpan DeepCopy() => new MdSingleLineSpan(Content.DeepCopy());
     }

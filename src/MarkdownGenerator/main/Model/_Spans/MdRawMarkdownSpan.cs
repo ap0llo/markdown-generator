@@ -22,6 +22,8 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public override string ToString() => Content;
 
+        public override string ToString(MdSerializationOptions options) => ToString();
+
 
         internal override MdSpan DeepCopy() => new MdRawMarkdownSpan(Content);
     }

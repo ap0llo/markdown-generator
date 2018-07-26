@@ -34,6 +34,9 @@ namespace Grynwald.MarkdownGenerator.Model
             return String.IsNullOrEmpty(text) ? String.Empty : $"**{Text}**";
         }
 
+        public override string ToString(MdSerializationOptions options) => ToString();
+
+
         internal override MdSpan DeepCopy() => new MdStrongEmphasisSpan(Text.DeepCopy());
     }
 }
