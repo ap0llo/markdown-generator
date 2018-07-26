@@ -97,7 +97,20 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
-            m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text.ToString(m_Options)}");
+            
+            if(m_Options.HeadingStyle == MdHeadingStyle.Setex && block.Level <= 2)
+            {
+                var headingText = block.Text.ToString(m_Options);
+                m_Writer.WriteLine(headingText);
+
+                var underlineChar = block.Level == 1 ? '=' : '-';
+                m_Writer.WriteLine(new String(underlineChar, headingText.Length));
+            }
+            else
+            {
+                m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text.ToString(m_Options)}");
+            }
+
             m_Writer.RequestBlankLine();
         }
 

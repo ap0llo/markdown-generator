@@ -4,6 +4,7 @@ using Xunit;
 using Grynwald.MarkdownGenerator.Model;
 using Grynwald.MarkdownGenerator.Utilities;
 using static Grynwald.MarkdownGenerator.FactoryMethods;
+using System;
 
 namespace Grynwald.MarkdownGenerator.Test.Model
 {
@@ -506,6 +507,68 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 options
             );
         }
+
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Serializer_respects_HeaderStyle_serialization_option_01(int level)
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Atx
+            };
+
+            AssertToStringEquals(
+                $"{new String('#', level)} Heading\r\n",
+                Document(Heading(level, "Heading")),
+                options
+            );
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Serializer_respects_HeaderStyle_serialization_option_02(int level)
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Setex
+            };
+
+            if(level == 1)
+            {
+                AssertToStringEquals(
+                   $"Heading\r\n" +
+                   $"=======\r\n",
+                   Document(Heading(level, "Heading")),
+                   options);
+            }
+            else if(level == 2)
+            {
+                AssertToStringEquals(
+                   $"Heading\r\n" +
+                   $"-------\r\n",
+                   Document(Heading(level, "Heading")),
+                   options);
+            }
+            else
+            {
+                AssertToStringEquals(
+                    $"{new String('#', level)} Heading\r\n",
+                    Document(Heading(level, "Heading")),
+                    options);
+            }
+        }
+
 
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
         {            
