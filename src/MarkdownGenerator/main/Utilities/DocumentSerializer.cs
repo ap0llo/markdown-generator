@@ -8,13 +8,19 @@ namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class DocumentSerializer
     {
-        private readonly PrefixTextWriter m_Writer;        
+        private readonly PrefixTextWriter m_Writer;
+        private readonly MdSerializationOptions m_Options;
         private int m_ListLevel = 0;
+        private int m_BulletListLevel = 0;
 
         
-        public DocumentSerializer(TextWriter writer)
+        public DocumentSerializer(TextWriter writer) : this(writer, null)
+        { }
+
+        public DocumentSerializer(TextWriter writer, MdSerializationOptions options)
         {
             m_Writer = new PrefixTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
+            m_Options = options ?? new MdSerializationOptions();
         }
 
 
@@ -92,7 +98,20 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
-            m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text}");
+            
+            if(m_Options.HeadingStyle == MdHeadingStyle.Setex && block.Level <= 2)
+            {
+                var headingText = block.Text.ToString(m_Options);
+                m_Writer.WriteLine(headingText);
+
+                var underlineChar = block.Level == 1 ? '=' : '-';
+                m_Writer.WriteLine(new String(underlineChar, headingText.Length));
+            }
+            else
+            {
+                m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text.ToString(m_Options)}");
+            }
+
             m_Writer.RequestBlankLine();
         }
 
@@ -100,7 +119,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             m_Writer.RequestBlankLine();
             
-            var lines = paragraph.Text.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var lines = paragraph.Text.ToString(m_Options).Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             if (lines.Length == 0)
                 return;
@@ -122,7 +141,12 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdList list)
         {
             m_ListLevel += 1;
-            
+            if(list.Kind == MdListKind.Bullet)
+            {
+                m_BulletListLevel += 1;
+            }
+
+
             if(m_ListLevel == 1)
             {
                 // top-level lists should be surrounded by blank lines
@@ -136,7 +160,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }
 
             // add prefix handler for the list
-            var prefixHandler = new ListPrefixHandler(list.Kind);
+            var prefixHandler = list.Kind == MdListKind.Bullet
+                ? (ListPrefixHandler) new BulletListPrefixHandler(m_Options.BulletListStyle)
+                : (ListPrefixHandler) new OrderedListPrefixHandler(m_Options.OrderedListStyle);
+            
             m_Writer.PushPrefixHandler(prefixHandler);
 
             var listItemNumber = 1;
@@ -191,11 +218,30 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.RequestBlankLine();
 
             m_ListLevel -= 1;
+            if (list.Kind == MdListKind.Bullet)
+            {
+                m_BulletListLevel -= 1;
+            }
         }
 
         public void Serialize(MdCodeBlock codeBlock)
         {
-            m_Writer.WriteLine($"```{codeBlock.InfoString ?? ""}");
+            string codeFence;
+            switch (m_Options.CodeBlockStyle)
+            {
+                case MdCodeBlockStyle.Backtick:
+                    codeFence = "```";
+                    break;
+
+                case MdCodeBlockStyle.Tilde:
+                    codeFence = "~~~";
+                    break;
+
+                default:
+                    throw new ArgumentException($"Unsupported code block style: {m_Options.CodeBlockStyle}");
+            }
+
+            m_Writer.WriteLine($"{codeFence}{codeBlock.InfoString ?? ""}");
             
             var lines = codeBlock.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             foreach(var line in lines)
@@ -203,7 +249,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.WriteLine(line);
             }
 
-            m_Writer.WriteLine("```");
+            m_Writer.WriteLine(codeFence);
         }
 
         public void Serialize(MdTable table)
@@ -212,7 +258,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             var tableAsString = new[] { table.HeaderRow }.Union(table.Rows)
                     .Select(row =>
                         row.Cells
-                            .Select(c => c.ToString())
+                            .Select(c => c.ToString(m_Options))
                             .ToArray())
                     .ToArray();
 
@@ -277,11 +323,42 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         public void Serialize(MdThematicBreak thematicBreak)
         {
-            m_Writer.WriteLine("---");
+            var style = m_Options.ThematicBreakStyle;
+
+            // if a thematic break occurrs inside a bullet list
+            // and the configured style of the list and the thematic break are configued the same
+            // the thematic break takes precedence and hence the list is rendeded incorrectly
+            // (s. https://spec.commonmark.org/0.28/#thematic-breaks)
+            // To avoid this conflict, check for this scenario and change the style 
+            // of the thematic break if necessary
+            if (m_BulletListLevel > 0)
+            {
+                if((style == MdThematicBreakStyle.Dash && m_Options.BulletListStyle == MdBulletListStyle.Dash)
+                    ||
+                    (style == MdThematicBreakStyle.Asterisk && m_Options.BulletListStyle == MdBulletListStyle.Asterisk))
+                {
+                    style = MdThematicBreakStyle.Underscore;
+                }               
+            }
+
+            switch (style)
+            {
+                case MdThematicBreakStyle.Dash:
+                    m_Writer.WriteLine("---");
+                    break;
+
+                case MdThematicBreakStyle.Asterisk:
+                    m_Writer.WriteLine("***");
+                    break;
+
+                case MdThematicBreakStyle.Underscore:
+                    m_Writer.WriteLine("___");
+                    break;
+
+                default:
+                    throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
+            }            
         }       
-
-
-
         
     }
 }

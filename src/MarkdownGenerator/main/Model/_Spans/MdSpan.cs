@@ -13,6 +13,8 @@
         // force re-implementation of ToString()
         public abstract override string ToString();
 
+        public abstract string ToString(MdSerializationOptions options);
+
 
         internal abstract MdSpan DeepCopy();
 

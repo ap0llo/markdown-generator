@@ -4,6 +4,7 @@ using Xunit;
 using Grynwald.MarkdownGenerator.Model;
 using Grynwald.MarkdownGenerator.Utilities;
 using static Grynwald.MarkdownGenerator.FactoryMethods;
+using System;
 
 namespace Grynwald.MarkdownGenerator.Test.Model
 {
@@ -406,7 +407,7 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             AssertToStringEquals(
                 "Paragraph\r\n" +
                 "\r\n" +
-                "---\r\n" +
+                "___\r\n" +
                 "\r\n" +
                 "Paragraph\r\n",
                 Document(
@@ -471,18 +472,213 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                                 Paragraph("Quote2")))))
             );
 
-
-        private void AssertToStringEquals(string expected, MdDocument document)
+        [Theory]
+        [InlineData(MdEmphasisStyle.Asterisk, '*')]
+        [InlineData(MdEmphasisStyle.Underscore, '_')]
+        public void Serializer_respects_EmphasisStyle_serialization_option(MdEmphasisStyle emphasisStyle, char emphasisCharater)
         {
+            var options = new MdSerializationOptions()
+            {
+                EmphasisStyle = emphasisStyle
+            };
+
+            AssertToStringEquals(
+               $"# {emphasisCharater}Heading{emphasisCharater}\r\n",
+               Document(
+                   Heading(1, Emphasis("Heading"))),
+                options
+            );
+        }
+
+        [Theory]
+        [InlineData(MdThematicBreakStyle.Dash, "---")]
+        [InlineData(MdThematicBreakStyle.Asterisk, "***")]
+        [InlineData(MdThematicBreakStyle.Underscore, "___")]
+        public void Serializer_respects_ThematicBreakStyle_serialization_option(MdThematicBreakStyle style, string expectedBreak)
+        {
+            var options = new MdSerializationOptions()
+            {
+                ThematicBreakStyle = style
+            };
+
+            AssertToStringEquals(
+                $"{expectedBreak}\r\n",
+                Document(ThematicBreak()),
+                options
+            );
+        }
+
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Serializer_respects_HeaderStyle_serialization_option_01(int level)
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Atx
+            };
+
+            AssertToStringEquals(
+                $"{new String('#', level)} Heading\r\n",
+                Document(Heading(level, "Heading")),
+                options
+            );
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Serializer_respects_HeaderStyle_serialization_option_02(int level)
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Setex
+            };
+
+            if(level == 1)
+            {
+                AssertToStringEquals(
+                   $"Heading\r\n" +
+                   $"=======\r\n",
+                   Document(Heading(level, "Heading")),
+                   options);
+            }
+            else if(level == 2)
+            {
+                AssertToStringEquals(
+                   $"Heading\r\n" +
+                   $"-------\r\n",
+                   Document(Heading(level, "Heading")),
+                   options);
+            }
+            else
+            {
+                AssertToStringEquals(
+                    $"{new String('#', level)} Heading\r\n",
+                    Document(Heading(level, "Heading")),
+                    options);
+            }
+        }
+
+        [Theory]
+        [InlineData(MdCodeBlockStyle.Tilde, '~')]
+        [InlineData(MdCodeBlockStyle.Backtick, '`')]        
+        public void Serializer_respects_CodeBlockStyle_serialization_option(MdCodeBlockStyle style, char codeBlockChar)
+        {
+            var options = new MdSerializationOptions()
+            {
+                CodeBlockStyle = style
+            };
+
+            AssertToStringEquals(
+                $"{codeBlockChar}{codeBlockChar}{codeBlockChar}\r\n" +
+                $"Some Code\r\n" +
+                $"{codeBlockChar}{codeBlockChar}{codeBlockChar}\r\n",
+                Document(CodeBlock("Some Code")),
+                options
+            );
+        }
+
+        [Theory]
+        [InlineData(MdBulletListStyle.Dash, '-')]
+        [InlineData(MdBulletListStyle.Plus, '+')]
+        [InlineData(MdBulletListStyle.Asterisk, '*')]
+        public void Serializer_respects_BulletListStyle_serialization_option(MdBulletListStyle style, char listItemCharacter)
+        {
+            var options = new MdSerializationOptions()
+            {
+                BulletListStyle = style
+            };
+
+            AssertToStringEquals(
+                $"{listItemCharacter} Item1\r\n" +
+                $"{listItemCharacter} Item2\r\n",
+                Document(
+                    BulletList(
+                        ListItem("Item1"),
+                        ListItem("Item2")
+                    )
+                ),
+                options
+            );
+        }
+
+
+        [Theory]
+        [InlineData(MdOrderedListStyle.Dot, '.')]
+        [InlineData(MdOrderedListStyle.Parenthesis, ')')]        
+        public void Serializer_respects_OrderedListStyle_serialization_option(MdOrderedListStyle style, char listItemCharacter)
+        {
+            var options = new MdSerializationOptions()
+            {
+                OrderedListStyle = style
+            };
+
+            AssertToStringEquals(
+                $"1{listItemCharacter} Item1\r\n" +
+                $"2{listItemCharacter} Item2\r\n",
+                Document(
+                    OrderedList(
+                        ListItem("Item1"),
+                        ListItem("Item2")
+                    )
+                ),
+                options
+            );
+        }
+
+        [Theory]
+        [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Asterisk, '*')]
+        [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Dash, '-')]
+        [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Plus, '+')]
+        [InlineData(MdThematicBreakStyle.Dash, '-', MdBulletListStyle.Asterisk, '*')]
+        [InlineData(MdThematicBreakStyle.Dash, '_', MdBulletListStyle.Dash, '-')]
+        [InlineData(MdThematicBreakStyle.Dash, '-', MdBulletListStyle.Plus, '+')]
+        [InlineData(MdThematicBreakStyle.Asterisk, '_', MdBulletListStyle.Asterisk, '*')]
+        [InlineData(MdThematicBreakStyle.Asterisk, '*', MdBulletListStyle.Dash, '-')]
+        [InlineData(MdThematicBreakStyle.Asterisk, '*', MdBulletListStyle.Plus, '+')]
+        public void Serializer_changes_ThematicBreak_style_when_inside_bullet_list_with_a_conflicting_style(MdThematicBreakStyle thematicBreakStyle, char thematicBreakCharacter, MdBulletListStyle bulletListStyle, char bulletListCharacter)
+        {
+            var options = new MdSerializationOptions()
+            {
+                BulletListStyle = bulletListStyle,
+                ThematicBreakStyle = thematicBreakStyle
+            };
+
+            AssertToStringEquals(
+                $"{bulletListCharacter} Item1\r\n" +
+                $"\r\n" +
+                $"  {thematicBreakCharacter}{thematicBreakCharacter}{thematicBreakCharacter}\r\n",
+                Document(
+                    BulletList(
+                        ListItem(Paragraph("Item1"), ThematicBreak())
+                    )
+                ),
+                options
+            );
+        }
+
+
+
+        private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
+        {            
             using (var writer = new StringWriter())
             {
-                var serializer = new DocumentSerializer(writer);
+                var serializer = new DocumentSerializer(writer, options);
                 serializer.Serialize(document);
 
                 var actual = writer.ToString();            
                 Assert.Equal(expected, actual);
             }
-
         }
     }
 }

@@ -58,6 +58,8 @@ namespace Grynwald.MarkdownGenerator.Model
             return stringBuilder.ToString();
         }
 
+        public override string ToString(MdSerializationOptions options) => ToString();
+
 
         internal override MdSpan DeepCopy() => new MdTextSpan(Text);
 
