@@ -31,5 +31,11 @@ namespace Grynwald.MarkdownGenerator.Test.Model
 
             Assert.Equal(expectedValue, span.ToString());
         }
+
+        [Fact]
+        public void ToString_returns_an_empty_string_if_both_text_and_uri_are_empty()
+        {
+            Assert.Equal(string.Empty, new MdLinkSpan("", "").ToString());
+        }
     }
 }

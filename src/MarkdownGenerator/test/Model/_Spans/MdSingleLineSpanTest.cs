@@ -27,5 +27,13 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             var singleLine = new MdSingleLineSpan(new MdTextSpan(input));
             Assert.Equal(expected, singleLine.ToString());
         }
+
+
+        [Fact]
+        public void ToString_returns_an_empty_string_if_value_is_empty()
+        {
+            var span = new MdSingleLineSpan(new MdTextSpan(""));
+            Assert.Equal(string.Empty, span.ToString());
+        }
     }
 }

@@ -20,8 +20,7 @@ namespace Grynwald.MarkdownGenerator.Model
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
 
-        public override string ToString() => $"`{Text}`";
-
+        public override string ToString() => String.IsNullOrEmpty(Text) ? String.Empty : $"`{Text}`";
 
         internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
     }

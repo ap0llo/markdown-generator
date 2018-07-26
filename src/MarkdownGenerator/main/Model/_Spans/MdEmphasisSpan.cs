@@ -29,8 +29,11 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
 
-        public override string ToString() => $"*{Text}*";
-
+        public override string ToString()
+        {
+            var text = Text.ToString();
+            return String.IsNullOrEmpty(text) ? String.Empty : $"*{text}*";
+        }
 
         internal override MdSpan DeepCopy() => new MdEmphasisSpan(Text.DeepCopy());
     }

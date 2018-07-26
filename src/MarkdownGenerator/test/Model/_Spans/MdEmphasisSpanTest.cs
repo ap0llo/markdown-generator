@@ -24,5 +24,12 @@ namespace Grynwald.MarkdownGenerator.Test.Model
 
             Assert.Equal(expectedValue, span.ToString());
         }
+
+        [Fact]
+        public void ToString_returns_an_empty_string_if_value_is_empty()
+        {
+            var span = new MdEmphasisSpan(new MdTextSpan(""));
+            Assert.Equal(string.Empty, span.ToString());
+        }
     }
 }

@@ -56,7 +56,20 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
 
-        public override string ToString() => $"[{Text}]({Uri})";
+        public override string ToString()
+        {
+            var text = Text.ToString();
+            var uri = Uri.ToString();
+
+            if (String.IsNullOrEmpty(text) && String.IsNullOrEmpty(uri))
+            {
+                return String.Empty;
+            }
+            else
+            {
+                return $"[{text}]({uri})";
+            }            
+        }
 
 
         internal override MdSpan DeepCopy() => new MdLinkSpan(Text.DeepCopy(), Uri);

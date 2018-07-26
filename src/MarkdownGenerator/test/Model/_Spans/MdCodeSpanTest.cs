@@ -14,6 +14,12 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             Assert.Equal($"`{text}`", span.ToString());
         }
 
+        [Fact]
+        public void ToString_returns_an_empty_string_if_value_is_empty()
+        {
+            Assert.Equal(string.Empty, new MdCodeSpan("").ToString());
+        }
+
         [Theory]
         [MarkdownSpecialCharacterData]
         public void ToString_does_NOT_escape_code_span_content(char charToEscape)
