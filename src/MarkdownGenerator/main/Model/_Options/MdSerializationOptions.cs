@@ -16,5 +16,10 @@
         /// Gets or sets the style for headings
         /// </summary>
         public MdHeadingStyle HeadingStyle { get; set; } = MdHeadingStyle.Atx;
+
+        /// <summary>
+        /// Gets or sets the style of code blocks
+        /// </summary>
+        public MdCodeBlockStyle CodeBlockStyle { get; set; } = MdCodeBlockStyle.Backtick;
     }
 }

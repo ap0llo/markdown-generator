@@ -213,7 +213,22 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         public void Serialize(MdCodeBlock codeBlock)
         {
-            m_Writer.WriteLine($"```{codeBlock.InfoString ?? ""}");
+            string codeFence;
+            switch (m_Options.CodeBlockStyle)
+            {
+                case MdCodeBlockStyle.Backtick:
+                    codeFence = "```";
+                    break;
+
+                case MdCodeBlockStyle.Tilde:
+                    codeFence = "~~~";
+                    break;
+
+                default:
+                    throw new ArgumentException($"Unsupported code block style: {m_Options.CodeBlockStyle}");
+            }
+
+            m_Writer.WriteLine($"{codeFence}{codeBlock.InfoString ?? ""}");
             
             var lines = codeBlock.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             foreach(var line in lines)
@@ -221,7 +236,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.WriteLine(line);
             }
 
-            m_Writer.WriteLine("```");
+            m_Writer.WriteLine(codeFence);
         }
 
         public void Serialize(MdTable table)

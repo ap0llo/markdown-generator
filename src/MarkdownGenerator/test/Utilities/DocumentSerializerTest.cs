@@ -569,6 +569,24 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             }
         }
 
+        [Theory]
+        [InlineData(MdCodeBlockStyle.Tilde, '~')]
+        [InlineData(MdCodeBlockStyle.Backtick, '`')]        
+        public void Serializer_respects_CodeBlockStyle_serialization_option(MdCodeBlockStyle style, char codeBlockChar)
+        {
+            var options = new MdSerializationOptions()
+            {
+                CodeBlockStyle = style
+            };
+
+            AssertToStringEquals(
+                $"{codeBlockChar}{codeBlockChar}{codeBlockChar}\r\n" +
+                $"Some Code\r\n" +
+                $"{codeBlockChar}{codeBlockChar}{codeBlockChar}\r\n",
+                Document(CodeBlock("Some Code")),
+                options
+            );
+        }
 
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
         {            
@@ -580,7 +598,6 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 var actual = writer.ToString();            
                 Assert.Equal(expected, actual);
             }
-
         }
     }
 }
