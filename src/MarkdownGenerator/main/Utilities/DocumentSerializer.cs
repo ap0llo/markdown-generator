@@ -8,13 +8,18 @@ namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class DocumentSerializer
     {
-        private readonly PrefixTextWriter m_Writer;        
+        private readonly PrefixTextWriter m_Writer;
+        private readonly MdSerializationOptions m_Options;
         private int m_ListLevel = 0;
 
         
-        public DocumentSerializer(TextWriter writer)
+        public DocumentSerializer(TextWriter writer) : this(writer, null)
+        { }
+
+        public DocumentSerializer(TextWriter writer, MdSerializationOptions options)
         {
             m_Writer = new PrefixTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
+            m_Options = options ?? new MdSerializationOptions();
         }
 
 
@@ -92,7 +97,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdHeading block)
         {
             m_Writer.RequestBlankLine();
-            m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text}");
+            m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text.ToString(m_Options)}");
             m_Writer.RequestBlankLine();
         }
 
@@ -100,7 +105,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             m_Writer.RequestBlankLine();
             
-            var lines = paragraph.Text.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var lines = paragraph.Text.ToString(m_Options).Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             if (lines.Length == 0)
                 return;
@@ -212,7 +217,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             var tableAsString = new[] { table.HeaderRow }.Union(table.Rows)
                     .Select(row =>
                         row.Cells
-                            .Select(c => c.ToString())
+                            .Select(c => c.ToString(m_Options))
                             .ToArray())
                     .ToArray();
 

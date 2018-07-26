@@ -471,12 +471,29 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                                 Paragraph("Quote2")))))
             );
 
-
-        private void AssertToStringEquals(string expected, MdDocument document)
+        [Theory]
+        [InlineData(MdEmphasisStyle.Asterisk, '*')]
+        [InlineData(MdEmphasisStyle.Underscore, '_')]
+        public void Serializer_respects_EmphasisStyle_serialization_option(MdEmphasisStyle emphasisStyle, char emphasisCharater)
         {
+            var options = new MdSerializationOptions()
+            {
+                EmphasisStyle = emphasisStyle
+            };
+
+            AssertToStringEquals(
+               $"# {emphasisCharater}Heading{emphasisCharater}\r\n",
+               Document(
+                   Heading(1, Emphasis("Heading"))),
+                options
+            );
+        }
+
+        private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
+        {            
             using (var writer = new StringWriter())
             {
-                var serializer = new DocumentSerializer(writer);
+                var serializer = new DocumentSerializer(writer, options);
                 serializer.Serialize(document);
 
                 var actual = writer.ToString();            
