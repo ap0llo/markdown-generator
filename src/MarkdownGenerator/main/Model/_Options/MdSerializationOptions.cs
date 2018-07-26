@@ -21,5 +21,15 @@
         /// Gets or sets the style of code blocks
         /// </summary>
         public MdCodeBlockStyle CodeBlockStyle { get; set; } = MdCodeBlockStyle.Backtick;
+
+        /// <summary>
+        /// Gets or sets the style for bullet list items
+        /// </summary>
+        public MdBulletListStyle BulletListStyle { get; set; } = MdBulletListStyle.Dash;
+
+        /// <summary>
+        /// Gets or sets the style for ordered list items
+        /// </summary>
+        public MdOrderedListStyle OrderedListStyle { get; set; } = MdOrderedListStyle.Dot;
     }
 }

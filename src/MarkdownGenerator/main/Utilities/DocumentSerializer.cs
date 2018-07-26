@@ -154,7 +154,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }
 
             // add prefix handler for the list
-            var prefixHandler = new ListPrefixHandler(list.Kind);
+            var prefixHandler = new ListPrefixHandler(list.Kind, m_Options.BulletListStyle, m_Options.OrderedListStyle);
             m_Writer.PushPrefixHandler(prefixHandler);
 
             var listItemNumber = 1;
@@ -328,9 +328,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
             }            
         }       
-
-
-
         
     }
 }

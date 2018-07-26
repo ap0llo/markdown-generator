@@ -588,6 +588,53 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
         }
 
+        [Theory]
+        [InlineData(MdBulletListStyle.Dash, '-')]
+        [InlineData(MdBulletListStyle.Plus, '+')]
+        [InlineData(MdBulletListStyle.Asterisk, '*')]
+        public void Serializer_respects_BulletListStyle_serialization_option(MdBulletListStyle style, char listItemCharacter)
+        {
+            var options = new MdSerializationOptions()
+            {
+                BulletListStyle = style
+            };
+
+            AssertToStringEquals(
+                $"{listItemCharacter} Item1\r\n" +
+                $"{listItemCharacter} Item2\r\n",
+                Document(
+                    BulletList(
+                        ListItem("Item1"),
+                        ListItem("Item2")
+                    )
+                ),
+                options
+            );
+        }
+
+
+        [Theory]
+        [InlineData(MdOrderedListStyle.Dot, '.')]
+        [InlineData(MdOrderedListStyle.Parenthesis, ')')]        
+        public void Serializer_respects_OrderedListStyle_serialization_option(MdOrderedListStyle style, char listItemCharacter)
+        {
+            var options = new MdSerializationOptions()
+            {
+                OrderedListStyle = style
+            };
+
+            AssertToStringEquals(
+                $"1{listItemCharacter} Item1\r\n" +
+                $"2{listItemCharacter} Item2\r\n",
+                Document(
+                    OrderedList(
+                        ListItem("Item1"),
+                        ListItem("Item2")
+                    )
+                ),
+                options
+            );
+        }
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
         {            
             using (var writer = new StringWriter())
