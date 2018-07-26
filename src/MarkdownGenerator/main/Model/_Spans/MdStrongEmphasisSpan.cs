@@ -24,13 +24,13 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <summary>
         /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content
         /// </summary>
-        public MdStrongEmphasisSpan(MdSpan text)
-        {
+        public MdStrongEmphasisSpan(MdSpan text) => 
             Text = text ?? throw new ArgumentNullException(nameof(text));
-        }
 
-        public override MdSpan Copy() => new MdStrongEmphasisSpan(Text.Copy());
 
         public override string ToString() => $"**{Text}**";
+
+
+        internal override MdSpan DeepCopy() => new MdStrongEmphasisSpan(Text.DeepCopy());
     }
 }

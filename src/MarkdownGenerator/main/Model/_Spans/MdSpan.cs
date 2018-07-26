@@ -7,13 +7,15 @@
     {        
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdSpan()
-        {
-        }
+        { }
 
-        public abstract MdSpan Copy();
 
         // force re-implementation of ToString()
         public abstract override string ToString();
+
+
+        internal abstract MdSpan DeepCopy();
+
 
         public static implicit operator MdSpan(string text) => text == null ? null : new MdTextSpan(text);
     }

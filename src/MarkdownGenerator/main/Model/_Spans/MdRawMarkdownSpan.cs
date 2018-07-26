@@ -16,13 +16,13 @@ namespace Grynwald.MarkdownGenerator.Model
         /// Initializes a new instance of <see cref="MdRawMarkdownSpan"/>
         /// </summary>
         /// <param name="content">The span's content. The text will be written to the output without escaping.</param>
-        public MdRawMarkdownSpan(string content)
-        {
+        public MdRawMarkdownSpan(string content) => 
             Content = content ?? throw new ArgumentNullException(nameof(content));
-        }
 
-        public override MdSpan Copy() => new MdRawMarkdownSpan(Content);
 
         public override string ToString() => Content;
+
+
+        internal override MdSpan DeepCopy() => new MdRawMarkdownSpan(Content);
     }
 }

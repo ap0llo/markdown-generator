@@ -45,8 +45,6 @@ namespace Grynwald.MarkdownGenerator.Model
             m_Spans.Add(span);
         }
 
-        public override MdSpan Copy() => new MdCompositeSpan(m_Spans.Select(x => x.Copy()));
-
         public IEnumerator<MdSpan> GetEnumerator() => m_Spans.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => m_Spans.GetEnumerator();
@@ -60,5 +58,8 @@ namespace Grynwald.MarkdownGenerator.Model
             }
             return stringBuilder.ToString();
         }
+
+
+        internal override MdSpan DeepCopy() => new MdCompositeSpan(m_Spans.Select(x => x.DeepCopy()));
     }
 }

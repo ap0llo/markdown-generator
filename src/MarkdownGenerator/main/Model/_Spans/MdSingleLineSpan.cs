@@ -18,12 +18,10 @@ namespace Grynwald.MarkdownGenerator.Model
 
         public MdSpan Content { get; }
 
-        public MdSingleLineSpan(MdSpan content)
-        {
-            Content = content ?? throw new ArgumentNullException(nameof(content));
-        }
 
-        public override MdSpan Copy() => new MdSingleLineSpan(Content.Copy());
+        public MdSingleLineSpan(MdSpan content) => 
+            Content = content ?? throw new ArgumentNullException(nameof(content));
+
 
         public override string ToString()
         {
@@ -40,5 +38,8 @@ namespace Grynwald.MarkdownGenerator.Model
 
             return content;
         }
+
+
+        internal override MdSpan DeepCopy() => new MdSingleLineSpan(Content.DeepCopy());
     }
 }

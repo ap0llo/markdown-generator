@@ -17,6 +17,7 @@ namespace Grynwald.MarkdownGenerator.Model
         /// </summary>
         public Uri Uri { get; }
 
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdImageSpan"/>. 
         /// The specified description will be escaped.
@@ -54,8 +55,10 @@ namespace Grynwald.MarkdownGenerator.Model
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));
         }
 
-        public override MdSpan Copy() => new MdImageSpan(Description.Copy(), Uri);
 
         public override string ToString() => $"![{Description}]({Uri})";
+
+
+        internal override MdSpan DeepCopy() => new MdImageSpan(Description.DeepCopy(), Uri);
     }
 }

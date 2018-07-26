@@ -39,7 +39,7 @@ namespace Grynwald.MarkdownGenerator.Model
                 {
                     if(composite.Spans.Count > 0)
                     {
-                        composite.Add(separator.Copy());
+                        composite.Add(separator.DeepCopy());
                     }
                     composite.Add(span);
                 }

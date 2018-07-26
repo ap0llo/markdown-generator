@@ -20,9 +20,9 @@ namespace Grynwald.MarkdownGenerator.Model
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
 
-        public override MdSpan Copy() => new MdCodeSpan(Text);
-
         public override string ToString() => $"`{Text}`";
 
+
+        internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
     }
 }

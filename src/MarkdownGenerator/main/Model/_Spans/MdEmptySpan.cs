@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Grynwald.MarkdownGenerator.Model
+﻿namespace Grynwald.MarkdownGenerator.Model
 {
     public sealed class MdEmptySpan : MdSpan
     {
@@ -12,9 +8,10 @@ namespace Grynwald.MarkdownGenerator.Model
         {
         }
 
-        public override MdSpan Copy() => Instance;
 
         public override string ToString() => string.Empty;
-        
+
+
+        internal override MdSpan DeepCopy() => Instance;        
     }
 }
