@@ -635,6 +635,40 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 options
             );
         }
+
+        [Theory]
+        [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Asterisk, '*')]
+        [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Dash, '-')]
+        [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Plus, '+')]
+        [InlineData(MdThematicBreakStyle.Dash, '-', MdBulletListStyle.Asterisk, '*')]
+        [InlineData(MdThematicBreakStyle.Dash, '_', MdBulletListStyle.Dash, '-')]
+        [InlineData(MdThematicBreakStyle.Dash, '-', MdBulletListStyle.Plus, '+')]
+        [InlineData(MdThematicBreakStyle.Asterisk, '_', MdBulletListStyle.Asterisk, '*')]
+        [InlineData(MdThematicBreakStyle.Asterisk, '*', MdBulletListStyle.Dash, '-')]
+        [InlineData(MdThematicBreakStyle.Asterisk, '*', MdBulletListStyle.Plus, '+')]
+        public void Serializer_changes_ThematicBreak_style_when_inside_bullet_list_with_a_conflicting_style(MdThematicBreakStyle thematicBreakStyle, char thematicBreakCharacter, MdBulletListStyle bulletListStyle, char bulletListCharacter)
+        {
+            var options = new MdSerializationOptions()
+            {
+                BulletListStyle = bulletListStyle,
+                ThematicBreakStyle = thematicBreakStyle
+            };
+
+            AssertToStringEquals(
+                $"{bulletListCharacter} Item1\r\n" +
+                $"\r\n" +
+                $"  {thematicBreakCharacter}{thematicBreakCharacter}{thematicBreakCharacter}\r\n",
+                Document(
+                    BulletList(
+                        ListItem(Paragraph("Item1"), ThematicBreak())
+                    )
+                ),
+                options
+            );
+        }
+
+
+
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
         {            
             using (var writer = new StringWriter())

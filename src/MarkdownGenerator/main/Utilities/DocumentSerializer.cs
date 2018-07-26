@@ -11,6 +11,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
         private readonly PrefixTextWriter m_Writer;
         private readonly MdSerializationOptions m_Options;
         private int m_ListLevel = 0;
+        private int m_BulletListLevel = 0;
 
         
         public DocumentSerializer(TextWriter writer) : this(writer, null)
@@ -140,7 +141,12 @@ namespace Grynwald.MarkdownGenerator.Utilities
         public void Serialize(MdList list)
         {
             m_ListLevel += 1;
-            
+            if(list.Kind == MdListKind.Bullet)
+            {
+                m_BulletListLevel += 1;
+            }
+
+
             if(m_ListLevel == 1)
             {
                 // top-level lists should be surrounded by blank lines
@@ -212,6 +218,10 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 m_Writer.RequestBlankLine();
 
             m_ListLevel -= 1;
+            if (list.Kind == MdListKind.Bullet)
+            {
+                m_BulletListLevel -= 1;
+            }
         }
 
         public void Serialize(MdCodeBlock codeBlock)
@@ -313,7 +323,25 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         public void Serialize(MdThematicBreak thematicBreak)
         {
-            switch (m_Options.ThematicBreakStyle)
+            var style = m_Options.ThematicBreakStyle;
+
+            // if a thematic break occurrs inside a bullet list
+            // and the configured style of the list and the thematic break are configued the same
+            // the thematic break takes precedence and hence the list is rendeded incorrectly
+            // (s. https://spec.commonmark.org/0.28/#thematic-breaks)
+            // To avoid this conflict, check for this scenario and change the style 
+            // of the thematic break if necessary
+            if (m_BulletListLevel > 0)
+            {
+                if((style == MdThematicBreakStyle.Dash && m_Options.BulletListStyle == MdBulletListStyle.Dash)
+                    ||
+                    (style == MdThematicBreakStyle.Asterisk && m_Options.BulletListStyle == MdBulletListStyle.Asterisk))
+                {
+                    style = MdThematicBreakStyle.Underscore;
+                }               
+            }
+
+            switch (style)
             {
                 case MdThematicBreakStyle.Dash:
                     m_Writer.WriteLine("---");
