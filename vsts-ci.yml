@@ -1,5 +1,10 @@
 queue: Hosted VS2017
 
+trigger:
+- master
+- features/*
+- release/*
+
 steps:
 - task: BatchScript@1
   displayName: Set environment variables
