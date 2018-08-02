@@ -195,10 +195,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
 
             // add prefix handler for the list
-            var prefixHandler = list is MdBulletList
-                ? (ListPrefixHandler) new BulletListPrefixHandler(m_Options.BulletListStyle)
-                : (ListPrefixHandler) new OrderedListPrefixHandler(m_Options.OrderedListStyle);
-            
+            var prefixHandler = GetListPrefixHandler(list);
             m_Writer.PushPrefixHandler(prefixHandler);
 
             var listItemNumber = 1;
@@ -223,10 +220,10 @@ namespace Grynwald.MarkdownGenerator.Internal
 
                 // event handler to update the prefix after the first line of a list item
                 void OnLineWritten(object s, EventArgs e)
-                {                    
+                {
                     lineWritten = true;
                 }
-                
+
                 // attach event handlers
                 m_Writer.LineWritten += OnLineWritten;
                 m_Writer.BlankLineRequested += OnBlankLineRequested;
@@ -237,7 +234,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 // detach event handlers
                 m_Writer.LineWritten -= OnLineWritten;
                 m_Writer.BlankLineRequested -= OnBlankLineRequested;
-                
+
                 // prevent blank lines from being inserted after list items
                 m_Writer.CancelRequestBlankLine();
 
@@ -257,7 +254,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 m_BulletListLevel -= 1;
             }
         }
-
+        
         public void Serialize(MdCodeBlock codeBlock)
         {
             string codeFence;
@@ -443,6 +440,23 @@ namespace Grynwald.MarkdownGenerator.Internal
                 default:
                     throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
             }            
-        }                     
+        }
+
+
+        private ListPrefixHandler GetListPrefixHandler(MdList list)
+        {
+            switch (list)
+            {
+                case MdBulletList _:
+                    return new BulletListPrefixHandler(m_Options.BulletListStyle);
+
+                case MdOrderedList _:
+                    return new OrderedListPrefixHandler(m_Options.OrderedListStyle);
+
+                default:
+                    throw new NotSupportedException($"Unsupported list type: {list.GetType().FullName}");
+            }
+        }
+
     }
 }
