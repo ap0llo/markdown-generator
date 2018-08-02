@@ -302,6 +302,55 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                         Row("Column1", "Column2"),
                         Row("Cell1", "Cell2")))
             );
+        
+        [Fact]
+        public void Tables_are_serialized_as_expected_02() =>
+            AssertToStringEquals(
+                "| Column1 | Column2 |\r\n" +
+                "| ------- | ------- |\r\n" +
+                "| Cell1   |         |\r\n" +
+                "| Cell3   | Cell4   |\r\n",
+                Document(
+                    Table(
+                        Row("Column1", "Column2"),
+                        Row("Cell1"),
+                        Row("Cell3", "Cell4")))
+            );
+
+        [Fact]
+        public void Serializer_respects_the_TableStyle_serialization_option()
+        {
+            var options = new MdSerializationOptions()
+            {
+                TableStyle = MdTableStyle.Html
+            };
+
+            AssertToStringEquals(                   
+                "<table>"                           + "\r\n" +
+                "  <thead>"                         + "\r\n" +
+                "    <tr>"                          + "\r\n" +
+                "      <th>Column1</th>"            + "\r\n" +
+                "      <th>Column2</th>"            + "\r\n" +
+                "    </tr>"                         + "\r\n" +
+                "  </thead>"                        + "\r\n" +
+                "  <tbody>"                         + "\r\n" +
+                "    <tr>"                          + "\r\n" +
+                "      <td>Cell1</td>"              + "\r\n" +
+                "    </tr>"                         + "\r\n" +
+                "    <tr>"                          + "\r\n" +
+                "      <td>Cell3</td>"              + "\r\n" +
+                "      <td>Cell4</td>"              + "\r\n" +
+                "    </tr>"                         + "\r\n" +
+                "  </tbody>"                       + "\r\n" +
+                "</table>"                          + "\r\n",
+                Document(
+                    Table(
+                        Row("Column1", "Column2"),
+                        Row("Cell1"),
+                        Row("Cell3", "Cell4"))),
+                options
+            );
+        }
 
         [Fact]
         public void Table_cell_contents_are_escaped() =>
@@ -328,20 +377,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                     Table(
                         Row("Column1"),
                         Row($"Part1{lineBreak}Part2")))
-            );
-
-        [Fact]
-        public void Tables_are_serialized_as_expected_02() =>
-            AssertToStringEquals(
-                "| Column1 | Column2 |\r\n" +
-                "| ------- | ------- |\r\n" +
-                "| Cell1   |         |\r\n" +
-                "| Cell3   | Cell4   |\r\n",
-                Document(
-                    Table(
-                        Row("Column1", "Column2"),
-                        Row("Cell1"),
-                        Row("Cell3", "Cell4")))
             );
 
         [Fact]

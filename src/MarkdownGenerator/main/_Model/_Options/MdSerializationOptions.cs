@@ -36,6 +36,11 @@
         public MdOrderedListStyle OrderedListStyle { get; set; } = MdOrderedListStyle.Dot;
 
         /// <summary>
+        /// Gets or sets the style for tables
+        /// </summary>
+        public MdTableStyle TableStyle { get; set; } = MdTableStyle.GFM;
+
+        /// <summary>
         /// The maximum length of a line in the output.
         /// When set to a value greater than 0, linebreaks
         /// will be inserted after the specified number of characters

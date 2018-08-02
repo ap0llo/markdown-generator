@@ -288,6 +288,23 @@ namespace Grynwald.MarkdownGenerator.Internal
         }
 
         public void Serialize(MdTable table)
+        {
+            switch (m_Options.TableStyle)
+            {
+                case MdTableStyle.GFM:
+                    SerializeGFMTable(table);
+                    break;
+
+                case MdTableStyle.Html:
+                    SerializeHtmlTable(table);
+                    break;
+                
+                default:
+                    throw new ArgumentException($"Unsupported table style: {m_Options.TableStyle}");
+            }
+        }
+
+        public void SerializeGFMTable(MdTable table)
         {      
             // convert table to string
             var tableAsString = new[] { table.HeaderRow }.Union(table.Rows)
@@ -354,6 +371,40 @@ namespace Grynwald.MarkdownGenerator.Internal
             {
                 SaveRow(row);
             }            
+        }
+
+        public void SerializeHtmlTable(MdTable table)
+        {
+            // Begin table
+            m_Writer.WriteLine("<table>");
+
+            // table head
+            m_Writer.WriteLine("  <thead>");
+            m_Writer.WriteLine("    <tr>");
+            foreach(var cell in table.HeaderRow)
+            {
+                m_Writer.WriteLine($"      <th>{cell.ToString(m_Options)}</th>");
+            }
+            m_Writer.WriteLine("    </tr>");
+            m_Writer.WriteLine("  </thead>");
+
+            // table body
+            m_Writer.WriteLine("  <tbody>");
+            foreach(var row in table.Rows)
+            {
+                m_Writer.WriteLine("    <tr>");
+                foreach (var cell in row)
+                {
+                    m_Writer.WriteLine($"      <td>{cell.ToString(m_Options)}</td>");
+                }
+                m_Writer.WriteLine("    </tr>");
+            }
+            m_Writer.WriteLine("  </tbody>");
+
+            // End table
+            m_Writer.WriteLine("</table>");
+
+
         }
 
         public void Serialize(MdThematicBreak thematicBreak)
