@@ -29,6 +29,18 @@ namespace Grynwald.MarkdownGenerator.Utilities
             }
         }
 
+        public string PreviewLinePrefix()
+        {
+            if (m_LineWritten)
+            {
+                return m_ListPrefix;
+            }
+            else
+            {             
+                return m_ListMarker;
+            }
+        }
+
 
         public virtual void BeginListItem()
         {

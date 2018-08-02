@@ -17,6 +17,8 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         public event EventHandler<EventArgs> BlankLineRequested;
 
+        public int PrefixLength => PreviewLinePrefix().Length;
+
         
         public PrefixTextWriter(TextWriter innerWriter)
         {
@@ -83,6 +85,17 @@ namespace Grynwald.MarkdownGenerator.Utilities
             foreach (var handler in m_PrefixHandlers)
             {
                 prefixBuilder.Append(handler.GetLinePrefix());
+            }
+            return prefixBuilder.ToString();
+        }
+
+
+        private string PreviewLinePrefix()
+        {
+            var prefixBuilder = new StringBuilder();
+            foreach (var handler in m_PrefixHandlers)
+            {
+                prefixBuilder.Append(handler.PreviewLinePrefix());
             }
             return prefixBuilder.ToString();
         }
