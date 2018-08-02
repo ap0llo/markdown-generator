@@ -17,9 +17,9 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 ? FactoryMethods.Heading("Content", 1)
                 : new MdHeading("Content", 1);
             
-            Assert.IsType<MdTextSpan>(heading.Text);
+            Assert.IsType<MdTextSpan>(heading.Text.Content);
             
-            var textSpan = (MdTextSpan)heading.Text;
+            var textSpan = (MdTextSpan)heading.Text.Content;
             Assert.Equal("Content", textSpan.Text);
         }
 
@@ -32,9 +32,9 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 ? FactoryMethods.Heading(1, "Content")
                 : new MdHeading(1, "Content");
 
-            Assert.IsType<MdTextSpan>(heading.Text);
+            Assert.IsType<MdTextSpan>(heading.Text.Content);
 
-            var textSpan = (MdTextSpan)heading.Text;
+            var textSpan = (MdTextSpan)heading.Text.Content;
             Assert.Equal("Content", textSpan.Text);
         }
 
@@ -47,8 +47,8 @@ namespace Grynwald.MarkdownGenerator.Test.Model
                 ? FactoryMethods.Heading(1, "Content1", "Content2")
                 : new MdHeading(1, "Content1", "Content2");
 
-            Assert.IsType<MdCompositeSpan>(heading.Text);
-            var compositeSpan = (MdCompositeSpan)heading.Text;
+            Assert.IsType<MdCompositeSpan>(heading.Text.Content);
+            var compositeSpan = (MdCompositeSpan)heading.Text.Content;
 
             Assert.IsType<MdTextSpan>(compositeSpan.Spans[0]);
             Assert.IsType<MdTextSpan>(compositeSpan.Spans[1]);
@@ -70,8 +70,8 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             var heading = useFactoryMethods
                 ? FactoryMethods.Heading(text, 1)
                 : new MdHeading(text, 1);
-
-            Assert.Same(text, heading.Text);
+            
+            Assert.Same(text, heading.Text.Content);
         }      
     }
 }

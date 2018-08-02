@@ -8,12 +8,14 @@ namespace Grynwald.MarkdownGenerator.Utilities
 {
     internal class DocumentSerializer
     {
+        private static readonly char[] s_LineBreakChars = "\r\n".ToCharArray();
+
         private readonly PrefixTextWriter m_Writer;
         private readonly MdSerializationOptions m_Options;
         private int m_ListLevel = 0;
         private int m_BulletListLevel = 0;
-
         
+
         public DocumentSerializer(TextWriter writer) : this(writer, null)
         { }
 
@@ -101,11 +103,25 @@ namespace Grynwald.MarkdownGenerator.Utilities
             
             if(m_Options.HeadingStyle == MdHeadingStyle.Setex && block.Level <= 2)
             {
-                var headingText = block.Text.ToString(m_Options);
-                m_Writer.WriteLine(headingText);
-
                 var underlineChar = block.Level == 1 ? '=' : '-';
-                m_Writer.WriteLine(new String(underlineChar, headingText.Length));
+                var text = block.Text.ToString(m_Options);
+
+                // if no maximum line length was specified, write heading into a single line
+                if(m_Options.MaxLineLength <= 0)
+                {
+                    m_Writer.WriteLine(text);
+                    m_Writer.WriteLine(new String(underlineChar, text.Length));
+                }
+                // is max line length was specified, split the value into multiple lines if necessary
+                else
+                {
+                    var headingTextLines = LineFormatter.GetLines(text, m_Options.MaxLineLength - m_Writer.PrefixLength);
+                    foreach(var line in headingTextLines)
+                    {
+                        m_Writer.WriteLine(line);
+                    }
+                    m_Writer.WriteLine(new String(underlineChar, headingTextLines.Max(x => x.Length)));
+                }                
             }
             else
             {
@@ -119,23 +135,44 @@ namespace Grynwald.MarkdownGenerator.Utilities
         {
             m_Writer.RequestBlankLine();
             
-            var lines = paragraph.Text.ToString(m_Options).Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var lines = paragraph.Text.ToString(m_Options).Split(s_LineBreakChars, StringSplitOptions.RemoveEmptyEntries);
 
+            // skip paragraph if it is empty
             if (lines.Length == 0)
                 return;
 
             for (var i = 0; i < lines.Length; i++)
             {
+                // get the current line
                 var line = lines[i];
 
+                // if the line is not the last, append 2 spaces to 
+                // cause a line break in the output
+                // for the last line, this can be omitted, as there will 
+                // be a blank line after the paragraph
                 if (i != lines.Length - 1)
+                {
                     line += "  ";
+                }
 
-                m_Writer.WriteLine(line);
+                // no maximum line line length specified => write the line to the output
+                if(m_Options.MaxLineLength <= 0)
+                {
+                    m_Writer.WriteLine(line);
+                }
+                // maximum line length specified 
+                // => format lines to max length and write all lines to the output
+                else
+                {
+                    var formattedLines = LineFormatter.GetLines(line, m_Options.MaxLineLength - m_Writer.PrefixLength);
+                    foreach(var formattedLine in formattedLines)
+                    {
+                        m_Writer.WriteLine(formattedLine);
+                    }
+                }               
             }
 
             m_Writer.RequestBlankLine();
-
         }
 
         public void Serialize(MdList list)
@@ -188,8 +225,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
                 // event handler to update the prefix after the first line of a list item
                 void OnLineWritten(object s, EventArgs e)
-                {
-                    // no action after first line required => unsubscribe from event
+                {                    
                     lineWritten = true;
                 }
                 
@@ -358,7 +394,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 default:
                     throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
             }            
-        }       
-        
+        }                     
     }
 }

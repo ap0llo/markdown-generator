@@ -56,9 +56,11 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
 
-        public override string ToString()
+        public override string ToString() => ToString(MdSerializationOptions.Default);
+  
+        public override string ToString(MdSerializationOptions options)
         {
-            var description = Description.ToString();
+            var description = Description.ToString(options);
             var uri = Uri.ToString();
 
             if (String.IsNullOrEmpty(description) && String.IsNullOrEmpty(uri))
@@ -70,9 +72,6 @@ namespace Grynwald.MarkdownGenerator.Model
                 return $"![{description}]({uri})";
             }
         }
-
-        public override string ToString(MdSerializationOptions options) => ToString();
-
 
         internal override MdSpan DeepCopy() => new MdImageSpan(Description.DeepCopy(), Uri);
     }
