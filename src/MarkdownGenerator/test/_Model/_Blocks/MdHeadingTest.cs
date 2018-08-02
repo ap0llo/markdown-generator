@@ -1,7 +1,6 @@
 ﻿using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test
-
 {
     public class MdHeadingTest
     {

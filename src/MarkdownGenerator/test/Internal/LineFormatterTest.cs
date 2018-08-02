@@ -48,6 +48,5 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                     $"Actual:   {actualSegments.Select(x => $"\"{x}\"").JoinToString(", ")}");
             }
         }
-
     }
 }

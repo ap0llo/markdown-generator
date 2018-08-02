@@ -9,7 +9,8 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public abstract class MdList : MdBlock, IEnumerable<MdListItem>
     {
-        readonly LinkedList<MdListItem> m_ListItems;
+        private readonly LinkedList<MdListItem> m_ListItems;
+
 
         /// <summary>
         /// The lit's items
@@ -31,6 +32,7 @@ namespace Grynwald.MarkdownGenerator
 
             m_ListItems = new LinkedList<MdListItem>(content);
         }
+
 
         /// <summary>
         /// Adds the specified item to the list

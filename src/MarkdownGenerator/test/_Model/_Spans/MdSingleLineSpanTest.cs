@@ -27,7 +27,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(expected, singleLine.ToString());
         }
 
-
         [Fact]
         public void ToString_returns_an_empty_string_if_value_is_empty()
         {

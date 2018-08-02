@@ -9,6 +9,7 @@ namespace Grynwald.MarkdownGenerator
     {
         internal override MdListKind Kind => MdListKind.Bullet;
 
+
         public MdBulletList(params MdListItem[] content) : base(content)
         { }
 

@@ -2,7 +2,7 @@
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
-    internal class ResettableStringBuilder
+    internal sealed class ResettableStringBuilder
     {
         private StringBuilder m_StringBuilder = new StringBuilder();
 
@@ -24,6 +24,5 @@ namespace Grynwald.MarkdownGenerator.Internal
         public void Append(string value) => m_StringBuilder.Append(value);
 
         public override string ToString() => m_StringBuilder.ToString();
-
     }    
 }

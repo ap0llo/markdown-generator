@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator
 {
-
     public static partial class FactoryMethods
     {
-
         public static MdLinkSpan Link(string text, string uri) => new MdLinkSpan(text, uri);
 
         public static MdLinkSpan Link(string text, Uri uri) => new MdLinkSpan(text, uri);

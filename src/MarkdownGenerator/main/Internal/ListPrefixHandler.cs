@@ -2,7 +2,7 @@
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
-    abstract class ListPrefixHandler : IPrefixHandler
+    internal abstract class ListPrefixHandler : IPrefixHandler
     {
         protected string m_ListPrefix;                            // the prefix for lines other than the first line
         protected bool m_LineWritten = false;                     // indicates if any lines have been written in the current list item

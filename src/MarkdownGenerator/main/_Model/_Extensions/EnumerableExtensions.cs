@@ -44,7 +44,6 @@ namespace Grynwald.MarkdownGenerator
 
                 return composite;
             }            
-        }
-              
+        }              
     }
 }

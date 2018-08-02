@@ -17,7 +17,6 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         public MdParagraph(MdSpan text) =>            
-            Text = text ?? throw new ArgumentNullException(nameof(text));
-        
+            Text = text ?? throw new ArgumentNullException(nameof(text));        
     }
 }

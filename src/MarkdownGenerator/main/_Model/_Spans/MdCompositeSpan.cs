@@ -16,6 +16,7 @@ namespace Grynwald.MarkdownGenerator
 
         public IReadOnlyList<MdSpan> Spans => m_Spans;
 
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
         /// </summary>

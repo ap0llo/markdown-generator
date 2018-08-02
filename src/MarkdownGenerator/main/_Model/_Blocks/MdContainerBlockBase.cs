@@ -9,12 +9,14 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public abstract class MdContainerBlockBase : MdBlock, IEnumerable<MdBlock>
     {
-        readonly LinkedList<MdBlock> m_Blocks;
+        private readonly LinkedList<MdBlock> m_Blocks;
+
 
         /// <summary>
         /// The container's sub-blocks
         /// </summary>
         public IEnumerable<MdBlock> Blocks => m_Blocks;
+
 
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdContainerBlockBase(params MdBlock[] content) : this((IEnumerable<MdBlock>) content)

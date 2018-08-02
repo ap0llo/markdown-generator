@@ -3,9 +3,10 @@
     /// <summary>
     /// Prefix handler for block quotes
     /// </summary>
-    class BlockQuotePrefixHandler : IPrefixHandler
+    internal class BlockQuotePrefixHandler : IPrefixHandler
     {
-        bool m_LineWritten = false;
+        private bool m_LineWritten = false;
+
 
         // do no prefix blank lines before the quote, then prefix all lines
         public string GetBlankLinePrefix() => m_LineWritten ? "> " : "";

@@ -8,9 +8,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 {
     public class SimpleTextWriterTest : IDisposable
     {        
-        readonly TextWriter m_TextWriter;
-        readonly PrefixTextWriter m_Instance;
-        readonly StringBuilder m_StringBuilder;
+        private readonly TextWriter m_TextWriter;
+        private readonly PrefixTextWriter m_Instance;
+        private readonly StringBuilder m_StringBuilder;
+
 
         public SimpleTextWriterTest()
         {
@@ -18,6 +19,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             m_TextWriter = new StringWriter(m_StringBuilder);
             m_Instance = new PrefixTextWriter(m_TextWriter);
         }
+
 
         public void Dispose() => m_TextWriter.Dispose();
 

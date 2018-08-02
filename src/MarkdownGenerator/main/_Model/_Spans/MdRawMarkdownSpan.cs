@@ -12,6 +12,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public string Content { get; }
 
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdRawMarkdownSpan"/>
         /// </summary>

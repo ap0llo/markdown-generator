@@ -10,11 +10,11 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public abstract class MdBlock
     {
-
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdBlock()
         {
         }
+
 
         public override string ToString()
         {

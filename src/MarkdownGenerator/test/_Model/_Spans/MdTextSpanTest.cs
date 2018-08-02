@@ -23,7 +23,6 @@ namespace Grynwald.MarkdownGenerator.Test
             );
         }
 
-
         [Theory]
         [InlineData("Some string")]
         [InlineData("")]

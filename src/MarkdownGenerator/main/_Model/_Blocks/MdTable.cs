@@ -13,6 +13,7 @@ namespace Grynwald.MarkdownGenerator
     {        
         private readonly LinkedList<MdTableRow> m_Rows;
 
+
         /// <summary>
         /// Gets the number of columns in the table
         /// </summary>
@@ -37,8 +38,7 @@ namespace Grynwald.MarkdownGenerator
 
         public MdTable(MdTableRow headerRow, params MdTableRow[] rows)
             : this(headerRow, (IEnumerable<MdTableRow>)rows)
-        {
-        }
+        { }
 
         public MdTable(MdTableRow headerRow, IEnumerable<MdTableRow> rows)
         {

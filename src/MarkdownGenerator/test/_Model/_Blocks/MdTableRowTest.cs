@@ -17,7 +17,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(expectedValue, row.Cells.Single().ToString());
         }
 
-
         [Theory]
         [InlineData("Cell \r\nValue", "Cell Value")]
         [InlineData("NoLineBreak", "NoLineBreak")]
@@ -41,7 +40,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(expectedValue, row.Cells.Single().ToString());
         }
 
-
         [Fact]
         public void MdTableRow_can_be_initialized_with_string_content_01()
         {
@@ -56,7 +54,6 @@ namespace Grynwald.MarkdownGenerator.Test
             var textSpan = (MdTextSpan)singleLineSpan.Content;
             Assert.Equal("Content", textSpan.Text);
         }
-
 
         [Theory]
         [InlineData(true)]
@@ -80,7 +77,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
             Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
         }
-
 
         [Theory]
         [InlineData(true)]

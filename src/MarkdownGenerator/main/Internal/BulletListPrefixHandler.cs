@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator.Internal
     /// <summary>
     /// Prefix handler for bullet lists
     /// </summary>
-    class BulletListPrefixHandler : ListPrefixHandler
+    internal sealed class BulletListPrefixHandler : ListPrefixHandler
     {                
         private readonly MdBulletListStyle m_BulletListStyle;   // determines the list marker for bullet lists (either -, + or *)
         

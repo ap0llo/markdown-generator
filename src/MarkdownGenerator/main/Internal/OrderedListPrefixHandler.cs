@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator.Internal
     /// <summary>
     /// Prefix handler for ordered lists
     /// </summary>
-    class OrderedListPrefixHandler : ListPrefixHandler
+    internal sealed class OrderedListPrefixHandler : ListPrefixHandler
     {                
         private readonly MdOrderedListStyle m_OrderedListStyle; // determines the list marker for ordered lists (either '.' or ')' )        
         private int m_ListItemNumber = 0;                       // the number of the list item (for ordered lists)

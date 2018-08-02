@@ -17,6 +17,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public int Level { get; }        
 
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdHeading"/>
         /// </summary>
@@ -38,6 +39,7 @@ namespace Grynwald.MarkdownGenerator
             {
                 Text = new MdSingleLineSpan(text);
             }
+
             Level = level;
         }
 
@@ -56,6 +58,5 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="text">The text of the heading. Must not be null.</param>
         public MdHeading(int level, params MdSpan[] text) : this(new MdCompositeSpan(text), level)
         { }
-
     }
 }

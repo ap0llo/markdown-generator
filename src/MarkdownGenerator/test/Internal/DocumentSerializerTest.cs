@@ -35,7 +35,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                     Paragraph("Paragraph2"))
             );
 
-
         [Fact]
         public void Multiple_paragraphs_and_headings_are_serialized_as_expected() =>
             AssertToStringEquals(
@@ -331,7 +330,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                         Row($"Part1{lineBreak}Part2")))
             );
 
-
         [Fact]
         public void Tables_are_serialized_as_expected_02() =>
             AssertToStringEquals(
@@ -363,7 +361,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                                 Row("Column1", "Column2"),
                                 Row("Cell1"),
                                 Row("Cell3", "Cell4"))))));
-
 
         [Fact]
         public void Ordered_lists_can_contain_tables() =>
@@ -508,7 +505,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             );
         }
 
-
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -611,7 +607,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 options
             );
         }
-
 
         [Theory]
         [InlineData(MdOrderedListStyle.Dot, '.')]
@@ -719,7 +714,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             );
         }
 
-
         [Fact]
         public void Paragraphs_are_formatted_to_the_maximum_line_length_01()
         {
@@ -739,7 +733,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
         }
 
-
         [Fact]
         public void Paragraphs_are_formatted_to_the_maximum_line_length_02()
         {
@@ -758,7 +751,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                options
            );
         }
-
 
         [Fact]
         public void Paragraphs_in_lists_are_formatted_to_the_maximum_line_length()
@@ -798,7 +790,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                options
            );
         }
-
 
 
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)

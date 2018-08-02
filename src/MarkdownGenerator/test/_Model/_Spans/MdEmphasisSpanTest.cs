@@ -31,7 +31,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(expected, actual);
         }
 
-
         [Theory]
         [MarkdownSpecialCharacterData]
         public void ToString_escapes_special_characters(char charToEscape)

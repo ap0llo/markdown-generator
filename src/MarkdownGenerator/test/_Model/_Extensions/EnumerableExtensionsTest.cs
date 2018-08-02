@@ -5,7 +5,6 @@ namespace Grynwald.MarkdownGenerator.Test
 {
     public class EnumerableExtensionsTest
     {
-
         [Fact]
         public void Join_returns_the_expected_span_01()
         {
@@ -230,6 +229,5 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.Same(spansToJoin[2], compositeSpan.Spans[4]);
         }
-
     }
 }

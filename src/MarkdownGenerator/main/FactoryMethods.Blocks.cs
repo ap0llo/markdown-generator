@@ -98,6 +98,5 @@ namespace Grynwald.MarkdownGenerator
 
 
         public static MdThematicBreak ThematicBreak() => new MdThematicBreak();      
-
     }
 }

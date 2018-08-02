@@ -12,6 +12,7 @@ namespace Grynwald.MarkdownGenerator
     {
         private readonly List<MdSpan> m_Cells;
 
+
         /// <summary>
         /// The row's cell values
         /// </summary>
@@ -44,6 +45,7 @@ namespace Grynwald.MarkdownGenerator
             // when writeing the table to the output
             m_Cells = new List<MdSpan>(cells.Select(span => new MdSingleLineSpan(span)));            
         }
+
 
         /// <summary>
         /// Adds a column to the row

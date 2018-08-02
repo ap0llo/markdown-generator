@@ -12,6 +12,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public string Text { get; }
 
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdCodeSpan"/>
         /// </summary>

@@ -38,7 +38,6 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.Equal("Content1", (compositeSpan.Spans[0] as MdTextSpan).Text);
             Assert.Equal("Content2", (compositeSpan.Spans[1] as MdTextSpan).Text);
-        }
-     
+        }     
     }
 }

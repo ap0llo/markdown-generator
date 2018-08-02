@@ -16,6 +16,5 @@
         /// Use '***' for thematic breaks
         /// </summary>
         Asterisk = 1,
-
     }
 }

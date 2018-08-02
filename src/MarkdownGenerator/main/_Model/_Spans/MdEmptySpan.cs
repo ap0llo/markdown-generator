@@ -6,6 +6,7 @@ namespace Grynwald.MarkdownGenerator
     {
         public static readonly MdEmptySpan Instance = new MdEmptySpan();
 
+
         private MdEmptySpan()
         { }
 

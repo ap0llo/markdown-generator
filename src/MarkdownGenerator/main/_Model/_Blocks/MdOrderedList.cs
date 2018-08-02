@@ -6,12 +6,11 @@ namespace Grynwald.MarkdownGenerator
     {
         internal override MdListKind Kind => MdListKind.Ordered;
 
+
         public MdOrderedList(params MdListItem[] content) : base(content)
-        {
-        }
+        { }
 
         public MdOrderedList(IEnumerable<MdListItem> content) : base(content)
-        {
-        }
+        { }
     }
 }

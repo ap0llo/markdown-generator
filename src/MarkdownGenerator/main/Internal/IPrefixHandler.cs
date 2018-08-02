@@ -1,6 +1,6 @@
 ﻿namespace Grynwald.MarkdownGenerator.Internal
 {
-    interface IPrefixHandler
+    internal interface IPrefixHandler
     {
         string PreviewLinePrefix();
 
