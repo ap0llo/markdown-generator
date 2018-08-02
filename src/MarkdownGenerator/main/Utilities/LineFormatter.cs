@@ -106,46 +106,42 @@ namespace Grynwald.MarkdownGenerator.Utilities
 
         }
         
-        internal static IEnumerable<StringSegment> GetStringSegments(string input)
+        /// <summary>
+        /// Spltis the specified string into a sequence of segements.
+        /// Each segment is either a whitespace-segment (contains only whitespace characters)
+        /// or an non-whitespace segment
+        /// </summary>
+        internal static IReadOnlyList<StringSegment> GetStringSegments(string input)
         {
+            // empty string => no segements
             if(String.IsNullOrEmpty(input))
-            {
-                yield break;                
-            }
+                return Array.Empty<StringSegment>();
 
-            int i = 0;
+            var segments = new List<StringSegment>();
+
+            var i = 0;
             while (i < input.Length)
             {
-                if (char.IsWhiteSpace(input[i]))
-                {
-                    var start = i;
-                    while (i < input.Length && char.IsWhiteSpace(input[i]))
-                    {
-                        i++;
-                    }
-                    yield return new StringSegment()
-                    {
-                        Value = input.Substring(start, i - start),
-                        IsWhiteSpace = true
-                    };
-                }
-                else
-                {
-                    var start = i;
-                    while (i < input.Length && !char.IsWhiteSpace(input[i]))
-                    {
-                        i++;
-                    }
-                    yield return new StringSegment()
-                    {
-                        Value = input.Substring(start, i - start),
-                        IsWhiteSpace = false
-                    };
+                // determine is current char is whitespace or not
+                var isWhiteSpace = char.IsWhiteSpace(input[i]);
 
+                // move i forward as long as all chars are whitespace or non-whitespace
+                var start = i;
+                while (i < input.Length && char.IsWhiteSpace(input[i]) == isWhiteSpace)
+                {
+                    i++;
                 }
 
-            }            
+                // emit new segment
+                segments.Add(new StringSegment()
+                {
+                    Value = input.Substring(start, i - start),
+                    IsWhiteSpace = isWhiteSpace
+                });
 
+            }
+
+            return segments;
         }        
     }
 }
