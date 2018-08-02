@@ -18,8 +18,6 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public IEnumerable<MdListItem> Items => m_ListItems;
 
-        internal abstract MdListKind Kind { get; }
-
 
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>) content)

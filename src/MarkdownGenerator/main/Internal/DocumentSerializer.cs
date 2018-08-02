@@ -176,7 +176,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         public void Serialize(MdList list)
         {
             m_ListLevel += 1;
-            if(list.Kind == MdListKind.Bullet)
+            if(list is MdBulletList)
             {
                 m_BulletListLevel += 1;
             }
@@ -195,7 +195,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
 
             // add prefix handler for the list
-            var prefixHandler = list.Kind == MdListKind.Bullet
+            var prefixHandler = list is MdBulletList
                 ? (ListPrefixHandler) new BulletListPrefixHandler(m_Options.BulletListStyle)
                 : (ListPrefixHandler) new OrderedListPrefixHandler(m_Options.OrderedListStyle);
             
@@ -252,7 +252,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 m_Writer.RequestBlankLine();
 
             m_ListLevel -= 1;
-            if (list.Kind == MdListKind.Bullet)
+            if (list is MdBulletList)
             {
                 m_BulletListLevel -= 1;
             }

@@ -8,8 +8,6 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public sealed class MdBulletList : MdList
     {
-        internal override MdListKind Kind => MdListKind.Bullet;
-
         /// <summary>
         /// Initializes a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>

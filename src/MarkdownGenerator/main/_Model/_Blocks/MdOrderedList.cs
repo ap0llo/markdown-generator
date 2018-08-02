@@ -8,8 +8,6 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public sealed class MdOrderedList : MdList
     {
-        internal override MdListKind Kind => MdListKind.Ordered;
-
         /// <summary>
         /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
