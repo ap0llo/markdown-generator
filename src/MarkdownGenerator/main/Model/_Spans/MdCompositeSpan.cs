@@ -49,18 +49,17 @@ namespace Grynwald.MarkdownGenerator.Model
 
         IEnumerator IEnumerable.GetEnumerator() => m_Spans.GetEnumerator();
 
-        public override string ToString()
+        public override string ToString() => ToString(MdSerializationOptions.Default);
+
+        public override string ToString(MdSerializationOptions options)
         {
             var stringBuilder = new StringBuilder();
-            foreach(var span in Spans)
+            foreach (var span in Spans)
             {
-                stringBuilder.Append(span.ToString());
+                stringBuilder.Append(span.ToString(options));
             }
             return stringBuilder.ToString();
         }
-
-        public override string ToString(MdSerializationOptions options) => ToString();
-
 
         internal override MdSpan DeepCopy() => new MdCompositeSpan(m_Spans.Select(x => x.DeepCopy()));
     }

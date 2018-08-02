@@ -56,9 +56,11 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
 
-        public override string ToString()
+        public override string ToString() => ToString(MdSerializationOptions.Default);
+
+        public override string ToString(MdSerializationOptions options)
         {
-            var text = Text.ToString();
+            var text = Text.ToString(options);
             var uri = Uri.ToString();
 
             if (String.IsNullOrEmpty(text) && String.IsNullOrEmpty(uri))
@@ -68,10 +70,8 @@ namespace Grynwald.MarkdownGenerator.Model
             else
             {
                 return $"[{text}]({uri})";
-            }            
+            }
         }
-
-        public override string ToString(MdSerializationOptions options) => ToString();
 
 
         internal override MdSpan DeepCopy() => new MdLinkSpan(Text.DeepCopy(), Uri);

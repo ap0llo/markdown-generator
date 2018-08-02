@@ -2,6 +2,9 @@
 {
     public class MdSerializationOptions
     {
+
+        public static readonly MdSerializationOptions Default = new MdSerializationOptions();
+
         /// <summary>
         /// Gets or sets the style for emphasized and strongly emphasized text
         /// </summary>

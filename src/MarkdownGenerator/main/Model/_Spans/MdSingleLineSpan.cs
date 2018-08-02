@@ -23,9 +23,11 @@ namespace Grynwald.MarkdownGenerator.Model
             Content = content ?? throw new ArgumentNullException(nameof(content));
 
 
-        public override string ToString()
+        public override string ToString() => ToString(MdSerializationOptions.Default);
+
+        public override string ToString(MdSerializationOptions options)
         {
-            var content = Content.ToString();
+            var content = Content.ToString(options);
 
             // remove trailing line breaks
             content = s_TrailingLineBreakRegex.Replace(content, "");
@@ -38,9 +40,6 @@ namespace Grynwald.MarkdownGenerator.Model
 
             return content;
         }
-
-        public override string ToString(MdSerializationOptions options) => ToString();
-
 
         internal override MdSpan DeepCopy() => new MdSingleLineSpan(Content.DeepCopy());
     }

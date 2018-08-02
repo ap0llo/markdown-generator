@@ -29,24 +29,19 @@ namespace Grynwald.MarkdownGenerator.Model
         }
 
 
-        public override string ToString() => ToString(MdEmphasisStyle.Asterisk);
-       
-        public override string ToString(MdSerializationOptions options) => ToString(options.EmphasisStyle);        
+        public override string ToString() => ToString(MdSerializationOptions.Default);
 
-
-        internal override MdSpan DeepCopy() => new MdEmphasisSpan(Text.DeepCopy());
-
-        private string ToString(MdEmphasisStyle style)
+        public override string ToString(MdSerializationOptions options)
         {
-            var text = Text.ToString();
+            var text = Text.ToString(options);
 
-            if(String.IsNullOrEmpty(text))
+            if (String.IsNullOrEmpty(text))
             {
                 return String.Empty;
             }
 
             char emphasisChar;
-            switch (style)
+            switch (options.EmphasisStyle)
             {
                 case MdEmphasisStyle.Asterisk:
                     emphasisChar = '*';
@@ -56,10 +51,13 @@ namespace Grynwald.MarkdownGenerator.Model
                     break;
 
                 default:
-                    throw new ArgumentException($"Unsupported value: {style}", nameof(style));
+                    throw new ArgumentException($"Unsupported value: {options.EmphasisStyle}", nameof(options.EmphasisStyle));
             }
 
             return $"{emphasisChar}{text}{emphasisChar}";
         }
+
+
+        internal override MdSpan DeepCopy() => new MdEmphasisSpan(Text.DeepCopy());       
     }
 }
