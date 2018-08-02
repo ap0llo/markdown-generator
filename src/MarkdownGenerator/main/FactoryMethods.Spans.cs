@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Grynwald.MarkdownGenerator.Model;
 
 namespace Grynwald.MarkdownGenerator
 {
