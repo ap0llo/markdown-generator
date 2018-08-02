@@ -211,7 +211,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content
         /// </summary>
-        /// <param name="content">The content of the quote as one or more blocks (see <see cref="MdBlock"/>)</param
+        /// <param name="content">The content of the quote as one or more blocks (see <see cref="MdBlock"/>)</param>
         public static MdBlockQuote BlockQuote(IEnumerable<MdBlock> content) => new MdBlockQuote(content);
 
         /// <summary>
