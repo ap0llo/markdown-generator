@@ -10,7 +10,7 @@ namespace Grynwald.MarkdownGenerator.Model
         /// <summary>
         /// The text of the heading
         /// </summary>
-        public MdSpan Text { get; }
+        public MdSingleLineSpan Text { get; }
 
         /// <summary>
         /// The level of the heading, 1 being the top-most heading
@@ -27,7 +27,17 @@ namespace Grynwald.MarkdownGenerator.Model
             if (level < 1 || level > 6)
                 throw new ArgumentOutOfRangeException(nameof(level), "Value must be in the range [1,6]");
 
-            Text = text ?? throw new ArgumentNullException(nameof(text));
+            if (text == null)
+                throw new ArgumentNullException(nameof(text));
+
+            if (text is MdSingleLineSpan singleLineSpan)
+            {
+                Text = singleLineSpan;
+            }
+            else
+            {
+                Text = new MdSingleLineSpan(text);
+            }
             Level = level;
         }
 
