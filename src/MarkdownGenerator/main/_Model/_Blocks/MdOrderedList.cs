@@ -11,17 +11,17 @@ namespace Grynwald.MarkdownGenerator
         internal override MdListKind Kind => MdListKind.Ordered;
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list item
+        /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
-        /// <param name="content">The list items to intially add to the list</param>
-        public MdOrderedList(params MdListItem[] content) : base(content)
+        /// <param name="listItems">The list items to intially add to the list</param>
+        public MdOrderedList(params MdListItem[] listItems) : base(listItems)
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list item
+        /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
-        /// <param name="content">The list items to intially add to the list</param>
-        public MdOrderedList(IEnumerable<MdListItem> content) : base(content)
+        /// <param name="listItems">The list items to intially add to the list</param>
+        public MdOrderedList(IEnumerable<MdListItem> listItems) : base(listItems)
         { }
     }
 }

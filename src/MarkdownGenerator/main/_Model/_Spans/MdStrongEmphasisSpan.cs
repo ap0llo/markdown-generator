@@ -25,9 +25,9 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content
+        /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
         /// </summary>
-        /// <param name="text">The text to emphasize.</param>
+        /// <param name="text">The text to emphasize</param>
         public MdStrongEmphasisSpan(MdSpan text) => 
             Text = text ?? throw new ArgumentNullException(nameof(text));
 

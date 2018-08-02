@@ -84,8 +84,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             {
                 Serialize(block);
             }
-            m_Writer.PopPrefixHandler();
-            
+            m_Writer.PopPrefixHandler();            
         }
 
         public void Serialize(MdListItem listItem)
@@ -278,7 +277,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
             m_Writer.WriteLine($"{codeFence}{codeBlock.InfoString ?? ""}");
             
-            var lines = codeBlock.Text.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var lines = codeBlock.Text.Split(s_LineBreakChars, StringSplitOptions.RemoveEmptyEntries);
             foreach(var line in lines)
             {
                 m_Writer.WriteLine(line);

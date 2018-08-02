@@ -20,17 +20,19 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <summary>
-        /// Initializes a new insance of <see cref="MdCodeBlock"/> with the specified text
+        /// Initializes a new insance of <see cref="MdCodeBlock"/> with the specified text.
         /// </summary>
         /// <param name="text">The code blocks content</param>
         public MdCodeBlock(string text) : this(text, null)
         { }
 
         /// <summary>
-        /// Initializes a new insance of <see cref="MdCodeBlock"/>
+        /// Initializes a new insance of <see cref="MdCodeBlock"/>.
         /// </summary>
         /// <param name="text">The code blocks content</param>
-        /// <param name="infoString">The code blocks info string, typically used to indicate the language of the code block</param>
+        /// <param name="infoString">
+        /// The code blocks info string, typically used to indicate the language of the code block
+        /// </param>
         public MdCodeBlock(string text, string infoString)
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));
