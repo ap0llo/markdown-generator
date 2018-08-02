@@ -12,7 +12,7 @@ Additionally the library supports tables as defined in [GitHub flavored markdown
 
 MarkdownGenerator is distributed as NuGet package.
 
-- Prerelease builds are available on [MyGet](https://www.myget.org/feed/Packages/ap0llo-markdown-generator)
+- Prerelease builds are available on [MyGet](https://www.myget.org/feed/ap0llo-markdown-generator/package/nuget/Grynwald.MarkdownGenerator)
 - Release versions are available on [NuGet.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
 
 ## Documentation
