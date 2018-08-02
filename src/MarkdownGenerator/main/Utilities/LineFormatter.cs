@@ -1,87 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Utilities
-{   
-    class LineFormatter 
+{
+    internal class LineFormatter 
     {
         public static IEnumerable<string> GetLines(string input, int maxLineLength)
         {
             var segments = GetStringSegments(input).ToArray();
 
-            var stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < segments.Length; i++)
+            var lineBuilder = new ResettableStringBuilder();
+            // iterate over all segments
+            for(var i = 0; i < segments.Length; i++)
             {
-                var islast = i == segments.Length - 1;
+                var isLastSegment = (i == segments.Length - 1);
                                 
-                if(islast)
-                {
+                // last segment requires special handling (no look ahead to next segment possible)
+                if(isLastSegment)
+                {                    
                     var (value, isWhiteSpace) = segments[i];
 
-                    if(isWhiteSpace)
-                    {
-                        if (stringBuilder.Length > 0)
-                            stringBuilder.Append(value);
+                    // if last segment is whitespace and the current line is not empty
+                    // append the whitespace to retain trailing whitespace)
+                    // if the current line is empty, do not append whitespace to avoid introducing blank lines
+                    if(isWhiteSpace && !lineBuilder.IsEmpty)
+                    {                        
+                        lineBuilder.Append(value);
+                        yield return lineBuilder.GetAndReset();
                     }
                     else
                     {
-                        if (stringBuilder.Length + value.Length <= maxLineLength)
+                        // append segment to the current line if it fits wihtin max length
+                        if (lineBuilder.Length + value.Length <= maxLineLength)
                         {
-                            stringBuilder.Append(value);
+                            lineBuilder.Append(value);
                         }
+                        // emit a new line for the last segment
                         else
                         {
-                            if(stringBuilder.Length > 0)
+                            // if current line contains a value, return it
+                            // then append last segment
+                            if (!lineBuilder.IsEmpty)
                             {
-                                yield return stringBuilder.ToString();
+                                yield return lineBuilder.GetAndReset();
                             }
-
-                            stringBuilder = new StringBuilder();
-                            stringBuilder.Append(value);
+                            lineBuilder.Append(value);
                         }
-
                     }
                 }
                 else
                 {
+                    // get current and next segment
                     var (currentValue, currentIsWhiteSpace) = segments[i];
-                    var (nextValue, nextIsWhiteSpace) = segments[i + 1];
+                    var (nextValue, _) = segments[i + 1];
 
-                    if(stringBuilder.Length == 0)
+                    // if current line is empty append the current value anyways
+                    // (to handle cases where a single segment does not fit into the line)
+                    if(lineBuilder.IsEmpty && !currentIsWhiteSpace)
                     {
-                        stringBuilder.Append(currentValue);
+                        lineBuilder.Append(currentValue);
                         continue;
                     }
 
 
                     if(currentIsWhiteSpace)
                     {
-                        if (stringBuilder.Length + currentValue.Length + nextValue.Length <= maxLineLength)
+                        // for whitespace segments, look for the next segment
+                        // if appending the whitespace AND the next segement would 
+                        // exceed the maximum line length, start a new line 
+                        // and omit the whitespace
+                        // otherwise, append the whitespace and the next segment
+                        if (lineBuilder.Length + currentValue.Length + nextValue.Length <= maxLineLength)
                         {
-                            stringBuilder.Append(currentValue);
-                            //stringBuilder.Append(nextSegment.Value);
+                            lineBuilder.Append(currentValue);
+                            lineBuilder.Append(nextValue);
+
+                            // skip next segment (already appended)
+                            i++;        
                         }
                         else
                         {
-                            yield return stringBuilder.ToString();
-                            stringBuilder = new StringBuilder();
+                            yield return lineBuilder.GetAndReset();                            
                         }
                     }
                     else
                     {
                         // append if it still fits within max length, otherwise being anew
-                        if(stringBuilder.Length + currentValue.Length <= maxLineLength)
+                        if(lineBuilder.Length + currentValue.Length <= maxLineLength)
                         {
-                            stringBuilder.Append(currentValue);
+                            lineBuilder.Append(currentValue);
                         }
                         else
                         {
-                            yield return stringBuilder.ToString();
-                            stringBuilder = new StringBuilder();
-                            stringBuilder.Append(currentValue);
+                            yield return lineBuilder.GetAndReset();                            
+                            lineBuilder.Append(currentValue);
                         }
                     }
 
@@ -89,9 +103,8 @@ namespace Grynwald.MarkdownGenerator.Utilities
                
             }
 
-
-            if (stringBuilder.Length > 0)
-                yield return stringBuilder.ToString().TrimEnd();
+            if (!lineBuilder.IsEmpty)
+                yield return lineBuilder.ToString();
 
         }
         
