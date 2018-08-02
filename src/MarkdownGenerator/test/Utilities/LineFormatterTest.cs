@@ -40,7 +40,7 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         [InlineData("", new string[0])]        
         public void GetStringSegments_returns_the_expected_segments(string input, string[] expectedSegments)
         {
-            var actualSegments = LineFormatter.GetStringSegments(input).Select(x => x.Value).ToArray();
+            var actualSegments = LineFormatter.GetStringSegments(input).Select(x => x.value).ToArray();
             if (!expectedSegments.SequenceEqual(actualSegments))
             {
                 throw new XunitException("SequenceEqual failure:\r\n" +

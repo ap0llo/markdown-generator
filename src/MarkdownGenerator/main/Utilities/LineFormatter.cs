@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +7,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
 {   
     class LineFormatter 
     {
-        internal struct StringSegment
-        {
-            public string Value { get; set; }
-
-            public int Length => Value.Length;
-
-            public bool IsWhiteSpace { get; set; }
-        }
-        
-
         public static IEnumerable<string> GetLines(string input, int maxLineLength)
         {
             var segments = GetStringSegments(input).ToArray();
@@ -30,18 +19,18 @@ namespace Grynwald.MarkdownGenerator.Utilities
                                 
                 if(islast)
                 {
-                    var currentSegment = segments[i];
+                    var (value, isWhiteSpace) = segments[i];
 
-                    if(currentSegment.IsWhiteSpace)
+                    if(isWhiteSpace)
                     {
                         if (stringBuilder.Length > 0)
-                            stringBuilder.Append(currentSegment.Value);
+                            stringBuilder.Append(value);
                     }
                     else
                     {
-                        if (stringBuilder.Length + currentSegment.Length <= maxLineLength)
+                        if (stringBuilder.Length + value.Length <= maxLineLength)
                         {
-                            stringBuilder.Append(currentSegment.Value);
+                            stringBuilder.Append(value);
                         }
                         else
                         {
@@ -51,28 +40,28 @@ namespace Grynwald.MarkdownGenerator.Utilities
                             }
 
                             stringBuilder = new StringBuilder();
-                            stringBuilder.Append(currentSegment.Value);
+                            stringBuilder.Append(value);
                         }
 
                     }
                 }
                 else
                 {
-                    var currentSegment = segments[i];
-                    var nextSegment = segments[i + 1];
+                    var (currentValue, currentIsWhiteSpace) = segments[i];
+                    var (nextValue, nextIsWhiteSpace) = segments[i + 1];
 
                     if(stringBuilder.Length == 0)
                     {
-                        stringBuilder.Append(currentSegment.Value);
+                        stringBuilder.Append(currentValue);
                         continue;
                     }
 
 
-                    if(currentSegment.IsWhiteSpace)
+                    if(currentIsWhiteSpace)
                     {
-                        if (stringBuilder.Length + currentSegment.Length + nextSegment.Length <= maxLineLength)
+                        if (stringBuilder.Length + currentValue.Length + nextValue.Length <= maxLineLength)
                         {
-                            stringBuilder.Append(currentSegment.Value);
+                            stringBuilder.Append(currentValue);
                             //stringBuilder.Append(nextSegment.Value);
                         }
                         else
@@ -84,15 +73,15 @@ namespace Grynwald.MarkdownGenerator.Utilities
                     else
                     {
                         // append if it still fits within max length, otherwise being anew
-                        if(stringBuilder.Length + currentSegment.Length <= maxLineLength)
+                        if(stringBuilder.Length + currentValue.Length <= maxLineLength)
                         {
-                            stringBuilder.Append(currentSegment.Value);
+                            stringBuilder.Append(currentValue);
                         }
                         else
                         {
                             yield return stringBuilder.ToString();
                             stringBuilder = new StringBuilder();
-                            stringBuilder.Append(currentSegment.Value);
+                            stringBuilder.Append(currentValue);
                         }
                     }
 
@@ -107,17 +96,17 @@ namespace Grynwald.MarkdownGenerator.Utilities
         }
         
         /// <summary>
-        /// Spltis the specified string into a sequence of segements.
+        /// Splits the specified string into a sequence of segments.
         /// Each segment is either a whitespace-segment (contains only whitespace characters)
         /// or an non-whitespace segment
         /// </summary>
-        internal static IReadOnlyList<StringSegment> GetStringSegments(string input)
+        internal static IReadOnlyList<(string value, bool isWhiteSpace)> GetStringSegments(string input)
         {
             // empty string => no segements
             if(String.IsNullOrEmpty(input))
-                return Array.Empty<StringSegment>();
+                return Array.Empty<(string, bool)>();
 
-            var segments = new List<StringSegment>();
+            var segments = new List<(string, bool)>();
 
             var i = 0;
             while (i < input.Length)
@@ -133,12 +122,7 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 }
 
                 // emit new segment
-                segments.Add(new StringSegment()
-                {
-                    Value = input.Substring(start, i - start),
-                    IsWhiteSpace = isWhiteSpace
-                });
-
+                segments.Add((input.Substring(start, i - start), isWhiteSpace));
             }
 
             return segments;
