@@ -5,7 +5,8 @@ using System.Collections.Generic;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Base class for ordered and bullet lists
+    /// Base class for ordered and bullet lists.
+    /// Implementations are <see cref="MdBulletList"/> respectively <see cref="MdOrderedList"/>.
     /// </summary>
     public abstract class MdList : MdBlock, IEnumerable<MdListItem>
     {
@@ -13,7 +14,7 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <summary>
-        /// The lit's items
+        /// Gets the list's items
         /// </summary>
         public IEnumerable<MdListItem> Items => m_ListItems;
 

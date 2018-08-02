@@ -7,8 +7,12 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a table in a Markdown document.
-    /// CommonMark does not specify a table format, but tables are common in GitHub flavoured Markdown
     /// </summary>
+    /// <remarks>
+    /// CommonMark does not specify a table format, but tables are common in GitHub Flavoured Markdown.
+    /// Tables can be serialized either as GitHub Flavoured Markdown tables (default) or inline HTML-tables.
+    /// For details see <see cref="MdSerializationOptions.TableStyle"/>
+    /// </remarks>
     public sealed class MdTable : MdLeafBlock, IEnumerable<MdTableRow>
     {        
         private readonly LinkedList<MdTableRow> m_Rows;
@@ -36,10 +40,20 @@ namespace Grynwald.MarkdownGenerator
         public IEnumerable<MdTableRow> Rows => m_Rows;
 
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdTable"/> with the specified content
+        /// </summary>
+        /// <param name="headerRow">The table's header row (not optional)</param>
+        /// <param name="rows">The table's content rows</param>
         public MdTable(MdTableRow headerRow, params MdTableRow[] rows)
             : this(headerRow, (IEnumerable<MdTableRow>)rows)
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdTable"/> with the specified content
+        /// </summary>
+        /// <param name="headerRow">The table's header row (not optional)</param>
+        /// <param name="rows">The table's content rows</param>
         public MdTable(MdTableRow headerRow, IEnumerable<MdTableRow> rows)
         {
             HeaderRow = headerRow ?? throw new ArgumentNullException(nameof(headerRow));
@@ -51,12 +65,13 @@ namespace Grynwald.MarkdownGenerator
 
         IEnumerator IEnumerable.GetEnumerator() => m_Rows.GetEnumerator();
         
+        /// <summary>
+        /// Adds the specified row to the table
+        /// </summary>
+        /// <param name="row">The row to add to the table</param>
         public void Add(MdTableRow row)
-        {
-            if (row == null)
-                throw new ArgumentNullException(nameof(row));
-
-            m_Rows.AddLast(row);
+        {            
+            m_Rows.AddLast(row ?? throw new ArgumentNullException(nameof(row)));
         }
     }
 }

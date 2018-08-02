@@ -572,7 +572,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         {
             var options = new MdSerializationOptions()
             {
-                HeadingStyle = MdHeadingStyle.Setex
+                HeadingStyle = MdHeadingStyle.Setext
             };
 
             if(level == 1)
@@ -698,12 +698,12 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         }
 
         [Fact]
-        public void Setex_headings_are_formatted_to_the_maximum_line_length_01()
+        public void Setext_headings_are_formatted_to_the_maximum_line_length_01()
         {
             var options = new MdSerializationOptions()
             {
                 MaxLineLength = 10,
-                HeadingStyle = MdHeadingStyle.Setex
+                HeadingStyle = MdHeadingStyle.Setext
             };
 
             AssertToStringEquals("Heading,\r\n" +
@@ -716,12 +716,12 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         }
 
         [Fact]
-        public void Setex_headings_are_formatted_to_the_maximum_line_length_02()
+        public void Setext_headings_are_formatted_to_the_maximum_line_length_02()
         {
             var options = new MdSerializationOptions()
             {
                 MaxLineLength = 5,
-                HeadingStyle = MdHeadingStyle.Setex
+                HeadingStyle = MdHeadingStyle.Setext
             };
 
             AssertToStringEquals("Heading\r\n" +
@@ -733,12 +733,12 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         }
 
         [Fact]
-        public void Setex_headings_are_formatted_to_the_maximum_line_length_03()
+        public void Setext_headings_are_formatted_to_the_maximum_line_length_03()
         {
             var options = new MdSerializationOptions()
             {
                 MaxLineLength = 20,
-                HeadingStyle = MdHeadingStyle.Setex
+                HeadingStyle = MdHeadingStyle.Setext
             };
 
             AssertToStringEquals(

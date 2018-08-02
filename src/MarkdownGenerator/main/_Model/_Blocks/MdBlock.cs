@@ -4,7 +4,7 @@ using Grynwald.MarkdownGenerator.Internal;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// A block in a markdown document. 
+    /// Represents a block in a markdown document. 
     /// Blocks are the basic buidling units of markdown documents. 
     /// A document consists of one or more blocks.
     /// </summary>

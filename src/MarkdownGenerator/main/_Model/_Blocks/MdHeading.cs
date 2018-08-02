@@ -3,8 +3,15 @@
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// A markdown heading
+    /// Represents a heading in a markdown document
+    /// For specification see https://spec.commonmark.org/0.28/#atx-headings 
+    /// respectively https://spec.commonmark.org/0.28/#setext-headings
     /// </summary>
+    /// <remarks>
+    /// If a heading is serialized as ATX heading (lines prefixed with '#') or as setext heading (underlined with '=' respectively '-')
+    /// Is controlled using <see cref="MdSerializationOptions.HeadingStyle" /> property.
+    /// See <see cref="MdSerializationOptions"/> for details.
+    /// </remarks>
     public sealed class MdHeading : MdLeafBlock
     {
         /// <summary>
@@ -13,8 +20,11 @@ namespace Grynwald.MarkdownGenerator
         public MdSingleLineSpan Text { get; }
 
         /// <summary>
-        /// The level of the heading, 1 being the top-most heading
+        /// Gets the level of the heading, 1 being the top-most heading.
         /// </summary>
+        /// <remarks>
+        /// Value will always be in the range of 1-6 (inclusive)
+        /// </remarks>
         public int Level { get; }        
 
 

@@ -15,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
     /// </code>
     /// </summary>
     public static partial class FactoryMethods
-    {
+    {        
         public static MdDocument Document(MdContainerBlock root) => new MdDocument(root);
 
         public static MdDocument Document(params MdBlock[] content) => new MdDocument(Container(content));

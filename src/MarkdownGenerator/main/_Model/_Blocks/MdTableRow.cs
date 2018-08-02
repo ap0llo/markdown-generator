@@ -6,7 +6,7 @@ using System.Linq;
 namespace Grynwald.MarkdownGenerator
 {    
     /// <summary>
-    /// Represent a row in a table
+    /// Represent a row in a table (see <see cref="MdTable"/>)
     /// </summary>
     public sealed class MdTableRow : IEnumerable<MdSpan>
     {
@@ -14,7 +14,7 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <summary>
-        /// The row's cell values
+        /// Gets the row's cells
         /// </summary>
         public IEnumerable<MdSpan> Cells => m_Cells;
 
@@ -30,12 +30,27 @@ namespace Grynwald.MarkdownGenerator
         public MdSpan this[int column] => m_Cells[column];
 
         
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
+        /// </summary>
+        /// <param name="cells">
+        /// The rows's cells/columns.
+        /// The string value will be wrapped into instances of <see cref="MdTextSpan"/> .
+        /// </param>
         public MdTableRow(IEnumerable<string> cells) : this(cells.Select(str => new MdTextSpan(str)))
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
+        /// </summary>
+        /// <param name="cells">The row's cells/columns</param>
         public MdTableRow(params MdSpan[] cells) : this((IEnumerable<MdSpan>)cells)
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
+        /// </summary>
+        /// <param name="cells">The row's cells/columns</param>
         public MdTableRow(IEnumerable<MdSpan> cells)
         {
             if (cells == null)
@@ -50,11 +65,16 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Adds a column to the row
         /// </summary>
+        /// <param name="cell">
+        /// The cell to add to the row. 
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/>
+        /// </param>
         public void Add(string cell) => Add(new MdTextSpan(cell));
 
         /// <summary>
         /// Adds a column to the row
         /// </summary>
+        /// <param name="cell">The cell to add to the row.</param>
         public void Add(MdSpan cell) => m_Cells.Add(new MdSingleLineSpan(cell));
 
         public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();

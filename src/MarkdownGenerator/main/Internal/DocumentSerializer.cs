@@ -100,7 +100,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         {
             m_Writer.RequestBlankLine();
             
-            if(m_Options.HeadingStyle == MdHeadingStyle.Setex && block.Level <= 2)
+            if(m_Options.HeadingStyle == MdHeadingStyle.Setext && block.Level <= 2)
             {
                 var underlineChar = block.Level == 1 ? '=' : '-';
                 var text = block.Text.ToString(m_Options);
