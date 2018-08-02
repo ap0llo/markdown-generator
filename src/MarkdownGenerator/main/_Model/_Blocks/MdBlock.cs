@@ -15,15 +15,18 @@ namespace Grynwald.MarkdownGenerator
         {
         }
 
-        //TODO: Add overloads with a MdSerializationOptions overload
-        public override string ToString()
+
+        public override string ToString() => ToString(MdSerializationOptions.Default);
+
+        public string ToString(MdSerializationOptions options)
         {
             using (var stringWriter = new StringWriter())
             {
-                var documentSerializer = new DocumentSerializer(stringWriter);
+                var documentSerializer = new DocumentSerializer(stringWriter, options);
                 documentSerializer.Serialize(this);
                 return stringWriter.ToString();
             }
         }
+        
     }
 }
