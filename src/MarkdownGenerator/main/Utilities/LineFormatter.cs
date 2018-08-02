@@ -8,6 +8,14 @@ namespace Grynwald.MarkdownGenerator.Utilities
     {
         public static IEnumerable<string> GetLines(string input, int maxLineLength)
         {
+            // fast path: if the input is already shorter than the maximum length
+            // return it unchanged
+            if(input.Length <= maxLineLength)
+            {
+                yield return input;
+                yield break;
+            }
+
             var segments = GetStringSegments(input).ToArray();
 
 

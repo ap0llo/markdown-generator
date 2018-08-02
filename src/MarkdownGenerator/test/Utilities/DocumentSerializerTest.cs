@@ -720,6 +720,87 @@ namespace Grynwald.MarkdownGenerator.Test.Model
         }
 
 
+        [Fact]
+        public void Paragraphs_are_formatted_to_the_maximum_line_length_01()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 5
+            };
+
+            AssertToStringEquals(
+               "aaaaaaaa\r\n" +
+               "bbbb\r\n",
+               Document(
+                   Paragraph("aaaaaaaa bbbb")
+                ),
+               options
+           );
+
+        }
+
+
+        [Fact]
+        public void Paragraphs_are_formatted_to_the_maximum_line_length_02()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 5
+            };
+
+            AssertToStringEquals(
+               "aaaaaaaa\r\n" +
+               "bbbb  \r\n" +
+               "cccc\r\n",
+               Document(
+                   Paragraph("aaaaaaaa bbbb\r\ncccc")
+                ),
+               options
+           );
+        }
+
+
+        [Fact]
+        public void Paragraphs_in_lists_are_formatted_to_the_maximum_line_length()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 5
+            };
+
+            AssertToStringEquals(
+               "- aaaaaaaa\r\n" +
+               "  bb\r\n" +
+               "  cc\r\n",
+               Document(
+                   BulletList(ListItem(Paragraph("aaaaaaaa bb cc")))
+                ),
+               options
+           );
+
+        }
+
+        [Fact]
+        public void Paragraphs_in_block_quotes_are_formatted_to_the_maximum_line_length()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 5
+            };
+
+            AssertToStringEquals(
+               "> aaaaaaaa\r\n" +
+               "> bb\r\n" +
+               "> cc\r\n",
+               Document(
+                   BlockQuote(Paragraph("aaaaaaaa bb cc"))
+                ),
+               options
+           );
+        }
+
+
+
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
         {            
             using (var writer = new StringWriter())
