@@ -1,7 +1,7 @@
 ﻿namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represent a inline text element in a markdown document
+    /// Represent a inline text element in a markdown document.
     /// </summary>
     public abstract class MdSpan
     {        
@@ -19,6 +19,11 @@
         internal abstract MdSpan DeepCopy();
 
 
+        /// <summary>
+        /// Implicitly creates a <see cref="MdSpan"/> from a string.
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
+        /// </summary>
+        /// <param name="text">The string value to wrap in a span.</param>
         public static implicit operator MdSpan(string text) => text == null ? null : new MdTextSpan(text);
     }
 }

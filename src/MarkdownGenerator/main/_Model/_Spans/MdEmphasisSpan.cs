@@ -15,14 +15,18 @@ namespace Grynwald.MarkdownGenerator
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdEmphasisSpan"/>.
-        /// The specified text will be escaped.
         /// </summary>
+        /// <param name="text">
+        /// The text to emphasize. 
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
+        /// </param>
         public MdEmphasisSpan(string text) : this(new MdTextSpan(text))
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdEmphasisSpan"/> with the specified content
         /// </summary>
+        /// <param name="text">The text to emphasize.</param>
         public MdEmphasisSpan(MdSpan text)
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));

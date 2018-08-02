@@ -20,18 +20,22 @@ namespace Grynwald.MarkdownGenerator
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdImageSpan"/>. 
-        /// The specified description will be escaped.
         /// </summary>
-        /// <param name="description">The image's description. The content will be escaped.</param>
+        /// <param name="description">
+        /// The image's description. 
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
+        /// </param>
         /// <param name="uri">The image's uri. Value must be a valid absolute or relative <see cref="System.Uri"/></param>
         public MdImageSpan(string description, string uri) : this(new MdTextSpan(description), new Uri(uri, UriKind.RelativeOrAbsolute))
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdImageSpan"/>. 
-        /// The specified description will be escaped.
         /// </summary>
-        /// <param name="description">The image's description. The content will be escaped.</param>
+        /// <param name="description">
+        /// The image's description. 
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
+        /// </param>
         /// <param name="uri">The image's uri</param>
         public MdImageSpan(string description, Uri uri) : this(new MdTextSpan(description), uri)
         { }

@@ -7,7 +7,7 @@ using Grynwald.MarkdownGenerator.Internal;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// A markdown document
+    /// Represents a markdown document
     /// </summary>
     public sealed class MdDocument
     {
@@ -16,27 +16,63 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public MdContainerBlock Root { get; }
 
-
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdDocument"/> with the specified block as root element.
+        /// </summary>
+        /// <param name="root">The documents root block</param>
         public MdDocument(MdContainerBlock root) => 
             Root = root ?? throw new ArgumentNullException(nameof(root));
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
+        /// </summary>
+        /// <param name="content">
+        /// One or more blocks that make up the documents's content.
+        /// The blocks will be wrapped in an instance of <see cref="MdContainerBlock"/> that will be the documents root block.
+        /// </param>
         public MdDocument(params MdBlock[] content) : this(new MdContainerBlock(content))
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
+        /// </summary>
+        /// <param name="content">
+        /// One or more blocks that make up the documents's content.
+        /// The blocks will be wrapped in an instance of <see cref="MdContainerBlock"/> that will be the documents root block.
+        /// </param>
         public MdDocument(IEnumerable<MdBlock> content) : this(new MdContainerBlock(content))
         { }
 
-        // MdList implements IEnumerable<MdListItem> so this constructor is necessary to prevent ambiguities
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
+        /// </summary>
+        /// <remarks>
+        /// MdList implements <see cref="IEnumerable{MdListItem}"/> so this constructor is necessary to prevent ambiguities.
+        /// </remarks>
         public MdDocument(MdList list) : this((MdBlock)list)
         { }
 
-        // MdBlockQuote implements IEnumerable<MdListItem> so this constructor is necessary to prevent ambiguities
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
+        /// </summary>
+        /// <remarks>
+        /// MdBlockQuote implements <see cref="IEnumerable{MdListItem}"/> so this constructor is necessary to prevent ambiguities.
+        /// </remarks>       
         public MdDocument(MdBlockQuote list) : this((MdBlock)list)
         { }
 
 
+        /// <summary>
+        /// Saves the document to the specified file.
+        /// </summary>
+        /// <param name="path">The path of the file to save the document to.</param>
         public void Save(string path) => Save(path, null);
 
+        /// <summary>
+        /// Saves the document to the specified file using the specified serialization options.
+        /// </summary>
+        /// <param name="path">The path of the file to save the document to.</param>
+        /// <param name="serializationOptions">The options to use for serialization.</param>
         public void Save(string path, MdSerializationOptions serializationOptions)
         {
             using(var stream = File.Open(path, FileMode.Create))            
@@ -45,8 +81,17 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
+        /// <summary>
+        /// Saves the document to a stream.
+        /// </summary>
+        /// <param name="stream">The stream to write the document to.</param>
         public void Save(Stream stream) => Save(stream, null);
 
+        /// <summary>
+        /// Saves the document to a stream using the specified serialization options.
+        /// </summary>
+        /// <param name="stream">The stream to write the document to.</param>
+        /// <param name="serializationOptions">The options to use for serialization.</param>
         public void Save(Stream stream, MdSerializationOptions serializationOptions)
         {
             using (var writer = new StreamWriter(stream, Encoding.Default, 1024, true))                

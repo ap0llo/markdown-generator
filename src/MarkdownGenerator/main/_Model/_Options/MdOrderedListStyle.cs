@@ -1,5 +1,9 @@
 ﻿namespace Grynwald.MarkdownGenerator
 {
+    /// <summary>
+    /// Defines the available serializaton styles for ordered lists (see <see cref="MdBulletList"/>).
+    /// For specification see https://spec.commonmark.org/0.28/#list-items.
+    /// </summary>
     public enum MdOrderedListStyle
     {
         /// <summary>

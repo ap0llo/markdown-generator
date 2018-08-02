@@ -63,7 +63,10 @@ namespace Grynwald.MarkdownGenerator
 
         internal override MdSpan DeepCopy() => new MdTextSpan(Text);
 
-
+        /// <summary>
+        /// Implicitly creates a <see cref="MdTextSpan"/> from a string.
+        /// </summary>
+        /// <param name="text">The string value to wrap in an instance of <see cref="MdTextSpan"/></param>
         public static implicit operator MdTextSpan(string text) => text == null ? null : new MdTextSpan(text);
     }
 }

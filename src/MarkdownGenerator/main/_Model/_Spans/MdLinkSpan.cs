@@ -20,18 +20,22 @@ namespace Grynwald.MarkdownGenerator
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdLinkSpan"/>.
-        /// The specified text will be escaped.
         /// </summary>
-        /// <param name="text">The link's text. Value will be escaped.</param>
+        /// <param name="text">
+        /// The link's text. 
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
+        /// </param>
         /// <param name="uri">The link's target uri. Value must be a valid absolute or relative <see cref="System.Uri"/></param>
         public MdLinkSpan(string text, string uri) : this(new MdTextSpan(text), new Uri(uri, UriKind.RelativeOrAbsolute))
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdLinkSpan"/>.
-        /// The specified text will be escaped.
         /// </summary>
-        /// <param name="text">The link's text. Value will be escaped.</param>
+        /// <param name="text">
+        /// The link's text. 
+        /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
+        /// </param>
         /// <param name="uri">The link's target uri.</param>
         public MdLinkSpan(string text, Uri uri) : this(new MdTextSpan(text), uri)
         { }

@@ -1,5 +1,9 @@
 ﻿namespace Grynwald.MarkdownGenerator
 {
+    /// <summary>
+    /// Defines the available serializaton styles for thematic breaks (see <see cref="MdThematicBreak"/>).
+    /// For specification see https://spec.commonmark.org/0.28/#thematic-breaks
+    /// </summary>
     public enum MdThematicBreakStyle
     {
         /// <summary>

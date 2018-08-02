@@ -13,10 +13,16 @@ namespace Grynwald.MarkdownGenerator
         private static readonly Regex s_LineBreakPattern = new Regex(@"(\s)*[\r\n]+(\s)*", RegexOptions.Compiled);
         private static readonly Regex s_TrailingLineBreakRegex = new Regex(@"[\r\n]+$", RegexOptions.Compiled);
 
-
+        /// <summary>
+        /// Gets the content that will be written to the output without line breaks
+        /// </summary>
         public MdSpan Content { get; }
 
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdSingleLineSpan"/>.
+        /// </summary>
+        /// <param name="content">The spans content</param>
         public MdSingleLineSpan(MdSpan content) => 
             Content = content ?? throw new ArgumentNullException(nameof(content));
 

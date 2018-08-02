@@ -13,19 +13,23 @@ namespace Grynwald.MarkdownGenerator
     {
         private readonly List<MdSpan> m_Spans;
 
-
+        /// <summary>
+        /// Gets the composite spans inner spans
+        /// </summary>
         public IReadOnlyList<MdSpan> Spans => m_Spans;
 
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
         /// </summary>
+        /// <param name="spans">The spans to add to the composite span.</param>
         public MdCompositeSpan(params MdSpan[] spans) : this((IEnumerable<MdSpan>) spans)
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
         /// </summary>
+        /// <param name="spans">The spans to add to the composite span.</param>
         public MdCompositeSpan(IEnumerable<MdSpan> spans)
         {
             if (spans == null)
@@ -36,8 +40,9 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <summary>
-        /// Adds a new element to the composite span
+        /// Adds a new element to the composite span.
         /// </summary>
+        /// <param name="span">The span to add</param>
         public void Add(MdSpan span)
         {
             if (span == null)

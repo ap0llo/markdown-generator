@@ -4,7 +4,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a bullet list.
-    /// For specification see https://spec.commonmark.org/0.28/#list-items
+    /// 
     /// </summary>
     public sealed class MdBulletList : MdList
     {

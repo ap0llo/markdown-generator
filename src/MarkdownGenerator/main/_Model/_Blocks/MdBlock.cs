@@ -15,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
         {
         }
 
-
+        //TODO: Add overloads with a MdSerializationOptions overload
         public override string ToString()
         {
             using (var stringWriter = new StringWriter())
