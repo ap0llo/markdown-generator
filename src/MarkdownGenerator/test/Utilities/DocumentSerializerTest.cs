@@ -667,6 +667,57 @@ namespace Grynwald.MarkdownGenerator.Test.Model
             );
         }
 
+        [Fact]
+        public void Setex_headings_are_formatted_to_the_maximum_line_length_01()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 10,
+                HeadingStyle = MdHeadingStyle.Setex
+            };
+
+            AssertToStringEquals("Heading,\r\n" +
+                "heading\r\n" +
+                "part 2\r\n" +
+                "========\r\n",
+                Document(Heading(1, "Heading, heading part 2")),
+                options
+            );
+        }
+
+        [Fact]
+        public void Setex_headings_are_formatted_to_the_maximum_line_length_02()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 5,
+                HeadingStyle = MdHeadingStyle.Setex
+            };
+
+            AssertToStringEquals("Heading\r\n" +
+                "heading\r\n" +
+                "=======\r\n",
+                Document(Heading(1, "Heading  heading")),
+                options
+            );
+        }
+
+        [Fact]
+        public void Setex_headings_are_formatted_to_the_maximum_line_length_03()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 20,
+                HeadingStyle = MdHeadingStyle.Setex
+            };
+
+            AssertToStringEquals(
+                "Heading 1\r\n" +
+                "=========\r\n",
+                Document(Heading(1, "Heading 1")),
+                options
+            );
+        }
 
 
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)

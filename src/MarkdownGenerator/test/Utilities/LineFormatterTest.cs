@@ -18,6 +18,7 @@ namespace Grynwald.MarkdownGenerator.Test.Utilities
         [InlineData(5, "abcdefgh ijk", new [] {  "abcdefgh", "ijk" })]        
         [InlineData(5, "abc defgh ijk", new [] {  "abc", "defgh", "ijk" })]        
         [InlineData(5, "abc def  ijk", new [] {  "abc", "def",  "ijk" })]        
+        [InlineData(80, "abc def ijk", new [] { "abc def ijk" })]        
         public void Line_is_split_as_expected(int lineLength, string input, string[] expectedResult)
         {
             var actualResult = LineFormatter.GetLines(input, lineLength);

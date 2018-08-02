@@ -101,11 +101,25 @@ namespace Grynwald.MarkdownGenerator.Utilities
             
             if(m_Options.HeadingStyle == MdHeadingStyle.Setex && block.Level <= 2)
             {
-                var headingText = block.Text.ToString(m_Options);
-                m_Writer.WriteLine(headingText);
-
                 var underlineChar = block.Level == 1 ? '=' : '-';
-                m_Writer.WriteLine(new String(underlineChar, headingText.Length));
+                var text = block.Text.ToString(m_Options);
+
+                // if no maximum line length was specified, write heading into a single line
+                if(m_Options.MaxLineLength <= 0)
+                {
+                    m_Writer.WriteLine(text);
+                    m_Writer.WriteLine(new String(underlineChar, text.Length));
+                }
+                // is max line length was specified, split the value into multiple lines if necessary
+                else
+                {
+                    var headingTextLines = LineFormatter.GetLines(text, m_Options.MaxLineLength - m_Writer.PrefixLength);
+                    foreach(var line in headingTextLines)
+                    {
+                        m_Writer.WriteLine(line);
+                    }
+                    m_Writer.WriteLine(new String(underlineChar, headingTextLines.Max(x => x.Length)));
+                }                
             }
             else
             {
@@ -358,7 +372,6 @@ namespace Grynwald.MarkdownGenerator.Utilities
                 default:
                     throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
             }            
-        }       
-        
+        }                     
     }
 }
