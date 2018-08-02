@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Internal
@@ -17,9 +18,10 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public event EventHandler<EventArgs> BlankLineRequested;
 
-        public int PrefixLength => PreviewLinePrefix().Length;
 
-        
+        public int PrefixLength => m_PrefixHandlers.Sum(x => x.PrefixLength);
+
+
         public PrefixTextWriter(TextWriter innerWriter)
         {
             m_InnerWriter = innerWriter ?? throw new ArgumentNullException(nameof(innerWriter));            
@@ -85,17 +87,6 @@ namespace Grynwald.MarkdownGenerator.Internal
             foreach (var handler in m_PrefixHandlers)
             {
                 prefixBuilder.Append(handler.GetLinePrefix());
-            }
-            return prefixBuilder.ToString();
-        }
-
-
-        private string PreviewLinePrefix()
-        {
-            var prefixBuilder = new StringBuilder();
-            foreach (var handler in m_PrefixHandlers)
-            {
-                prefixBuilder.Append(handler.PreviewLinePrefix());
             }
             return prefixBuilder.ToString();
         }

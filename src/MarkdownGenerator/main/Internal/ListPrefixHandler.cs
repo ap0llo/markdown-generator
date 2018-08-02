@@ -8,10 +8,11 @@ namespace Grynwald.MarkdownGenerator.Internal
         protected bool m_LineWritten = false;                     // indicates if any lines have been written in the current list item
         protected string m_ListMarker;                            // the prefix for list items
 
+
+        public int PrefixLength => m_LineWritten ? m_ListPrefix.Length : m_ListMarker.Length;
+
+
         public string GetBlankLinePrefix() => m_ListPrefix;
-
-
-
 
         public string GetLinePrefix()
         {
@@ -29,19 +30,6 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
         }
 
-        public string PreviewLinePrefix()
-        {
-            if (m_LineWritten)
-            {
-                return m_ListPrefix;
-            }
-            else
-            {             
-                return m_ListMarker;
-            }
-        }
-
-
         public virtual void BeginListItem()
         {
             // reset line written (new list item is initally empty)
@@ -56,6 +44,5 @@ namespace Grynwald.MarkdownGenerator.Internal
 
 
         protected abstract string GetListMarker();
-       
     }
 }

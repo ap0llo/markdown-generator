@@ -2,7 +2,11 @@
 {
     internal interface IPrefixHandler
     {
-        string PreviewLinePrefix();
+        /// <summary>
+        /// Gets the number of characters for this prefix handler's current prefix
+        /// </summary>
+        int PrefixLength { get; }
+
 
         string GetLinePrefix();
 

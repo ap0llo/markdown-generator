@@ -3,16 +3,17 @@
     /// <summary>
     /// Prefix handler for block quotes
     /// </summary>
-    internal class BlockQuotePrefixHandler : IPrefixHandler
+    internal sealed class BlockQuotePrefixHandler : IPrefixHandler
     {
         private bool m_LineWritten = false;
 
 
+        public int PrefixLength => 2;
+
+
         // do no prefix blank lines before the quote, then prefix all lines
         public string GetBlankLinePrefix() => m_LineWritten ? "> " : "";
-
-        public string PreviewLinePrefix() => "> ";
-
+        
         public string GetLinePrefix()
         {
             m_LineWritten = true;
