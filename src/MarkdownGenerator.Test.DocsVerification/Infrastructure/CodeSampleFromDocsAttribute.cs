@@ -49,7 +49,9 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
                 foreach (var codeBlock in codeBlocks)
                 {                   
                     var codeSample = new CodeSample(
-                        $"{relativeFilePath}, line {codeBlock.Line + 1}",
+                        relativeFilePath,
+                        // code sample starts in the second line of the fenced code block (first line is fence and info string)
+                        codeBlock.Line + 1, 
                         codeBlock.Lines.ToString());
 
                     yield return new[] { codeSample };
