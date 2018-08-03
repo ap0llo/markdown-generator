@@ -5,10 +5,12 @@ using Xunit.Sdk;
 
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
 {
-    internal static class CompilationAssert
+    internal static class CodeSampleAssert
     {
-        public static void NoErrors(Compilation compilation)
+        public static void NoCompilationErrors(CodeSample codeSample)
         {
+            var compilation = codeSample.GetCompilation();
+
             var errors = compilation.GetDiagnostics()
                 .Where(d => d.Severity >= DiagnosticSeverity.Error || d.IsWarningAsError)
                 .ToArray();

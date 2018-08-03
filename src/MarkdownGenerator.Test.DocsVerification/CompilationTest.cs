@@ -24,9 +24,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification
         [CodeSampleFromDocs(@"docs\api")]
         public void Sample_code_is_compile_clean(CodeSample codeSample)
         {
-            var compilation = codeSample.GetCompilation();
-
-            CompilationAssert.NoErrors(compilation);            
+            CodeSampleAssert.NoCompilationErrors(codeSample);            
         }
     }
 }
