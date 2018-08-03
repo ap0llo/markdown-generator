@@ -1,5 +1,7 @@
 # MarkdownGenerator
 
+## Overview
+
 [![NuGet](https://img.shields.io/nuget/v/Grynwald.MarkdownGenerator.svg)](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
 
 Markdown Generator is a library for generating Markdown documents programatically.
@@ -16,10 +18,6 @@ MarkdownGenerator is distributed as NuGet package.
 
 - Prerelease builds are available on [MyGet](https://www.myget.org/feed/ap0llo-markdown-generator/package/nuget/Grynwald.MarkdownGenerator)
 - Release versions are available on [NuGet.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
-
-## Documentation
-
-See [Documentation](./docs/README.md) for details.
 
 ## Building from source
 
