@@ -19,7 +19,7 @@ public class Program
         document.Root.Add(new MdParagraph("Hello world!"));
 
         // save document to a file
-        document.Save("HelloWorld.md")
+        document.Save("HelloWorld.md");
     }
 }
 ```
