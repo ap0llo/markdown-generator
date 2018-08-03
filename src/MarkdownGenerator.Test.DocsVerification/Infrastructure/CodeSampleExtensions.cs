@@ -8,11 +8,11 @@ using System.Reflection;
 
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
 {
-    internal static class CompilationBuilder
+    internal static class CodeSampleExtensions
     {
-        public static Compilation GetCompilation(string sourceCode)
+        public static Compilation GetCompilation(this CodeSample codeSample)
         {
-            var syntaxTree = CSharpSyntaxTree.ParseText(sourceCode);
+            var syntaxTree = CSharpSyntaxTree.ParseText(codeSample.SourceCode);
 
             var assemblyName = "Compilation_" + Path.GetRandomFileName();
 
