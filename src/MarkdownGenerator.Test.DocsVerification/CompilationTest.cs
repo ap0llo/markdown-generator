@@ -1,0 +1,34 @@
+using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
+using Markdig;
+using Markdig.Syntax;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Xunit;
+using Xunit.Abstractions;
+
+namespace Grynwald.MarkdownGenerator.Test.DocsVerification
+{
+    /// <summary>
+    /// Defines test methods that ensure all code samples in the 
+    /// documentation can be compiled
+    /// </summary>
+    public class CompilationTest
+    {
+        private readonly ITestOutputHelper m_OutputHelper;
+
+        public CompilationTest(ITestOutputHelper outputHelper)
+        {
+            m_OutputHelper = outputHelper ?? throw new ArgumentNullException(nameof(outputHelper));
+        }
+
+        [Theory]
+        [CodeSampleFromDocs(@"docs\examples")]
+        public void Sample_code_is_compile_clean(CodeSample codeSample)
+        {            
+            
+        }
+
+    }
+}
