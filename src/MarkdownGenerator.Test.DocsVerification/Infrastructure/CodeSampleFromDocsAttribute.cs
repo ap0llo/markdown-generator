@@ -59,7 +59,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
             foreach (var codeBlock in codeBlocks)
             {
                 yield return new CodeSample(
-                    $"{fileName}, line {codeBlock.Line}", 
+                    $"{Path.Combine(m_RelativePath, fileName)}, line {codeBlock.Line + 1}", 
                     codeBlock.Lines.ToString()
                 );                
             }

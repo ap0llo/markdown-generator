@@ -1,12 +1,7 @@
-using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
-using Markdig;
-using Markdig.Syntax;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
+using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
 
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification
 {
@@ -23,12 +18,15 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification
             m_OutputHelper = outputHelper ?? throw new ArgumentNullException(nameof(outputHelper));
         }
 
-        [Theory]
-        [CodeSampleFromDocs(@"docs\examples")]
-        public void Sample_code_is_compile_clean(CodeSample codeSample)
-        {            
-            
-        }
 
+        [Theory(DisplayName ="Sample code is compile clean ")]
+        [CodeSampleFromDocs(@"docs\examples")]
+        [CodeSampleFromDocs(@"docs\api")]
+        public void Sample_code_is_compile_clean(CodeSample codeSample)
+        {
+            var compilation = CompilationBuilder.GetCompilation(codeSample.SourceCode);
+
+            CompilationAssert.NoErrors(compilation);            
+        }
     }
 }

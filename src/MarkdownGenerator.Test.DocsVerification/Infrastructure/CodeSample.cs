@@ -6,7 +6,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
     {
         public string Name { get; }
 
-        public string Code { get; }
+        public string SourceCode { get; }
 
 
         public CodeSample(string name, string code)
@@ -15,10 +15,10 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
                 throw new ArgumentException("Value must not be empty", nameof(name));
 
             Name = name;
-            Code = code ?? throw new ArgumentNullException(nameof(code));
+            SourceCode = code ?? throw new ArgumentNullException(nameof(code));
         }
 
 
-        public override string ToString() => Name;    
+        public override string ToString() => Name;            
     }
 }
