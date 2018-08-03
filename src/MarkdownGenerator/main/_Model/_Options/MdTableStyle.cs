@@ -6,7 +6,7 @@
     public enum MdTableStyle
     {
         /// <summary>
-        /// Use GitHub Flavoured Markdown tables (default).
+        /// Use GitHub Flavored Markdown tables (default).
         /// See specification see https://github.github.com/gfm/#tables-extension-
         /// </summary>
         GFM = 0,

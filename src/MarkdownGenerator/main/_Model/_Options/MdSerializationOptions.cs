@@ -47,7 +47,7 @@
         public MdTableStyle TableStyle { get; set; } = MdTableStyle.GFM;
 
         /// <summary>
-        /// The maximum length of a line in the output.
+        /// Gets or sets the maximum length of a line in the output.
         /// When set to a value greater than 0, linebreaks
         /// will be inserted after the specified number of characters
         /// when possible.        

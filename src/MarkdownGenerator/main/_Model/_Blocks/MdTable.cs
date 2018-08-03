@@ -9,8 +9,8 @@ namespace Grynwald.MarkdownGenerator
     /// Represents a table in a Markdown document.
     /// </summary>
     /// <remarks>
-    /// CommonMark does not specify a table format, but tables are common in GitHub Flavoured Markdown.
-    /// Tables can be serialized either as GitHub Flavoured Markdown tables (default) or inline HTML-tables.
+    /// CommonMark does not specify a table format, but tables are common in GitHub Flavored Markdown.
+    /// Tables can be serialized either as GitHub Flavored Markdown tables (default) or inline HTML-tables.
     /// For details see <see cref="MdSerializationOptions.TableStyle"/>
     /// </remarks>
     public sealed class MdTable : MdLeafBlock, IEnumerable<MdTableRow>

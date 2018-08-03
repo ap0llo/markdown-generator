@@ -4,6 +4,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents emphasized/italic text
+    /// For specification see https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis
     /// </summary>
     public sealed class MdEmphasisSpan : MdSpan
     {

@@ -4,6 +4,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents an inline image element
+    /// For specification see https://spec.commonmark.org/0.28/#images
     /// </summary>
     public sealed class MdImageSpan : MdSpan
     {

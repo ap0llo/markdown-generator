@@ -2,11 +2,13 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Grynwald.MarkdownGenerator.svg)](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
 
-Most Markdown libraries focus on parsing markdown inputs and converting them to html.
-In contrast MarkdownGenerator is library to programmatically generate markdown files.
+Markdown Generator is a library for generating Markdown documents programatically.
+It implements the [CommonMark](https://spec.commonmark.org/0.28/) specification as
+well as the *table* extension specified by
+[GitHub Flavored Markdown](https://github.github.com/gfm/#tables-extension).
 
-The library implements markdown features as described in the [CommonMark spec](https://spec.commonmark.org/0.28/).
-Additionally the library supports tables as defined in [GitHub flavored markdown](https://github.github.com/gfm/).
+- For an overview of the library's API, see [API](./docs/api/README.md)
+- For usage examples see [Examples](./docs/examples/README.md)
 
 ## Installation
 
@@ -31,4 +33,4 @@ MarkdownGenerator is a .NET Standard library and can be built using the .NET SDK
 
 ## Versioning and Branching
 
-See [Versioning and Branching](./docs/versioning.md) for details.
+See [Versioning and Branching](./docs/meta/versioning.md) for details.
