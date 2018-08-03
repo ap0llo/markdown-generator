@@ -16,7 +16,7 @@ All serialization methods (`ToString()` in `MdDocument`, blocks and spans as wel
 | CodeBlockStyle     | Specifies whether to use backticks or tildes for fenced code blocks                              | Backtick      |
 | BulletListStyle    | Specifies whether to use dashes, pluses or asterisks as bullet list markers                      | Dash          |
 | OrderedListStyle   | Specifies whether to use dots or parentheses for ordered list markers                            | Dot           |
-| TableStyle         | Specifies whether to serilaize tables in GitHUb Flavored Markdown (GFM) syntax or as inline html | GFM           |
+| TableStyle         | Specifies whether to serilaize tables in GitHub Flavored Markdown (GFM) syntax or as inline html | GFM           |
 | MaxLineLength      | Specifies whether the maximum length of a line in the output *                                   | unlimited     |
 
 *: Not all types of blocks can be split into multiple lines. Also line breaks will only be inserted between words,
