@@ -4,9 +4,9 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MarkdownGenerator", "MarkdownGenerator", "{ABFB37DC-8F3A-485E-8006-D54DA3A8565D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator", "MarkdownGenerator\main\Grynwald.MarkdownGenerator.csproj", "{B190C729-5CD5-46DE-A0F6-123657DBE873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator", "MarkdownGenerator\Grynwald.MarkdownGenerator.csproj", "{B190C729-5CD5-46DE-A0F6-123657DBE873}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test", "MarkdownGenerator\test\Grynwald.MarkdownGenerator.Test.csproj", "{B5045F23-A55F-4313-93CF-6A57956C1489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test", "MarkdownGenerator.Test\Grynwald.MarkdownGenerator.Test.csproj", "{B5045F23-A55F-4313-93CF-6A57956C1489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

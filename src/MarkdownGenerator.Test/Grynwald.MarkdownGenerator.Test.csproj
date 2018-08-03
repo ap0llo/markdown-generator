@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\main\Grynwald.MarkdownGenerator.csproj" />
+		<ProjectReference Include="..\MarkdownGenerator\Grynwald.MarkdownGenerator.csproj" />
 	</ItemGroup>
 
 </Project>
