@@ -16,15 +16,15 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
     /// </summary>
     public class CodeSampleFromDocsAttribute : DataAttribute
     {        
-        private readonly string m_RelativePath;
+        private readonly string m_RelativeSourcePath;
 
 
-        public CodeSampleFromDocsAttribute(string relativePath)
+        public CodeSampleFromDocsAttribute(string relativeSourcePath)
         {
-            if (string.IsNullOrEmpty(relativePath))
-                throw new ArgumentException("message", nameof(relativePath));
+            if (string.IsNullOrEmpty(relativeSourcePath))
+                throw new ArgumentException("Value must not be empty", nameof(relativeSourcePath));
 
-            m_RelativePath = relativePath;
+            m_RelativeSourcePath = relativeSourcePath;
         }
 
 
@@ -32,37 +32,36 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
         {
             // docs are copied to the output directory by a build task
             // so all relative paths, are relative to <Working Direcotry>\content
-            var dirPath = Path.Combine("content", m_RelativePath);
+            var dirPath = Path.Combine("content", m_RelativeSourcePath);
 
             // iterate over all files and read the code samples from the markdown file
             foreach(var filePath in Directory.GetFiles(dirPath, "*.md"))
-            foreach (var codeSample in GetCodeSamplesFromMarkdownFile(filePath))
             {
-                {
+                var relativeFilePath = Path.Combine(m_RelativeSourcePath, Path.GetFileName(filePath));
+
+                var text = File.ReadAllText(filePath);
+                var markdownDocument = Markdown.Parse(text);
+
+                var codeBlocks = markdownDocument.OfType<FencedCodeBlock>()
+                    .Where(IsCSharpCodeBlock)
+                    .ToArray();
+                
+                foreach (var codeBlock in codeBlocks)
+                {                   
+                    var codeSample = new CodeSample(
+                        $"{relativeFilePath}, line {codeBlock.Line + 1}",
+                        codeBlock.Lines.ToString());
+
                     yield return new[] { codeSample };
                 }
             }
         }
 
-
-        private IEnumerable<CodeSample> GetCodeSamplesFromMarkdownFile(string path)
+        private static bool IsCSharpCodeBlock(FencedCodeBlock codeBlock)
         {
-            var text = File.ReadAllText(path);
-            var markdownDocument = Markdown.Parse(text);
-            
-            var codeBlocks = markdownDocument.OfType<FencedCodeBlock>()
-                .Where(codeBlock => codeBlock.Info.Split().Any(x => x.Equals("csharp", StringComparison.OrdinalIgnoreCase)))
-                .ToArray();
-
-            var fileName = Path.GetFileName(path);
-
-            foreach (var codeBlock in codeBlocks)
-            {
-                yield return new CodeSample(
-                    $"{Path.Combine(m_RelativePath, fileName)}, line {codeBlock.Line + 1}", 
-                    codeBlock.Lines.ToString()
-                );                
-            }
+            return codeBlock.Info
+                .Split()
+                .Any(x => x.Equals("csharp", StringComparison.OrdinalIgnoreCase));
         }
     }
 }
