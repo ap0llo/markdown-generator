@@ -2,7 +2,7 @@ param(
     [switch]$Major,
     [switch]$Minor
 )
-$versionJsonFilePath = Join-Path $PSScriptRoot "version.json"
+$versionJsonFilePath = Join-Path $PSScriptRoot "..\version.json"
 $preReleaseTag = "-prerelease"
 
 function Start-Git($command) {
