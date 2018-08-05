@@ -1,4 +1,4 @@
-# MarkdownGenerator
+# Markdown Generator
 
 ## Overview
 
@@ -32,3 +32,17 @@ MarkdownGenerator is a .NET Standard library and can be built using the .NET SDK
 ## Versioning and Branching
 
 See [Versioning and Branching](./docs/meta/versioning.md) for details.
+
+## Acknowledgments
+
+Markdown Generator was made possible through a number of libraries (aside from
+.NET Core and .NET Standard):
+
+- [Nerdbank.GitVersioning](https://github.com/AArnott/Nerdbank.GitVersioning/)
+- [SourceLink](https://github.com/dotnet/sourcelink)
+
+Addititional dependencies used for testing:
+
+- [Markdig](https://github.com/lunet-io/markdig)
+- [Roslyn](https://github.com/dotnet/roslyn)
+- [xUnit](http://xunit.github.io/)
