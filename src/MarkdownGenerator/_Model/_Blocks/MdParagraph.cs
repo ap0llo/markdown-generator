@@ -7,7 +7,7 @@ namespace Grynwald.MarkdownGenerator
     /// For specification see https://spec.commonmark.org/0.28/#paragraphs
     /// </summary>
     public sealed class MdParagraph : MdBlock
-    {                
+    {
         /// <summary>
         /// Gets the paragraph's text
         /// </summary>
@@ -33,7 +33,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdParagraph"/> with the specified content.
         /// </summary>
         /// <param name="text">The paragraph's content</param>
-        public MdParagraph(MdSpan text) =>            
-            Text = text ?? throw new ArgumentNullException(nameof(text));        
+        public MdParagraph(MdSpan text) =>
+            Text = text ?? throw new ArgumentNullException(nameof(text));
     }
 }

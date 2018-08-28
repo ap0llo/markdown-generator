@@ -1,7 +1,7 @@
 ﻿namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Defines the available serializaton styles for emphasis (see <see cref="MdEmphasisSpan"/>) and 
+    /// Defines the available serialization styles for emphasis (see <see cref="MdEmphasisSpan"/>) and
     /// strong emphasis (see <see cref="MdStrongEmphasisSpan"/>).
     /// For specification see https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis
     /// </summary>

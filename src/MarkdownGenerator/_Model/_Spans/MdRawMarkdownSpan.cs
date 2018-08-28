@@ -17,7 +17,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdRawMarkdownSpan"/>
         /// </summary>
         /// <param name="content">The span's content. The text will be written to the output without escaping.</param>
-        public MdRawMarkdownSpan(string content) => 
+        public MdRawMarkdownSpan(string content) =>
             Content = content ?? throw new ArgumentNullException(nameof(content));
 
 

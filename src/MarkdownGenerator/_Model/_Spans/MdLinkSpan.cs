@@ -23,7 +23,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdLinkSpan"/>.
         /// </summary>
         /// <param name="text">
-        /// The link's text. 
+        /// The link's text.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </param>
         /// <param name="uri">The link's target uri. Value must be a valid absolute or relative <see cref="System.Uri"/></param>
@@ -34,7 +34,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdLinkSpan"/>.
         /// </summary>
         /// <param name="text">
-        /// The link's text. 
+        /// The link's text.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </param>
         /// <param name="uri">The link's target uri.</param>
@@ -42,7 +42,7 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdLinkSpan"/>.        
+        /// Initializes a new instance of <see cref="MdLinkSpan"/>.
         /// </summary>
         /// <param name="text">The link's text.</param>
         /// <param name="uri">The link's target uri. Value must be a valid absolute or relative <see cref="System.Uri"/></param>
@@ -50,7 +50,7 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdLinkSpan"/>.        
+        /// Initializes a new instance of <see cref="MdLinkSpan"/>.
         /// </summary>
         /// <param name="text">The link's text.</param>
         /// <param name="uri">The link's target uri.</param>

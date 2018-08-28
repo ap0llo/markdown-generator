@@ -37,7 +37,7 @@ namespace Grynwald.MarkdownGenerator
         /// Adds the specified item to the list
         /// </summary>
         public void Add(MdListItem item)
-        {            
+        {
             m_ListItems.AddLast(item);
         }
 

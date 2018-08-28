@@ -4,7 +4,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a heading in a markdown document
-    /// For specification see https://spec.commonmark.org/0.28/#atx-headings 
+    /// For specification see https://spec.commonmark.org/0.28/#atx-headings
     /// respectively https://spec.commonmark.org/0.28/#setext-headings
     /// </summary>
     /// <remarks>
@@ -25,7 +25,7 @@ namespace Grynwald.MarkdownGenerator
         /// <remarks>
         /// Value will always be in the range of 1-6 (inclusive)
         /// </remarks>
-        public int Level { get; }        
+        public int Level { get; }
 
 
         /// <summary>

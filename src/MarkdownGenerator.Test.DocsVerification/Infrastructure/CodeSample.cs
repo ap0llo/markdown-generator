@@ -29,7 +29,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
         }
 
 
-        // line is zero based, convet ot one-based line index for user-visible string
+        // line is zero based, convert to one-based line index for user-visible string
         public override string ToString() => $"{RelativePath}, line {Line + 1}";
 
 

@@ -4,8 +4,8 @@ using Grynwald.MarkdownGenerator.Internal;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represents a block in a markdown document. 
-    /// Blocks are the basic buidling units of markdown documents. 
+    /// Represents a block in a markdown document.
+    /// Blocks are the basic buidling units of markdown documents.
     /// A document consists of one or more blocks.
     /// </summary>
     public abstract class MdBlock
@@ -27,6 +27,6 @@ namespace Grynwald.MarkdownGenerator
                 return stringWriter.ToString();
             }
         }
-        
+
     }
 }

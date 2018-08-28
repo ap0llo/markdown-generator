@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator
-{    
+{
     /// <summary>
     /// Base class for blocks that can contains other blocks.
     /// </summary>
@@ -28,7 +28,7 @@ namespace Grynwald.MarkdownGenerator
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
 
-            m_Blocks = new LinkedList<MdBlock>(content);            
+            m_Blocks = new LinkedList<MdBlock>(content);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="block">The block to add to the container</param>
         public void Add(MdBlock block)
-        {            
+        {
             m_Blocks.AddLast(block);
         }
 

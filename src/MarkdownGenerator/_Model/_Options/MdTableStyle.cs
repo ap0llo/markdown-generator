@@ -1,7 +1,7 @@
 ﻿namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Defines the available serializaton styles for tables (see <see cref="MdTable"/>).
+    /// Defines the available serialization styles for tables (see <see cref="MdTable"/>).
     /// </summary>
     public enum MdTableStyle
     {

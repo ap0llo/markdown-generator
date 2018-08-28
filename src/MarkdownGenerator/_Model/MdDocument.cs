@@ -20,7 +20,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdDocument"/> with the specified block as root element.
         /// </summary>
         /// <param name="root">The documents root block</param>
-        public MdDocument(MdContainerBlock root) => 
+        public MdDocument(MdContainerBlock root) =>
             Root = root ?? throw new ArgumentNullException(nameof(root));
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <remarks>
         /// MdBlockQuote implements <see cref="IEnumerable{MdListItem}"/> so this constructor is necessary to prevent ambiguities.
-        /// </remarks>       
+        /// </remarks>
         public MdDocument(MdBlockQuote list) : this((MdBlock)list)
         { }
 
@@ -75,7 +75,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="serializationOptions">The options to use for serialization.</param>
         public void Save(string path, MdSerializationOptions serializationOptions)
         {
-            using(var stream = File.Open(path, FileMode.Create))            
+            using(var stream = File.Open(path, FileMode.Create))
             {
                 Save(stream, serializationOptions);
             }
@@ -94,7 +94,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="serializationOptions">The options to use for serialization.</param>
         public void Save(Stream stream, MdSerializationOptions serializationOptions)
         {
-            using (var writer = new StreamWriter(stream, Encoding.Default, 1024, true))                
+            using (var writer = new StreamWriter(stream, Encoding.Default, 1024, true))
             {
                 Save(writer, serializationOptions);
             }
@@ -105,17 +105,17 @@ namespace Grynwald.MarkdownGenerator
         private void Save(TextWriter writer, MdSerializationOptions serializationOptions)
         {
             var serializer = new DocumentSerializer(writer, serializationOptions);
-            serializer.Serialize(this);           
+            serializer.Serialize(this);
         }
 
         public override string ToString() => ToString(null);
 
         public string ToString(MdSerializationOptions serializationOptions)
-        {            
+        {
             using (var stringWriter = new StringWriter())
             {
-                Save(stringWriter, serializationOptions);                
-                return stringWriter.ToString();            
+                Save(stringWriter, serializationOptions);
+                return stringWriter.ToString();
             }
         }
     }

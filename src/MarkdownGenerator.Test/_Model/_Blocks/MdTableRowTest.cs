@@ -63,7 +63,7 @@ namespace Grynwald.MarkdownGenerator.Test
             var row = useFactoryMethods
                 ? FactoryMethods.Row("Content1", "Content2")
                 : new MdTableRow("Content1", "Content2");
-            
+
             Assert.Equal(2, row.ColumnCount);
             Assert.IsType<MdSingleLineSpan>(row[0]);
             Assert.IsType<MdSingleLineSpan>(row[1]);
@@ -102,5 +102,5 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
             Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
         }
-    }    
+    }
 }

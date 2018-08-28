@@ -4,7 +4,7 @@
     /// Represent a inline text element in a markdown document.
     /// </summary>
     public abstract class MdSpan
-    {        
+    {
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdSpan()
         { }

@@ -6,7 +6,7 @@ using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification
 {
     /// <summary>
-    /// Defines test methods that ensure all code samples in the 
+    /// Defines test methods that ensure all code samples in the
     /// documentation can be compiled
     /// </summary>
     public class CompilationTest
@@ -24,7 +24,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification
         [CodeSampleFromDocs(@"docs\api")]
         public void Sample_code_is_compile_clean(CodeSample codeSample)
         {
-            CodeSampleAssert.NoCompilationErrors(codeSample);            
+            CodeSampleAssert.NoCompilationErrors(codeSample);
         }
     }
 }

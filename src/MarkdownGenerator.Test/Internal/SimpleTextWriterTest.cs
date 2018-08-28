@@ -7,7 +7,7 @@ using Xunit;
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {
     public class SimpleTextWriterTest : IDisposable
-    {        
+    {
         private readonly TextWriter m_TextWriter;
         private readonly PrefixTextWriter m_Instance;
         private readonly StringBuilder m_StringBuilder;
@@ -34,7 +34,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
             // ACT
             m_Instance.WriteLine("Hello World");
-            
+
             // ASSERT
             var actual = GetWrittenText();
             Assert.Equal(expected, actual);
@@ -44,7 +44,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         public void WriteLine_saves_text_02()
         {
             // ARRANGE
-            var expected = 
+            var expected =
                 "Hello\r\n" +
                 "World\r\n";
 
@@ -61,7 +61,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         public void RequestBlankLine_inserts_a_blank_line_between_writes()
         {
             // ARRANGE
-            var expected = 
+            var expected =
                 "Hello\r\n" +
                 "\r\n" +
                 "World\r\n";
@@ -140,6 +140,6 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             // ASSERT
             var actual = GetWrittenText();
             Assert.Equal(expected, actual);
-        }               
+        }
     }
 }

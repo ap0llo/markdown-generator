@@ -9,7 +9,7 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData(false)]
         public void MdParagraph_can_be_initialized_with_string_content_01(bool useFactoryMethods)
         {
-            var paragraph = useFactoryMethods 
+            var paragraph = useFactoryMethods
                 ? FactoryMethods.Paragraph("Content")
                 : new MdParagraph("Content");
 
@@ -38,6 +38,6 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.Equal("Content1", (compositeSpan.Spans[0] as MdTextSpan).Text);
             Assert.Equal("Content2", (compositeSpan.Spans[1] as MdTextSpan).Text);
-        }     
+        }
     }
 }

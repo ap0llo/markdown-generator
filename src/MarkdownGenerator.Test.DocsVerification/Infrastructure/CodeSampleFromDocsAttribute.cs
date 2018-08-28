@@ -8,14 +8,14 @@ using Markdig.Syntax;
 using Xunit.Sdk;
 
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
-{    
+{
     /// <summary>
     /// Test data attribute that supplies instances of <see cref="CodeSample"/> to test methods.
     /// The code samples are read from documentation markdown documents.
     /// The relative path passed to the constructor specifies the directory to read files from
     /// </summary>
     public class CodeSampleFromDocsAttribute : DataAttribute
-    {        
+    {
         private readonly string m_RelativeSourcePath;
 
 
@@ -45,13 +45,13 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
                 var codeBlocks = markdownDocument.OfType<FencedCodeBlock>()
                     .Where(IsCSharpCodeBlock)
                     .ToArray();
-                
+
                 foreach (var codeBlock in codeBlocks)
-                {                   
+                {
                     var codeSample = new CodeSample(
                         relativeFilePath,
                         // code sample starts in the second line of the fenced code block (first line is fence and info string)
-                        codeBlock.Line + 1, 
+                        codeBlock.Line + 1,
                         codeBlock.Lines.ToString());
 
                     yield return new[] { codeSample };

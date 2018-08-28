@@ -11,6 +11,6 @@ namespace Grynwald.MarkdownGenerator.Test
             var span = new MdRawMarkdownSpan(value);
 
             Assert.Equal(value, span.ToString());
-        }        
+        }
     }
 }

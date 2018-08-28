@@ -1,7 +1,7 @@
 ﻿namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Defines the available serializaton styles for bullet lists (see <see cref="MdBulletList"/>).
+    /// Defines the available serialization styles for bullet lists (see <see cref="MdBulletList"/>).
     /// For specification see https://spec.commonmark.org/0.28/#list-items.
     /// </summary>
     public enum MdBulletListStyle

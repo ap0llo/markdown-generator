@@ -47,7 +47,7 @@ namespace Grynwald.MarkdownGenerator
         /// </item>
         /// </list>
         /// </returns>
-        public static MdSpan Join(this IEnumerable<MdSpan> spans, string separator) => 
+        public static MdSpan Join(this IEnumerable<MdSpan> spans, string separator) =>
             Join(spans, separator == null ? null : new MdTextSpan(separator));
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Grynwald.MarkdownGenerator
             }
             // a single span to join => just return the single span
             else if (!spans.Skip(1).Any())
-            {                
+            {
                 return spans.Single();
             }
             // multiple span but no separator => create composite span with all the specified spans
@@ -89,12 +89,12 @@ namespace Grynwald.MarkdownGenerator
             {
                 return new MdCompositeSpan(spans);
             }
-            // multiple spans and separator specified 
+            // multiple spans and separator specified
             // => create composite span and add separator between individual spans
             else
             {
                 var composite = new MdCompositeSpan();
-                
+
                 foreach(var span in spans)
                 {
                     if(composite.Spans.Count > 0)
@@ -105,7 +105,7 @@ namespace Grynwald.MarkdownGenerator
                 }
 
                 return composite;
-            }            
-        }              
+            }
+        }
     }
 }

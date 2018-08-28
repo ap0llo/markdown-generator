@@ -12,9 +12,9 @@ namespace Grynwald.MarkdownGenerator.Test
             var heading = useFactoryMethods
                 ? FactoryMethods.Heading("Content", 1)
                 : new MdHeading("Content", 1);
-            
+
             Assert.IsType<MdTextSpan>(heading.Text.Content);
-            
+
             var textSpan = (MdTextSpan)heading.Text.Content;
             Assert.Equal("Content", textSpan.Text);
         }
@@ -66,8 +66,8 @@ namespace Grynwald.MarkdownGenerator.Test
             var heading = useFactoryMethods
                 ? FactoryMethods.Heading(text, 1)
                 : new MdHeading(text, 1);
-            
+
             Assert.Same(text, heading.Text.Content);
-        }      
+        }
     }
 }

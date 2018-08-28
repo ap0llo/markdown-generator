@@ -14,7 +14,7 @@ namespace Grynwald.MarkdownGenerator
     /// For details see <see cref="MdSerializationOptions.TableStyle"/>
     /// </remarks>
     public sealed class MdTable : MdLeafBlock, IEnumerable<MdTableRow>
-    {        
+    {
         private readonly LinkedList<MdTableRow> m_Rows;
 
 
@@ -32,7 +32,7 @@ namespace Grynwald.MarkdownGenerator
         /// Gets the table's header row
         /// </summary>
         public MdTableRow HeaderRow { get; }
-        
+
         /// <summary>
         /// Gets the table's rows
         /// </summary>
@@ -64,13 +64,13 @@ namespace Grynwald.MarkdownGenerator
         public IEnumerator<MdTableRow> GetEnumerator() => m_Rows.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => m_Rows.GetEnumerator();
-        
+
         /// <summary>
         /// Adds the specified row to the table
         /// </summary>
         /// <param name="row">The row to add to the table</param>
         public void Add(MdTableRow row)
-        {            
+        {
             m_Rows.AddLast(row ?? throw new ArgumentNullException(nameof(row)));
         }
     }

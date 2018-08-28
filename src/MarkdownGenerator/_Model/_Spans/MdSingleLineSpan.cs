@@ -6,7 +6,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Represents a span that will be written to the output as a single line.
     /// All line breaks will be removed and replaced by spaces.
-    /// Trailng line breaks are removed
+    /// Trailing line breaks are removed
     /// </summary>
     public sealed class MdSingleLineSpan : MdSpan
     {
@@ -23,7 +23,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdSingleLineSpan"/>.
         /// </summary>
         /// <param name="content">The spans content</param>
-        public MdSingleLineSpan(MdSpan content) => 
+        public MdSingleLineSpan(MdSpan content) =>
             Content = content ?? throw new ArgumentNullException(nameof(content));
 
 
@@ -36,8 +36,8 @@ namespace Grynwald.MarkdownGenerator
             // remove trailing line breaks
             content = s_TrailingLineBreakRegex.Replace(content, "");
 
-            // replace other line breaks with spaces. 
-            // If linebreaks are folowed/precedded by whitespace
+            // replace other line breaks with spaces.
+            // If line breaks are followed/preceded by whitespace
             // replace whitespace and line break with a single
             // space
             content = s_LineBreakPattern.Replace(content, " ");

@@ -18,7 +18,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdEmphasisSpan"/>.
         /// </summary>
         /// <param name="text">
-        /// The text to emphasize. 
+        /// The text to emphasize.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </param>
         public MdEmphasisSpan(string text) : this(new MdTextSpan(text))
@@ -63,6 +63,6 @@ namespace Grynwald.MarkdownGenerator
         }
 
 
-        internal override MdSpan DeepCopy() => new MdEmphasisSpan(Text.DeepCopy());       
+        internal override MdSpan DeepCopy() => new MdEmphasisSpan(Text.DeepCopy());
     }
 }

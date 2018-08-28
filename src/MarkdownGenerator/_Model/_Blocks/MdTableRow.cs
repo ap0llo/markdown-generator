@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Grynwald.MarkdownGenerator
-{    
+{
     /// <summary>
     /// Represent a row in a table (see <see cref="MdTable"/>)
     /// </summary>
@@ -22,14 +22,14 @@ namespace Grynwald.MarkdownGenerator
         /// Gets the number of coumns in the row
         /// </summary>
         public int ColumnCount => m_Cells.Count;
-        
+
         /// <summary>
         /// Gets the value in the specified column
         /// </summary>
         /// <param name="column">The index of the column which's value to get</param>
         public MdSpan this[int column] => m_Cells[column];
 
-        
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
         /// </summary>
@@ -58,7 +58,7 @@ namespace Grynwald.MarkdownGenerator
 
             // wrap the cells into MdSingleLineSpan instances so line breaks are removed
             // when writeing the table to the output
-            m_Cells = new List<MdSpan>(cells.Select(span => new MdSingleLineSpan(span)));            
+            m_Cells = new List<MdSpan>(cells.Select(span => new MdSingleLineSpan(span)));
         }
 
 
@@ -66,7 +66,7 @@ namespace Grynwald.MarkdownGenerator
         /// Adds a column to the row
         /// </summary>
         /// <param name="cell">
-        /// The cell to add to the row. 
+        /// The cell to add to the row.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/>
         /// </param>
         public void Add(string cell) => Add(new MdTextSpan(cell));
@@ -79,6 +79,6 @@ namespace Grynwald.MarkdownGenerator
 
         public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();        
+        IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
     }
 }

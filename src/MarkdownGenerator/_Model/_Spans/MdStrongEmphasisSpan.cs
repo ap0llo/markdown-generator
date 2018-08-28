@@ -19,7 +19,7 @@ namespace Grynwald.MarkdownGenerator
         /// The specified text will be escaped.
         /// </summary>
         /// <param name="text">
-        /// The text to emphasize. 
+        /// The text to emphasize.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </param>
         public MdStrongEmphasisSpan(string text) : this(new MdTextSpan(text))
@@ -29,7 +29,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
         /// </summary>
         /// <param name="text">The text to emphasize</param>
-        public MdStrongEmphasisSpan(MdSpan text) => 
+        public MdStrongEmphasisSpan(MdSpan text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
 
@@ -61,6 +61,6 @@ namespace Grynwald.MarkdownGenerator
             return $"{emphasisChar}{emphasisChar}{text}{emphasisChar}{emphasisChar}";
         }
 
-        internal override MdSpan DeepCopy() => new MdStrongEmphasisSpan(Text.DeepCopy());       
+        internal override MdSpan DeepCopy() => new MdStrongEmphasisSpan(Text.DeepCopy());
     }
 }

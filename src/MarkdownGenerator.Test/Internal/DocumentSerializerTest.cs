@@ -11,7 +11,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
     public class DocumentSerializerTest
     {
         [Fact]
-        public void Headings_are_serialized_as_expected() => 
+        public void Headings_are_serialized_as_expected() =>
             AssertToStringEquals(
                 "# Heading 1\r\n",
                 Document(Heading("Heading 1", 1))
@@ -117,7 +117,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "  - Item 1.1\r\n" +
                 "  - Item 1.2\r\n" +
                 "- Item 2\r\n",
-                Document(                    
+                Document(
                     BulletList(
                         ListItem(
                             Paragraph("Item 1"),
@@ -209,7 +209,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "- Item 1 consists of  \r\n" +
                 "  multiple lines\r\n" +
                 "  - Item 1.1  \r\n" +
-                "    as well\r\n",                 
+                "    as well\r\n",
                 Document(
                     BulletList(
                         ListItem(
@@ -267,7 +267,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         public void Line_breaks_in_paragraphs_are_replaced_with_hard_line_breaks() =>
             AssertToStringEquals(
                 "Line1  \r\n" +
-                "Line2\r\n",                
+                "Line2\r\n",
                 Document(Paragraph("Line1\r\nLine2"))
             );
 
@@ -302,7 +302,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                         Row("Column1", "Column2"),
                         Row("Cell1", "Cell2")))
             );
-        
+
         [Fact]
         public void Tables_are_serialized_as_expected_02() =>
             AssertToStringEquals(
@@ -325,7 +325,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 TableStyle = MdTableStyle.Html
             };
 
-            AssertToStringEquals(                   
+            AssertToStringEquals(
                 "<table>"                           + "\r\n" +
                 "  <thead>"                         + "\r\n" +
                 "    <tr>"                          + "\r\n" +
@@ -602,7 +602,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
         [Theory]
         [InlineData(MdCodeBlockStyle.Tilde, '~')]
-        [InlineData(MdCodeBlockStyle.Backtick, '`')]        
+        [InlineData(MdCodeBlockStyle.Backtick, '`')]
         public void Serializer_respects_CodeBlockStyle_serialization_option(MdCodeBlockStyle style, char codeBlockChar)
         {
             var options = new MdSerializationOptions()
@@ -645,7 +645,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
         [Theory]
         [InlineData(MdOrderedListStyle.Dot, '.')]
-        [InlineData(MdOrderedListStyle.Parenthesis, ')')]        
+        [InlineData(MdOrderedListStyle.Parenthesis, ')')]
         public void Serializer_respects_OrderedListStyle_serialization_option(MdOrderedListStyle style, char listItemCharacter)
         {
             var options = new MdSerializationOptions()
@@ -828,13 +828,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
 
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
-        {            
+        {
             using (var writer = new StringWriter())
             {
                 var serializer = new DocumentSerializer(writer, options);
                 serializer.Serialize(document);
 
-                var actual = writer.ToString();            
+                var actual = writer.ToString();
                 Assert.Equal(expected, actual);
             }
         }

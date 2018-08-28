@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Grynwald.MarkdownGenerator 
+namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents an inline image element
@@ -20,10 +20,10 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdImageSpan"/>. 
+        /// Initializes a new instance of <see cref="MdImageSpan"/>.
         /// </summary>
         /// <param name="description">
-        /// The image's description. 
+        /// The image's description.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </param>
         /// <param name="uri">The image's uri. Value must be a valid absolute or relative <see cref="System.Uri"/></param>
@@ -31,10 +31,10 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdImageSpan"/>. 
+        /// Initializes a new instance of <see cref="MdImageSpan"/>.
         /// </summary>
         /// <param name="description">
-        /// The image's description. 
+        /// The image's description.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </param>
         /// <param name="uri">The image's uri</param>
@@ -42,7 +42,7 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdImageSpan"/>. 
+        /// Initializes a new instance of <see cref="MdImageSpan"/>.
         /// </summary>
         /// <param name="description">The image's description</param>
         /// <param name="uri">The image's uri. Value must be a valid absolute or relative <see cref="System.Uri"/></param>
@@ -50,7 +50,7 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdImageSpan"/>. 
+        /// Initializes a new instance of <see cref="MdImageSpan"/>.
         /// </summary>
         /// <param name="description">The image's description</param>
         /// <param name="uri">The image's uri</param>
@@ -62,7 +62,7 @@ namespace Grynwald.MarkdownGenerator
 
 
         public override string ToString() => ToString(MdSerializationOptions.Default);
-  
+
         public override string ToString(MdSerializationOptions options)
         {
             var description = Description.ToString(options);

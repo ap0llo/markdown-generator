@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// Encapsulates settings that control how a document is serialized.
-    /// A instance of <see cref="MdSerializationOptions"/> can be passed to 
+    /// A instance of <see cref="MdSerializationOptions"/> can be passed to
     /// the ToString overloads in <see cref="MdBlock"/>, <see cref="MdSpan"/> and <see cref="MdDocument"/>
     /// as well as the Save() method of <see cref="MdDocument"/>
     /// </summary>
@@ -50,11 +50,11 @@
         /// Gets or sets the maximum length of a line in the output.
         /// When set to a value greater than 0, linebreaks
         /// will be inserted after the specified number of characters
-        /// when possible.        
+        /// when possible.
         /// </summary>
         /// <remarks>
-        /// Not all types of blocks can be split into multiple lines. 
-        /// Also line breaks will only be inserted between words, so if 
+        /// Not all types of blocks can be split into multiple lines.
+        /// Also line breaks will only be inserted between words, so if
         /// the length of a word exceeds the maximum line length the max length
         /// cannot be adhered to
         /// </remarks>

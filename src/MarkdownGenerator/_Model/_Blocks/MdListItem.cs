@@ -26,7 +26,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdListItem"/> containing the specified span
         /// </summary>
         /// <param name="content">
-        /// The list item's content as a <see cref="MdSpan"/>. 
+        /// The list item's content as a <see cref="MdSpan"/>.
         /// The span will implicitly be wrapped in a instance of see <see cref="MdParagraph"/>
         /// </param>
         public MdListItem(MdSpan content) : this(new MdParagraph(content))
@@ -36,10 +36,10 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdListItem"/> containing the specified spans
         /// </summary>
         /// <param name="content">
-        /// The list item's content as one or more instances of <see cref="MdSpan"/>. 
+        /// The list item's content as one or more instances of <see cref="MdSpan"/>.
         /// The spans will implicitly be wrapped in a instance of see <see cref="MdParagraph"/>
         /// </param>
         public MdListItem(params MdSpan[] content) : this(new MdParagraph(content))
-        { }        
+        { }
     }
 }

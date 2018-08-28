@@ -4,7 +4,7 @@ using System.Text;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represents an (unformatted) text element which's content will be 
+    /// Represents an (unformatted) text element which's content will be
     /// escaped before being written to the output
     /// </summary>
     public class MdTextSpan : MdSpan
@@ -20,9 +20,9 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdTextSpan"/>
         /// </summary>
         /// <param name="text">The element's content. The value will be escaped before being written to the output.</param>
-        public MdTextSpan(string text) => 
+        public MdTextSpan(string text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
-        
+
 
         public override string ToString()
         {

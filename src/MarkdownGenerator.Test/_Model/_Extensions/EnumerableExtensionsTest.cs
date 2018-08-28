@@ -29,7 +29,7 @@ namespace Grynwald.MarkdownGenerator.Test
             var joined = spansToJoin.Join();
 
             // ASSERT
-            Assert.IsType<MdEmptySpan>(joined);            
+            Assert.IsType<MdEmptySpan>(joined);
         }
 
         [Fact]
@@ -113,9 +113,9 @@ namespace Grynwald.MarkdownGenerator.Test
             // ARRANGE
             var spansToJoin = new[]
             {
-                new MdTextSpan("text"),  
-                new MdTextSpan("more text"), 
-                new MdTextSpan("even more text") 
+                new MdTextSpan("text"),
+                new MdTextSpan("more text"),
+                new MdTextSpan("even more text")
             };
 
             // ACT

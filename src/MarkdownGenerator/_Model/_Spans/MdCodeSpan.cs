@@ -3,13 +3,13 @@
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represents a inline code span 
+    /// Represents a inline code span
     /// For specification see https://spec.commonmark.org/0.28/#code-spans
     /// </summary>
     public class MdCodeSpan : MdSpan
     {
         /// <summary>
-        /// The code span's content. The value will not be espaced.
+        /// The code span's content. The value will not be escaped.
         /// </summary>
         public string Text { get; }
 
@@ -18,14 +18,14 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdCodeSpan"/>
         /// </summary>
         /// <param name="text">The content of the code span. The value will not be escaped.</param>
-        public MdCodeSpan(string text) => 
+        public MdCodeSpan(string text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
 
         public override string ToString() => String.IsNullOrEmpty(Text) ? String.Empty : $"`{Text}`";
 
         public override string ToString(MdSerializationOptions options) => ToString();
-        
+
 
         internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
     }
