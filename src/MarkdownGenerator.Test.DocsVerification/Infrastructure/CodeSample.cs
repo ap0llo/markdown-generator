@@ -1,15 +1,22 @@
 ﻿using System;
+using Xunit.Abstractions;
 
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
 {
-    public class CodeSample
+    public sealed class CodeSample : IXunitSerializable
     {
-        public string RelativePath { get; }
+        public string RelativePath { get; private set; }
 
-        public string SourceCode { get; }
+        public string SourceCode { get; private set; }
 
-        public int Line { get; }
+        public int Line { get; private set; }
 
+
+        // parameterless constructor required for deserialization by Xunit
+        public CodeSample()
+        {
+
+        }
 
         public CodeSample(string relativePath, int line, string code)
         {
@@ -23,6 +30,21 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
 
 
         // line is zero based, convet ot one-based line index for user-visible string
-        public override string ToString() => $"{RelativePath}, line {Line + 1}";            
+        public override string ToString() => $"{RelativePath}, line {Line + 1}";
+
+
+        public void Deserialize(IXunitSerializationInfo info)
+        {
+            RelativePath = info.GetValue<string>(nameof(RelativePath));
+            SourceCode = info.GetValue<string>(nameof(SourceCode));
+            Line = info.GetValue<int>(nameof(Line));
+        }
+
+        public void Serialize(IXunitSerializationInfo info)
+        {
+            info.AddValue(nameof(RelativePath), RelativePath);
+            info.AddValue(nameof(SourceCode), SourceCode);
+            info.AddValue(nameof(Line), Line);
+        }
     }
 }
