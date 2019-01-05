@@ -19,7 +19,7 @@ namespace Grynwald.MarkdownGenerator
         public IEnumerable<MdSpan> Cells => m_Cells;
 
         /// <summary>
-        /// Gets the number of coumns in the row
+        /// Gets the number of columns in the row
         /// </summary>
         public int ColumnCount => m_Cells.Count;
 
@@ -57,7 +57,7 @@ namespace Grynwald.MarkdownGenerator
                 throw new ArgumentNullException(nameof(cells));
 
             // wrap the cells into MdSingleLineSpan instances so line breaks are removed
-            // when writeing the table to the output
+            // when writing the table to the output
             m_Cells = new List<MdSpan>(cells.Select(span => new MdSingleLineSpan(span)));
         }
 

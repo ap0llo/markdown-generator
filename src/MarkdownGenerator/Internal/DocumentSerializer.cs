@@ -153,7 +153,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                     line += "  ";
                 }
 
-                // no maximum line line length specified => write the line to the output
+                // no maximum line length specified => write the line to the output
                 if(m_Options.MaxLineLength <= 0)
                 {
                     m_Writer.WriteLine(line);
@@ -209,7 +209,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 void OnBlankLineRequested(object s, EventArgs e)
                 {
                     // blank lines before top level lists ( = before the first item)
-                    // should not be supressed
+                    // should not be suppressed
                     if (listItemNumber == 1 && m_ListLevel == 1)
                         return;
 
@@ -310,7 +310,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                             .ToArray())
                     .ToArray();
 
-            // determine the maxmum width of every column
+            // determine the maximum width of every column
             var columnWidths = new int[table.ColumnCount];
             for (var rowIndex = 0; rowIndex < tableAsString.Length; rowIndex++)
             {                
@@ -407,9 +407,9 @@ namespace Grynwald.MarkdownGenerator.Internal
         {
             var style = m_Options.ThematicBreakStyle;
 
-            // if a thematic break occurrs inside a bullet list
-            // and the configured style of the list and the thematic break are configued the same
-            // the thematic break takes precedence and hence the list is rendeded incorrectly
+            // if a thematic break occurs inside a bullet list
+            // and the configured style of the list and the thematic break are configured the same
+            // the thematic break takes precedence and hence the list is rendered incorrectly
             // (s. https://spec.commonmark.org/0.28/#thematic-breaks)
             // To avoid this conflict, check for this scenario and change the style 
             // of the thematic break if necessary

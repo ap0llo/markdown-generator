@@ -48,7 +48,7 @@
 
         /// <summary>
         /// Gets or sets the maximum length of a line in the output.
-        /// When set to a value greater than 0, linebreaks
+        /// When set to a value greater than 0, line breaks
         /// will be inserted after the specified number of characters
         /// when possible.
         /// </summary>

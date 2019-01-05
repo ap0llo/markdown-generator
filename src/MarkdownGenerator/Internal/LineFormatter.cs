@@ -40,7 +40,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                     }
                     else
                     {
-                        // append segment to the current line if it fits wihtin max length
+                        // append segment to the current line if it fits within max length
                         if (lineBuilder.Length + value.Length <= maxLineLength)
                         {
                             lineBuilder.Append(value);
@@ -76,7 +76,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                     if(currentIsWhiteSpace)
                     {
                         // for whitespace segments, look for the next segment
-                        // if appending the whitespace AND the next segement would 
+                        // if appending the whitespace AND the next segment would 
                         // exceed the maximum line length, start a new line 
                         // and omit the whitespace
                         // otherwise, append the whitespace and the next segment
@@ -123,7 +123,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         /// </summary>
         internal static IReadOnlyList<(string value, bool isWhiteSpace)> GetStringSegments(string input)
         {
-            // empty string => no segements
+            // empty string => no segments
             if(String.IsNullOrEmpty(input))
                 return Array.Empty<(string, bool)>();
 

@@ -42,7 +42,7 @@ namespace Grynwald.MarkdownGenerator
         /// <item>
         /// <description>
         /// Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
-        /// Between two elements of the input sequence, the specified seprator is inserted
+        /// Between two elements of the input sequence, the specified separator is inserted
         /// </description>
         /// </item>
         /// </list>
@@ -67,7 +67,7 @@ namespace Grynwald.MarkdownGenerator
         /// <item>
         /// <description>
         /// Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
-        /// Between two elements of the input sequence, the specified seprator is inserted
+        /// Between two elements of the input sequence, the specified separator is inserted
         /// </description>
         /// </item>
         /// </list>

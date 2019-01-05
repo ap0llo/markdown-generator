@@ -100,7 +100,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="text">
         /// The paragraph's content. 
-        /// The string value will implicitly be wrapped in an insance of <see cref="MdTextSpan"/>
+        /// The string value will implicitly be wrapped in an instance of <see cref="MdTextSpan"/>
         /// </param>
         /// <remarks>
         /// Although there is an implicit conversion from <see cref="string"/> to <see cref="MdSpan"/>
@@ -120,13 +120,13 @@ namespace Grynwald.MarkdownGenerator
         public static MdParagraph Paragraph(params MdSpan[] spans) => new MdParagraph(spans);
 
         /// <summary>
-        /// Creates a new insance of <see cref="MdCodeBlock"/> with the specified text.
+        /// Creates a new instance of <see cref="MdCodeBlock"/> with the specified text.
         /// </summary>
         /// <param name="text">The code blocks content</param>
         public static MdCodeBlock CodeBlock(string text) => new MdCodeBlock(text);
 
         /// <summary>
-        /// Creates a new insance of <see cref="MdCodeBlock"/>.
+        /// Creates a new instance of <see cref="MdCodeBlock"/>.
         /// </summary>
         /// <param name="text">The code blocks content</param>
         /// <param name="infoString">
@@ -137,25 +137,25 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Creates a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>
-        /// <param name="listItems">The list items to intially add to the list</param>
+        /// <param name="listItems">The list items to initially add to the list</param>
         public static MdBulletList BulletList(params MdListItem[] listItems) => new MdBulletList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>
-        /// <param name="listItems">The list items to intially add to the list</param>
+        /// <param name="listItems">The list items to initially add to the list</param>
         public static MdBulletList BulletList(IEnumerable<MdListItem> listItems) => new MdBulletList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
-        /// <param name="listItems">The list items to intially add to the list</param>
+        /// <param name="listItems">The list items to initially add to the list</param>
         public static MdOrderedList OrderedList(params MdListItem[] listItems) => new MdOrderedList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
-        /// <param name="listItems">The list items to intially add to the list</param>
+        /// <param name="listItems">The list items to initially add to the list</param>
         public static MdOrderedList OrderedList(IEnumerable<MdListItem> listItems) => new MdOrderedList(listItems);
 
         /// <summary>

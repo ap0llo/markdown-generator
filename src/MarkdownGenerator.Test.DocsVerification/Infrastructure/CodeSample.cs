@@ -12,7 +12,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
         public int Line { get; private set; }
 
 
-        // parameterless constructor required for deserialization by Xunit
+        // parameterless constructor required for deserialization by xunit
         public CodeSample()
         {
 

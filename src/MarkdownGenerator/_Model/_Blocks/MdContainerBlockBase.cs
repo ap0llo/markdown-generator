@@ -41,7 +41,7 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Adds the specified blocks to the container blcoks
+        /// Adds the specified blocks to the container blocks
         /// </summary>
         /// <param name="blocks">The blocks to add to the container</param>
         public void Add(params MdBlock[] blocks)
