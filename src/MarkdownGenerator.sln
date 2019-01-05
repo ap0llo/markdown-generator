@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test.DocsVerification", "MarkdownGenerator.Test.DocsVerification\Grynwald.MarkdownGenerator.Test.DocsVerification.csproj", "{C12F9B8E-A5C7-4ECE-A6B3-36677C9DA617}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BA16D5C-DD01-4C88-87E8-D00FC681EA2D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
