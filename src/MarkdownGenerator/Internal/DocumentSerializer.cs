@@ -63,6 +63,10 @@ namespace Grynwald.MarkdownGenerator.Internal
                     Serialize(blockQuote);
                     break;
 
+                case MdEmptyBlock emptyBlock:
+                    // block is empty by definition => no need to write anything to the output
+                    break;
+
                 default:
                     throw new NotSupportedException($"Unsupported block type {block.GetType().FullName}");
             }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using Grynwald.MarkdownGenerator.Internal;
@@ -825,6 +825,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                options
            );
         }
+
+        [Fact]
+        public void EmptyBlock_is_seralized_as_expected() =>
+            AssertToStringEquals("", Document(MdEmptyBlock.Instance));
 
 
         private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)

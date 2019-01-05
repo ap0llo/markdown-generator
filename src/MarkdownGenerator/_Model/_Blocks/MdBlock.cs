@@ -12,13 +12,12 @@ namespace Grynwald.MarkdownGenerator
     {
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdBlock()
-        {
-        }
+        { }
 
 
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
-        public string ToString(MdSerializationOptions options)
+        public virtual string ToString(MdSerializationOptions options)
         {
             using (var stringWriter = new StringWriter())
             {
@@ -27,6 +26,5 @@ namespace Grynwald.MarkdownGenerator
                 return stringWriter.ToString();
             }
         }
-
     }
 }
