@@ -11,7 +11,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Gets the paragraph's text
         /// </summary>
-        public MdSpan Text { get; }
+        public MdSpan Text { get; private set; }
 
 
         /// <summary>
@@ -35,5 +35,24 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="text">The paragraph's content</param>
         public MdParagraph(MdSpan text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
+
+        /// <summary>
+        /// Adds the specified span to the paragraph
+        /// </summary>
+        /// <param name="span">The text element to add to the paragraph</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="span"/> is null</exception>
+        public void Add(MdSpan span)
+        {
+            span = span ?? throw new ArgumentNullException(nameof(span));
+
+            if(Text is MdCompositeSpan compositeSpan)
+            {
+                compositeSpan.Add(span);
+            }
+            else
+            {
+                Text = new MdCompositeSpan(Text) { span };
+            }
+        }
     }
 }
