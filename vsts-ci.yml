@@ -4,33 +4,49 @@ trigger:
 - release/*
 
 variables:
-  configuration: Release
+  # Build settings
+  configuration: Release         # the configuration (Debug/Release) to build
+  dotNetSdk_Version: 2.1.302     # the version of the .NET SDK to use
+  artifactsName: drop
+  # MyGet.org settings   
+  myget_publish: true                                               # enable publishing of master and release branches to MyGet.org
+  myget_ServiceConnectionName: 'MyGet - ap0llo-markdown-generator'  # the name of the Azure DevOps service connection to use for MyGet.org
+  # NuGet.org settings
+  nuget_org_publish: true                                            # enable publishing of release branches to NuGet.org
+  nuget_org_ServiceConnectionName: 'NuGet.org - markdown-generator'  # the name of the Azure DevOps service connection to use for NuGet.org
+  nuget_org_PackageName: 'Grynwald.MarkdownGenerator'                # the name of the package being published
+  # GitHub settings
+  github_createRelease: true                          # enable creation of GitHub releases when a package was uploaded to NuGet.org
+  github_ServiceConnectionName: 'GitHub: ap0llo'      # the name of the Azure DevOps service connection to use for creating GitHub releases
+  github_repositoryName: 'ap0llo/markdown-generator'  # the name of the github repo to create the release in
 
 jobs:
+
+# Main Build and test job: Builds the projects and runs all tests
 - job: Build_and_Test
   pool: Hosted VS2017
-
   steps:
-  - task: DotNetCoreInstaller@0
-    displayName: Use .NET Core SDK 2.1
-    inputs:
-      version: 2.1.302
 
+  # Install .NET Core SDK (version specified in the variables section)
+  - task: DotNetCoreInstaller@0
+    displayName: Install .NET Core SDK
+    inputs:
+      version: $(dotNetSdk_Version)
+
+  # Restore, Build, Test
   - task: DotNetCoreCLI@2
     displayName: Restore NuGet dependencies
     env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: restore
-      projects: 'src/**/*.csproj'
-  
+      projects: 'src/**/*.csproj'  
   - task: DotNetCoreCLI@2
     displayName: Build
     env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: build
       projects: 'src/**/*.csproj'
-      arguments: '--configuration $(configuration) --no-restore'
-  
+      arguments: '--configuration $(configuration) --no-restore'  
   - task: DotNetCoreCLI@2
     displayName: Test
     env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
@@ -39,62 +55,83 @@ jobs:
       projects: 'src/**/*Test*.csproj'
       arguments: '--configuration $(configuration) --no-build'
   
+  # Create NuGet Package and  publish as build artifact
   - task: DotNetCoreCLI@2
     displayName: Pack NuGet package
     env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: pack
       projects: 'src/**/*.csproj'
-      arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build'
-  
+      arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build'  
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifacts'
     inputs:
-      artifactName: drop
+      artifactName: $(artifactsName)
 
+# Job to push package to MyGet.org after build
 - job: Publish_to_MyGet
+  pool: Hosted VS2017
+  # Only run after main build job and only if the current branch is master or a release branch
   dependsOn: Build_and_Test
-  condition: and(succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
+  condition: and($(myget_publish), succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
   steps:
+  # Get artifacts
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Build Artifacts'
     inputs: 
       buildType: current
       downloadType: single
-      artifactName: drop
+      artifactName: $(artifactsName)
       downloadPath: $(Build.ArtifactStagingDirectory)
+  # Upload to MyGet.org
   - task: NuGetCommand@2
     displayName: "Upload package"
     inputs:
       command: push
       nugetFeedType: external
-      publishFeedCredentials: 'MyGet - ap0llo-markdown-generator'    
+      publishFeedCredentials: $(myget_ServiceConnectionName)
 
+# Job to push package to NuGet.org after build (only for builds of release branches)
 - job: Publish_to_NuGet_org
+  pool: Hosted VS2017
+  # Only run after main build job and only if the current branch is a release branch
   dependsOn: Build_and_Test
-  condition: and(succeeded('Build_and_Test'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
+  condition: and($(nuget_org_publish), succeeded('Build_and_Test'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
   steps:
+  # Get artifacts
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Build Artifacts'
     inputs: 
       buildType: current
       downloadType: single
-      artifactName: drop
+      artifactName: $(artifactsName)
       downloadPath: $(Build.ArtifactStagingDirectory)
+  # Upload to NuGet.org
   - task: NuGetCommand@2
-    displayName: "Upload package"
+    displayName: 'Upload package to NuGet.org'
     inputs:
       command: push
       nugetFeedType: external
-      publishFeedCredentials: 'NuGet.org - markdown-generator'    
+      publishFeedCredentials: $(nuget_org_ServiceConnectionName)
 
+# Job to create a GitHub release (only if a package was uploaded to NuGet.org)
 - job: Create_GitHub_Release
+  pool: Hosted VS2017
+  # Only run if build was successful and a package was uploaded to nuget.org
   dependsOn: 
   - Build_and_Test
   - Publish_to_NuGet_org
-  condition: and(succeeded('Build_and_Test'), succeeded('Publish_to_NuGet_org'))
+  condition: and(succeeded('Build_and_Test'), succeeded('Publish_to_NuGet_org'), $(github_createRelease))
   steps:
 
+  # Install .NET Core SDK (version specified in the variables section)
+  - task: DotNetCoreInstaller@0
+    displayName: Install .NET Core SDK
+    inputs:
+      version: $(dotNetSdk_Version)
+
+  # Set the build number (utilites Nerdbank.GitVersioning). 
+  # This step is necessary as $(Build.BuildNumber) is used as name of the GitHub release
   - task: DotNetCoreCLI@2
     displayName: Install NBGV tool    
     env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
@@ -105,23 +142,24 @@ jobs:
   - script: nbgv cloud
     displayName: Set Version
 
+  # Get build artifacts and create a GitHub release
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Build Artifacts'
     inputs: 
       buildType: current
       downloadType: single
-      artifactName: drop
+      artifactName: $(artifactsName)
       downloadPath: $(Build.ArtifactStagingDirectory)
   - task: GithubRelease@0
     inputs:
-      gitHubConnection: 'GitHub: ap0llo'
-      repositoryName: 'ap0llo/markdown-generator'
+      gitHubConnection: $(github_ServiceConnectionName)
+      repositoryName: $(github_repositoryName)
       action: 'create'
       target: '$(Build.SourceVersion)'
       tagSource: manual
       tag: v$(Build.BuildNumber)
       releaseNotesSource: inputs
-      releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator/$(Build.BuildNumber))'
+      releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/$(nuget_org_PackageName)/$(Build.BuildNumber))'
       assets: $(Build.ArtifactStagingDirectory)/*.nupkg
       addChangeLog: true
 
