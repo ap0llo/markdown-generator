@@ -22,10 +22,10 @@ steps:
     projects: 'src/**/*.csproj'
 
 - task: DotNetCoreCLI@2
-  displayName: build
+  displayName: Build
   env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
   inputs:
-    command: Build
+    command: build
     projects: 'src/**/*.csproj'
     arguments: '--configuration $(configuration) --no-restore'
 
