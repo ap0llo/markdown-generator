@@ -52,9 +52,9 @@ jobs:
     inputs:
       artifactName: drop
 
-- job: Push_MyGet
+- job: Publish_to_MyGet
   dependsOn: Build_and_Test
-  condition: and(succeeded('Build_and_Test'), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  condition: and(succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
   steps:
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Build Artifacts'
@@ -69,3 +69,25 @@ jobs:
       command: push
       nugetFeedType: external
       publishFeedCredentials: 'MyGet - ap0llo-markdown-generator'    
+
+- job: Publish_to_NuGet_org
+  dependsOn: Build_and_Test
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
+  steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Build Artifacts'
+    inputs: 
+      buildType: current
+      downloadType: single
+      artifactName: drop
+      downloadPath: $(Build.ArtifactStagingDirectory)
+  - task: NuGetCommand@2
+    displayName: "Upload package"
+    inputs:
+      command: push
+      nugetFeedType: external
+      publishFeedCredentials: 'NuGet.org - markdown-generator'    
+
+
+
+      
