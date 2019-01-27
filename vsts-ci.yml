@@ -7,7 +7,7 @@ variables:
   configuration: release
 
 jobs:
-- job: Build and Test
+- job: Build_and_Test
   pool: Hosted VS2017
 
   steps:
