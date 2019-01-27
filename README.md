@@ -3,6 +3,7 @@
 ## Overview
 
 [![NuGet](https://img.shields.io/nuget/v/Grynwald.MarkdownGenerator.svg)](https://www.nuget.org/packages/Grynwald.MarkdownGenerator)
+[![Build Status](https://dev.azure.com/ap0llo/OSS/_apis/build/status/markdown-generator?branchName=master)](https://dev.azure.com/ap0llo/OSS/_build/latest?definitionId=7?branchName=master)
 
 Markdown Generator is a library for generating Markdown documents programatically.
 It implements the [CommonMark](https://spec.commonmark.org/0.28/) specification as
