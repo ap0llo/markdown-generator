@@ -102,7 +102,7 @@ jobs:
   - task: GithubRelease@0
     inputs:
       gitHubConnection: 'GitHub: ap0llo'
-      repositoryName: 'markdown-generator'
+      repositoryName: 'ap0llo/markdown-generator'
       action: 'create'
       target: '$(Build.SourceVersion)'
       tagSource: manual
@@ -110,5 +110,6 @@ jobs:
       releaseNotesSource: inputs
       releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator/$(Build.BuildNumber))'
       assets: $(Build.ArtifactStagingDirectory)/*.nupkg
+      addChangeLog: true
 
       
