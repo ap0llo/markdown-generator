@@ -73,7 +73,7 @@ jobs:
   pool: Hosted VS2017
   # Only run after main build job and only if the current branch is master or a release branch
   dependsOn: Build_and_Test
-  condition: and($(myget_publish), succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
+  condition: and('$(myget_publish)', succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
   steps:
   # Get artifacts
   - task: DownloadBuildArtifacts@0
@@ -96,7 +96,7 @@ jobs:
   pool: Hosted VS2017
   # Only run after main build job and only if the current branch is a release branch
   dependsOn: Build_and_Test
-  condition: and($(nuget_org_publish), succeeded('Build_and_Test'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
+  condition: and('$(nuget_org_publish)', succeeded('Build_and_Test'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
   steps:
   # Get artifacts
   - task: DownloadBuildArtifacts@0
@@ -121,7 +121,7 @@ jobs:
   dependsOn: 
   - Build_and_Test
   - Publish_to_NuGet_org
-  condition: and(succeeded('Build_and_Test'), succeeded('Publish_to_NuGet_org'), $(github_createRelease))
+  condition: and('$(github_createRelease)', succeeded('Build_and_Test'), succeeded('Publish_to_NuGet_org'))
   steps:
 
   # Install .NET Core SDK (version specified in the variables section)
