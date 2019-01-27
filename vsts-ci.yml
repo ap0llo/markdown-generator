@@ -72,7 +72,7 @@ jobs:
 
 - job: Publish_to_NuGet_org
   dependsOn: Build_and_Test
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
+  condition: and(succeeded('Build_and_Test'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'))
   steps:
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Build Artifacts'
@@ -88,6 +88,28 @@ jobs:
       nugetFeedType: external
       publishFeedCredentials: 'NuGet.org - markdown-generator'    
 
-
+- job: Create_GitHub_Release
+  dependsOn: Build_and_Test
+  condition: and(succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
+  steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Build Artifacts'
+    inputs: 
+      buildType: current
+      downloadType: single
+      artifactName: drop
+      downloadPath: $(Build.ArtifactStagingDirectory)
+  - task: GithubRelease@0
+    inputs:
+      gitHubConnection: 'GitHub: ap0llo'
+      repositoryName: 'markdown-generator'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      tagSource: manual
+      tag: v$(Build.BuildNumber)
+      releaseNotesSource: inputs
+      releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/Grynwald.MarkdownGenerator/$(Build.BuildNumber))'
+      assets: $(Build.ArtifactStagingDirectory)/*.nupkg
+      addChangeLog: true
 
       
