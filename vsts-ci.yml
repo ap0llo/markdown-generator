@@ -11,7 +11,6 @@ jobs:
   pool: Hosted VS2017
 
   steps:
-
   - task: DotNetCoreInstaller@0
     displayName: Use .NET Core SDK 2.1
     inputs:
@@ -50,4 +49,23 @@ jobs:
   
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifacts'
+    inputs:
+      artifactName: drop
 
+- job: Push_MyGet
+  dependsOn: Build_and_Test
+  condition: succeeded('Build_and_Test'), eq(variables['build.sourceBranch'], 'refs/heads/master')
+  steps:
+  - task: DownloadBuildArtifact@0
+    displayName: 'Download Build Artifacts'
+    inputs: 
+      buildType: current
+      downloadType: single
+      artifactName: drop
+      downloadPath: $(Build.ArtifactStagingDirectory)
+  - task: NuGet@2
+    displayName: "Upload package"
+    inputs:
+      command: push
+      nugetFeedType: external
+      publishFeedCredentials: 'MyGet - ap0llo-markdown-generator'    
