@@ -54,7 +54,7 @@ jobs:
 
 - job: Push_MyGet
   dependsOn: Build_and_Test
-  condition: succeeded('Build_and_Test'), eq(variables['build.sourceBranch'], 'refs/heads/master')
+  condition: and(succeeded('Build_and_Test'), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   steps:
   - task: DownloadBuildArtifact@0
     displayName: 'Download Build Artifacts'
