@@ -63,7 +63,7 @@ jobs:
       downloadType: single
       artifactName: drop
       downloadPath: $(Build.ArtifactStagingDirectory)
-  - task: NuGet@2
+  - task: NuGetCommand@2
     displayName: "Upload package"
     inputs:
       command: push
