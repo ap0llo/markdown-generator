@@ -1,50 +1,53 @@
-pool: Hosted VS2017
-
-variables:
-  configuration: release
-
 trigger:
 - master
 - features/*
 - release/*
 
-steps:
-- task: DotNetCoreInstaller@0
-  displayName: Use .NET Core SDK 2.1
-  inputs:
-    version: 2.1.302
+variables:
+  configuration: release
 
-- task: DotNetCoreCLI@2
-  displayName: Restore NuGet dependencies
-  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
-  inputs:
-    command: restore
-    projects: 'src/**/*.csproj'
+jobs:
+- job: Build and Test
+  pool: Hosted VS2017
 
-- task: DotNetCoreCLI@2
-  displayName: Build
-  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
-  inputs:
-    command: build
-    projects: 'src/**/*.csproj'
-    arguments: '--configuration $(configuration) --no-restore'
+  steps:
 
-- task: DotNetCoreCLI@2
-  displayName: Test
-  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
-  inputs:
-    command: test
-    projects: 'src/**/*Test*.csproj'
-    arguments: '--configuration $(configuration) --no-build'
+  - task: DotNetCoreInstaller@0
+    displayName: Use .NET Core SDK 2.1
+    inputs:
+      version: 2.1.302
 
-- task: DotNetCoreCLI@2
-  displayName: Pack NuGet package
-  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
-  inputs:
-    command: pack
-    projects: 'src/**/*.csproj'
-    arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifacts'
+  - task: DotNetCoreCLI@2
+    displayName: Restore NuGet dependencies
+    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    inputs:
+      command: restore
+      projects: 'src/**/*.csproj'
+  
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    inputs:
+      command: build
+      projects: 'src/**/*.csproj'
+      arguments: '--configuration $(configuration) --no-restore'
+  
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    inputs:
+      command: test
+      projects: 'src/**/*Test*.csproj'
+      arguments: '--configuration $(configuration) --no-build'
+  
+  - task: DotNetCoreCLI@2
+    displayName: Pack NuGet package
+    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    inputs:
+      command: pack
+      projects: 'src/**/*.csproj'
+      arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build'
+  
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifacts'
 
