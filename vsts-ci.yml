@@ -1,4 +1,7 @@
-queue: Hosted VS2017
+pool: Hosted VS2017
+
+variables:
+  configuration: release
 
 trigger:
 - master
@@ -6,43 +9,41 @@ trigger:
 - release/*
 
 steps:
-- task: BatchScript@1
-  displayName: Set environment variables
-  inputs:
-    filename: '$(Build.SourcesDirectory)\scripts\vsts.set-environment-variables.bat'
-    modifyEnvironment: true
-  
 - task: DotNetCoreInstaller@0
   displayName: Use .NET Core SDK 2.1
   inputs:
     version: 2.1.302
 
 - task: DotNetCoreCLI@2
-  displayName: Restore
+  displayName: Restore NuGet dependencies
+  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
   inputs:
     command: restore
     projects: 'src/**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: build
+  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
   inputs:
-    command: build
+    command: Build
     projects: 'src/**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(configuration) --no-restore'
 
 - task: DotNetCoreCLI@2
   displayName: Test
+  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
   inputs:
     command: test
     projects: 'src/**/*Test*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(configuration) --no-build'
 
 - task: DotNetCoreCLI@2
-  displayName: Pack
+  displayName: Pack NuGet package
+  env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
   inputs:
     command: pack
     projects: 'src/**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
