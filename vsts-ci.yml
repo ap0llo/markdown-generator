@@ -92,13 +92,14 @@ jobs:
   dependsOn: Build_and_Test
   condition: and(succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
   steps:
-  
+
   - task: DotNetCoreCLI@2
+    displayName: Install NBGV tool    
+    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: custom
       custom: tool
       arguments: install --tool-path . nbgv
-    displayName: Install NBGV tool    
   - script: nbgv cloud
     displayName: Set Version
 
