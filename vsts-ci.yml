@@ -89,8 +89,10 @@ jobs:
       publishFeedCredentials: 'NuGet.org - markdown-generator'    
 
 - job: Create_GitHub_Release
-  dependsOn: Build_and_Test
-  condition: and(succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
+  dependsOn: 
+  - Build_and_Test
+  - Publish_to_NuGet_org
+  condition: and(succeeded('Build_and_Test'), succeeded('Publish_to_NuGet_org'))
   steps:
 
   - task: DotNetCoreCLI@2
