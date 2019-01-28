@@ -1,20 +1,19 @@
 # Versioning and Branching
 
-The version of the library is automatically derived from git and the information 
+The version of the library is automatically derived from git and the information
 in `version.json` using [Nerdbank.GitVersioning](https://github.com/AArnott/Nerdbank.GitVersioning):
 
 - The master branch  always contains the latest version. Packages produced from
-  master are always marked as pre-release versions (using the `-prerelease`
-  suffix).
+  master are always marked as pre-release versions (using the `-pre` suffix).
 - Stable versions are built from release branches. Build from release branches
-  will have no `-prerelease` suffix
-- Builds from any other branch will have both the `-prerelease` and the git 
+  will have no `-pre` suffix
+- Builds from any other branch will have both the `-prerelease` and the git
   commit hash included in the version string
 
-The `Set-Version.ps1` script from the `scripts` foldercan be used to create a new 
+The `Set-Version.ps1` script from the `scripts` folder can be used to create a new
 release branch and update the version on *master*.  The script will:
 
-- read `version.json` to determine the current version of the branch 
+- read `version.json` to determine the current version of the branch
   (typically *master*)
 - create a new release branch for version, e.g. *release/v1.0*
 - Remove the pre-release tag from `version.json` on the release branch
