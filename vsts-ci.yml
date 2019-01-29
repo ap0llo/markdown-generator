@@ -141,7 +141,7 @@ jobs:
     inputs:
       version: $(dotNetSdk_Version)
 
-  # Set the build number (utilites Nerdbank.GitVersioning). 
+  # Set the build number (utilizes Nerdbank.GitVersioning). 
   # This step is necessary as $(Build.BuildNumber) is used as name of the GitHub release
   - task: DotNetCoreCLI@2
     displayName: Install NBGV tool    
@@ -171,7 +171,7 @@ jobs:
       tag: v$(Build.BuildNumber)
       releaseNotesSource: inputs
       releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/$(nuget_org_PackageName)/$(Build.BuildNumber))'
-      assets: $(Build.ArtifactStagingDirectory)/*.nupkg
+      assets: $(Build.ArtifactStagingDirectory)/$(artifactsName)/*.nupkg
       addChangeLog: true
 
       
