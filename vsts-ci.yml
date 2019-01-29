@@ -33,6 +33,17 @@ jobs:
     inputs:
       version: $(dotNetSdk_Version)
 
+  # Set the build number (utilizes Nerdbank.GitVersioning)
+  - task: DotNetCoreCLI@2
+    displayName: Install NBGV tool    
+    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    inputs:
+      command: custom
+      custom: tool
+      arguments: install --tool-path . nbgv
+  - script: nbgv cloud
+    displayName: Set Version
+
   # Restore, Build, Test
   - task: DotNetCoreCLI@2
     displayName: Restore NuGet dependencies
