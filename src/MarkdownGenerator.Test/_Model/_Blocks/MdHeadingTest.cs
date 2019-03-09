@@ -69,5 +69,24 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.Same(text, heading.Text.Content);
         }
+
+        [Theory]
+        [InlineData("   ", "")]
+        [InlineData(" heading", "#heading")]
+        [InlineData("heading123", "#heading123")]
+        [InlineData("Heading", "#heading")]
+        [InlineData("My Heading", "#my-heading")]
+        [InlineData("My Heading with a [link]()", "#my-heading-with-a-link")]
+        public void Anchor_returns_expected_value(string headingText, string expectedAnchor)
+        {
+            // ARRANGE
+            var heading = new MdHeading(1, new MdRawMarkdownSpan(headingText));
+
+            // ACT
+            var actualAnchor = heading.Anchor;
+
+            // ASSERT
+            Assert.Equal(expectedAnchor, actualAnchor);
+        }
     }
 }

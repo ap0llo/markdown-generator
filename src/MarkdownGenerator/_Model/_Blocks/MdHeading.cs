@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -14,6 +15,8 @@ namespace Grynwald.MarkdownGenerator
     /// </remarks>
     public sealed class MdHeading : MdLeafBlock
     {
+        private string m_Anchor;
+
         /// <summary>
         /// The text of the heading
         /// </summary>
@@ -26,6 +29,31 @@ namespace Grynwald.MarkdownGenerator
         /// Value will always be in the range of 1-6 (inclusive)
         /// </remarks>
         public int Level { get; }
+
+
+        /// <summary>
+        /// Gets the HTML anchor for this heading.
+        /// </summary>
+        /// <remarks>
+        /// The HTML anchor can be used for linking to a heading within a page.
+        /// It is automatically derived from the heading text by removing all
+        /// punctuation, replacing spaces with dashes and converting the text to lower case.
+        /// <para>
+        /// Note: Text anchors are not part of the CommonMark spec so linking to this anchor
+        /// might not work in  every markdown implementation.
+        /// </para>
+        /// </remarks>
+        public string Anchor
+        {
+            get
+            {
+                if (m_Anchor == null)
+                {
+                    m_Anchor = GetAnchor();
+                }
+                return m_Anchor;
+            }
+        }
 
 
         /// <summary>
@@ -68,5 +96,41 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="text">The text of the heading. Must not be null.</param>
         public MdHeading(int level, params MdSpan[] text) : this(new MdCompositeSpan(text), level)
         { }
+
+
+
+        private string GetAnchor()
+        {
+            // There is no official spec for how anchors for headings work
+            // This implementation follows the guidance here
+            // https://stackoverflow.com/questions/27981247/github-markdown-same-page-link
+            //
+            // - leading white spaces will be dropped
+            // - punctuation marks will be dropped
+            // - upper case will be converted to lower
+            // - spaces between letters will be converted to '-'
+
+            var headingText = Text.ToString().Trim();
+
+            if (String.IsNullOrEmpty(headingText))
+                return "";
+
+            var anchor = new StringBuilder();
+            anchor.Append("#");
+
+            foreach(var c in headingText)
+            {
+                if(char.IsLetter(c) || char.IsNumber(c))
+                {                    
+                    anchor.Append(char.ToLower(c));
+                }
+                else if(char.IsWhiteSpace(c))
+                {
+                    anchor.Append('-');
+                }
+            }
+            
+            return anchor.ToString();
+        }
     }
 }
