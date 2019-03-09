@@ -42,6 +42,9 @@ namespace Grynwald.MarkdownGenerator
         /// Note: Text anchors are not part of the CommonMark spec so linking to this anchor
         /// might not work in  every markdown implementation.
         /// </para>
+        /// <para>
+        /// The anchor does not include the leading '#' required for links.
+        /// </para>
         /// </remarks>
         public string Anchor
         {
@@ -116,7 +119,6 @@ namespace Grynwald.MarkdownGenerator
                 return "";
 
             var anchor = new StringBuilder();
-            anchor.Append("#");
 
             foreach(var c in headingText)
             {

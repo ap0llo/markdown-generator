@@ -72,11 +72,11 @@ namespace Grynwald.MarkdownGenerator.Test
 
         [Theory]
         [InlineData("   ", "")]
-        [InlineData(" heading", "#heading")]
-        [InlineData("heading123", "#heading123")]
-        [InlineData("Heading", "#heading")]
-        [InlineData("My Heading", "#my-heading")]
-        [InlineData("My Heading with a [link]()", "#my-heading-with-a-link")]
+        [InlineData(" heading", "heading")]
+        [InlineData("heading123", "heading123")]
+        [InlineData("Heading", "heading")]
+        [InlineData("My Heading", "my-heading")]
+        [InlineData("My Heading with a [link]()", "my-heading-with-a-link")]
         public void Anchor_returns_expected_value(string headingText, string expectedAnchor)
         {
             // ARRANGE
