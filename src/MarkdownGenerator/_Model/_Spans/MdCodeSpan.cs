@@ -26,7 +26,21 @@ namespace Grynwald.MarkdownGenerator
 
         public override string ToString(MdSerializationOptions options) => ToString();
 
+        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdCodeSpan);
+        
 
         internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
+
+
+        private bool DeepEquals(MdCodeSpan other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return StringComparer.Ordinal.Equals(Text, other.Text);
+        }
     }
 }

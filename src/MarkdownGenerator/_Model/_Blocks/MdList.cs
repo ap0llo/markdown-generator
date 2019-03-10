@@ -10,7 +10,7 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public abstract class MdList : MdBlock, IEnumerable<MdListItem>
     {
-        private readonly LinkedList<MdListItem> m_ListItems;
+        private readonly List<MdListItem> m_ListItems;
 
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Grynwald.MarkdownGenerator
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
 
-            m_ListItems = new LinkedList<MdListItem>(content);
+            m_ListItems = new List<MdListItem>(content);
         }
 
 
@@ -38,11 +38,32 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public void Add(MdListItem item)
         {
-            m_ListItems.AddLast(item);
+            m_ListItems.Add(item);
         }
 
         public IEnumerator<MdListItem> GetEnumerator() => m_ListItems.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => m_ListItems.GetEnumerator();
+
+
+        protected bool DeepEquals(MdList other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            if (m_ListItems.Count != other.m_ListItems.Count)
+                return false;
+
+            for(int i = 0; i< m_ListItems.Count; i++)
+            {
+                if (!m_ListItems[i].DeepEquals(other.m_ListItems[i]))
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -110,7 +111,7 @@ namespace Grynwald.MarkdownGenerator
         /// The string value will implicitly be wrapped in an instance of <see cref="MdTextSpan"/>
         /// </param>
         /// <remarks>
-        /// Although there is an implicit conversion from <see cref="string"/> to <see cref="MdSpan"/>
+        /// Although there is an implicit conversion from <see cref="String"/> to <see cref="MdSpan"/>
         /// the compiler does not seem to match the method in all situations,
         /// e.g. <c>new [] { "foo", "bar" }).Select(Paragraph)</c> so this overload is still necessary.
         /// </remarks>
@@ -206,7 +207,7 @@ namespace Grynwald.MarkdownGenerator
         /// The span will implicitly be wrapped in a instance of see <see cref="MdParagraph"/>
         /// </param>
         /// <remarks>
-        /// Although there is an implicit conversion from <see cref="string"/> to <see cref="MdSpan"/>
+        /// Although there is an implicit conversion from <see cref="String"/> to <see cref="MdSpan"/>
         /// the compiler does not seem to match the method in all situations,
         /// e.g. <c>new [] { "foo", "bar" }).Select(ListItem)</c> so this overload is still necessary.
         /// </remarks>
@@ -229,7 +230,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content.
         /// </summary>
-        /// <param name="content">The block to add to the block qutoe.</param>
+        /// <param name="content">The block to add to the block quote.</param>
         public static MdBlockQuote BlockQuote(MdContainerBlockBase content) => new MdBlockQuote(content);
 
         /// <summary>
@@ -263,7 +264,7 @@ namespace Grynwald.MarkdownGenerator
         /// This call is thus equivalent to <c>BlockQuote(Paragraph(Text(..))</c>
         /// </param>
         /// <remarks>
-        /// Although there is an implicit conversion from <see cref="string"/> to <see cref="MdSpan"/>
+        /// Although there is an implicit conversion from <see cref="String"/> to <see cref="MdSpan"/>
         /// the compiler does not seem to match the method in all situations,
         /// e.g. <c>new [] { "foo", "bar" }).Select(BlockQuote)</c> so this overload is still necessary.
         /// </remarks>
@@ -312,7 +313,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="cells">The row's cells/columns</param>#
         /// <remarks>
-        /// Although there is an implicit conversion from <see cref="string"/> to <see cref="MdSpan"/>
+        /// Although there is an implicit conversion from <see cref="String"/> to <see cref="MdSpan"/>
         /// the compiler does not seem to match the method in all situations,
         /// so this overload is still necessary.
         /// </remarks>

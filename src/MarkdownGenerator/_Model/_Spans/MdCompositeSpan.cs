@@ -67,6 +67,30 @@ namespace Grynwald.MarkdownGenerator
             return stringBuilder.ToString();
         }
 
+        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdCompositeSpan);
+
+
         internal override MdSpan DeepCopy() => new MdCompositeSpan(m_Spans.Select(x => x.DeepCopy()));
+
+
+        private bool DeepEquals(MdCompositeSpan other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            if (m_Spans.Count != other.m_Spans.Count)
+                return false;
+
+            for (int i = 0; i < m_Spans.Count; i++)
+            {
+                if (!m_Spans[i].DeepEquals(other.m_Spans[i]))
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

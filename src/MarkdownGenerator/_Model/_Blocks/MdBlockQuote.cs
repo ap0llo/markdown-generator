@@ -54,5 +54,8 @@ namespace Grynwald.MarkdownGenerator
         /// </param>
         public MdBlockQuote(params MdSpan[] content) : this(new MdParagraph(content))
         { }
+
+
+        public override bool DeepEquals(MdBlock other) => other is MdBlockQuote blockQuote ? base.DeepEquals(blockQuote) : false;
     }
 }

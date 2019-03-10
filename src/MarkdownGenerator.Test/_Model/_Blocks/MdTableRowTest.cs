@@ -102,5 +102,20 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
             Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
         }
+
+
+        [Fact]
+        public void DeepEquals_returns_expected_value()
+        {
+            var instance1 = new MdTableRow("Some Text");
+            var instance2 = new MdTableRow("Some Text");
+            var instance3 = new MdTableRow("Other", "text");
+
+            Assert.True(instance1.DeepEquals(instance1));
+            Assert.True(instance1.DeepEquals(instance2));
+
+            Assert.False(instance1.DeepEquals(null));
+            Assert.False(instance1.DeepEquals(instance3));
+        }
     }
 }

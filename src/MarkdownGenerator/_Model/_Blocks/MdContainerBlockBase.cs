@@ -9,7 +9,7 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public abstract class MdContainerBlockBase : MdBlock, IEnumerable<MdBlock>
     {
-        private readonly LinkedList<MdBlock> m_Blocks;
+        private readonly List<MdBlock> m_Blocks;
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Grynwald.MarkdownGenerator
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
 
-            m_Blocks = new LinkedList<MdBlock>(content);
+            m_Blocks = new List<MdBlock>(content);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="block">The block to add to the container</param>
         public void Add(MdBlock block)
         {
-            m_Blocks.AddLast(block);
+            m_Blocks.Add(block);
         }
 
         /// <summary>
@@ -56,12 +56,33 @@ namespace Grynwald.MarkdownGenerator
         {
             for (var i = 0; i < blocks.Length; i++)
             {
-                m_Blocks.AddLast(blocks[i]);
+                m_Blocks.Add(blocks[i]);
             }
         }
 
         public IEnumerator<MdBlock> GetEnumerator() => m_Blocks.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => m_Blocks.GetEnumerator();
+
+
+        protected bool DeepEquals(MdContainerBlockBase other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            if (m_Blocks.Count != other.m_Blocks.Count)
+                return false;
+
+            for (int i = 0; i < m_Blocks.Count; i++)
+            {
+                if (!m_Blocks[i].DeepEquals(other.m_Blocks[i]))
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

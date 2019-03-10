@@ -6,5 +6,6 @@
     /// </summary>
     public sealed class MdThematicBreak : MdLeafBlock
     {
+        public override bool DeepEquals(MdBlock other) => other is MdThematicBreak;
     }
 }

@@ -6,7 +6,7 @@ namespace Grynwald.MarkdownGenerator
     /// Represents a paragraph in a markdown document.
     /// For specification see https://spec.commonmark.org/0.28/#paragraphs
     /// </summary>
-    public sealed class MdParagraph : MdBlock
+    public sealed class MdParagraph : MdLeafBlock
     {
         /// <summary>
         /// Gets the paragraph's text
@@ -36,6 +36,7 @@ namespace Grynwald.MarkdownGenerator
         public MdParagraph(MdSpan text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
+
         /// <summary>
         /// Adds the specified span to the paragraph
         /// </summary>
@@ -53,6 +54,20 @@ namespace Grynwald.MarkdownGenerator
             {
                 Text = new MdCompositeSpan(Text) { span };
             }
+        }
+
+        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdParagraph);
+
+
+        private bool DeepEquals(MdParagraph other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return Text.DeepEquals(other.Text);
         }
     }
 }

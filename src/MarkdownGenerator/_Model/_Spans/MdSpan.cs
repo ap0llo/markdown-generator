@@ -15,6 +15,8 @@
 
         public abstract string ToString(MdSerializationOptions options);
 
+        public abstract bool DeepEquals(MdSpan other);
+
 
         internal abstract MdSpan DeepCopy();
 

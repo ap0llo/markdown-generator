@@ -60,8 +60,22 @@ namespace Grynwald.MarkdownGenerator
 
         public override string ToString(MdSerializationOptions options) => ToString();
 
+        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdTextSpan);
+
 
         internal override MdSpan DeepCopy() => new MdTextSpan(Text);
+
+
+        private bool DeepEquals(MdTextSpan other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return StringComparer.Ordinal.Equals(Text, other.Text);
+        }
 
         /// <summary>
         /// Implicitly creates a <see cref="MdTextSpan"/> from a string.

@@ -78,7 +78,22 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
+        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdLinkSpan);
+
 
         internal override MdSpan DeepCopy() => new MdLinkSpan(Text.DeepCopy(), Uri);
+
+
+        private bool DeepEquals(MdLinkSpan other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return Text.DeepEquals(other.Text) &&
+                   Uri.Equals(other.Uri);
+        }
     }
 }

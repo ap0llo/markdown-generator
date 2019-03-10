@@ -21,5 +21,8 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="listItems">The list items to initially add to the list</param>
         public MdOrderedList(IEnumerable<MdListItem> listItems) : base(listItems)
         { }
+
+
+        public override bool DeepEquals(MdBlock other) => other is MdOrderedList list ? DeepEquals(list) : false;
     }
 }

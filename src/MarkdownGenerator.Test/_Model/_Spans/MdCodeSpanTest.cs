@@ -31,5 +31,21 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.Equal(expectedValue, span.ToString());
         }
+
+
+        [Fact]
+        public void DeepEquals_returns_expected_value()
+        {
+            var instance1 = new MdCodeSpan("content");
+            var instance2 = new MdCodeSpan("content");
+            var instance3 = new MdCodeSpan("other content");
+
+            Assert.True(instance1.DeepEquals(instance1));
+            Assert.True(instance1.DeepEquals(instance2));
+
+            Assert.False(instance1.DeepEquals(null));
+            Assert.False(instance1.DeepEquals(instance3));
+            Assert.False(instance1.DeepEquals(new MdTextSpan("")));
+        }
     }
 }

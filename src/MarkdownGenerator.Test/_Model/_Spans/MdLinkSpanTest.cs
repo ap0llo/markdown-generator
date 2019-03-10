@@ -36,5 +36,23 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             Assert.Equal(string.Empty, new MdLinkSpan("", "").ToString());
         }
+
+
+        [Fact]
+        public void DeepEquals_returns_expected_value()
+        {
+            var instance1 = new MdLinkSpan("content", "http://uri");
+            var instance2 = new MdLinkSpan("content", "http://uri");
+            var instance3 = new MdLinkSpan("other content", "http://uri");
+            var instance4 = new MdLinkSpan("other content", "http://uri2");
+
+            Assert.True(instance1.DeepEquals(instance1));
+            Assert.True(instance1.DeepEquals(instance2));
+
+            Assert.False(instance1.DeepEquals(null));
+            Assert.False(instance1.DeepEquals(instance3));
+            Assert.False(instance1.DeepEquals(new MdTextSpan("")));
+            Assert.False(instance3.DeepEquals(instance4));
+        }
     }
 }

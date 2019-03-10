@@ -101,6 +101,20 @@ namespace Grynwald.MarkdownGenerator
         { }
 
 
+        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdHeading);
+
+
+        private bool DeepEquals(MdHeading other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return Level == other.Level &&
+                   Text.DeepEquals(other.Text);
+        }
 
         private string GetAnchor()
         {
@@ -123,7 +137,7 @@ namespace Grynwald.MarkdownGenerator
             foreach(var c in headingText)
             {
                 if(char.IsLetter(c) || char.IsNumber(c))
-                {                    
+                {
                     anchor.Append(char.ToLower(c));
                 }
                 else if(char.IsWhiteSpace(c))
@@ -131,7 +145,7 @@ namespace Grynwald.MarkdownGenerator
                     anchor.Append('-');
                 }
             }
-            
+
             return anchor.ToString();
         }
     }

@@ -88,5 +88,23 @@ namespace Grynwald.MarkdownGenerator.Test
             // ASSERT
             Assert.Equal(expectedAnchor, actualAnchor);
         }
+
+
+        [Theory, CombinatorialData]
+        public void DeepEquals_returns_expected_value(
+            [CombinatorialValues(1,2,3,4,5,6)]int level,
+            [CombinatorialValues("Heading", "", "some text")] string text)
+        {
+            var instance1 = new MdHeading(level, text);
+            var instance2 = new MdHeading(level, text);
+            var instance3 = new MdHeading(level, "SomeOtherText");
+
+            Assert.True(instance1.DeepEquals(instance1));
+            Assert.True(instance1.DeepEquals(instance2));
+
+            Assert.False(instance1.DeepEquals(null));
+            Assert.False(instance1.DeepEquals(instance3));
+            Assert.False(instance1.DeepEquals(new MdParagraph()));
+        }
     }
 }

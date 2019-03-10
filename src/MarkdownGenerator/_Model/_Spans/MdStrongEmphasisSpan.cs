@@ -61,6 +61,21 @@ namespace Grynwald.MarkdownGenerator
             return $"{emphasisChar}{emphasisChar}{text}{emphasisChar}{emphasisChar}";
         }
 
+        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdStrongEmphasisSpan);
+
+
         internal override MdSpan DeepCopy() => new MdStrongEmphasisSpan(Text.DeepCopy());
+
+
+        private bool DeepEquals(MdStrongEmphasisSpan other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return Text.DeepEquals(other.Text);
+        }
     }
 }

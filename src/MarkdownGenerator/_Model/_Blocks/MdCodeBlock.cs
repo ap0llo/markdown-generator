@@ -38,5 +38,20 @@ namespace Grynwald.MarkdownGenerator
             Text = text ?? throw new ArgumentNullException(nameof(text));
             InfoString = infoString;
         }
+
+
+        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdCodeBlock);
+        
+        private bool DeepEquals(MdCodeBlock other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            return StringComparer.Ordinal.Equals(Text, other.Text) &&
+                   StringComparer.Ordinal.Equals(InfoString, other.InfoString);
+        }
     }
 }

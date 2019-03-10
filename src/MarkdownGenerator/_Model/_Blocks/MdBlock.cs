@@ -26,5 +26,7 @@ namespace Grynwald.MarkdownGenerator
                 return stringWriter.ToString();
             }
         }
+
+        public abstract bool DeepEquals(MdBlock other);
     }
 }

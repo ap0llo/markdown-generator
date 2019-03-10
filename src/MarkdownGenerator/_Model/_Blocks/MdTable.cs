@@ -15,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
     /// </remarks>
     public sealed class MdTable : MdLeafBlock, IEnumerable<MdTableRow>
     {
-        private readonly LinkedList<MdTableRow> m_Rows;
+        private readonly List<MdTableRow> m_Rows;
 
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Grynwald.MarkdownGenerator
         public MdTable(MdTableRow headerRow, IEnumerable<MdTableRow> rows)
         {
             HeaderRow = headerRow ?? throw new ArgumentNullException(nameof(headerRow));
-            m_Rows = new LinkedList<MdTableRow>(rows ?? throw new ArgumentNullException(nameof(rows)));
+            m_Rows = new List<MdTableRow>(rows ?? throw new ArgumentNullException(nameof(rows)));
         }
 
 
@@ -71,7 +71,33 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="row">The row to add to the table</param>
         public void Add(MdTableRow row)
         {
-            m_Rows.AddLast(row ?? throw new ArgumentNullException(nameof(row)));
+            m_Rows.Add(row ?? throw new ArgumentNullException(nameof(row)));
+        }
+        
+        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdTable);
+
+
+        private bool DeepEquals(MdTable other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            if (RowCount != other.RowCount)
+                return false;
+
+            if (!HeaderRow.DeepEquals(other.HeaderRow))
+                return false;
+
+            for(int i = 0; i< RowCount; i++)
+            {
+                if (!m_Rows[i].DeepEquals(other.m_Rows[i]))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

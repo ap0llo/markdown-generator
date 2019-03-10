@@ -80,5 +80,25 @@ namespace Grynwald.MarkdownGenerator
         public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
+
+        public bool DeepEquals(MdTableRow other)
+        {
+            if (other == null)
+                return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
+
+            if (ColumnCount != other.ColumnCount)
+                return false;
+
+            for(int i = 0; i < ColumnCount; i++)
+            {
+                if (!m_Cells[i].DeepEquals(other.m_Cells[i]))
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

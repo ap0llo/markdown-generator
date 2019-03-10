@@ -23,5 +23,20 @@ namespace Grynwald.MarkdownGenerator.Test
             var span = new MdCompositeSpan(MdEmptySpan.Instance, new MdTextSpan(""));
             Assert.Equal(string.Empty, span.ToString());
         }
+
+        [Fact]
+        public void DeepEquals_returns_expected_value()
+        {
+            var instance1 = new MdCompositeSpan("content");
+            var instance2 = new MdCompositeSpan("content");
+            var instance3 = new MdCompositeSpan("other", "content");
+
+            Assert.True(instance1.DeepEquals(instance1));
+            Assert.True(instance1.DeepEquals(instance2));
+
+            Assert.False(instance1.DeepEquals(null));
+            Assert.False(instance1.DeepEquals(instance3));
+            Assert.False(instance1.DeepEquals(new MdTextSpan("")));
+        }
     }
 }

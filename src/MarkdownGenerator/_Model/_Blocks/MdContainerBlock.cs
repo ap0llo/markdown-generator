@@ -34,5 +34,8 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="content">The blocks the container blocks contains</param>
         public MdContainerBlock(IEnumerable<MdBlock> content) : base(content)
         { }
+
+
+        public override bool DeepEquals(MdBlock other) => other is MdContainerBlock containerBlock ? DeepEquals(containerBlock) : false;
     }
 }
