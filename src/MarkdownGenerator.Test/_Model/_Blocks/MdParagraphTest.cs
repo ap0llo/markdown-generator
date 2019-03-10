@@ -55,5 +55,54 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.False(instance1.DeepEquals(instance3));
             Assert.False(instance1.DeepEquals(new MdParagraph()));
         }
+
+
+        [Fact]
+        public void Text_property_is_converted_to_CompositeSpan_when_required_01()
+        {
+            var paragraph = new MdParagraph("Text");
+
+            var expected = new MdTextSpan("Text");
+            Assert.True(expected.DeepEquals(paragraph.Text));
+        }
+
+        [Fact]
+        public void Text_property_is_converted_to_CompositeSpan_when_required_02()
+        {
+            var paragraph = new MdParagraph("Text", "Text");
+
+            var expected = new MdCompositeSpan(new MdTextSpan("Text"), new MdTextSpan("Text"));
+            Assert.True(expected.DeepEquals(paragraph.Text));
+        }
+
+        [Fact]
+        public void Text_property_is_converted_to_CompositeSpan_when_required_03()
+        {
+            var paragraph = new MdParagraph();
+
+            var expected = MdEmptySpan.Instance;
+            Assert.True(expected.DeepEquals(paragraph.Text));
+        }
+
+        [Fact]
+        public void Text_property_is_converted_to_CompositeSpan_when_required_04()
+        {
+            var paragraph = new MdParagraph();
+            paragraph.Add("Text");
+
+            var expected = new MdTextSpan("Text");
+            Assert.True(expected.DeepEquals(paragraph.Text));
+        }
+
+        [Fact]
+        public void Text_property_is_converted_to_CompositeSpan_when_required_05()
+        {
+            var paragraph = new MdParagraph();
+            paragraph.Add("Text");
+            paragraph.Add("Text");
+
+            var expected = new MdCompositeSpan(new MdTextSpan("Text"), new MdTextSpan("Text"));
+            Assert.True(expected.DeepEquals(paragraph.Text));
+        }
     }
 }
