@@ -9,6 +9,19 @@ namespace Grynwald.MarkdownGenerator
     public sealed class MdBlockQuote : MdContainerBlockBase
     {
         /// <summary>
+        /// Initializes a new instance of <see cref="MdBlockQuote"/>.
+        /// </summary>
+        public MdBlockQuote() : base()
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdBlockQuote"/> with the specified content.
+        /// </summary>
+        /// <param name="content">The block to initally add to the block quote.</param>
+        public MdBlockQuote(MdContainerBlockBase content) : base(content)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of <see cref="MdBlockQuote"/> with the specified content
         /// </summary>
         /// <param name="content">The content of the quote as one or more blocks (see <see cref="MdBlock"/>)</param>

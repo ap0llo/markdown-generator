@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test
 {
-    public class MdListitemTest
+    public class MdListItemTest
     {
         [Theory]
         [InlineData(true)]

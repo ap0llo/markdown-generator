@@ -65,6 +65,13 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Creates a new instance of <see cref="MdContainerBlock"/> with the specified content.
         /// </summary>
+        /// <param name="content">The block to add to the container.</param>
+        public static MdContainerBlock Container(MdContainerBlockBase content) => new MdContainerBlock(content);
+
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdContainerBlock"/> with the specified content.
+        /// </summary>
         /// <param name="content">The blocks the container blocks contains</param>
         public static MdContainerBlock Container(IEnumerable<MdBlock> content) => new MdContainerBlock(content);
 
@@ -159,6 +166,18 @@ namespace Grynwald.MarkdownGenerator
         public static MdOrderedList OrderedList(IEnumerable<MdListItem> listItems) => new MdOrderedList(listItems);
 
         /// <summary>
+        /// Creates a new instance of <see cref="MdListItem"/>.
+        /// </summary>
+        public static MdListItem ListItem() => new MdListItem();
+
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdListItem"/> containing the content.
+        /// </summary>
+        /// <param name="content">The block to initially add to the list item.</param>
+        public static MdListItem ListItem(MdContainerBlockBase content) => new MdListItem(content);
+
+        /// <summary>
         /// Creates a new instance of <see cref="MdListItem"/> containing the specified blocks.
         /// </summary>
         /// <param name="content">The blocks to initially add to the list item.</param>
@@ -201,6 +220,17 @@ namespace Grynwald.MarkdownGenerator
         /// The spans will implicitly be wrapped in a instance of see <see cref="MdParagraph"/>
         /// </param>
         public static MdListItem ListItem(params MdSpan[] content) => new MdListItem(content);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdBlockQuote"/>.
+        /// </summary>
+        public static MdBlockQuote BlockQuote() => new MdBlockQuote();
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content.
+        /// </summary>
+        /// <param name="content">The block to add to the block qutoe.</param>
+        public static MdBlockQuote BlockQuote(MdContainerBlockBase content) => new MdBlockQuote(content);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content

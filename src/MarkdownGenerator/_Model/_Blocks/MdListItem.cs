@@ -9,6 +9,19 @@ namespace Grynwald.MarkdownGenerator
     public sealed class MdListItem : MdContainerBlockBase
     {
         /// <summary>
+        /// Initializes a new, empty instance of <see cref="MdListItem"/>.
+        /// </summary>
+        public MdListItem() : base()
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdListItem"/> containing the specified content.
+        /// </summary>
+        /// <param name="content">The block to initially add to the list item.</param>
+        public MdListItem(MdContainerBlockBase content) : base(content)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of <see cref="MdListItem"/> containing the specified blocks.
         /// </summary>
         /// <param name="content">The blocks to initially add to the list item.</param>
