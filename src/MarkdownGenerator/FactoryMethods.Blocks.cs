@@ -69,6 +69,11 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="content">The block to add to the container.</param>
         public static MdContainerBlock Container(MdContainerBlockBase content) => new MdContainerBlock(content);
 
+        /// <summary>
+        /// Creates a new instance of <see cref="MdContainerBlock"/> with the specified content.
+        /// </summary>
+        /// <param name="content">The block to add to the container.</param>
+        public static MdContainerBlock Container(MdList content) => new MdContainerBlock(content);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdContainerBlock"/> with the specified content.
@@ -179,6 +184,12 @@ namespace Grynwald.MarkdownGenerator
         public static MdListItem ListItem(MdContainerBlockBase content) => new MdListItem(content);
 
         /// <summary>
+        /// Creates a new instance of <see cref="MdListItem"/> containing the content.
+        /// </summary>
+        /// <param name="content">The block to initially add to the list item.</param>
+        public static MdListItem ListItem(MdList content) => new MdListItem(content);
+
+        /// <summary>
         /// Creates a new instance of <see cref="MdListItem"/> containing the specified blocks.
         /// </summary>
         /// <param name="content">The blocks to initially add to the list item.</param>
@@ -232,6 +243,12 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="content">The block to add to the block quote.</param>
         public static MdBlockQuote BlockQuote(MdContainerBlockBase content) => new MdBlockQuote(content);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content.
+        /// </summary>
+        /// <param name="content">The block to add to the block quote.</param>
+        public static MdBlockQuote BlockQuote(MdList content) => new MdBlockQuote(content);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content

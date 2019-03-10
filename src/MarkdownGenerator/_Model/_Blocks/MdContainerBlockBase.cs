@@ -27,6 +27,10 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         // private protected constructor => class cannot be derived from outside this assembly
+        private protected MdContainerBlockBase(MdList content) : this((MdBlock)content)
+        { }
+
+        // private protected constructor => class cannot be derived from outside this assembly
         private protected MdContainerBlockBase(params MdBlock[] content) : this((IEnumerable<MdBlock>) content)
         { }
 

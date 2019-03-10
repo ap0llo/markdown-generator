@@ -31,6 +31,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdListItem(new MdBlockQuote());
             _ = new MdListItem(new MdBlockQuote(), new MdBlockQuote());
+
+            _ = new MdListItem(new MdBulletList());
+            _ = new MdListItem(new MdOrderedList());
         }
 
         public void Initialization_of_MdListItem_using_FactoryMethods()
@@ -45,6 +48,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.ListItem(FactoryMethods.BlockQuote());
             _ = FactoryMethods.ListItem(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
+
+            _ = FactoryMethods.ListItem(FactoryMethods.BulletList());
+            _ = FactoryMethods.ListItem(FactoryMethods.OrderedList());
         }
 
         public void Initialization_of_MdContainerBlock_using_constructor()
@@ -59,6 +65,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdContainerBlock(new MdBlockQuote());
             _ = new MdContainerBlock(new MdBlockQuote(), new MdBlockQuote());
+
+            _ = new MdContainerBlock(new MdBulletList());
+            _ = new MdContainerBlock(new MdOrderedList());
         }
 
         public void Initialization_of_MdContainerBlock_using_FactoryMethods()
@@ -73,6 +82,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.Container(FactoryMethods.BlockQuote());
             _ = FactoryMethods.Container(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
+
+            _ = FactoryMethods.Container(FactoryMethods.BulletList());
+            _ = FactoryMethods.Container(FactoryMethods.OrderedList());
         }
 
         public void Initialization_of_MdBlockQuote_using_constructor()
@@ -87,6 +99,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdBlockQuote(new MdBlockQuote());
             _ = new MdBlockQuote(new MdBlockQuote(), new MdBlockQuote());
+
+            _ = new MdBlockQuote(new MdBulletList());
+            _ = new MdBlockQuote(new MdOrderedList());
         }
 
         public void Initialization_of_MdBlockQuote_using_FactoryMethods()
@@ -101,6 +116,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.BlockQuote(FactoryMethods.BlockQuote());
             _ = FactoryMethods.BlockQuote(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
+
+            _ = FactoryMethods.BlockQuote(FactoryMethods.BulletList());
+            _ = FactoryMethods.BlockQuote(FactoryMethods.OrderedList());
         }
     }
 }
