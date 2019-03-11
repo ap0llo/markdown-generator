@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
@@ -171,11 +171,39 @@ namespace Grynwald.MarkdownGenerator.Internal
         }
 
         /// <summary>
+        /// Converts the specified document to a ascci-art syntax tree.
+        /// </summary>
+        /// <returns>Returns a ASCII tree visualizing the structure of the node and all its child nodes.</returns>
+        public static string GetSyntaxTree(MdDocument document)
+        {
+            if (document == null)
+                throw new ArgumentNullException(nameof(document));
+
+            // convert the block into a graph
+            var visitor = new GraphBuildingVisitor();
+            document.Root.Accept(visitor);
+
+            var rootNode = new AsciiTreeNode(document.GetType().Name);
+            rootNode.Children.Add(visitor.RootNode);
+
+            // generate ascii tree
+            var treeWriter = new AsciiTreeWriter();
+            treeWriter.WriteNode(rootNode);
+
+            // return ascii tree
+            return treeWriter.ToString();
+        }
+
+
+        /// <summary>
         /// Converts the specified block to a ascci-art syntax tree.
         /// </summary>
         /// <returns>Returns a ASCII tree visualizing the structure of the node and all its child nodes.</returns>
         public static string GetSyntaxTree(MdBlock block)
         {
+            if (block == null)
+                new ArgumentNullException(nameof(block));
+
             // convert the block into a graph
             var visitor = new GraphBuildingVisitor();
             block.Accept(visitor);

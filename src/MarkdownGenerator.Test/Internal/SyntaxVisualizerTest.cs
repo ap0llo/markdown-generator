@@ -153,9 +153,25 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             );
 
 
+        [Fact]
+        public void GetSyntaxTree_returns_expected_result_16() =>
+            AssertSyntaxTreeEquals(
+                "MdDocument\r\n" +
+                " └─MdContainerBlock\r\n" +
+                "    └─MdThematicBreak\r\n",
+                new MdDocument(new MdContainerBlock(new MdThematicBreak()))
+            );
+
+
         private void AssertSyntaxTreeEquals(string expected, MdBlock block)
         {
             var actual = SyntaxVisualizer.GetSyntaxTree(block);
+            Assert.Equal(expected, actual);
+        }
+
+        private void AssertSyntaxTreeEquals(string expected, MdDocument document)
+        {
+            var actual = SyntaxVisualizer.GetSyntaxTree(document);
             Assert.Equal(expected, actual);
         }
     }
