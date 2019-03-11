@@ -58,7 +58,7 @@ namespace Grynwald.MarkdownGenerator
 
             // wrap the cells into MdSingleLineSpan instances so line breaks are removed
             // when writing the table to the output
-            m_Cells = new List<MdSpan>(cells.Select(span => new MdSingleLineSpan(span)));
+            m_Cells = new List<MdSpan>(cells.Select(span => ToSingleLineSpan(span)));
         }
 
 
@@ -75,7 +75,10 @@ namespace Grynwald.MarkdownGenerator
         /// Adds a column to the row
         /// </summary>
         /// <param name="cell">The cell to add to the row.</param>
-        public void Add(MdSpan cell) => m_Cells.Add(new MdSingleLineSpan(cell));
+        public void Add(MdSpan cell)
+        {
+            m_Cells.Add(ToSingleLineSpan(cell));
+        }
 
         public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
 
@@ -100,5 +103,8 @@ namespace Grynwald.MarkdownGenerator
 
             return true;
         }
+
+
+        private MdSpan ToSingleLineSpan(MdSpan span) => span is MdSingleLineSpan ? span : new MdSingleLineSpan(span);
     }
 }

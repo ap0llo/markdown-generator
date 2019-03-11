@@ -103,7 +103,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
         }
 
-
         [Fact]
         public void DeepEquals_returns_expected_value()
         {
@@ -116,6 +115,27 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.False(instance1.DeepEquals(null));
             Assert.False(instance1.DeepEquals(instance3));
+        }
+
+        [Fact]
+        public void Cells_are_wrapped_in_an_instance_of_MdSingleLineSpan_when_necessary()
+        {
+            var row = new MdTableRow(new MdTextSpan("Cell 1"));
+            row.Add("Cell 2");
+
+            Assert.All(row.Cells, cell => Assert.IsType<MdSingleLineSpan>(cell));            
+        }
+
+        [Fact]
+        public void Cells_are_not_wrapped_in_an_instance_of_MdSingleLineSpan_if_span_already_is_a_SingleLineSPan()
+        {
+            var cell1 = new MdSingleLineSpan(new MdTextSpan("Cell 1"));
+            var cell2 = new MdSingleLineSpan(new MdTextSpan("Cell 2"));
+                        
+            var row = new MdTableRow(cell1);
+            row.Add(cell2);
+
+            Assert.All(row.Cells, cell => Assert.True(ReferenceEquals(cell, cell1) || ReferenceEquals(cell, cell2)));
         }
     }
 }
