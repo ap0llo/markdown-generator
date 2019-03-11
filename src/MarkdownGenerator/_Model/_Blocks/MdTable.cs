@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -75,6 +76,9 @@ namespace Grynwald.MarkdownGenerator
         }
         
         public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdTable);
+
+
+        internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdTable other)

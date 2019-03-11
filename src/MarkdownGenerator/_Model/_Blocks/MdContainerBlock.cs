@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -44,5 +45,8 @@ namespace Grynwald.MarkdownGenerator
 
 
         public override bool DeepEquals(MdBlock other) => other is MdContainerBlock containerBlock ? DeepEquals(containerBlock) : false;
+
+
+        internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
     }
 }

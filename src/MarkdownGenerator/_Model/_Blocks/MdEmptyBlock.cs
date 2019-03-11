@@ -1,4 +1,5 @@
 ﻿using System;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -26,5 +27,8 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString(MdSerializationOptions options) => "";
 
         public override bool DeepEquals(MdBlock other) => ReferenceEquals(this, other);
+
+
+        internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
     }
 }

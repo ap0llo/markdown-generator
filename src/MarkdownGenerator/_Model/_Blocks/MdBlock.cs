@@ -28,5 +28,8 @@ namespace Grynwald.MarkdownGenerator
         }
 
         public abstract bool DeepEquals(MdBlock other);
+
+
+        internal abstract void Accept(IBlockVisitor visitor);
     }
 }

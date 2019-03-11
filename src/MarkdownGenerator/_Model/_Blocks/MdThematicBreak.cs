@@ -1,4 +1,6 @@
-﻿namespace Grynwald.MarkdownGenerator
+﻿using Grynwald.MarkdownGenerator.Internal;
+
+namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a thematic break.
@@ -7,5 +9,8 @@
     public sealed class MdThematicBreak : MdLeafBlock
     {
         public override bool DeepEquals(MdBlock other) => other is MdThematicBreak;
+
+
+        internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
     }
 }

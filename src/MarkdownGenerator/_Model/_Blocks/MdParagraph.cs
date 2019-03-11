@@ -1,4 +1,5 @@
 ﻿using System;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -75,6 +76,9 @@ namespace Grynwald.MarkdownGenerator
         }
 
         public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdParagraph);
+
+
+        internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdParagraph other)
