@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -49,6 +50,8 @@ namespace Grynwald.MarkdownGenerator
 
 
         internal override MdSpan DeepCopy() => new MdSingleLineSpan(Content.DeepCopy());
+
+        internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdSingleLineSpan other)

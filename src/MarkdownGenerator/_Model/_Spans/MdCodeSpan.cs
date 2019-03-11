@@ -1,4 +1,5 @@
 ﻿using System;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -6,7 +7,7 @@ namespace Grynwald.MarkdownGenerator
     /// Represents a inline code span
     /// For specification see https://spec.commonmark.org/0.28/#code-spans
     /// </summary>
-    public class MdCodeSpan : MdSpan
+    public sealed class MdCodeSpan : MdSpan
     {
         /// <summary>
         /// The code span's content. The value will not be escaped.
@@ -30,6 +31,8 @@ namespace Grynwald.MarkdownGenerator
         
 
         internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
+
+        internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdCodeSpan other)

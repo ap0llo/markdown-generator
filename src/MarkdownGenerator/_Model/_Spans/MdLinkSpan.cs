@@ -1,4 +1,5 @@
 ﻿using System;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -82,6 +83,8 @@ namespace Grynwald.MarkdownGenerator
 
 
         internal override MdSpan DeepCopy() => new MdLinkSpan(Text.DeepCopy(), Uri);
+
+        internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdLinkSpan other)

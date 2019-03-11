@@ -1,4 +1,6 @@
-﻿namespace Grynwald.MarkdownGenerator
+﻿using Grynwald.MarkdownGenerator.Internal;
+
+namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represent a inline text element in a markdown document.
@@ -19,6 +21,8 @@
 
 
         internal abstract MdSpan DeepCopy();
+
+        internal abstract void Accept(ISpanVisitor visitor);
 
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -7,7 +8,7 @@ namespace Grynwald.MarkdownGenerator
     /// Represents an (unformatted) text element which's content will be
     /// escaped before being written to the output
     /// </summary>
-    public class MdTextSpan : MdSpan
+    public sealed class MdTextSpan : MdSpan
     {
         /// <summary>
         /// Gets the element's content.
@@ -64,6 +65,8 @@ namespace Grynwald.MarkdownGenerator
 
 
         internal override MdSpan DeepCopy() => new MdTextSpan(Text);
+
+        internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdTextSpan other)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -71,6 +72,8 @@ namespace Grynwald.MarkdownGenerator
 
 
         internal override MdSpan DeepCopy() => new MdCompositeSpan(m_Spans.Select(x => x.DeepCopy()));
+
+        internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
         private bool DeepEquals(MdCompositeSpan other)
