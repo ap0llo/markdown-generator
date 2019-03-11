@@ -1,56 +1,52 @@
-﻿using System;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
     internal class SyntaxVisualizer
     {
-        private class SyntaxVisualizerVisitor : IBlockVisitor, ISpanVisitor
+        /// <summary>
+        /// Visitor to convert a set of blocks and spans to a <see cref="AsciiTreeNode"/>
+        /// </summary>
+        private class GraphBuildingVisitor : IBlockVisitor, ISpanVisitor
         {
-            private readonly StringBuilder m_Builder;
-            private int m_Indentation = 0;
+            private readonly Stack<AsciiTreeNode> m_Nodes = new Stack<AsciiTreeNode>();
 
+            private AsciiTreeNode CurrentNode => m_Nodes.Peek();
 
-            public SyntaxVisualizerVisitor(StringBuilder writer)
-            {
-                m_Builder = writer ?? throw new ArgumentNullException(nameof(writer));
-            }
+            public AsciiTreeNode RootNode { get; private set; }
 
 
             public void Visit(MdHeading heading)
             {
-                AppendTypeName(heading);
-                m_Indentation += 1;
+                PushNewNode(heading);
                 heading.Text.Accept(this);
-                m_Indentation -= 1;
+                PopNode();
             }
 
             public void Visit(MdParagraph paragraph)
             {
-                AppendTypeName(paragraph);
-                m_Indentation += 1;
+                PushNewNode(paragraph);
                 paragraph.Text.Accept(this);
-                m_Indentation -= 1;
+                PopNode();
             }
 
             public void Visit(MdContainerBlock containerBlock) => VisitContainer(containerBlock);
 
-            public void Visit(MdThematicBreak thematicBreak) => AppendTypeName(thematicBreak);
+            public void Visit(MdThematicBreak thematicBreak) => CreateLeafNode(thematicBreak);
 
             public void Visit(MdTable table)
             {
-                AppendTypeName(table);
+                PushNewNode(table);
 
-                m_Indentation += 1;
-
-                VisitTableRow(table.HeaderRow);                
+                VisitTableRow(table.HeaderRow);
 
                 foreach (var row in table.Rows)
                 {
                     VisitTableRow(row);
                 }
 
-                m_Indentation -= 1;
+                PopNode();
             }
 
             public void Visit(MdBulletList bulletList) => VisitList(bulletList);
@@ -59,116 +55,137 @@ namespace Grynwald.MarkdownGenerator.Internal
 
             public void Visit(MdListItem listItem) => VisitContainer(listItem);
 
-            public void Visit(MdEmptyBlock emptyBlock) => AppendTypeName(emptyBlock);
+            public void Visit(MdEmptyBlock emptyBlock) => CreateLeafNode(emptyBlock);
 
             public void Visit(MdBlockQuote blockQuote) => VisitContainer(blockQuote);
 
-            public void Visit(MdCodeBlock codeBlock) => AppendTypeName(codeBlock);
+            public void Visit(MdCodeBlock codeBlock) => CreateLeafNode(codeBlock);
 
+            public void Visit(MdEmptySpan span) => CreateLeafNode(span);
 
-            private void AppendTypeName(object item)
-            {
-                for (int i = 0; i < m_Indentation; i++)
-                {
-                    m_Builder.Append("  ");
-                }
-                m_Builder.AppendLine(item.GetType().Name);
-            }
-
-            public void VisitContainer(MdContainerBlockBase block)
-            {
-                AppendTypeName(block);
-
-                m_Indentation += 1;
-                foreach (var item in block)
-                {
-                    item.Accept(this);
-                }
-                m_Indentation -= 1;
-            }
-
-            private void VisitList(MdList list)
-            {
-                AppendTypeName(list);
-
-                m_Indentation += 1;
-                foreach (var listItem in list)
-                {
-                    listItem.Accept(this);
-                }
-                m_Indentation -= 1;
-            }
-
-            private void VisitTableRow(MdTableRow row)
-            {
-                AppendTypeName(row);
-                m_Indentation += 1;
-                foreach(var cell in row)
-                {
-                    cell.Accept(this);
-                }
-                m_Indentation -= 1;
-            }
-
-            public void Visit(MdEmptySpan span) => AppendTypeName(span);
-
-            public void Visit(MdTextSpan span) => AppendTypeName(span);
+            public void Visit(MdTextSpan span) => CreateLeafNode(span);
 
             public void Visit(MdEmphasisSpan span)
             {
-                AppendTypeName(span);
-
-                m_Indentation += 1;
+                PushNewNode(span);
                 span.Text.Accept(this);
-                m_Indentation -= 1;
+                PopNode();
             }
 
             public void Visit(MdStrongEmphasisSpan span)
             {
-                AppendTypeName(span);
-
-                m_Indentation += 1;
+                PushNewNode(span);
                 span.Text.Accept(this);
-                m_Indentation -= 1;
+                PopNode();
             }
 
-            public void Visit(MdCodeSpan span) => AppendTypeName(span);
+            public void Visit(MdCodeSpan span) => CreateLeafNode(span);
 
             public void Visit(MdCompositeSpan compositeSpan)
             {
-                AppendTypeName(compositeSpan);
-                m_Indentation += 1;
-                foreach(var span in compositeSpan)
+                PushNewNode(compositeSpan);
+                foreach (var span in compositeSpan)
                 {
                     span.Accept(this);
                 }
-                m_Indentation -= 1;
+                PopNode();
 
             }
 
-            public void Visit(MdLinkSpan span) => AppendTypeName(span);
+            public void Visit(MdLinkSpan span) => CreateLeafNode(span);
 
-            public void Visit(MdImageSpan span) => AppendTypeName(span);
+            public void Visit(MdImageSpan span) => CreateLeafNode(span);
 
             public void Visit(MdSingleLineSpan singleLineSpan)
             {
-                AppendTypeName(singleLineSpan);
-                m_Indentation += 1;
+                PushNewNode(singleLineSpan);
                 singleLineSpan.Content.Accept(this);
-                m_Indentation -= 1;
+                PopNode();
             }
 
-            public void Visit(MdRawMarkdownSpan span) => AppendTypeName(span);
+            public void Visit(MdRawMarkdownSpan span) => CreateLeafNode(span);
+
+
+            private void CreateLeafNode(object item)
+            {
+                // push new node and immediatelly pop it from the stack as leaf nodes do not have childen
+                PushNewNode(item);
+                PopNode();
+            }
+
+            private void PushNewNode(object item)
+            {
+                var name = item.GetType().Name;
+                var node = new AsciiTreeNode(name);
+
+                if (RootNode == null)
+                {
+                    RootNode = node;
+                    m_Nodes.Push(RootNode);
+                }
+                else
+                {
+                    CurrentNode.Children.Add(node);
+                    m_Nodes.Push(node);
+                }
+            }
+
+            private void PopNode() => m_Nodes.Pop();
+
+            public void VisitContainer(MdContainerBlockBase block)
+            {
+                PushNewNode(block);
+
+                foreach (var item in block)
+                {
+                    item.Accept(this);
+                }
+
+                PopNode();
+            }
+
+            private void VisitList(MdList list)
+            {
+                PushNewNode(list);
+
+                foreach (var listItem in list)
+                {
+                    listItem.Accept(this);
+                }
+
+                PopNode();
+            }
+
+            private void VisitTableRow(MdTableRow row)
+            {
+                PushNewNode(row);
+
+                foreach (var cell in row)
+                {
+                    cell.Accept(this);
+                }
+
+                PopNode();
+            }
+
         }
 
-
+        /// <summary>
+        /// Converts the specified block to a ascci-art syntax tree.
+        /// </summary>
+        /// <returns>Returns a ASCII tree visualizing the structure of the node and all its child nodes.</returns>
         public static string GetSyntaxTree(MdBlock block)
         {
-            var stringBuilder = new StringBuilder();
-            var visitor = new SyntaxVisualizerVisitor(stringBuilder);
+            // convert the block into a graph
+            var visitor = new GraphBuildingVisitor();
             block.Accept(visitor);
-            return stringBuilder.ToString();
-        }
 
+            // generate ascii tree
+            var treeWriter = new AsciiTreeWriter();
+            treeWriter.WriteNode(visitor.RootNode);
+
+            // return ascii tree
+            return treeWriter.ToString();
+        }
     }
 }
