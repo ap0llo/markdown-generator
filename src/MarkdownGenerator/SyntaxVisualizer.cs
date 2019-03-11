@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Grynwald.MarkdownGenerator.Internal;
 
-namespace Grynwald.MarkdownGenerator.Internal
+namespace Grynwald.MarkdownGenerator
 {
-    internal class SyntaxVisualizer
+    public static class SyntaxVisualizer
     {
         /// <summary>
         /// Visitor to convert a set of blocks and spans to a <see cref="AsciiTreeNode"/>

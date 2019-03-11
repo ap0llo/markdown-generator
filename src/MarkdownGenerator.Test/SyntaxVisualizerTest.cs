@@ -1,7 +1,7 @@
 ﻿using Grynwald.MarkdownGenerator.Internal;
 using Xunit;
 
-namespace Grynwald.MarkdownGenerator.Test.Internal
+namespace Grynwald.MarkdownGenerator.Test
 {
     public class SyntaxVisualizerTest
     {
