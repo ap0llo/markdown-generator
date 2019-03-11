@@ -2,24 +2,24 @@
 {
     internal interface ISpanVisitor
     {
-        void Visit(MdEmptySpan mdEmptySpan);
+        void Visit(MdEmptySpan emptySpan);
 
-        void Visit(MdTextSpan mdTextSpan);
+        void Visit(MdTextSpan textSpan);
 
-        void Visit(MdEmphasisSpan mdEmphasisSpan);
+        void Visit(MdEmphasisSpan emphasisSpan);
 
-        void Visit(MdStrongEmphasisSpan mdStrongEmphasisSpan);
+        void Visit(MdStrongEmphasisSpan strongEmphasisSpan);
 
-        void Visit(MdCodeSpan mdCodeSpan);
+        void Visit(MdCodeSpan codeSpan);
 
-        void Visit(MdCompositeSpan mdCompositeSpan);
+        void Visit(MdCompositeSpan compositeSpan);
         
-        void Visit(MdLinkSpan mdLinkSpan);
+        void Visit(MdLinkSpan linkSpan);
 
-        void Visit(MdImageSpan mdImageSpan);
+        void Visit(MdImageSpan imageSpan);
 
-        void Visit(MdSingleLineSpan mdSingleLineSpan);
+        void Visit(MdSingleLineSpan singleLineSpan);
 
-        void Visit(MdRawMarkdownSpan mdRawMarkdownSpan);        
+        void Visit(MdRawMarkdownSpan rawMarkdownSpan);        
     }
 }

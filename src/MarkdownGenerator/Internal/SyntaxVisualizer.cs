@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 {
     internal class SyntaxVisualizer
     {
-        private class SyntaxVisualizerVisitor : IBlockVisitor
+        private class SyntaxVisualizerVisitor : IBlockVisitor, ISpanVisitor
         {
             private readonly StringBuilder m_Builder;
             private int m_Indentation = 0;
@@ -17,9 +17,21 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
 
 
-            public void Visit(MdHeading heading) => AppendTypeName(heading);
+            public void Visit(MdHeading heading)
+            {
+                AppendTypeName(heading);
+                m_Indentation += 1;
+                heading.Text.Accept(this);
+                m_Indentation -= 1;
+            }
 
-            public void Visit(MdParagraph paragraph) => AppendTypeName(paragraph);
+            public void Visit(MdParagraph paragraph)
+            {
+                AppendTypeName(paragraph);
+                m_Indentation += 1;
+                paragraph.Text.Accept(this);
+                m_Indentation -= 1;
+            }
 
             public void Visit(MdContainerBlock containerBlock) => VisitContainer(containerBlock);
 
@@ -31,10 +43,11 @@ namespace Grynwald.MarkdownGenerator.Internal
 
                 m_Indentation += 1;
 
-                AppendTypeName(table.HeaderRow);
+                VisitTableRow(table.HeaderRow);                
+
                 foreach (var row in table.Rows)
                 {
-                    AppendTypeName(row);
+                    VisitTableRow(row);
                 }
 
                 m_Indentation -= 1;
@@ -85,6 +98,67 @@ namespace Grynwald.MarkdownGenerator.Internal
                 }
                 m_Indentation -= 1;
             }
+
+            private void VisitTableRow(MdTableRow row)
+            {
+                AppendTypeName(row);
+                m_Indentation += 1;
+                foreach(var cell in row)
+                {
+                    cell.Accept(this);
+                }
+                m_Indentation -= 1;
+            }
+
+            public void Visit(MdEmptySpan span) => AppendTypeName(span);
+
+            public void Visit(MdTextSpan span) => AppendTypeName(span);
+
+            public void Visit(MdEmphasisSpan span)
+            {
+                AppendTypeName(span);
+
+                m_Indentation += 1;
+                span.Text.Accept(this);
+                m_Indentation -= 1;
+            }
+
+            public void Visit(MdStrongEmphasisSpan span)
+            {
+                AppendTypeName(span);
+
+                m_Indentation += 1;
+                span.Text.Accept(this);
+                m_Indentation -= 1;
+            }
+
+            public void Visit(MdCodeSpan span) => AppendTypeName(span);
+
+            public void Visit(MdCompositeSpan compositeSpan)
+            {
+                AppendTypeName(compositeSpan);
+                m_Indentation += 1;
+                foreach(var span in compositeSpan)
+                {
+                    span.Accept(this);
+                }
+                m_Indentation -= 1;
+
+            }
+
+            public void Visit(MdLinkSpan span) => AppendTypeName(span);
+
+            public void Visit(MdImageSpan span) => AppendTypeName(span);
+
+            public void Visit(MdSingleLineSpan singleLineSpan)
+            {
+                AppendTypeName(singleLineSpan);
+                m_Indentation += 1;
+                singleLineSpan.Content.Accept(this);
+                m_Indentation -= 1;
+            }
+
+            public void Visit(MdRawMarkdownSpan span) => AppendTypeName(span);
         }
 
 
