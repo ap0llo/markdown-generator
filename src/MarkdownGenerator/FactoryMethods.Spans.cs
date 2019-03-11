@@ -91,6 +91,25 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
         /// </summary>
+        /// <param name="text">The text to emphasize.</param>
+        public static MdEmphasisSpan Emphasis(MdCompositeSpan text) => new MdEmphasisSpan(text);
+
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
+        /// </summary>
+        /// <param name="text">The text to emphasize.</param>
+        public static MdEmphasisSpan Emphasis(params MdSpan[] text) => new MdEmphasisSpan(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
+        /// </summary>
+        /// <param name="text">The text to emphasize.</param>
+        public static MdEmphasisSpan Emphasis(IEnumerable<MdSpan> text) => new MdEmphasisSpan(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
+        /// </summary>
         /// <param name="text">
         /// The text to emphasize. 
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
@@ -104,6 +123,27 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="text">The text to emphasize.</param>
         /// <remarks><c>Italic()</c> is an alias for <c>Emphasis()</c></remarks>
         public static MdEmphasisSpan Italic(MdSpan text) => Emphasis(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
+        /// </summary>
+        /// <param name="text">The text to emphasize.</param>
+        /// <remarks><c>Italic()</c> is an alias for <c>Emphasis()</c></remarks>
+        public static MdEmphasisSpan Italic(MdCompositeSpan text) => Emphasis(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
+        /// </summary>
+        /// <param name="text">The text to emphasize.</param>
+        /// <remarks><c>Italic()</c> is an alias for <c>Emphasis()</c></remarks>
+        public static MdEmphasisSpan Italic(params MdSpan[] text) => Emphasis(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdEmphasisSpan"/> with the specified content
+        /// </summary>
+        /// <param name="text">The text to emphasize.</param>
+        /// <remarks><c>Italic()</c> is an alias for <c>Emphasis()</c></remarks>
+        public static MdEmphasisSpan Italic(IEnumerable<MdSpan> text) => Emphasis(text);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/>.
@@ -122,6 +162,24 @@ namespace Grynwald.MarkdownGenerator
         public static MdStrongEmphasisSpan StrongEmphasis(MdSpan text) => new MdStrongEmphasisSpan(text);
 
         /// <summary>
+        /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        public static MdStrongEmphasisSpan StrongEmphasis(MdCompositeSpan text) => new MdStrongEmphasisSpan(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        public static MdStrongEmphasisSpan StrongEmphasis(params MdSpan[] text) => new MdStrongEmphasisSpan(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        public static MdStrongEmphasisSpan StrongEmphasis(IEnumerable<MdSpan> text) => new MdStrongEmphasisSpan(text);
+
+        /// <summary>
         /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/>.
         /// The specified text will be escaped.
         /// </summary>
@@ -138,6 +196,28 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="text">The text to emphasize</param>
         /// <remarks><c>Bold()</c> is an alias for <c>StrongEmphasis()</c></remarks>
         public static MdStrongEmphasisSpan Bold(MdSpan text) => StrongEmphasis(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        /// <remarks><c>Bold()</c> is an alias for <c>StrongEmphasis()</c></remarks>
+        public static MdStrongEmphasisSpan Bold(MdCompositeSpan text) => StrongEmphasis(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        /// <remarks><c>Bold()</c> is an alias for <c>StrongEmphasis()</c></remarks>
+        public static MdStrongEmphasisSpan Bold(params MdSpan[] text) => StrongEmphasis(text);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        /// <remarks><c>Bold()</c> is an alias for <c>StrongEmphasis()</c></remarks>
+        public static MdStrongEmphasisSpan Bold(IEnumerable<MdSpan> text) => StrongEmphasis(text);
+
 
         /// <summary>
         /// Creates a new instance of <see cref="MdCodeSpan"/>

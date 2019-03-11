@@ -53,6 +53,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.ListItem(FactoryMethods.OrderedList());
         }
 
+
         public void Initialization_of_MdContainerBlock_using_constructor()
         {
             _ = new MdContainerBlock();
@@ -87,6 +88,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.Container(FactoryMethods.OrderedList());
         }
 
+
         public void Initialization_of_MdBlockQuote_using_constructor()
         {
             _ = new MdBlockQuote();
@@ -119,6 +121,50 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.BlockQuote(FactoryMethods.BulletList());
             _ = FactoryMethods.BlockQuote(FactoryMethods.OrderedList());
+        }
+
+
+        public void Initialization_of_MdEmphasisSpan_using_constructor()
+        {
+            _ = new MdEmphasisSpan(new MdCompositeSpan());
+            _ = new MdEmphasisSpan(new MdTextSpan(""), new MdTextSpan(""));
+            _ = new MdEmphasisSpan("", "");
+            _ = new MdEmphasisSpan(new List<MdSpan>() { new MdTextSpan(""), new MdTextSpan("") });
+        }
+
+        public void Initialization_of_MdEmphasisSpan_using_FactoryMethods()
+        {
+            _ = FactoryMethods.Emphasis(FactoryMethods.CompositeSpan());
+            _ = FactoryMethods.Emphasis(FactoryMethods.Text(""), FactoryMethods.Text(""));
+            _ = FactoryMethods.Emphasis("", "");
+            _ = FactoryMethods.Emphasis(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
+
+            _ = FactoryMethods.Italic(FactoryMethods.CompositeSpan());
+            _ = FactoryMethods.Italic(FactoryMethods.Text(""), FactoryMethods.Text(""));
+            _ = FactoryMethods.Italic("", "");
+            _ = FactoryMethods.Italic(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
+        }
+
+
+        public void Initialization_of_MdStrongEmphasisSpan_using_constructor()
+        {
+            _ = new MdStrongEmphasisSpan(new MdCompositeSpan());
+            _ = new MdStrongEmphasisSpan(new MdTextSpan(""), new MdTextSpan(""));
+            _ = new MdStrongEmphasisSpan("", "");
+            _ = new MdStrongEmphasisSpan(new List<MdSpan>() { new MdTextSpan(""), new MdTextSpan("") });
+        }
+
+        public void Initialization_of_MdStrongEmphasisSpan_using_FactoryMethods()
+        {
+            _ = FactoryMethods.StrongEmphasis(FactoryMethods.CompositeSpan());
+            _ = FactoryMethods.StrongEmphasis(FactoryMethods.Text(""), FactoryMethods.Text(""));
+            _ = FactoryMethods.StrongEmphasis("", "");
+            _ = FactoryMethods.StrongEmphasis(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
+
+            _ = FactoryMethods.Bold(FactoryMethods.CompositeSpan());
+            _ = FactoryMethods.Bold(FactoryMethods.Text(""), FactoryMethods.Text(""));
+            _ = FactoryMethods.Bold("", "");
+            _ = FactoryMethods.Bold(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
         }
     }
 }

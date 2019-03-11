@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
@@ -33,6 +34,27 @@ namespace Grynwald.MarkdownGenerator
         public MdStrongEmphasisSpan(MdSpan text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        public MdStrongEmphasisSpan(params MdSpan[] text) : this(text.Join())
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        public MdStrongEmphasisSpan(IEnumerable<MdSpan> text) : this(text.Join())
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdStrongEmphasisSpan"/> with the specified content.
+        /// </summary>
+        /// <param name="text">The text to emphasize</param>
+        public MdStrongEmphasisSpan(MdCompositeSpan text) : this((MdSpan)text)
+        { }
 
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
