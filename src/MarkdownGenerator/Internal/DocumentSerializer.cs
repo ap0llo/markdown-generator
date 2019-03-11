@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
-    internal class DocumentSerializer
+    internal class DocumentSerializer : IBlockVisitor
     {
         private static readonly char[] s_LineBreakChars = "\r\n".ToCharArray();
 
@@ -25,81 +25,41 @@ namespace Grynwald.MarkdownGenerator.Internal
         }
 
 
-        public void Serialize(MdDocument document) => Serialize(document.Root);
+        public void Serialize(MdDocument document) => document.Root.Accept(this);
 
-        public void Serialize(MdBlock block)
-        {
-            switch(block)
-            {
-                case MdList list:
-                    Serialize(list);
-                    break;
 
-                case MdContainerBlock containerBlock:
-                    Serialize(containerBlock);
-                    break;
-
-                case MdHeading heading:
-                    Serialize(heading);
-                    break;
-
-                case MdParagraph paragraph:
-                    Serialize(paragraph);
-                    break;
-
-                case MdCodeBlock codeBlock:
-                    Serialize(codeBlock);
-                    break;
-
-                case MdTable table:
-                    Serialize(table);
-                    break;
-
-                case MdThematicBreak thematicBreak:
-                    Serialize(thematicBreak);
-                    break;
-
-                case MdBlockQuote blockQuote:
-                    Serialize(blockQuote);
-                    break;
-
-                case MdEmptyBlock emptyBlock:
-                    // block is empty by definition => no need to write anything to the output
-                    break;
-
-                default:
-                    throw new NotSupportedException($"Unsupported block type {block.GetType().FullName}");
-            }
-
-        }
-
-        public void Serialize(MdContainerBlock containerBlock)
+        public void Visit(MdContainerBlock containerBlock)
         {
             foreach(var block in containerBlock)
             {
-                Serialize(block);
+                block.Accept(this);
             }
         }
 
-        public void Serialize(MdBlockQuote blockQuote)
+        public void Visit(MdEmptyBlock emptyBlock)
+        {
+            // block is empty by definition => no need to write anything to the output
+        }
+
+        public void Visit(MdBlockQuote blockQuote)
         {         
             m_Writer.PushPrefixHandler(new BlockQuotePrefixHandler());
             foreach (var block in blockQuote)
             {
-                Serialize(block);
+                block.Accept(this);
             }
             m_Writer.PopPrefixHandler();            
         }
 
-        public void Serialize(MdListItem listItem)
+        public void Visit(MdListItem listItem)
         {
             foreach (var block in listItem)
             {
-                Serialize(block);
+                block.Accept(this);
             }
         }
 
-        public void Serialize(MdHeading block)
+        public void Visit(MdHeading block)
         {
             m_Writer.RequestBlankLine();
             
@@ -133,7 +93,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.RequestBlankLine();
         }
 
-        public void Serialize(MdParagraph paragraph)
+        public void Visit(MdParagraph paragraph)
         {
             m_Writer.RequestBlankLine();
             
@@ -177,13 +137,18 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.RequestBlankLine();
         }
 
-        public void Serialize(MdList list)
+        public void Visit(MdBulletList bulletList)
+        {
+            m_BulletListLevel += 1;
+            VisitList(bulletList);
+            m_BulletListLevel -= 1;
+        }
+        
+        public void Visit(MdOrderedList orderedList) => VisitList(orderedList);
+
+        private void VisitList(MdList list)
         {
             m_ListLevel += 1;
-            if(list is MdBulletList)
-            {
-                m_BulletListLevel += 1;
-            }
 
 
             if(m_ListLevel == 1)
@@ -233,7 +198,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 m_Writer.BlankLineRequested += OnBlankLineRequested;
 
                 // write list item
-                Serialize(listItem);
+                listItem.Accept(this);
 
                 // detach event handlers
                 m_Writer.LineWritten -= OnLineWritten;
@@ -253,13 +218,9 @@ namespace Grynwald.MarkdownGenerator.Internal
                 m_Writer.RequestBlankLine();
 
             m_ListLevel -= 1;
-            if (list is MdBulletList)
-            {
-                m_BulletListLevel -= 1;
-            }
         }
         
-        public void Serialize(MdCodeBlock codeBlock)
+        public void Visit(MdCodeBlock codeBlock)
         {
             string codeFence;
             switch (m_Options.CodeBlockStyle)
@@ -287,7 +248,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.WriteLine(codeFence);
         }
 
-        public void Serialize(MdTable table)
+        public void Visit(MdTable table)
         {
             switch (m_Options.TableStyle)
             {
@@ -407,7 +368,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         }
 
-        public void Serialize(MdThematicBreak thematicBreak)
+        public void Visit(MdThematicBreak thematicBreak)
         {
             var style = m_Options.ThematicBreakStyle;
 

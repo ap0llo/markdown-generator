@@ -2,26 +2,26 @@
 {
     internal interface IBlockVisitor
     {
-        void Visit(MdHeading mdHeading);
+        void Visit(MdHeading heading);
 
-        void Visit(MdParagraph mdParagraph);
+        void Visit(MdParagraph paragraph);
 
-        void Visit(MdContainerBlock mdContainerBlock);
+        void Visit(MdContainerBlock containerBlock);
 
-        void Visit(MdThematicBreak mdThematicBreak);
+        void Visit(MdThematicBreak thematicBreak);
 
-        void Visit(MdTable mdTable);
+        void Visit(MdTable table);
 
-        void Visit(MdBulletList mdBulletList);
+        void Visit(MdBulletList bulletList);
 
-        void Visit(MdOrderedList mdOrderedList);
+        void Visit(MdOrderedList orderedList);
 
-        void Visit(MdListItem mdListItem);
+        void Visit(MdListItem listItem);
 
-        void Visit(MdEmptyBlock mdEmptyBlock);
+        void Visit(MdEmptyBlock emptyBlock);
 
-        void Visit(MdBlockQuote mdBlockQuote);
+        void Visit(MdBlockQuote blockQuote);
 
-        void Visit(MdCodeBlock mdCodeBlock);
+        void Visit(MdCodeBlock codeBlock);
     }
 }
