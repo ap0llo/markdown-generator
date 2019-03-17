@@ -66,6 +66,6 @@ To create a new release branch use the [`nbgv` tool](https://www.nuget.org/packa
 (at least version `3.0.4-beta`):
 
 ```ps1
-dotnet tool install --global nbgv --version
+dotnet tool install --global nbgv --version 3.0.4-beta
 nbgv prepare-release
 ```
