@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Grynwald.MarkdownGenerator.Test._Model._Blocks
+namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdCodeBlockTest
     {
