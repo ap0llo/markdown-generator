@@ -21,7 +21,7 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Indexer_throws_ArgumentNullException_if_path_is_null()
         {
             var set = new MdDocumentSet();           
-            Assert.Throws<ArgumentNullException>(() => set[null]);
+            Assert.Throws<ArgumentNullException>(() => set[(string)null]);
         }
 
         [Fact]
@@ -32,6 +32,31 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Throws<DocumentNotFoundException>(() => set["doc1.md"]);
             Assert.Throws<DocumentNotFoundException>(() => set["path/doc1.md"]);
         }
+
+        [Fact]
+        public void Indexer_returns_a_documents_path()
+        {
+            var path = "some/path/doc.md";
+            var set = new MdDocumentSet();
+            var document = set.CreateDocument(path);
+
+            Assert.Equal(path, set[document]);
+        }
+
+        [Fact]
+        public void Indexer_throws_ArgumentNullException_if_document_is_null()
+        {
+            var set = new MdDocumentSet();
+            Assert.Throws<ArgumentNullException>(() => set[(MdDocument)null]);
+        }
+
+        [Fact]
+        public void Indexer_throws_DocumentNotFoundException_if_document_is_unknown()
+        {
+            var set = new MdDocumentSet();
+            Assert.Throws<DocumentNotFoundException>(() => set[new MdDocument()]);
+        }
+
 
         [Fact]
         public void Documents_is_initially_empty()
@@ -146,7 +171,7 @@ namespace Grynwald.MarkdownGenerator.Test
             var set = new MdDocumentSet();
             var document = set.CreateDocument(path);
 
-            var actualNormalizedPath = set.GetPath(document);
+            var actualNormalizedPath = set[document];
 
             Assert.Equal(expectedNormalizedPath, actualNormalizedPath);
         }
@@ -163,31 +188,7 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Throws<ArgumentException>(() => set.Add("doc2.md", document));
         }
 
-
-        [Fact]
-        public void GetPath_returns_a_documents_path()
-        {
-            var path = "some/path/doc.md";
-            var set = new MdDocumentSet();
-            var document = set.CreateDocument(path);
-
-            Assert.Equal(path, set.GetPath(document));
-        }
-
-        [Fact]
-        public void GetPath_throws_ArgumentNullException_if_document_is_null()
-        {
-            var set = new MdDocumentSet();
-            Assert.Throws<ArgumentNullException>(() => set.GetPath(null));
-        }
-
-        [Fact]
-        public void GetPath_throws_DocumentNotFoundException_if_document_is_unknown()
-        {
-            var set = new MdDocumentSet();
-            Assert.Throws<DocumentNotFoundException>(() => set.GetPath(new MdDocument()));
-        }
-
+        
         [Theory]
         [InlineData("doc1.md", "doc2.md", "doc2.md")]
         [InlineData("some/path/doc1.md", "some/path/doc2.md", "doc2.md")]

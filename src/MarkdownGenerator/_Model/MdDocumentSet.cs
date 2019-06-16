@@ -28,6 +28,21 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
+        public string this[MdDocument document]
+        {
+            get
+            {
+                if (document == null)
+                    throw new ArgumentNullException(nameof(document));
+
+                if (m_PathsByDocument.TryGetValue(document, out var path))
+                    return path;
+                else
+                    throw new DocumentNotFoundException("Cannot get path for document that is not in document set.");
+            }
+        }
+
+
         public IReadOnlyCollection<MdDocument> Documents { get; }
 
 
@@ -74,18 +89,7 @@ namespace Grynwald.MarkdownGenerator
             m_DocumentsByPath.Add(path, document);
             m_PathsByDocument.Add(document, path);
         }
-
-        public string GetPath(MdDocument document)
-        {
-            if (document == null)
-                throw new ArgumentNullException(nameof(document));
-
-            if (m_PathsByDocument.TryGetValue(document, out var path))
-                return path;
-            else
-                throw new DocumentNotFoundException("Cannot get path for document that is not in document set.");
-        }
-
+        
         public MdLinkSpan GetLink(MdDocument from, MdDocument to, MdSpan linkText)
         {
             if (from == null)
@@ -99,8 +103,8 @@ namespace Grynwald.MarkdownGenerator
 
             var rootPath = Environment.CurrentDirectory;
 
-            var fromUri = new Uri(Path.Combine(rootPath, GetPath(from)));
-            var toUri = new Uri(Path.Combine(rootPath, GetPath(to)));
+            var fromUri = new Uri(Path.Combine(rootPath, this[from]));
+            var toUri = new Uri(Path.Combine(rootPath, this[to]));
 
             var uri = fromUri.MakeRelativeUri(toUri);
 
