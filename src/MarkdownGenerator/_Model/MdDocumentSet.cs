@@ -14,7 +14,19 @@ namespace Grynwald.MarkdownGenerator
         private readonly Dictionary<MdDocument, string> m_PathsByDocument;
 
 
-        public MdDocument this[string path] => m_DocumentsByPath[path ?? throw new ArgumentNullException(nameof(path))];
+        public MdDocument this[string path]
+        {
+            get
+            {
+                if (path == null)
+                    throw new ArgumentNullException(nameof(path));
+
+                if (!m_DocumentsByPath.ContainsKey(path))
+                    throw new DocumentNotFoundException($"Document set does not contain a document with path '{path}'.");
+
+                return m_DocumentsByPath[path];
+            }
+        }
 
         public IReadOnlyCollection<MdDocument> Documents { get; }
 
@@ -24,6 +36,7 @@ namespace Grynwald.MarkdownGenerator
             m_DocumentsByPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
                 ? new Dictionary<string, MdDocument>(StringComparer.OrdinalIgnoreCase)
                 : new Dictionary<string, MdDocument>(StringComparer.Ordinal);
+            
             m_PathsByDocument = new Dictionary<MdDocument, string>();
             
             Documents = ReadOnlyCollectionAdapter.Create(m_DocumentsByPath.Values);
@@ -67,7 +80,10 @@ namespace Grynwald.MarkdownGenerator
             if (document == null)
                 throw new ArgumentNullException(nameof(document));
 
-            return m_PathsByDocument[document];
+            if (m_PathsByDocument.TryGetValue(document, out var path))
+                return path;
+            else
+                throw new DocumentNotFoundException("Cannot get path for document that is not in document set.");
         }
 
         public MdLinkSpan GetLink(MdDocument from, MdDocument to, MdSpan linkText)
@@ -90,6 +106,10 @@ namespace Grynwald.MarkdownGenerator
 
             return new MdLinkSpan(linkText, uri);
         }
+
+        public IEnumerator<MdDocument> GetEnumerator() => Documents.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => Documents.GetEnumerator();
 
         public void Save(string directoryPath) =>
             Save(directoryPath, cleanOutputDirectory: false, serializationOptions: null);
@@ -148,9 +168,5 @@ namespace Grynwald.MarkdownGenerator
             // return a (normalized) relative path
             return rootPathUri.MakeRelativeUri(fullPathUri).ToString();                       
         }
-
-        public IEnumerator<MdDocument> GetEnumerator() => Documents.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => Documents.GetEnumerator();
     }
 }

@@ -17,6 +17,21 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Same(document, set[path]);
         }
 
+        [Fact]
+        public void Indexer_throws_ArgumentNullException_if_path_is_null()
+        {
+            var set = new MdDocumentSet();           
+            Assert.Throws<ArgumentNullException>(() => set[null]);
+        }
+
+        [Fact]
+        public void Indexer_throws_DocumentNotFoundException_if_path_is_unknown()
+        {
+            var set = new MdDocumentSet();
+            _ = set.CreateDocument("doc2.md");
+            Assert.Throws<DocumentNotFoundException>(() => set["doc1.md"]);
+            Assert.Throws<DocumentNotFoundException>(() => set["path/doc1.md"]);
+        }
 
         [Fact]
         public void Documents_is_initially_empty()
@@ -159,6 +174,19 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(path, set.GetPath(document));
         }
 
+        [Fact]
+        public void GetPath_throws_ArgumentNullException_if_document_is_null()
+        {
+            var set = new MdDocumentSet();
+            Assert.Throws<ArgumentNullException>(() => set.GetPath(null));
+        }
+
+        [Fact]
+        public void GetPath_throws_DocumentNotFoundException_if_document_is_unknown()
+        {
+            var set = new MdDocumentSet();
+            Assert.Throws<DocumentNotFoundException>(() => set.GetPath(new MdDocument()));
+        }
 
         [Theory]
         [InlineData("doc1.md", "doc2.md", "doc2.md")]
@@ -176,6 +204,17 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.NotNull(link);
             Assert.Equal(new Uri(expectedLinkUri, UriKind.Relative), link.Uri);
+        }
+
+        [Fact]
+        public void GetLink_throws_DocumentNotFoundException_if_eiher_document_is_unknown()
+        {
+            var set = new MdDocumentSet();
+            var doc1 = set.CreateDocument("doc1.md");
+            var doc2 = set.CreateDocument("doc2.md");
+
+            Assert.Throws<DocumentNotFoundException>(() => set.GetLink(doc1, new MdDocument(), "Link text"));
+            Assert.Throws<DocumentNotFoundException>(() => set.GetLink(new MdDocument(), doc2, "Link text"));
         }
 
         [Fact]
