@@ -41,7 +41,7 @@ public class Program
         ));
 
         // all documents in a set can be saved to disk by calling Save()
-        var outputDirectory = ".\OutputDirectory";
+        var outputDirectory = "./OutputDirectory";
         set.Save(outputDirectory);
     }
 }
