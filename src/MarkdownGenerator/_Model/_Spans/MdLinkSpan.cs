@@ -4,7 +4,7 @@ using Grynwald.MarkdownGenerator.Internal;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represents a link elememt.
+    /// Represents a link element.
     /// For specification see https://spec.commonmark.org/0.28/#links
     /// </summary>
     public sealed class MdLinkSpan : MdSpan

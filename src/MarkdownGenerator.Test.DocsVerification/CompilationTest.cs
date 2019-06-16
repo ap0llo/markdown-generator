@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Xunit;
 using Xunit.Abstractions;
 using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
@@ -9,6 +9,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification
     /// Defines test methods that ensure all code samples in the
     /// documentation can be compiled
     /// </summary>
+    [Trait("Category", "SkipWhenLiveUnitTesting")]
     public class CompilationTest
     {
         private readonly ITestOutputHelper m_OutputHelper;
@@ -20,8 +21,8 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification
 
 
         [Theory(DisplayName ="Sample code is compile clean ")]
-        [CodeSampleFromDocs(@"docs\examples")]
-        [CodeSampleFromDocs(@"docs\api")]
+        [CodeSampleFromDocs(@"docs/examples")]
+        [CodeSampleFromDocs(@"docs/api")]
         public void Sample_code_is_compile_clean(CodeSample codeSample)
         {
             CodeSampleAssert.NoCompilationErrors(codeSample);
