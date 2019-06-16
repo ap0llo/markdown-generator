@@ -108,7 +108,7 @@ namespace Grynwald.MarkdownGenerator.Test
 
 
         [Fact]
-        public void Add_throws_ArgumentException_is_document_is_adde_twice()
+        public void Add_throws_ArgumentException_is_document_is_added_twice()
         {
             var set = new MdDocumentSet();
             var document = new MdDocument();
@@ -129,6 +129,24 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(path, set.GetPath(document));
         }
 
+
+        [Theory]
+        [InlineData("doc1.md", "doc2.md", "doc2.md")]
+        [InlineData("some/path/doc1.md", "some/path/doc2.md", "doc2.md")]
+        [InlineData("some/path/doc1.md", "somePath/doc2.md", "../../somePath/doc2.md")]
+        [InlineData("some/path/doc1.md", "some/path/../doc2.md", "../doc2.md")]
+        public void GetLink_returns_expected_link(string fromPath, string toPath, string expectedLinkUri)
+        {
+            var set = new MdDocumentSet();
+
+            var from = set.CreateDocument(fromPath);
+            var to = set.CreateDocument(toPath);
+
+            var link = set.GetLink(from, to, "Link Text");
+
+            Assert.NotNull(link);
+            Assert.Equal(new Uri(expectedLinkUri, UriKind.Relative), link.Uri);
+        }
 
         [Fact]
         public void Save_saves_all_documents()

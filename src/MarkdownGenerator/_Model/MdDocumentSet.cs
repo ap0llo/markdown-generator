@@ -60,6 +60,27 @@ namespace Grynwald.MarkdownGenerator
             return m_PathsByDocument[document];
         }
 
+        public MdLinkSpan GetLink(MdDocument from, MdDocument to, MdSpan linkText)
+        {
+            if (from == null)
+                throw new ArgumentNullException(nameof(from));
+
+            if (to == null)
+                throw new ArgumentNullException(nameof(to));
+
+            if (linkText == null)
+                throw new ArgumentNullException(nameof(linkText));
+
+            var rootPath = Environment.CurrentDirectory;
+
+            var fromUri = new Uri(Path.Combine(rootPath, GetPath(from)));
+            var toUri = new Uri(Path.Combine(rootPath, GetPath(to)));
+
+            var uri = fromUri.MakeRelativeUri(toUri);
+
+            return new MdLinkSpan(linkText, uri);
+        }
+
         public void Save(string directoryPath) =>
             Save(directoryPath, cleanOutputDirectory: false, serializationOptions: null);
 
