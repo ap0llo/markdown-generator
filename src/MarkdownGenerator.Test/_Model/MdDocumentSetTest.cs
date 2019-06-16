@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Grynwald.Utilities.IO;
 using Xunit;
 
@@ -20,7 +21,7 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void Indexer_throws_ArgumentNullException_if_path_is_null()
         {
-            var set = new MdDocumentSet();           
+            var set = new MdDocumentSet();
             Assert.Throws<ArgumentNullException>(() => set[(string)null]);
         }
 
@@ -76,7 +77,7 @@ namespace Grynwald.MarkdownGenerator.Test
             var document2 = set.CreateDocument("path2");
             var document3 = set.CreateDocument("path3");
 
-            Assert.Equal(3, set.Documents.Count);
+            Assert.Equal(3, set.Documents.Count());
             Assert.Contains(document1, set.Documents);
             Assert.Contains(document2, set.Documents);
             Assert.Contains(document3, set.Documents);
@@ -103,7 +104,7 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = set.CreateDocument("doc1.md");
             _ = set.CreateDocument("doc2.md");
-            
+
             Assert.True(set.ContainsPath("doc1.md"));
             Assert.True(set.ContainsPath("subDir/../doc1.md"));
             Assert.True(set.ContainsPath("subDir\\../doc1.md"));
@@ -142,7 +143,7 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData(@"C:\document.md")]
         public void CreateDocument_throw_ArgumentException_for_invalid_paths(string path)
         {
-            var set = new MdDocumentSet();            
+            var set = new MdDocumentSet();
             Assert.Throws<ArgumentException>(() => set.CreateDocument(path));
         }
 
@@ -188,7 +189,7 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Throws<ArgumentException>(() => set.Add("doc2.md", document));
         }
 
-        
+
         [Theory]
         [InlineData("doc1.md", "doc2.md", "doc2.md")]
         [InlineData("some/path/doc1.md", "some/path/doc2.md", "doc2.md")]
@@ -221,7 +222,7 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void Save_saves_all_documents()
         {
-            using(var directory = new TemporaryDirectory())
+            using (var directory = new TemporaryDirectory())
             {
                 // ARRANGE
                 var set = new MdDocumentSet();
@@ -267,7 +268,7 @@ namespace Grynwald.MarkdownGenerator.Test
                 var expectedOutPath1 = Path.Combine(directory, "doc1.md");
                 var expectedOutPath2 = Path.Combine(directory, "subDir/doc2.md");
 
-                
+
                 // ACT
                 set.Save(directory, cleanOutputDirectory: true);
 
