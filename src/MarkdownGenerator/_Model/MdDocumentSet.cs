@@ -6,8 +6,7 @@ using System.Runtime.InteropServices;
 using Grynwald.Utilities.Collections;
 
 namespace Grynwald.MarkdownGenerator
-{
-    //TODO: Add to FactoryMethods
+{    
     public sealed class MdDocumentSet : IEnumerable<MdDocument>
     {
         private readonly Dictionary<string, MdDocument> m_DocumentsByPath;
