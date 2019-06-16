@@ -42,6 +42,36 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Contains(document3, set.Documents);
         }
 
+        [Fact]
+        public void ContainsDocument_returns_expected_value()
+        {
+            var set = new MdDocumentSet();
+
+            var doc1 = new MdDocument();
+            var doc2 = new MdDocument();
+
+            set.Add("doc1.md", doc1);
+
+            Assert.True(set.ContainsDocument(doc1));
+            Assert.False(set.ContainsDocument(doc2));
+        }
+
+        [Fact]
+        public void ContainsPath_returns_expected_value()
+        {
+            var set = new MdDocumentSet();
+
+            _ = set.CreateDocument("doc1.md");
+            _ = set.CreateDocument("doc2.md");
+            
+            Assert.True(set.ContainsPath("doc1.md"));
+            Assert.True(set.ContainsPath("subDir/../doc1.md"));
+            Assert.True(set.ContainsPath("subDir\\../doc1.md"));
+            Assert.True(set.ContainsPath("doc2.md"));
+
+            Assert.False(set.ContainsPath("doc3.md"));
+        }
+
         [Theory]
         [InlineData("")]
         [InlineData(null)]

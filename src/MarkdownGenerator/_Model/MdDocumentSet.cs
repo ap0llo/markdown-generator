@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -6,7 +7,8 @@ using Grynwald.Utilities.Collections;
 
 namespace Grynwald.MarkdownGenerator
 {
-    public sealed class MdDocumentSet
+    //TODO: Add to FactoryMethods
+    public sealed class MdDocumentSet : IEnumerable<MdDocument>
     {
         private readonly Dictionary<string, MdDocument> m_DocumentsByPath;
         private readonly Dictionary<MdDocument, string> m_PathsByDocument;
@@ -27,6 +29,14 @@ namespace Grynwald.MarkdownGenerator
             Documents = ReadOnlyCollectionAdapter.Create(m_DocumentsByPath.Values);
         }
 
+
+        public bool ContainsDocument(MdDocument document) => m_PathsByDocument.ContainsKey(document);
+
+        public bool ContainsPath(string path)
+        {
+            path = NormalizeRelativePath(path);
+            return m_DocumentsByPath.ContainsKey(path);
+        }
         
         public MdDocument CreateDocument(string path)
         {
@@ -138,5 +148,9 @@ namespace Grynwald.MarkdownGenerator
             // return a (normalized) relative path
             return rootPathUri.MakeRelativeUri(fullPathUri).ToString();                       
         }
+
+        public IEnumerator<MdDocument> GetEnumerator() => Documents.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => Documents.GetEnumerator();
     }
 }
