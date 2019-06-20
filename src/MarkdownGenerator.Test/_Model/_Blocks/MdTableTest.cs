@@ -88,6 +88,7 @@ namespace Grynwald.MarkdownGenerator.Test
             // ACT / ASSERT
             Assert.Throws<ArgumentNullException>(() => instance.Insert(0, null));
             Assert.Throws<ArgumentOutOfRangeException>(() => instance.Insert(-1, new MdTableRow(MdEmptySpan.Instance)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => instance.Insert(2, new MdTableRow(MdEmptySpan.Instance)));
         }
     }
 }
