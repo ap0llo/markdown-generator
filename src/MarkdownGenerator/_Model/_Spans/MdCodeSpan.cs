@@ -23,10 +23,13 @@ namespace Grynwald.MarkdownGenerator
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
 
+        /// <inheritdoc />
         public override string ToString() => String.IsNullOrEmpty(Text) ? String.Empty : $"`{Text}`";
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options) => ToString();
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdCodeSpan);
         
 

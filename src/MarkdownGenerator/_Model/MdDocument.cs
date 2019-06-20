@@ -6,6 +6,7 @@ using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
+    // TODO: Consider removing Root property and deriving from MdContainerBlock instead
     /// <summary>
     /// Represents a markdown document
     /// </summary>
@@ -100,14 +101,13 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
-        private void Save(TextWriter writer) => Save(writer, null);
-
         private void Save(TextWriter writer, MdSerializationOptions serializationOptions)
         {
             var serializer = new DocumentSerializer(writer, serializationOptions);
             serializer.Serialize(this);
         }
 
+        /// <inheritdoc />
         public override string ToString() => ToString(null);
 
         public string ToString(MdSerializationOptions serializationOptions)

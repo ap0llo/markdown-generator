@@ -8,6 +8,7 @@ namespace Grynwald.MarkdownGenerator
     /// </summary>
     public sealed class MdThematicBreak : MdLeafBlock
     {
+        /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => other is MdThematicBreak;
 
 

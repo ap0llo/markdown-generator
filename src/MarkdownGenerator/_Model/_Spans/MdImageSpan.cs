@@ -62,8 +62,10 @@ namespace Grynwald.MarkdownGenerator
         }
 
 
+        /// <inheritdoc />
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options)
         {
             var description = Description.ToString(options);
@@ -79,6 +81,7 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdImageSpan);
 
 

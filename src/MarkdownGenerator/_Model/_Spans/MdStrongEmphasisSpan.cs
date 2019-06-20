@@ -56,8 +56,10 @@ namespace Grynwald.MarkdownGenerator
         public MdStrongEmphasisSpan(MdCompositeSpan text) : this((MdSpan)text)
         { }
 
+        /// <inheritdoc />
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options)
         {
             var text = Text.ToString(options);
@@ -84,6 +86,7 @@ namespace Grynwald.MarkdownGenerator
             return $"{emphasisChar}{emphasisChar}{text}{emphasisChar}{emphasisChar}";
         }
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdStrongEmphasisSpan);
 
 

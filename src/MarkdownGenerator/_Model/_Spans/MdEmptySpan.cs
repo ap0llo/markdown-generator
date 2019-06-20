@@ -21,10 +21,13 @@ namespace Grynwald.MarkdownGenerator
         { }
 
 
+        /// <inheritdoc />
         public override string ToString() => String.Empty;
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options) => String.Empty;
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => ReferenceEquals(this, other);
 
 

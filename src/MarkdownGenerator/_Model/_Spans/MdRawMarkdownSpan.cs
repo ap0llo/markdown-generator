@@ -22,10 +22,13 @@ namespace Grynwald.MarkdownGenerator
             Content = content ?? throw new ArgumentNullException(nameof(content));
 
 
+        /// <inheritdoc />
         public override string ToString() => Content;
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options) => ToString();
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdRawMarkdownSpan);
 
 

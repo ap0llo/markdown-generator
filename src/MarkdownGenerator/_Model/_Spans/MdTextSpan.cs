@@ -24,7 +24,8 @@ namespace Grynwald.MarkdownGenerator
         public MdTextSpan(string text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
-
+        // TODO: Consider making the characters to escape configurable
+        /// <inheritdoc />
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
@@ -59,8 +60,10 @@ namespace Grynwald.MarkdownGenerator
             return stringBuilder.ToString();
         }
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options) => ToString();
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdTextSpan);
 
 

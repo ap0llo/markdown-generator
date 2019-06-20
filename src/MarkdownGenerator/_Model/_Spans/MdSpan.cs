@@ -13,6 +13,7 @@ namespace Grynwald.MarkdownGenerator
 
 
         // force re-implementation of ToString()
+        /// <inheritdoc />
         public abstract override string ToString();
 
         public abstract string ToString(MdSerializationOptions options);

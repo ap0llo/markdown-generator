@@ -28,8 +28,10 @@ namespace Grynwald.MarkdownGenerator
             Content = content ?? throw new ArgumentNullException(nameof(content));
 
 
+        /// <inheritdoc />
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options)
         {
             var content = Content.ToString(options);
@@ -46,6 +48,7 @@ namespace Grynwald.MarkdownGenerator
             return content;
         }
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdSingleLineSpan);
 
 
@@ -64,6 +67,5 @@ namespace Grynwald.MarkdownGenerator
 
             return Content.DeepEquals(other.Content);
         }
-
     }
 }
