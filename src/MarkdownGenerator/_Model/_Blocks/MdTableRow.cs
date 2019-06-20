@@ -8,7 +8,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Represent a row in a table (see <see cref="MdTable"/>)
     /// </summary>
-    public sealed class MdTableRow : IEnumerable<MdSpan>
+    public sealed class MdTableRow : IReadOnlyList<MdSpan>
     {
         private readonly List<MdSpan> m_Cells;
 
@@ -29,6 +29,12 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="column">The index of the column which's value to get</param>
         public MdSpan this[int column] => m_Cells[column];
 
+        /// <summary>
+        /// Gets the number of columns in the row.
+        /// </summary>
+        /// <value>The number of columns in the row.</value>
+        /// <remarks>This property is equivalent to <see cref="ColumnCount"/>.</remarks>
+        public int Count => ColumnCount;
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
@@ -76,21 +82,47 @@ namespace Grynwald.MarkdownGenerator
         /// The cell to add to the row.
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/>
         /// </param>
-        public void Add(string cell) => Add(new MdTextSpan(cell));
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="cell"/> is <c>null</c>.</exception>
+        public void Add(string cell) => Add(new MdTextSpan(cell ?? throw new ArgumentNullException(nameof(cell))));
 
         /// <summary>
         /// Adds a column to the row
         /// </summary>
         /// <param name="cell">The cell to add to the row.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="cell"/> is <c>null</c>.</exception>
         public void Add(MdSpan cell)
         {
+            if (cell == null)
+                throw new ArgumentNullException(nameof(cell));
+
             m_Cells.Add(ToSingleLineSpan(cell));
         }
 
+        /// <summary>
+        /// Inserts a table cell at the specified index.
+        /// </summary>
+        /// <param name="index">The index (zero-based) index to insert the cell at.</param>
+        /// <param name="cell">The table cell to insert.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="cell"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is negative of greater than the number of columns in the row.</exception>
+        public void Insert(int index, MdSpan cell)
+        {
+            if (cell == null)
+                throw new ArgumentNullException(nameof(cell));
+
+            if (index < 0 || index > m_Cells.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            m_Cells.Insert(index, cell);
+        }
+
+        /// <inheritdoc />
         public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
 
+       
         public bool DeepEquals(MdTableRow other)
         {
             if (other == null)
