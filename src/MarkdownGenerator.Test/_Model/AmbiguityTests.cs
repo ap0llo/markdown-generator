@@ -166,5 +166,27 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.Bold("", "");
             _ = FactoryMethods.Bold(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
         }
+
+
+        public void Initialization_of_MdTableRow_using_constructor()
+        {
+            _ = new MdTableRow();
+
+            _ = new MdTableRow("Cell 1", "Cell2");
+            _ = new MdTableRow(new MdTextSpan("Cell 1"), new MdTextSpan("Cell2"));
+            _ = new MdTableRow(new[] { new MdTextSpan("Cell 1"), new MdTextSpan("Cell2") });
+            _ = new MdTableRow(new MdCompositeSpan("Cell 1", "Cell 1 continued"));
+        }
+
+        public void Initialization_of_MdTableRow_using_FactoryMethods()
+        {
+            _ = FactoryMethods.Row();
+
+            _ = FactoryMethods.Row("Cell 1", "Cell2");
+            _ = FactoryMethods.Row(FactoryMethods.Text("Cell 1"), FactoryMethods.Text("Cell2"));
+            _ = FactoryMethods.Row(new[] { FactoryMethods.Text("Cell 1"), FactoryMethods.Text("Cell2") });
+            _ = FactoryMethods.Row(FactoryMethods.CompositeSpan("Cell 1", "Cell 1 continued"));
+        }
+
     }
 }

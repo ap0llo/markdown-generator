@@ -48,6 +48,13 @@ namespace Grynwald.MarkdownGenerator
         { }
 
         /// <summary>
+        /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cell.
+        /// </summary>
+        /// <param name="cell">The row's cell</param>
+        public MdTableRow(MdCompositeSpan cell) : this((MdSpan)cell)
+        { }
+
+        /// <summary>
         /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
         /// </summary>
         /// <param name="cells">The row's cells/columns</param>

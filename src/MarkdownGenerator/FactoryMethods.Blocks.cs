@@ -259,6 +259,11 @@ namespace Grynwald.MarkdownGenerator
         public static MdTable Table(MdTableRow headerRow, IEnumerable<MdTableRow> rows) => new MdTable(headerRow, rows);
 
         /// <summary>
+        /// Creates a new instance of <see cref="MdTableRow"/>.
+        /// </summary>
+        public static MdTableRow Row() => new MdTableRow();
+
+        /// <summary>
         /// Creates a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
         /// </summary>
         /// <param name="cells">
@@ -283,6 +288,14 @@ namespace Grynwald.MarkdownGenerator
         /// so this overload is still necessary.
         /// </remarks>
         public static MdTableRow Row(params string[] cells) => new MdTableRow(cells);
+
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdTableRow"/> with the specified cell.
+        /// </summary>
+        /// <param name="cell">The row's cells</param>
+        public static MdTableRow Row(MdCompositeSpan cell) => new MdTableRow(cell);
+
 
         /// <summary>
         /// Creates a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
