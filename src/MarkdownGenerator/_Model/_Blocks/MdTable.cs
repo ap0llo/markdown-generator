@@ -74,7 +74,18 @@ namespace Grynwald.MarkdownGenerator
         {
             m_Rows.Add(row ?? throw new ArgumentNullException(nameof(row)));
         }
-        
+
+        public void Insert(int index, MdTableRow row)
+        {
+            if(row == null)
+                throw new ArgumentNullException(nameof(row));
+
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            m_Rows.Insert(index, row);
+        }
+
         public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdTable);
 
 
