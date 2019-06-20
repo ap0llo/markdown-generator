@@ -10,7 +10,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Represents a list or inline-elements
     /// </summary>
-    public sealed class MdCompositeSpan : MdSpan, IEnumerable<MdSpan>
+    public sealed class MdCompositeSpan : MdSpan, IReadOnlyCollection<MdSpan>
     {
         private readonly List<MdSpan> m_Spans;
 
@@ -19,6 +19,11 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public IReadOnlyList<MdSpan> Spans => m_Spans;
 
+        /// <summary>
+        /// Gets the number of spans in the composite span.
+        /// </summary>
+        /// <value>The number of spans in the composite span.</value>
+        public int Count => m_Spans.Count;
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
@@ -44,6 +49,7 @@ namespace Grynwald.MarkdownGenerator
         /// Adds a new element to the composite span.
         /// </summary>
         /// <param name="span">The span to add</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="span"/> is <c>null</c>.</exception>
         public void Add(MdSpan span)
         {
             if (span == null)
@@ -52,12 +58,35 @@ namespace Grynwald.MarkdownGenerator
             m_Spans.Add(span);
         }
 
+        /// <summary>
+        /// Inserts a span at the specified index.
+        /// </summary>
+        /// <param name="index">The index (zero-based) index to insert the cell at.</param>
+        /// <param name="span">The span to insert.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="span"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is negative of greater than the number of columns in the row.</exception>
+        public void Insert(int index, MdSpan span)
+        {
+            if (span == null)
+                throw new ArgumentNullException(nameof(span));
+
+            if (index < 0 || index > m_Spans.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            m_Spans.Insert(index, span);
+        }
+
+
+        /// <inheritdoc />
         public IEnumerator<MdSpan> GetEnumerator() => m_Spans.GetEnumerator();
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => m_Spans.GetEnumerator();
 
+        /// <inheritdoc />
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
+        /// <inheritdoc />
         public override string ToString(MdSerializationOptions options)
         {
             var stringBuilder = new StringBuilder();
@@ -68,6 +97,7 @@ namespace Grynwald.MarkdownGenerator
             return stringBuilder.ToString();
         }
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdCompositeSpan);
 
 
