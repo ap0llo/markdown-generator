@@ -7,7 +7,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Base class for blocks that can contains other blocks.
     /// </summary>
-    public abstract class MdContainerBlockBase : MdBlock, IEnumerable<MdBlock>
+    public abstract class MdContainerBlockBase : MdBlock, IReadOnlyCollection<MdBlock>
     {
         private readonly List<MdBlock> m_Blocks;
 
@@ -17,6 +17,11 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public IEnumerable<MdBlock> Blocks => m_Blocks;
 
+        /// <summary>
+        /// Gets the number of blocks in the container.
+        /// </summary>
+        /// <value>The number of blocks in the container.</value>
+        public int Count => m_Blocks.Count;
 
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdContainerBlockBase() : this(Array.Empty<MdBlock>())
@@ -47,8 +52,12 @@ namespace Grynwald.MarkdownGenerator
         /// Adds the specified block to the container block
         /// </summary>
         /// <param name="block">The block to add to the container</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="block"/> is <c>null</c>.</exception>
         public void Add(MdBlock block)
         {
+            if (block == null)
+                throw new ArgumentNullException(nameof(block));
+
             m_Blocks.Add(block);
         }
 
@@ -62,6 +71,24 @@ namespace Grynwald.MarkdownGenerator
             {
                 m_Blocks.Add(blocks[i]);
             }
+        }
+
+        /// <summary>
+        /// Inserts an block into the container at the specified index.
+        /// </summary>
+        /// <param name="index">The index (zero-based) to insert the block at.</param>
+        /// <param name="block">The block to insert into the container.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="block"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is negative or greater than the number of blocks in the container.</exception>
+        public void Insert(int index, MdBlock block)
+        {
+            if (block == null)
+                throw new ArgumentNullException(nameof(block));
+
+            if (index < 0 || index > m_Blocks.Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            m_Blocks.Insert(index, block);
         }
 
         public IEnumerator<MdBlock> GetEnumerator() => m_Blocks.GetEnumerator();
