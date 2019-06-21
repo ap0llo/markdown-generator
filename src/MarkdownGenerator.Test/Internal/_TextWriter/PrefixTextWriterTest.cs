@@ -6,14 +6,14 @@ using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {
-    public class SimpleTextWriterTest : IDisposable
+    public class PrefixTextWriterTest : IDisposable
     {
         private readonly TextWriter m_TextWriter;
         private readonly PrefixTextWriter m_Instance;
         private readonly StringBuilder m_StringBuilder;
 
 
-        public SimpleTextWriterTest()
+        public PrefixTextWriterTest()
         {
             m_StringBuilder = new StringBuilder();
             m_TextWriter = new StringWriter(m_StringBuilder);
