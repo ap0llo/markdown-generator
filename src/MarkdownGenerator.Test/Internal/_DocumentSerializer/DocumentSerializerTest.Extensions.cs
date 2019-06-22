@@ -9,6 +9,20 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
     {
         [Fact]
         public void Admonitions_are_serialized_as_expected_01()
+        {
+            AssertToStringEquals(
+                "!!! note\r\n" +
+                "    Note content\r\n",
+
+                Document(
+                    Admonition(
+                        "Note",
+                        Paragraph("Note content")))
+            );
+        }
+
+        [Fact]
+        public void Admonitions_are_serialized_as_expected_02()
         {            
             AssertToStringEquals(
                 "# Heading\r\n" +
@@ -25,7 +39,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         }
 
         [Fact]
-        public void Admonitions_are_serialized_as_expected_02()
+        public void Admonitions_are_serialized_as_expected_03()
         {
             AssertToStringEquals(
                 "# Heading\r\n" +

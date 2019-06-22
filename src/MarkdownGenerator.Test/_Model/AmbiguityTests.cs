@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator.Test
 {
@@ -19,6 +20,44 @@ namespace Grynwald.MarkdownGenerator.Test
     /// </remarks>
     public class AmbiguityTests
     {
+        public void Initialization_of_MdDocument_using_constructor()
+        {
+            _ = new MdDocument();
+
+            _ = new MdDocument(new MdContainerBlock());
+            _ = new MdDocument(new MdContainerBlock(), new MdContainerBlock());
+
+            _ = new MdDocument(new MdListItem(), new MdListItem());
+
+            _ = new MdDocument(new MdBlockQuote());
+            _ = new MdDocument(new MdBlockQuote(), new MdBlockQuote());
+
+            _ = new MdDocument(new MdBulletList());
+            _ = new MdDocument(new MdOrderedList());
+
+            _ = new MdDocument(new MdAdmonition("note"));
+            _ = new MdDocument(new MdAdmonition("note"), new MdAdmonition("note"));
+        }
+
+        public void Initialization_of_MdDocument_using_FactoryMethods()
+        {
+            _ = FactoryMethods.Document();
+
+            _ = FactoryMethods.Document(FactoryMethods.Container());
+            _ = FactoryMethods.Document(FactoryMethods.Container(), FactoryMethods.Container());
+            
+            _ = FactoryMethods.Document(FactoryMethods.ListItem(), FactoryMethods.ListItem());
+
+            _ = FactoryMethods.Document(FactoryMethods.BlockQuote());
+            _ = FactoryMethods.Document(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
+
+            _ = FactoryMethods.Document(FactoryMethods.BulletList());
+            _ = FactoryMethods.Document(FactoryMethods.OrderedList());
+
+            _ = FactoryMethods.Document(Extensions.FactoryMethods.Admonition("note"));
+        }
+
+
         public void Initialization_of_MdListItem_using_constructor()
         {
             _ = new MdListItem();
@@ -34,6 +73,8 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdListItem(new MdBulletList());
             _ = new MdListItem(new MdOrderedList());
+
+            _ = new MdListItem(new MdAdmonition("note"));
         }
 
         public void Initialization_of_MdListItem_using_FactoryMethods()
@@ -51,6 +92,8 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.ListItem(FactoryMethods.BulletList());
             _ = FactoryMethods.ListItem(FactoryMethods.OrderedList());
+
+            _ = FactoryMethods.ListItem(Extensions.FactoryMethods.Admonition("note"));
         }
 
 
@@ -69,6 +112,9 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdContainerBlock(new MdBulletList());
             _ = new MdContainerBlock(new MdOrderedList());
+
+            _ = new MdContainerBlock(new MdAdmonition("note"));
+            _ = new MdContainerBlock(new MdAdmonition("note"), new MdAdmonition("note"));
         }
 
         public void Initialization_of_MdContainerBlock_using_FactoryMethods()
@@ -86,6 +132,8 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.Container(FactoryMethods.BulletList());
             _ = FactoryMethods.Container(FactoryMethods.OrderedList());
+
+            _ = FactoryMethods.Container(Extensions.FactoryMethods.Admonition("note"));
         }
 
 
@@ -104,6 +152,8 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdBlockQuote(new MdBulletList());
             _ = new MdBlockQuote(new MdOrderedList());
+
+            _ = new MdBlockQuote(new MdAdmonition("note"));
         }
 
         public void Initialization_of_MdBlockQuote_using_FactoryMethods()
@@ -121,6 +171,8 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.BlockQuote(FactoryMethods.BulletList());
             _ = FactoryMethods.BlockQuote(FactoryMethods.OrderedList());
+
+            _ = FactoryMethods.BlockQuote(Extensions.FactoryMethods.Admonition("note"));
         }
 
 
