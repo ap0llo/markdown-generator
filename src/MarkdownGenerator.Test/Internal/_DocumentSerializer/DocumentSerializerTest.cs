@@ -8,7 +8,7 @@ using static Grynwald.MarkdownGenerator.FactoryMethods;
 
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {
-    public class DocumentSerializerTest
+    public partial class DocumentSerializerTest
     {
         [Fact]
         public void Headings_are_serialized_as_expected() =>
