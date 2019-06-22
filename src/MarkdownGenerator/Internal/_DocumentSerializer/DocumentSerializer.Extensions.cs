@@ -8,6 +8,8 @@ namespace Grynwald.MarkdownGenerator.Internal
     {
         public void Visit(MdAdmonition admonition)
         {
+            m_Writer.RequestBlankLine();
+
             var title = admonition.Title.ToString();
 
             if (String.IsNullOrEmpty(title))
@@ -29,7 +31,8 @@ namespace Grynwald.MarkdownGenerator.Internal
                 block.Accept(this);
             }
 
-            m_Writer.PopPrefixHandler();            
+            m_Writer.PopPrefixHandler();
+            m_Writer.RequestBlankLine();
         }
     }
 }
