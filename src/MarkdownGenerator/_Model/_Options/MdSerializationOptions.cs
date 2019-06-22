@@ -8,8 +8,9 @@
     /// </summary>
     public class MdSerializationOptions
     {
-        public static readonly MdSerializationOptions Default = new MdSerializationOptions();
+        //TODO: Make class immutable, prevent Default settings to be changed
 
+        public static readonly MdSerializationOptions Default = new MdSerializationOptions();
 
         /// <summary>
         /// Gets or sets the style for emphasized and strongly emphasized text

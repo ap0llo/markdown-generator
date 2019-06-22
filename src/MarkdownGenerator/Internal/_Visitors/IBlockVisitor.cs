@@ -1,6 +1,6 @@
 ﻿namespace Grynwald.MarkdownGenerator.Internal
 {
-    internal interface IBlockVisitor
+    internal partial interface IBlockVisitor
     {
         void Visit(MdHeading heading);
 

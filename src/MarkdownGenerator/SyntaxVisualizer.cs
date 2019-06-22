@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Grynwald.MarkdownGenerator.Extensions;
 using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
@@ -106,10 +107,12 @@ namespace Grynwald.MarkdownGenerator
 
             public void Visit(MdRawMarkdownSpan span) => CreateLeafNode(span);
 
+            public void Visit(MdAdmonition admonition) => VisitContainer(admonition);
+
 
             private void CreateLeafNode(object item)
             {
-                // push new node and immediatelly pop it from the stack as leaf nodes do not have childen
+                // push new node and immediately pop it from the stack as leaf nodes do not have children
                 PushNewNode(item);
                 PopNode();
             }

@@ -39,3 +39,13 @@ There are two types of lists:
 
 - `MdBulletList`: Represents a bullet list
 - `MdOrderedList`: Represents a ordered list
+
+## Extension blocks
+
+The namespace `Grynwald.MarkdownGenerator.Extensions` provides additional
+block types that implement elements supported by most Markdown renderers.
+**Use with caution**.
+
+- `MdAdmonition`: Adds support for emitting *admonitions* for use with
+  the ["Admonitions" extension for Python Markdown](https://python-markdown.github.io/extensions/admonition/).
+  

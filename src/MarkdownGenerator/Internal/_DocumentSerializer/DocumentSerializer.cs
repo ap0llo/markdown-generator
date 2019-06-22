@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
-    internal class DocumentSerializer : IBlockVisitor
+    internal partial class DocumentSerializer : IBlockVisitor
     {
         private static readonly char[] s_LineBreakChars = "\r\n".ToCharArray();
 

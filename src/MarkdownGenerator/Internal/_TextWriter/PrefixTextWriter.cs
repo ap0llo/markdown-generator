@@ -11,6 +11,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         private readonly TextWriter m_InnerWriter;
         private bool m_AnyLinesWritten = false;
         private bool m_BlankLineRequested = false;
+        private bool m_SupressNextBlankLine = false;
         private readonly LinkedList<IPrefixHandler> m_PrefixHandlers = new LinkedList<IPrefixHandler>();
 
 
@@ -49,9 +50,16 @@ namespace Grynwald.MarkdownGenerator.Internal
             LineWritten?.Invoke(this, EventArgs.Empty);
             m_AnyLinesWritten = true;
         }
-        
+
+        public void SuppressNextBlankLine() => m_SupressNextBlankLine = true;
+
         public void RequestBlankLine()
         {
+            if(m_SupressNextBlankLine)
+            {
+                m_SupressNextBlankLine = false;
+                return;
+            }
             m_BlankLineRequested = true;
             BlankLineRequested?.Invoke(this, EventArgs.Empty);
         }

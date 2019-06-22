@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Grynwald.MarkdownGenerator.Extensions;
 using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
@@ -53,6 +54,7 @@ namespace Grynwald.MarkdownGenerator
         public MdDocument(MdList list) : this((MdBlock)list)
         { }
 
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
         /// </summary>
@@ -62,6 +64,14 @@ namespace Grynwald.MarkdownGenerator
         public MdDocument(MdBlockQuote list) : this((MdBlock)list)
         { }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
+        /// </summary>
+        /// <remarks>
+        /// MdAdmonition implements <see cref="IEnumerable{MdBlock}"/> so this constructor is necessary to prevent ambiguities.
+        /// </remarks>
+        public MdDocument(MdAdmonition admonition) : this((MdBlock)admonition)
+        { }
 
         /// <summary>
         /// Saves the document to the specified file.

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -52,9 +53,18 @@ namespace Grynwald.MarkdownGenerator
         /// Creates a new instance of <see cref="MdDocument"/> with the specified content.
         /// </summary>
         /// <remarks>
-        /// MdBlockQuote implements <see cref="IEnumerable{MdListItem}"/> so this constructor is necessary to prevent ambiguities.
+        /// MdBlockQuote implements <see cref="IEnumerable{MdBlock}"/> so this constructor is necessary to prevent ambiguities.
         /// </remarks>
         public static MdDocument Document(MdBlockQuote blockQuote) => new MdDocument(blockQuote);
+
+        /// <summary>
+        /// Creates a new instance of <see cref="MdDocument"/> with the specified content.
+        /// </summary>
+        /// <remarks>
+        /// MdAdmonition implements <see cref="IEnumerable{MdBlock}"/> so this constructor is necessary to prevent ambiguities.
+        /// </remarks>
+        public static MdDocument Document(MdAdmonition admonition) => new MdDocument(admonition);
+
 
         /// <summary>
         /// Creates a new instance if <see cref="MdDocumentSet"/>.
