@@ -4,14 +4,10 @@ namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdParagraphTest
     {
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdParagraph_can_be_initialized_with_string_content_01(bool useFactoryMethods)
+        [Fact]
+        public void MdParagraph_can_be_initialized_with_string_content_01()
         {
-            var paragraph = useFactoryMethods
-                ? FactoryMethods.Paragraph("Content")
-                : new MdParagraph("Content");
+            var paragraph = new MdParagraph("Content");
 
             Assert.IsType<MdTextSpan>(paragraph.Text);
 
@@ -19,14 +15,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content", textSpan.Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdParagraph_can_be_initialized_with_string_content_02(bool useFactoryMethods)
+        [Fact]
+        public void MdParagraph_can_be_initialized_with_string_content_02()
         {
-            var paragraph = useFactoryMethods
-                ? FactoryMethods.Paragraph("Content1", "Content2")
-                : new MdParagraph("Content1", "Content2");
+            var paragraph = new MdParagraph("Content1", "Content2");
 
             Assert.IsType<MdCompositeSpan>(paragraph.Text);
 

@@ -39,25 +39,6 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdDocument(new MdAdmonition("note"), new MdAdmonition("note"));
         }
 
-        public void Initialization_of_MdDocument_using_FactoryMethods()
-        {
-            _ = FactoryMethods.Document();
-
-            _ = FactoryMethods.Document(FactoryMethods.Container());
-            _ = FactoryMethods.Document(FactoryMethods.Container(), FactoryMethods.Container());
-            
-            _ = FactoryMethods.Document(FactoryMethods.ListItem(), FactoryMethods.ListItem());
-
-            _ = FactoryMethods.Document(FactoryMethods.BlockQuote());
-            _ = FactoryMethods.Document(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
-
-            _ = FactoryMethods.Document(FactoryMethods.BulletList());
-            _ = FactoryMethods.Document(FactoryMethods.OrderedList());
-
-            _ = FactoryMethods.Document(Extensions.FactoryMethods.Admonition("note"));
-        }
-
-
         public void Initialization_of_MdListItem_using_constructor()
         {
             _ = new MdListItem();
@@ -76,26 +57,6 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = new MdListItem(new MdAdmonition("note"));
         }
-
-        public void Initialization_of_MdListItem_using_FactoryMethods()
-        {
-            _ = FactoryMethods.ListItem();
-
-            _ = FactoryMethods.ListItem(FactoryMethods.Container());
-            _ = FactoryMethods.ListItem(FactoryMethods.Container(), FactoryMethods.Container());
-
-            _ = FactoryMethods.ListItem(FactoryMethods.ListItem());
-            _ = FactoryMethods.ListItem(FactoryMethods.ListItem(), FactoryMethods.ListItem());
-
-            _ = FactoryMethods.ListItem(FactoryMethods.BlockQuote());
-            _ = FactoryMethods.ListItem(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
-
-            _ = FactoryMethods.ListItem(FactoryMethods.BulletList());
-            _ = FactoryMethods.ListItem(FactoryMethods.OrderedList());
-
-            _ = FactoryMethods.ListItem(Extensions.FactoryMethods.Admonition("note"));
-        }
-
 
         public void Initialization_of_MdContainerBlock_using_constructor()
         {
@@ -117,26 +78,6 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdContainerBlock(new MdAdmonition("note"), new MdAdmonition("note"));
         }
 
-        public void Initialization_of_MdContainerBlock_using_FactoryMethods()
-        {
-            _ = FactoryMethods.Container();
-
-            _ = FactoryMethods.Container(FactoryMethods.Container());
-            _ = FactoryMethods.Container(FactoryMethods.Container(), FactoryMethods.Container());
-
-            _ = FactoryMethods.Container(FactoryMethods.ListItem());
-            _ = FactoryMethods.Container(FactoryMethods.ListItem(), FactoryMethods.ListItem());
-
-            _ = FactoryMethods.Container(FactoryMethods.BlockQuote());
-            _ = FactoryMethods.Container(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
-
-            _ = FactoryMethods.Container(FactoryMethods.BulletList());
-            _ = FactoryMethods.Container(FactoryMethods.OrderedList());
-
-            _ = FactoryMethods.Container(Extensions.FactoryMethods.Admonition("note"));
-        }
-
-
         public void Initialization_of_MdBlockQuote_using_constructor()
         {
             _ = new MdBlockQuote();
@@ -156,26 +97,6 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdBlockQuote(new MdAdmonition("note"));
         }
 
-        public void Initialization_of_MdBlockQuote_using_FactoryMethods()
-        {
-            _ = FactoryMethods.BlockQuote();
-
-            _ = FactoryMethods.BlockQuote(FactoryMethods.Container());
-            _ = FactoryMethods.BlockQuote(FactoryMethods.Container(), FactoryMethods.Container());
-
-            _ = FactoryMethods.BlockQuote(FactoryMethods.ListItem());
-            _ = FactoryMethods.BlockQuote(FactoryMethods.ListItem(), FactoryMethods.ListItem());
-
-            _ = FactoryMethods.BlockQuote(FactoryMethods.BlockQuote());
-            _ = FactoryMethods.BlockQuote(FactoryMethods.BlockQuote(), FactoryMethods.BlockQuote());
-
-            _ = FactoryMethods.BlockQuote(FactoryMethods.BulletList());
-            _ = FactoryMethods.BlockQuote(FactoryMethods.OrderedList());
-
-            _ = FactoryMethods.BlockQuote(Extensions.FactoryMethods.Admonition("note"));
-        }
-
-
         public void Initialization_of_MdEmphasisSpan_using_constructor()
         {
             _ = new MdEmphasisSpan(new MdCompositeSpan());
@@ -184,20 +105,6 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdEmphasisSpan(new List<MdSpan>() { new MdTextSpan(""), new MdTextSpan("") });
         }
 
-        public void Initialization_of_MdEmphasisSpan_using_FactoryMethods()
-        {
-            _ = FactoryMethods.Emphasis(FactoryMethods.CompositeSpan());
-            _ = FactoryMethods.Emphasis(FactoryMethods.Text(""), FactoryMethods.Text(""));
-            _ = FactoryMethods.Emphasis("", "");
-            _ = FactoryMethods.Emphasis(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
-
-            _ = FactoryMethods.Italic(FactoryMethods.CompositeSpan());
-            _ = FactoryMethods.Italic(FactoryMethods.Text(""), FactoryMethods.Text(""));
-            _ = FactoryMethods.Italic("", "");
-            _ = FactoryMethods.Italic(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
-        }
-
-
         public void Initialization_of_MdStrongEmphasisSpan_using_constructor()
         {
             _ = new MdStrongEmphasisSpan(new MdCompositeSpan());
@@ -205,20 +112,6 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdStrongEmphasisSpan("", "");
             _ = new MdStrongEmphasisSpan(new List<MdSpan>() { new MdTextSpan(""), new MdTextSpan("") });
         }
-
-        public void Initialization_of_MdStrongEmphasisSpan_using_FactoryMethods()
-        {
-            _ = FactoryMethods.StrongEmphasis(FactoryMethods.CompositeSpan());
-            _ = FactoryMethods.StrongEmphasis(FactoryMethods.Text(""), FactoryMethods.Text(""));
-            _ = FactoryMethods.StrongEmphasis("", "");
-            _ = FactoryMethods.StrongEmphasis(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
-
-            _ = FactoryMethods.Bold(FactoryMethods.CompositeSpan());
-            _ = FactoryMethods.Bold(FactoryMethods.Text(""), FactoryMethods.Text(""));
-            _ = FactoryMethods.Bold("", "");
-            _ = FactoryMethods.Bold(new List<MdSpan>() { FactoryMethods.Text(""), FactoryMethods.Text("") });
-        }
-
 
         public void Initialization_of_MdTableRow_using_constructor()
         {
@@ -229,16 +122,5 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdTableRow(new[] { new MdTextSpan("Cell 1"), new MdTextSpan("Cell2") });
             _ = new MdTableRow(new MdCompositeSpan("Cell 1", "Cell 1 continued"));
         }
-
-        public void Initialization_of_MdTableRow_using_FactoryMethods()
-        {
-            _ = FactoryMethods.Row();
-
-            _ = FactoryMethods.Row("Cell 1", "Cell2");
-            _ = FactoryMethods.Row(FactoryMethods.Text("Cell 1"), FactoryMethods.Text("Cell2"));
-            _ = FactoryMethods.Row(new[] { FactoryMethods.Text("Cell 1"), FactoryMethods.Text("Cell2") });
-            _ = FactoryMethods.Row(FactoryMethods.CompositeSpan("Cell 1", "Cell 1 continued"));
-        }
-
     }
 }

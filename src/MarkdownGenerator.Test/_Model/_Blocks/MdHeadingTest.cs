@@ -4,14 +4,10 @@ namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdHeadingTest
     {
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdHeading_can_be_initialized_with_string_content_01(bool useFactoryMethods)
+        [Fact]
+        public void MdHeading_can_be_initialized_with_string_content_01()
         {
-            var heading = useFactoryMethods
-                ? FactoryMethods.Heading("Content", 1)
-                : new MdHeading("Content", 1);
+            var heading = new MdHeading("Content", 1);
 
             Assert.IsType<MdTextSpan>(heading.Text.Content);
 
@@ -19,14 +15,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content", textSpan.Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdHeading_can_be_initialized_with_string_content_02(bool useFactoryMethods)
+        [Fact]
+        public void MdHeading_can_be_initialized_with_string_content_02()
         {
-            var heading = useFactoryMethods
-                ? FactoryMethods.Heading(1, "Content")
-                : new MdHeading(1, "Content");
+            var heading = new MdHeading(1, "Content");
 
             Assert.IsType<MdTextSpan>(heading.Text.Content);
 
@@ -34,14 +26,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content", textSpan.Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdHeading_can_be_initialized_with_string_content_03(bool useFactoryMethods)
+        [Fact]
+        public void MdHeading_can_be_initialized_with_string_content_03()
         {
-            var heading = useFactoryMethods
-                ? FactoryMethods.Heading(1, "Content1", "Content2")
-                : new MdHeading(1, "Content1", "Content2");
+            var heading = new MdHeading(1, "Content1", "Content2");
 
             Assert.IsType<MdCompositeSpan>(heading.Text.Content);
             var compositeSpan = (MdCompositeSpan)heading.Text.Content;
@@ -56,16 +44,12 @@ namespace Grynwald.MarkdownGenerator.Test
         }
 
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdHeading_can_be_initialized_with_span_content(bool useFactoryMethods)
+        [Fact]
+        public void MdHeading_can_be_initialized_with_span_content()
         {
             var text = new MdTextSpan("Content");
 
-            var heading = useFactoryMethods
-                ? FactoryMethods.Heading(text, 1)
-                : new MdHeading(text, 1);
+            var heading = new MdHeading(text, 1);
 
             Assert.Same(text, heading.Text.Content);
         }

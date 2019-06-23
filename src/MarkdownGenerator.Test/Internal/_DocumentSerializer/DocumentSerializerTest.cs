@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Grynwald.MarkdownGenerator;
 using Grynwald.MarkdownGenerator.Internal;
 using Xunit;
-
-using static Grynwald.MarkdownGenerator.FactoryMethods;
 
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {
@@ -14,14 +13,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         public void Headings_are_serialized_as_expected() =>
             AssertToStringEquals(
                 "# Heading 1\r\n",
-                Document(Heading("Heading 1", 1))
+                new MdDocument(new MdHeading("Heading 1", 1))
             );
 
         [Fact]
         public void Paragraphs_are_serialized_as_expected() =>
             AssertToStringEquals(
                 "Paragraph\r\n",
-                Document(Paragraph("Paragraph"))
+                new MdDocument(new MdParagraph("Paragraph"))
             );
 
         [Fact]
@@ -30,9 +29,9 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "Paragraph1\r\n" +
                 "\r\n" +
                 "Paragraph2\r\n",
-                Document(
-                    Paragraph("Paragraph1"),
-                    Paragraph("Paragraph2"))
+                new MdDocument(
+                    new MdParagraph("Paragraph1"),
+                    new MdParagraph("Paragraph2"))
             );
 
         [Fact]
@@ -45,11 +44,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "## Heading 2\r\n" +
                 "\r\n" +
                 "Paragraph2\r\n",
-                Document(
-                    Heading("Heading 1", 1),
-                    Paragraph("Paragraph1"),
-                    Heading("Heading 2", 2),
-                    Paragraph("Paragraph2"))
+                new MdDocument(
+                    new MdHeading("Heading 1", 1),
+                    new MdParagraph("Paragraph1"),
+                    new MdHeading("Heading 2", 2),
+                    new MdParagraph("Paragraph2"))
             );
 
         [Fact]
@@ -57,10 +56,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                 "- Item 1\r\n" +
                 "- Item 2\r\n",
-                Document(
-                    BulletList(
-                        ListItem("Item 1"),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem("Item 1"),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -68,10 +67,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                 "1. Item 1\r\n" +
                 "2. Item 2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem("Item 1"),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem("Item 1"),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -83,13 +82,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "- Item 2\r\n" +
                 "\r\n" +
                 "Paragraph\r\n",
-                Document(
-                    Heading("Heading", 1),
-                    BulletList(
-                        ListItem("Item 1"),
-                        ListItem("Item 2")
+                new MdDocument(
+                    new MdHeading("Heading", 1),
+                    new MdBulletList(
+                        new MdListItem("Item 1"),
+                        new MdListItem("Item 2")
                     ),
-                    Paragraph("Paragraph"))
+                    new MdParagraph("Paragraph"))
             );
 
         [Fact]
@@ -101,13 +100,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "2. Item 2\r\n" +
                 "\r\n" +
                 "Paragraph\r\n",
-                Document(
-                    Heading("Heading", 1),
-                    OrderedList(
-                        ListItem("Item 1"),
-                        ListItem("Item 2")
+                new MdDocument(
+                    new MdHeading("Heading", 1),
+                    new MdOrderedList(
+                        new MdListItem("Item 1"),
+                        new MdListItem("Item 2")
                     ),
-                    Paragraph("Paragraph"))
+                    new MdParagraph("Paragraph"))
             );
 
         [Fact]
@@ -117,14 +116,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "  - Item 1.1\r\n" +
                 "  - Item 1.2\r\n" +
                 "- Item 2\r\n",
-                Document(
-                    BulletList(
-                        ListItem(
-                            Paragraph("Item 1"),
-                            BulletList(
-                                ListItem("Item 1.1"),
-                                ListItem("Item 1.2"))),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("Item 1"),
+                            new MdBulletList(
+                                new MdListItem("Item 1.1"),
+                                new MdListItem("Item 1.2"))),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -134,14 +133,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "   1. Item 1.1\r\n" +
                 "   2. Item 1.2\r\n" +
                 "2. Item 2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("Item 1"),
-                            OrderedList(
-                                ListItem("Item 1.1"),
-                                ListItem("Item 1.2"))),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Item 1"),
+                            new MdOrderedList(
+                                new MdListItem("Item 1.1"),
+                                new MdListItem("Item 1.2"))),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -152,17 +151,17 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "    - Item 1.1.1\r\n" +
                 "  - Item 1.2\r\n" +
                 "- Item 2\r\n",
-                Document(
-                    BulletList(
-                        ListItem(
-                            Paragraph("Item 1"),
-                            BulletList(
-                                ListItem(
-                                    Paragraph("Item 1.1"),
-                                    BulletList(
-                                        ListItem("Item 1.1.1"))),
-                                ListItem("Item 1.2"))),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("Item 1"),
+                            new MdBulletList(
+                                new MdListItem(
+                                    new MdParagraph("Item 1.1"),
+                                    new MdBulletList(
+                                        new MdListItem("Item 1.1.1"))),
+                                new MdListItem("Item 1.2"))),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -173,17 +172,17 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "      1. Item 1.1.1\r\n" +
                 "   2. Item 1.2\r\n" +
                 "2. Item 2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("Item 1"),
-                            OrderedList(
-                                ListItem(
-                                    Paragraph("Item 1.1"),
-                                    OrderedList(
-                                        ListItem("Item 1.1.1"))),
-                                ListItem("Item 1.2"))),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Item 1"),
+                            new MdOrderedList(
+                                new MdListItem(
+                                    new MdParagraph("Item 1.1"),
+                                    new MdOrderedList(
+                                        new MdListItem("Item 1.1.1"))),
+                                new MdListItem("Item 1.2"))),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -193,14 +192,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "   - Item 1.1\r\n" +
                 "   - Item 1.2\r\n" +
                 "2. Item 2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("Item 1"),
-                            BulletList(
-                                ListItem("Item 1.1"),
-                                ListItem("Item 1.2"))),
-                        ListItem("Item 2")))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Item 1"),
+                            new MdBulletList(
+                                new MdListItem("Item 1.1"),
+                                new MdListItem("Item 1.2"))),
+                        new MdListItem("Item 2")))
             );
 
         [Fact]
@@ -210,13 +209,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "  multiple lines\r\n" +
                 "  - Item 1.1  \r\n" +
                 "    as well\r\n",
-                Document(
-                    BulletList(
-                        ListItem(
-                            Paragraph("Item 1 consists of\r\nmultiple lines"),
-                            BulletList(
-                                ListItem(
-                                    Paragraph("Item 1.1\r\nas well"))
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("Item 1 consists of\r\nmultiple lines"),
+                            new MdBulletList(
+                                new MdListItem(
+                                    new MdParagraph("Item 1.1\r\nas well"))
                                 ))))
             );
 
@@ -227,13 +226,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "   multiple lines\r\n" +
                 "   1. Item 1.1  \r\n" +
                 "      as well\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("Item 1 consists of\r\nmultiple lines"),
-                            OrderedList(
-                                ListItem(
-                                    Paragraph("Item 1.1\r\nas well"))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Item 1 consists of\r\nmultiple lines"),
+                            new MdOrderedList(
+                                new MdListItem(
+                                    new MdParagraph("Item 1.1\r\nas well"))
                                 ))))
             );
 
@@ -243,11 +242,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "- Paragraph 1\r\n" +
                 "\r\n" +
                 "  Paragraph 2\r\n",
-                Document(
-                    BulletList(
-                        ListItem(
-                            Paragraph("Paragraph 1"),
-                            Paragraph("Paragraph 2"))))
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("Paragraph 1"),
+                            new MdParagraph("Paragraph 2"))))
             );
 
         [Fact]
@@ -256,11 +255,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "1. Paragraph 1\r\n" +
                 "\r\n" +
                 "   Paragraph 2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("Paragraph 1"),
-                            Paragraph("Paragraph 2"))))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Paragraph 1"),
+                            new MdParagraph("Paragraph 2"))))
             );
 
         [Fact]
@@ -268,7 +267,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                 "Line1  \r\n" +
                 "Line2\r\n",
-                Document(Paragraph("Line1\r\nLine2"))
+                new MdDocument(new MdParagraph("Line1\r\nLine2"))
             );
 
         [Fact]
@@ -278,7 +277,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "Line1\r\n" +
                 "Line2\r\n" +
                 "```\r\n",
-                Document(CodeBlock("Line1\r\nLine2"))
+                new MdDocument(new MdCodeBlock("Line1\r\nLine2"))
             );
 
         [Fact]
@@ -288,7 +287,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "Line1\r\n" +
                 "Line2\r\n" +
                 "```\r\n",
-                Document(CodeBlock("Line1\r\nLine2", "xml"))
+                new MdDocument(new MdCodeBlock("Line1\r\nLine2", "xml"))
             );
 
         [Fact]
@@ -297,10 +296,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "| Column1 | Column2 |\r\n" +
                 "| ------- | ------- |\r\n" +
                 "| Cell1   | Cell2   |\r\n",
-                Document(
-                    Table(
-                        Row("Column1", "Column2"),
-                        Row("Cell1", "Cell2")))
+                new MdDocument(
+                    new MdTable(
+                        new MdTableRow("Column1", "Column2"),
+                        new MdTableRow("Cell1", "Cell2")))
             );
 
         [Fact]
@@ -310,11 +309,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "| ------- | ------- |\r\n" +
                 "| Cell1   |         |\r\n" +
                 "| Cell3   | Cell4   |\r\n",
-                Document(
-                    Table(
-                        Row("Column1", "Column2"),
-                        Row("Cell1"),
-                        Row("Cell3", "Cell4")))
+                new MdDocument(
+                    new MdTable(
+                        new MdTableRow("Column1", "Column2"),
+                        new MdTableRow("Cell1"),
+                        new MdTableRow("Cell3", "Cell4")))
             );
 
         [Fact]
@@ -343,11 +342,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "    </tr>"                         + "\r\n" +
                 "  </tbody>"                       + "\r\n" +
                 "</table>"                          + "\r\n",
-                Document(
-                    Table(
-                        Row("Column1", "Column2"),
-                        Row("Cell1"),
-                        Row("Cell3", "Cell4"))),
+                new MdDocument(
+                    new MdTable(
+                        new MdTableRow("Column1", "Column2"),
+                        new MdTableRow("Cell1"),
+                        new MdTableRow("Cell3", "Cell4"))),
                 options
             );
         }
@@ -358,10 +357,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "| Column1 |\r\n" +
                 "| ------- |\r\n" +
                 "| Cel\\|l1 |\r\n",
-                Document(
-                    Table(
-                        Row("Column1"),
-                        Row("Cel|l1")))
+                new MdDocument(
+                    new MdTable(
+                        new MdTableRow("Column1"),
+                        new MdTableRow("Cel|l1")))
             );
 
         [Theory]
@@ -373,10 +372,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "| Column1     |\r\n" +
                 "| ----------- |\r\n" +
                 "| Part1 Part2 |\r\n",
-                Document(
-                    Table(
-                        Row("Column1"),
-                        Row($"Part1{lineBreak}Part2")))
+                new MdDocument(
+                    new MdTable(
+                        new MdTableRow("Column1"),
+                        new MdTableRow($"Part1{lineBreak}Part2")))
             );
 
         [Fact]
@@ -388,14 +387,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "  | ------- | ------- |\r\n" +
                 "  | Cell1   |         |\r\n" +
                 "  | Cell3   | Cell4   |\r\n",
-                Document(
-                    BulletList(
-                        ListItem(
-                            Paragraph("ListItem1"),
-                            Table(
-                                Row("Column1", "Column2"),
-                                Row("Cell1"),
-                                Row("Cell3", "Cell4"))))));
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("ListItem1"),
+                            new MdTable(
+                                new MdTableRow("Column1", "Column2"),
+                                new MdTableRow("Cell1"),
+                                new MdTableRow("Cell3", "Cell4"))))));
 
         [Fact]
         public void Ordered_lists_can_contain_tables() =>
@@ -406,14 +405,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "   | ------- | ------- |\r\n" +
                 "   | Cell1   |         |\r\n" +
                 "   | Cell3   | Cell4   |\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("ListItem1"),
-                            Table(
-                                Row("Column1", "Column2"),
-                                Row("Cell1"),
-                                Row("Cell3", "Cell4"))))));
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            "ListItem1",
+                            new MdTable(
+                                new MdTableRow("Column1", "Column2"),
+                                new MdTableRow("Cell1"),
+                                new MdTableRow("Cell3", "Cell4"))))));
 
         [Fact]
         public void Ordered_lists_with_more_than_10_items_are_serialized_as_expected() =>
@@ -429,8 +428,8 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "9. Item\r\n" +
                 "10. Item\r\n" +
                 "11. Item\r\n",
-                Document(
-                    OrderedList(Enumerable.Repeat("Item", 11).Select(ListItem))
+                new MdDocument(
+                    new MdOrderedList(Enumerable.Repeat("Item", 11).Select(x => new MdListItem(x)))
                 )
             );
 
@@ -442,17 +441,17 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "___\r\n" +
                 "\r\n" +
                 "Paragraph\r\n",
-                Document(
-                    Paragraph("Paragraph"),
-                    ThematicBreak(),
-                    Paragraph("Paragraph"))
+                new MdDocument(
+                    new MdParagraph("Paragraph"),
+                    new MdThematicBreak(),
+                    new MdParagraph("Paragraph"))
             );
 
         [Fact]
         public void BlockQuotes_are_serialized_as_expected() =>
             AssertToStringEquals(
                 "> Quote\r\n",
-                Document(BlockQuote("Quote"))
+                new MdDocument(new MdBlockQuote("Quote"))
             );
 
         [Fact]
@@ -462,12 +461,12 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 ">\r\n" +
                 "> - Item1\r\n" +
                 "> - Item2\r\n",
-                Document(
-                    BlockQuote(
-                        Paragraph("Quote"),
-                        BulletList(
-                            ListItem("Item1"),
-                            ListItem("Item2"))))
+                new MdDocument(
+                    new MdBlockQuote(
+                        new MdParagraph("Quote"),
+                        new MdBulletList(
+                            new MdListItem("Item1"),
+                            new MdListItem("Item2"))))
             );
 
         [Fact]
@@ -478,13 +477,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "  > Quote1\r\n" +
                 "  >\r\n" +
                 "  > Quote2\r\n",
-                Document(
-                    BulletList(
-                        ListItem(
-                            Paragraph("Item1"),
-                            BlockQuote(
-                                Paragraph("Quote1"),
-                                Paragraph("Quote2")))))
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("Item1"),
+                            new MdBlockQuote(
+                                new MdParagraph("Quote1"),
+                                new MdParagraph("Quote2")))))
             );
 
         [Fact]
@@ -495,13 +494,13 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "   > Quote1\r\n" +
                 "   >\r\n" +
                 "   > Quote2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem(
-                            Paragraph("Item1"),
-                            BlockQuote(
-                                Paragraph("Quote1"),
-                                Paragraph("Quote2")))))
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Item1"),
+                            new MdBlockQuote(
+                                new MdParagraph("Quote1"),
+                                new MdParagraph("Quote2")))))
             );
 
         [Theory]
@@ -516,8 +515,8 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
             AssertToStringEquals(
                $"# {emphasisCharater}Heading{emphasisCharater}\r\n",
-               Document(
-                   Heading(1, Emphasis("Heading"))),
+               new MdDocument(
+                   new MdHeading(1, new MdEmphasisSpan("Heading"))),
                 options
             );
         }
@@ -535,7 +534,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
             AssertToStringEquals(
                 $"{expectedBreak}\r\n",
-                Document(ThematicBreak()),
+                new MdDocument(new MdThematicBreak()),
                 options
             );
         }
@@ -556,7 +555,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
             AssertToStringEquals(
                 $"{new String('#', level)} Heading\r\n",
-                Document(Heading(level, "Heading")),
+                new MdDocument(new MdHeading(level, "Heading")),
                 options
             );
         }
@@ -580,7 +579,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 AssertToStringEquals(
                    $"Heading\r\n" +
                    $"=======\r\n",
-                   Document(Heading(level, "Heading")),
+                   new MdDocument(new MdHeading(level, "Heading")),
                    options);
             }
             else if(level == 2)
@@ -588,14 +587,14 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 AssertToStringEquals(
                    $"Heading\r\n" +
                    $"-------\r\n",
-                   Document(Heading(level, "Heading")),
+                   new MdDocument(new MdHeading(level, "Heading")),
                    options);
             }
             else
             {
                 AssertToStringEquals(
                     $"{new String('#', level)} Heading\r\n",
-                    Document(Heading(level, "Heading")),
+                    new MdDocument(new MdHeading(level, "Heading")),
                     options);
             }
         }
@@ -614,7 +613,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 $"{codeBlockChar}{codeBlockChar}{codeBlockChar}\r\n" +
                 $"Some Code\r\n" +
                 $"{codeBlockChar}{codeBlockChar}{codeBlockChar}\r\n",
-                Document(CodeBlock("Some Code")),
+                new MdDocument(new MdCodeBlock("Some Code")),
                 options
             );
         }
@@ -633,10 +632,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                 $"{listItemCharacter} Item1\r\n" +
                 $"{listItemCharacter} Item2\r\n",
-                Document(
-                    BulletList(
-                        ListItem("Item1"),
-                        ListItem("Item2")
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem("Item1"),
+                        new MdListItem("Item2")
                     )
                 ),
                 options
@@ -656,10 +655,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                 $"1{listItemCharacter} Item1\r\n" +
                 $"2{listItemCharacter} Item2\r\n",
-                Document(
-                    OrderedList(
-                        ListItem("Item1"),
-                        ListItem("Item2")
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem("Item1"),
+                        new MdListItem("Item2")
                     )
                 ),
                 options
@@ -688,9 +687,9 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 $"{bulletListCharacter} Item1\r\n" +
                 $"\r\n" +
                 $"  {thematicBreakCharacter}{thematicBreakCharacter}{thematicBreakCharacter}\r\n",
-                Document(
-                    BulletList(
-                        ListItem(Paragraph("Item1"), ThematicBreak())
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem("Item1", new MdThematicBreak())
                     )
                 ),
                 options
@@ -710,7 +709,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "heading\r\n" +
                 "part 2\r\n" +
                 "========\r\n",
-                Document(Heading(1, "Heading, heading part 2")),
+                new MdDocument(new MdHeading(1, "Heading, heading part 2")),
                 options
             );
         }
@@ -727,7 +726,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals("Heading\r\n" +
                 "heading\r\n" +
                 "=======\r\n",
-                Document(Heading(1, "Heading  heading")),
+                new MdDocument(new MdHeading(1, "Heading  heading")),
                 options
             );
         }
@@ -744,7 +743,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                 "Heading 1\r\n" +
                 "=========\r\n",
-                Document(Heading(1, "Heading 1")),
+                new MdDocument(new MdHeading(1, "Heading 1")),
                 options
             );
         }
@@ -760,8 +759,8 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals(
                "aaaaaaaa\r\n" +
                "bbbb\r\n",
-               Document(
-                   Paragraph("aaaaaaaa bbbb")
+               new MdDocument(
+                   new MdParagraph("aaaaaaaa bbbb")
                 ),
                options
            );
@@ -780,8 +779,8 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                "aaaaaaaa\r\n" +
                "bbbb  \r\n" +
                "cccc\r\n",
-               Document(
-                   Paragraph("aaaaaaaa bbbb\r\ncccc")
+               new MdDocument(
+                   new MdParagraph("aaaaaaaa bbbb\r\ncccc")
                 ),
                options
            );
@@ -799,9 +798,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                "- aaaaaaaa\r\n" +
                "  bb\r\n" +
                "  cc\r\n",
-               Document(
-                   BulletList(ListItem(Paragraph("aaaaaaaa bb cc")))
-                ),
+               new MdDocument(
+                   new MdBulletList(
+                       new MdListItem(
+                           "aaaaaaaa bb cc"
+                ))),
                options
            );
 
@@ -819,8 +820,8 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                "> aaaaaaaa\r\n" +
                "> bb\r\n" +
                "> cc\r\n",
-               Document(
-                   BlockQuote(Paragraph("aaaaaaaa bb cc"))
+               new MdDocument(
+                   new MdBlockQuote("aaaaaaaa bb cc")
                 ),
                options
            );

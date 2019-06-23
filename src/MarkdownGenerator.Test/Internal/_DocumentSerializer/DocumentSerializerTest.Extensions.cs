@@ -1,7 +1,7 @@
 ﻿using Grynwald.MarkdownGenerator.Extensions;
 using Xunit;
-using static Grynwald.MarkdownGenerator.Extensions.FactoryMethods;
-using static Grynwald.MarkdownGenerator.FactoryMethods;
+using Grynwald.MarkdownGenerator;
+using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {
@@ -14,10 +14,11 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "!!! note\r\n" +
                 "    Note content\r\n",
 
-                Document(
-                    Admonition(
+                new MdDocument(
+                    new MdAdmonition(
                         "Note",
-                        Paragraph("Note content")))
+                        "",
+                        "Note content"))
             );
         }
 
@@ -30,11 +31,12 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "!!! note\r\n" +
                 "    Note content\r\n",
 
-                Document(
-                    Heading(1, "Heading"),
-                    Admonition(
+                new MdDocument(
+                    new MdHeading(1, "Heading"),
+                    new MdAdmonition(
                         "Note",
-                        Paragraph("Note content")))
+                        "",
+                        "Note content"))
             );
         }
 
@@ -47,12 +49,12 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 "!!! note \"Note title\"\r\n" +
                 "    Note content\r\n",
 
-                Document(
-                    Heading(1, "Heading"),
-                    Admonition(
+                new MdDocument(
+                    new MdHeading(1, "Heading"),
+                    new MdAdmonition(
                         "note",
                         "Note title",
-                        Paragraph("Note content")))
+                        "Note content"))
             );
         }
     }

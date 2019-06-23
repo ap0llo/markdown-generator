@@ -5,14 +5,10 @@ namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdListItemTest
     {
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdListItem_can_be_initialized_with_string_content_01(bool useFactoryMethods)
+        [Fact]
+        public void MdListItem_can_be_initialized_with_string_content_01()
         {
-            var listItem = useFactoryMethods
-                ? FactoryMethods.ListItem("Content")
-                : new MdListItem("Content");
+            var listItem = new MdListItem("Content");
 
             Assert.Single(listItem.Blocks);
             Assert.IsType<MdParagraph>(listItem.Blocks.Single());
@@ -24,14 +20,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content", textSpan.Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdListItem_can_be_initialized_with_string_content_02(bool useFactoryMethods)
+        [Fact]
+        public void MdListItem_can_be_initialized_with_string_content_02()
         {
-            var listItem = useFactoryMethods
-                ? FactoryMethods.ListItem("Content1", "Content2")
-                : new MdListItem("Content1", "Content2");
+            var listItem = new MdListItem("Content1", "Content2");
 
             Assert.Single(listItem.Blocks);
             Assert.IsType<MdParagraph>(listItem.Blocks.Single());

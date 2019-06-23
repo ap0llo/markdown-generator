@@ -31,11 +31,3 @@ All serialization methods (`ToString()` in `MdDocument`, blocks and spans as wel
 `MdDocument.Save()` have overloads that accept a `MdSerializationOptions` parameter.
 
 See [Serialization options](./serialization-options.md) for details.
-
-## Factory methods
-
-To ease construction of markdown documents, all block and span types can
-be created using factory methods defined in the class `Grynwald.MarkdownGenerator.FactoryMethods`
-instead of using the `new` operator.
-
-See [Factory Methods](./factorymethods.md) for details.
