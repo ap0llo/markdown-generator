@@ -8,7 +8,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Base class for blocks that can contains other blocks.
     /// </summary>
-    public abstract class MdContainerBlockBase : MdBlock, IReadOnlyCollection<MdBlock>
+    public abstract class MdContainerBlockBase : MdBlock
     {
         private readonly List<MdBlock> m_Blocks = new List<MdBlock>();
 
@@ -105,10 +105,6 @@ namespace Grynwald.MarkdownGenerator
 
             m_Blocks.Insert(index, block);
         }
-
-        public IEnumerator<MdBlock> GetEnumerator() => m_Blocks.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => m_Blocks.GetEnumerator();
 
 
         protected bool DeepEquals(MdContainerBlockBase other)

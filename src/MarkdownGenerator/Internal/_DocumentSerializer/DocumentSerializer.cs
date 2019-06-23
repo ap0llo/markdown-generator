@@ -30,7 +30,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public void Visit(MdDocument document)
         {
-            foreach (var block in document)
+            foreach (var block in document.Blocks)
             {
                 block.Accept(this);
             }
@@ -39,7 +39,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public void Visit(MdContainerBlock containerBlock)
         {
-            foreach(var block in containerBlock)
+            foreach(var block in containerBlock.Blocks)
             {
                 block.Accept(this);
             }
@@ -49,7 +49,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         public void Visit(MdBlockQuote blockQuote)
         {         
             m_Writer.PushPrefixHandler(new BlockQuotePrefixHandler());
-            foreach (var block in blockQuote)
+            foreach (var block in blockQuote.Blocks)
             {
                 block.Accept(this);
             }
@@ -58,7 +58,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public void Visit(MdListItem listItem)
         {
-            foreach (var block in listItem)
+            foreach (var block in listItem.Blocks)
             {
                 block.Accept(this);
             }
@@ -173,7 +173,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.PushPrefixHandler(prefixHandler);
 
             var listItemNumber = 1;
-            foreach (var listItem in list)
+            foreach (var listItem in list.Items)
             {
                 prefixHandler.BeginListItem();
 
@@ -347,7 +347,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             // table head
             m_Writer.WriteLine("  <thead>");
             m_Writer.WriteLine("    <tr>");
-            foreach(var cell in table.HeaderRow)
+            foreach(var cell in table.HeaderRow.Cells)
             {
                 m_Writer.WriteLine($"      <th>{cell.ToString(m_Options)}</th>");
             }
@@ -359,7 +359,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             foreach(var row in table.Rows)
             {
                 m_Writer.WriteLine("    <tr>");
-                foreach (var cell in row)
+                foreach (var cell in row.Cells)
                 {
                     m_Writer.WriteLine($"      <td>{cell.ToString(m_Options)}</td>");
                 }

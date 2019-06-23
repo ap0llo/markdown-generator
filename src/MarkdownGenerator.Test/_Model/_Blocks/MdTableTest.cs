@@ -41,10 +41,9 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Insert_inserts_a_row_at_the_specifed_index_02()
         {
             // ARRANGE
-            var instance = new MdTable(new MdTableRow(MdEmptySpan.Instance))
-            {
-                new MdTableRow(MdEmptySpan.Instance)
-            };
+            var instance = new MdTable(
+                new MdTableRow(MdEmptySpan.Instance),
+                new MdTableRow(MdEmptySpan.Instance));
 
             var row = new MdTableRow(MdEmptySpan.Instance);
 
@@ -63,11 +62,11 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Insert_inserts_a_row_at_the_specifed_index_03(int insertAt)
         {
             // ARRANGE
-            var instance = new MdTable(new MdTableRow(MdEmptySpan.Instance))
-            {
+            var instance = new MdTable(
+                new MdTableRow(MdEmptySpan.Instance),
                 new MdTableRow(MdEmptySpan.Instance),
                 new MdTableRow(MdEmptySpan.Instance)
-            };
+            );
 
             var row = new MdTableRow(MdEmptySpan.Instance);
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +7,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Represent a row in a table (see <see cref="MdTable"/>).
     /// </summary>
-    public sealed class MdTableRow : IReadOnlyList<MdSpan>
+    public sealed class MdTableRow
     {
         private readonly List<MdSpan> m_Cells;
 
@@ -16,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Gets the row's cells
         /// </summary>
-        public IEnumerable<MdSpan> Cells => m_Cells;
+        public IReadOnlyList<MdSpan> Cells => m_Cells;
 
         /// <summary>
         /// Gets the number of columns in the row
@@ -29,12 +28,6 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="column">The index of the column which's value to get</param>
         public MdSpan this[int column] => m_Cells[column];
 
-        /// <summary>
-        /// Gets the number of columns in the row.
-        /// </summary>
-        /// <value>The number of columns in the row.</value>
-        /// <remarks>This property is equivalent to <see cref="ColumnCount"/>.</remarks>
-        public int Count => ColumnCount;
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdTableRow"/> with the specified cells/columns.
@@ -115,13 +108,6 @@ namespace Grynwald.MarkdownGenerator
 
             m_Cells.Insert(index, cell);
         }
-
-        /// <inheritdoc />
-        public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
-
-        /// <inheritdoc />
-        IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
-
        
         public bool DeepEquals(MdTableRow other)
         {

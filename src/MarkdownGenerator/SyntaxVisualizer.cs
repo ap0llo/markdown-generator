@@ -140,7 +140,7 @@ namespace Grynwald.MarkdownGenerator
             {
                 PushNewNode(block);
 
-                foreach (var item in block)
+                foreach (var item in block.Blocks)
                 {
                     item.Accept(this);
                 }
@@ -152,7 +152,7 @@ namespace Grynwald.MarkdownGenerator
             {
                 PushNewNode(list);
 
-                foreach (var listItem in list)
+                foreach (var listItem in list.Items)
                 {
                     listItem.Accept(this);
                 }
@@ -164,7 +164,7 @@ namespace Grynwald.MarkdownGenerator
             {
                 PushNewNode(row);
 
-                foreach (var cell in row)
+                foreach (var cell in row.Cells)
                 {
                     cell.Accept(this);
                 }

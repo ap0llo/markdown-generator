@@ -15,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
     /// For details see <see cref="MdSerializationOptions.TableStyle"/>
     /// </remarks>
     // TODO: Consider moving this to the Extensions namespace.
-    public sealed class MdTable : MdLeafBlock, IReadOnlyCollection<MdTableRow>
+    public sealed class MdTable : MdLeafBlock
     {
         private readonly List<MdTableRow> m_Rows;
 
@@ -30,12 +30,6 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         public int RowCount => m_Rows.Count;
 
-        /// <summary>
-        /// Gets the number of rows in the table.
-        /// </summary>
-        /// <value>The number of rows in the table.</value>
-        /// <remarks>This property is equivalent to <see cref="RowCount"/>.</remarks>
-        public int Count => RowCount;
 
         /// <summary>
         /// Gets the table's header row
@@ -46,7 +40,7 @@ namespace Grynwald.MarkdownGenerator
         /// Gets the table's rows
         /// </summary>
         /// <remarks>Does not include the header row</remarks>
-        public IEnumerable<MdTableRow> Rows => m_Rows;
+        public IReadOnlyList<MdTableRow> Rows => m_Rows;
 
 
         /// <summary>
@@ -69,12 +63,6 @@ namespace Grynwald.MarkdownGenerator
             m_Rows = new List<MdTableRow>(rows ?? throw new ArgumentNullException(nameof(rows)));
         }
 
-
-        /// <inheritdoc />
-        public IEnumerator<MdTableRow> GetEnumerator() => m_Rows.GetEnumerator();
-
-        /// <inheritdoc />
-        IEnumerator IEnumerable.GetEnumerator() => m_Rows.GetEnumerator();
 
         /// <summary>
         /// Adds the specified row to the table

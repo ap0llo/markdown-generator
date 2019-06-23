@@ -9,8 +9,7 @@ namespace Grynwald.MarkdownGenerator
     /// Base class for ordered and bullet lists.
     /// Implementations are <see cref="MdBulletList"/> respectively <see cref="MdOrderedList"/>.
     /// </summary>
-    // TODO: Consider removing IReadOnlyCollection<MdListItem> implementation and instead exposing a IReadOnlyCollection<MdListItem> property
-    public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItem>
+    public abstract class MdList : MdBlock
     {
         private readonly List<MdListItem> m_ListItems;
 
@@ -18,13 +17,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Gets the list's items.
         /// </summary>
-        public IReadOnlyCollection<MdListItem> Items => m_ListItems;
-
-        /// <summary>
-        /// Gets the number of list items in the list.
-        /// </summary>
-        /// <value>The number of list items in the list.</value>
-        public int Count => m_ListItems.Count;
+        public IReadOnlyList<MdListItem> Items => m_ListItems;
 
 
         // private protected constructor => class cannot be derived from outside this assembly
@@ -73,10 +66,6 @@ namespace Grynwald.MarkdownGenerator
 
             m_ListItems.Insert(index, item);
         }
-
-        public IEnumerator<MdListItem> GetEnumerator() => m_ListItems.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => m_ListItems.GetEnumerator();
 
 
         protected bool DeepEquals(MdList other)
