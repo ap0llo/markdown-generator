@@ -18,8 +18,6 @@
 
         void Visit(MdListItem listItem);
 
-        void Visit(MdEmptyBlock emptyBlock);
-
         void Visit(MdBlockQuote blockQuote);
 
         void Visit(MdCodeBlock codeBlock);

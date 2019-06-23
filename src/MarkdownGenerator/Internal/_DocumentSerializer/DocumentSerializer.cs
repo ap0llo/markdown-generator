@@ -36,10 +36,6 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
         }
 
-        public void Visit(MdEmptyBlock emptyBlock)
-        {
-            // block is empty by definition => no need to write anything to the output
-        }
 
         public void Visit(MdBlockQuote blockQuote)
         {         

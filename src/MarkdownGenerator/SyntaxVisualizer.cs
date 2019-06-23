@@ -57,8 +57,6 @@ namespace Grynwald.MarkdownGenerator
 
             public void Visit(MdListItem listItem) => VisitContainer(listItem);
 
-            public void Visit(MdEmptyBlock emptyBlock) => CreateLeafNode(emptyBlock);
-
             public void Visit(MdBlockQuote blockQuote) => VisitContainer(blockQuote);
 
             public void Visit(MdCodeBlock codeBlock) => CreateLeafNode(codeBlock);
