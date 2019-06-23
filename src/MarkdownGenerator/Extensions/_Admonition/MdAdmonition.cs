@@ -40,7 +40,7 @@ namespace Grynwald.MarkdownGenerator.Extensions
         /// </param>
         /// 
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        public MdAdmonition(string type) : this(type, MdEmptySpan.Instance)
+        public MdAdmonition(string type) : this(type, "")
         { }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Grynwald.MarkdownGenerator.Extensions
         ///
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, object content) : this(type, MdEmptySpan.Instance, content)
+        public MdAdmonition(string type, object content) : this(type, "", content)
         { }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Grynwald.MarkdownGenerator.Extensions
         ///
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, params object[] content) : this(type, MdEmptySpan.Instance, (object)content)
+        public MdAdmonition(string type, params object[] content) : this(type, "", (object)content)
         { }
 
         /// <summary>

@@ -63,8 +63,6 @@ namespace Grynwald.MarkdownGenerator
 
             public void Visit(MdCodeBlock codeBlock) => CreateLeafNode(codeBlock);
 
-            public void Visit(MdEmptySpan span) => CreateLeafNode(span);
-
             public void Visit(MdTextSpan span) => CreateLeafNode(span);
 
             public void Visit(MdEmphasisSpan span)

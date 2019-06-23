@@ -14,10 +14,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.IsType<MdParagraph>(listItem.Blocks.Single());
 
             var paragraph = (MdParagraph)listItem.Blocks.Single();
-            Assert.IsType<MdTextSpan>(paragraph.Text);
 
-            var textSpan = (MdTextSpan)paragraph.Text;
-            Assert.Equal("Content", textSpan.Text);
+            var expected = new MdCompositeSpan(new MdTextSpan("Content"));
+
+            Assert.True(expected.DeepEquals(paragraph.Text));
         }
 
         [Fact]

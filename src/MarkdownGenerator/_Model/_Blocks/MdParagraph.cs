@@ -19,16 +19,27 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Initializes a new instance of <see cref="MdParagraph"/> without any content.
         /// </summary>
-        public MdParagraph() : this(MdEmptySpan.Instance)
-        { }
+        public MdParagraph()
+        {
+            Text = new MdCompositeSpan();
+        }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdParagraph"/> with the specified content.
         /// </summary>
         /// <param name="text">The paragraph's content</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="text"/> is <c>null</c>.</exception>
-        public MdParagraph(MdSpan text) =>
-            Text = text ?? throw new ArgumentNullException(nameof(text));
+        public MdParagraph(MdSpan text)
+        {
+            if (text is MdCompositeSpan compositeSpan)
+            {
+                Text = compositeSpan;
+            }
+            else
+            {
+                Text = new MdCompositeSpan(text);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdParagraph"/> with the specified content.
@@ -42,11 +53,16 @@ namespace Grynwald.MarkdownGenerator
         /// The content spans will be wrapped in a instance of <see cref="MdCompositeSpan"/>.
         /// Thus <c>new MdParagraph(span1, span2)</c> is equivalent to <c>new MdParagraph(new MdCompositeSpan(span1, span2))</c>
         /// </remarks>
-        public MdParagraph(params MdSpan[] spans) : this((MdSpan)new MdCompositeSpan(spans))
+        public MdParagraph(params MdSpan[] spans) : this((IEnumerable<MdSpan>)spans)
         { }
 
-        public MdParagraph(IEnumerable<MdSpan> spans) : this((MdSpan)new MdCompositeSpan(spans))
-        { }
+        public MdParagraph(IEnumerable<MdSpan> spans)
+        {
+            if (spans == null)
+                throw new ArgumentNullException(nameof(spans));
+
+            Text = new MdCompositeSpan(spans);
+        }
 
 
         /// <summary>
@@ -58,13 +74,8 @@ namespace Grynwald.MarkdownGenerator
         {
             span = span ?? throw new ArgumentNullException(nameof(span));
 
-            // if current text is empty, replace current content with new span
-            if(Text is MdEmptySpan)
-            {
-                Text = span;
-            }
             // append new content to composite span
-            else if(Text is MdCompositeSpan compositeSpan)
+            if(Text is MdCompositeSpan compositeSpan)
             {
                 compositeSpan.Add(span);
             }

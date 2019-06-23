@@ -126,7 +126,7 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.IsType<MdParagraph>(instance.Blocks.Single());
 
             var paragraph = (MdParagraph)instance.Blocks.Single();
-            Assert.Same(content, paragraph.Text);
+            Assert.True(new MdCompositeSpan(content).DeepEquals(paragraph.Text));
         }
 
         [Fact]
@@ -232,8 +232,11 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.IsType<MdParagraph>(instance.Blocks.Single());
 
             var paragraph = (MdParagraph)instance.Blocks.Single();
-            Assert.IsType<MdTextSpan>(paragraph.Text);
-            Assert.Equal(content, ((MdTextSpan)paragraph.Text).Text);
+            Assert.IsType<MdCompositeSpan>(paragraph.Text);
+            var compositeSpan = (MdCompositeSpan)paragraph.Text;
+            Assert.Single(compositeSpan);
+            Assert.IsType<MdTextSpan>(compositeSpan.Single());
+            Assert.Equal(content, ((MdTextSpan)compositeSpan.Single()).Text);
         }
 
         [Fact]
@@ -309,7 +312,7 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.IsType<MdParagraph>(instance.Blocks.Last());
 
             var paragraph1 = (MdParagraph)instance.Blocks.First();
-            Assert.True(new MdTextSpan(content1).DeepEquals(paragraph1.Text));
+            Assert.True(new MdCompositeSpan(new MdTextSpan(content1)).DeepEquals(paragraph1.Text));
 
             var paragraph2 = (MdParagraph)instance.Blocks.Last();
             Assert.Same(content2, paragraph2);
@@ -349,8 +352,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.IsType<MdParagraph>(instance.Blocks.Single());
 
             var paragraph = (MdParagraph)instance.Blocks.Single();
-            Assert.IsType<MdTextSpan>(paragraph.Text);
-            var textSpan = (MdTextSpan)paragraph.Text;
+            Assert.IsType<MdCompositeSpan>(paragraph.Text);
+            var compositeSpan= (MdCompositeSpan)paragraph.Text;
+            
+            var textSpan = (MdTextSpan)compositeSpan.Single();
             Assert.Equal(content.ToString(), textSpan.Text);
         }
 

@@ -29,7 +29,8 @@ namespace Grynwald.MarkdownGenerator.Test
             var joined = spansToJoin.Join();
 
             // ASSERT
-            Assert.IsType<MdEmptySpan>(joined);
+            Assert.IsType<MdTextSpan>(joined);
+            Assert.Equal("", ((MdTextSpan)joined).Text);
         }
 
         [Fact]
@@ -77,7 +78,8 @@ namespace Grynwald.MarkdownGenerator.Test
             var joined = spansToJoin.Join(separator: ",");
 
             // ASSERT
-            Assert.IsType<MdEmptySpan>(joined);
+            Assert.IsType<MdTextSpan>(joined);
+            Assert.Equal("", ((MdTextSpan)joined).Text);
         }
 
         [Fact]
@@ -164,7 +166,8 @@ namespace Grynwald.MarkdownGenerator.Test
             var joined = spansToJoin.Join(separator: new MdStrongEmphasisSpan(new MdTextSpan("separator")));
 
             // ASSERT
-            Assert.IsType<MdEmptySpan>(joined);
+            Assert.IsType<MdTextSpan>(joined);
+            Assert.Equal("", ((MdTextSpan)joined).Text);
         }
 
         [Fact]

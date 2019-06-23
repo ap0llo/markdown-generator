@@ -2,8 +2,6 @@
 {
     internal interface ISpanVisitor
     {
-        void Visit(MdEmptySpan emptySpan);
-
         void Visit(MdTextSpan textSpan);
 
         void Visit(MdEmphasisSpan emphasisSpan);

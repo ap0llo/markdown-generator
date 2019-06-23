@@ -8,11 +8,9 @@ namespace Grynwald.MarkdownGenerator.Test
         public void MdParagraph_can_be_initialized_with_string_content_01()
         {
             var paragraph = new MdParagraph("Content");
+            var expected = new MdCompositeSpan(new MdTextSpan("Content"));
 
-            Assert.IsType<MdTextSpan>(paragraph.Text);
-
-            var textSpan = (MdTextSpan)paragraph.Text;
-            Assert.Equal("Content", textSpan.Text);
+            Assert.True(expected.DeepEquals(paragraph.Text));
         }
 
         [Fact]
@@ -54,7 +52,7 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             var paragraph = new MdParagraph("Text");
 
-            var expected = new MdTextSpan("Text");
+            var expected = new MdCompositeSpan(new MdTextSpan("Text"));
             Assert.True(expected.DeepEquals(paragraph.Text));
         }
 
@@ -72,7 +70,7 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             var paragraph = new MdParagraph();
 
-            var expected = MdEmptySpan.Instance;
+            var expected = new MdCompositeSpan();
             Assert.True(expected.DeepEquals(paragraph.Text));
         }
 
@@ -82,7 +80,7 @@ namespace Grynwald.MarkdownGenerator.Test
             var paragraph = new MdParagraph();
             paragraph.Add("Text");
 
-            var expected = new MdTextSpan("Text");
+            var expected = new MdCompositeSpan(new MdTextSpan("Text"));
             Assert.True(expected.DeepEquals(paragraph.Text));
         }
 

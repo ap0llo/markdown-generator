@@ -12,15 +12,16 @@ namespace Grynwald.MarkdownGenerator
         /// <returns>
         /// Returns a new span containing all the specified spans.
         /// <list type="bullet">
-        /// <item>
-        /// <description>If <paramref name="spans"/> is empty, an instance of <see cref="MdEmptySpan"/> will be returned</description>
-        /// </item>
-        /// <item>
-        /// <description>If <paramref name="spans"/> contains a single item, this single span will be returned</description>
-        /// </item>
-        /// <item>
-        /// <description>Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.</description>
-        /// </item>
+        ///     <item>
+        ///         <description>
+        ///             If <paramref name="spans"/> contains a single item, this single span will be returned
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///             Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
+        ///         </description>
+        ///     </item>
         /// </list>
         /// </returns>
         public static MdSpan Join(this IEnumerable<MdSpan> spans) => Join(spans, (string)null);
@@ -33,18 +34,17 @@ namespace Grynwald.MarkdownGenerator
         /// <returns>
         /// Returns a new span containing all the specified spans:
         /// <list type="bullet">
-        /// <item>
-        /// <description>If <paramref name="spans"/> is empty, an instance of <see cref="MdEmptySpan"/> will be returned</description>
-        /// </item>
-        /// <item>
-        /// <description>If <paramref name="spans"/> contains a single item, this single span will be returned</description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
-        /// Between two elements of the input sequence, the specified separator is inserted
-        /// </description>
-        /// </item>
+        ///     <item>
+        ///         <description>
+        ///             If <paramref name="spans"/> contains a single item, this single span will be returned
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///             Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
+        ///             Between two elements of the input sequence, the specified separator is inserted
+        ///         </description>
+        ///     </item>
         /// </list>
         /// </returns>
         public static MdSpan Join(this IEnumerable<MdSpan> spans, string separator) =>
@@ -58,18 +58,17 @@ namespace Grynwald.MarkdownGenerator
         /// <returns>
         /// Returns a new span containing all the specified spans:
         /// <list type="bullet">
-        /// <item>
-        /// <description>If <paramref name="spans"/> is empty, an instance of <see cref="MdEmptySpan"/> will be returned</description>
-        /// </item>
-        /// <item>
-        /// <description>If <paramref name="spans"/> contains a single item, this single span will be returned</description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
-        /// Between two elements of the input sequence, the specified separator is inserted
-        /// </description>
-        /// </item>
+        ///     <item>
+        ///         <description>
+        ///             If <paramref name="spans"/> contains a single item, this single span will be returned
+        ///         </description>
+        ///     </item>
+        ///     <item>
+        ///         <description>
+        ///             Otherwise a instance of <see cref="MdCompositeSpan"/> is returned that wraps all the specified spans.
+        ///             Between two elements of the input sequence, the specified separator is inserted
+        ///         </description>
+        ///     </item>
         /// </list>
         /// </returns>
         public static MdSpan Join(this IEnumerable<MdSpan> spans, MdSpan separator)
@@ -77,7 +76,7 @@ namespace Grynwald.MarkdownGenerator
             // no spans to join => return empty span
             if (!spans.Any())
             {
-                return MdEmptySpan.Instance;
+                return "";
             }
             // a single span to join => just return the single span
             else if (!spans.Skip(1).Any())

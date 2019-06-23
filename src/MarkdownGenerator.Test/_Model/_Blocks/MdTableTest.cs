@@ -9,9 +9,9 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void DeepEquals_returns_expected_value()
         {
-            var instance1 = new MdTable(new MdTableRow(MdEmptySpan.Instance));
-            var instance2 = new MdTable(new MdTableRow(MdEmptySpan.Instance));
-            var instance3 = new MdTable(new MdTableRow(MdEmptySpan.Instance), new MdTableRow(new MdTextSpan("Text")));
+            var instance1 = new MdTable(new MdTableRow(""));
+            var instance2 = new MdTable(new MdTableRow(""));
+            var instance3 = new MdTable(new MdTableRow(""), new MdTableRow(new MdTextSpan("Text")));
 
             Assert.True(instance1.DeepEquals(instance1));
             Assert.True(instance1.DeepEquals(instance2));
@@ -26,8 +26,8 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Insert_inserts_a_row_at_the_specifed_index_01()
         {
             // ARRANGE
-            var instance = new MdTable(new MdTableRow(MdEmptySpan.Instance));
-            var row = new MdTableRow(MdEmptySpan.Instance);
+            var instance = new MdTable(new MdTableRow(""));
+            var row = new MdTableRow("");
 
             // ACT
             instance.Insert(0, row);
@@ -42,10 +42,10 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             // ARRANGE
             var instance = new MdTable(
-                new MdTableRow(MdEmptySpan.Instance),
-                new MdTableRow(MdEmptySpan.Instance));
+                new MdTableRow(""),
+                new MdTableRow(""));
 
-            var row = new MdTableRow(MdEmptySpan.Instance);
+            var row = new MdTableRow("");
 
             // ACT
             instance.Insert(1, row);
@@ -63,12 +63,12 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             // ARRANGE
             var instance = new MdTable(
-                new MdTableRow(MdEmptySpan.Instance),
-                new MdTableRow(MdEmptySpan.Instance),
-                new MdTableRow(MdEmptySpan.Instance)
+                new MdTableRow(""),
+                new MdTableRow(""),
+                new MdTableRow("")
             );
 
-            var row = new MdTableRow(MdEmptySpan.Instance);
+            var row = new MdTableRow("");
 
             // ACT
             instance.Insert(insertAt, row);
@@ -82,12 +82,12 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Insert_throws_expected_exceptions()
         {
             // ARRANGE
-            var instance = new MdTable(new MdTableRow(MdEmptySpan.Instance));
+            var instance = new MdTable(new MdTableRow(""));
 
             // ACT / ASSERT
             Assert.Throws<ArgumentNullException>(() => instance.Insert(0, null));
-            Assert.Throws<ArgumentOutOfRangeException>(() => instance.Insert(-1, new MdTableRow(MdEmptySpan.Instance)));
-            Assert.Throws<ArgumentOutOfRangeException>(() => instance.Insert(2, new MdTableRow(MdEmptySpan.Instance)));
+            Assert.Throws<ArgumentOutOfRangeException>(() => instance.Insert(-1, new MdTableRow("")));
+            Assert.Throws<ArgumentOutOfRangeException>(() => instance.Insert(2, new MdTableRow("")));
         }
     }
 }

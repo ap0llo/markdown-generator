@@ -20,7 +20,7 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void ToString_returns_an_empty_string_if_value_is_empty()
         {
-            var span = new MdCompositeSpan(MdEmptySpan.Instance, new MdTextSpan(""));
+            var span = new MdCompositeSpan(new MdTextSpan(""));
             Assert.Equal(string.Empty, span.ToString());
         }
 

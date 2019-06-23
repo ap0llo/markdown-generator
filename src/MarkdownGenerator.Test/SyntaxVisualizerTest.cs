@@ -19,10 +19,10 @@ namespace Grynwald.MarkdownGenerator.Test
                 " └─MdParagraph\r\n" +
                 "    └─MdCompositeSpan\r\n" +
                 "       ├─MdTextSpan\r\n" +
-                "       └─MdEmptySpan\r\n",
+                "       └─MdTextSpan\r\n",
                 new MdContainerBlock(
                     new MdParagraph(
-                        new MdTextSpan("Text"), MdEmptySpan.Instance))
+                        new MdTextSpan("Text"), ""))
             );
 
         [Fact]
@@ -30,9 +30,9 @@ namespace Grynwald.MarkdownGenerator.Test
             AssertSyntaxTreeEquals(
                 "MdContainerBlock\r\n" +
                 " ├─MdParagraph\r\n" +
-                " │  └─MdEmptySpan\r\n" +
+                " │  └─MdCompositeSpan\r\n" +
                 " └─MdParagraph\r\n" +
-                "    └─MdEmptySpan\r\n",
+                "    └─MdCompositeSpan\r\n",
                 new MdContainerBlock(new MdParagraph(), new MdParagraph())
             );
 
@@ -42,7 +42,7 @@ namespace Grynwald.MarkdownGenerator.Test
                 "MdBulletList\r\n" +
                 " ├─MdListItem\r\n" +
                 " │  └─MdParagraph\r\n" +
-                " │     └─MdEmptySpan\r\n" +
+                " │     └─MdCompositeSpan\r\n" +
                 " └─MdListItem\r\n",
                 new MdBulletList(new MdListItem(new MdParagraph()), new MdListItem())
             );
@@ -53,7 +53,7 @@ namespace Grynwald.MarkdownGenerator.Test
                 "MdOrderedList\r\n" +
                 " ├─MdListItem\r\n" +
                 " │  └─MdParagraph\r\n" +
-                " │     └─MdEmptySpan\r\n" +
+                " │     └─MdCompositeSpan\r\n" +
                 " └─MdListItem\r\n",
                 new MdOrderedList(new MdListItem(new MdParagraph()), new MdListItem())
             );
@@ -74,9 +74,9 @@ namespace Grynwald.MarkdownGenerator.Test
             AssertSyntaxTreeEquals(
                 "MdBlockQuote\r\n" +
                 " ├─MdParagraph\r\n" +
-                " │  └─MdEmptySpan\r\n" +
+                " │  └─MdCompositeSpan\r\n" +
                 " └─MdParagraph\r\n" +
-                "    └─MdEmptySpan\r\n",
+                "    └─MdCompositeSpan\r\n",
                 new MdBlockQuote(new MdParagraph(), new MdParagraph())
             );
 
@@ -85,9 +85,10 @@ namespace Grynwald.MarkdownGenerator.Test
         public void GetSyntaxTree_returns_expected_result_08() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdEmphasisSpan\r\n" +
-                "    └─MdEmptySpan\r\n",
-                new MdParagraph(new MdEmphasisSpan(MdEmptySpan.Instance))
+                " └─MdCompositeSpan\r\n" +
+                "    └─MdEmphasisSpan\r\n" +
+                "       └─MdTextSpan\r\n",
+                new MdParagraph(new MdEmphasisSpan("Text"))
             );
 
 
@@ -95,16 +96,18 @@ namespace Grynwald.MarkdownGenerator.Test
         public void GetSyntaxTree_returns_expected_result_09() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdStrongEmphasisSpan\r\n" +
-                "    └─MdEmptySpan\r\n",
-                new MdParagraph(new MdStrongEmphasisSpan(MdEmptySpan.Instance))
+                " └─MdCompositeSpan\r\n" +
+                "    └─MdStrongEmphasisSpan\r\n" +
+                "       └─MdTextSpan\r\n",
+                new MdParagraph(new MdStrongEmphasisSpan("Text"))
             );
 
         [Fact]
         public void GetSyntaxTree_returns_expected_result_10() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdCodeSpan\r\n",
+                " └─MdCompositeSpan\r\n" +
+                "    └─MdCodeSpan\r\n",
                 new MdParagraph(new MdCodeSpan(""))
             );
 
@@ -112,7 +115,8 @@ namespace Grynwald.MarkdownGenerator.Test
         public void GetSyntaxTree_returns_expected_result_11() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdLinkSpan\r\n",
+                " └─MdCompositeSpan\r\n" +
+                "    └─MdLinkSpan\r\n",
                 new MdParagraph(new MdLinkSpan("My Link", "http://example.com"))
             );
 
@@ -121,7 +125,8 @@ namespace Grynwald.MarkdownGenerator.Test
         public void GetSyntaxTree_returns_expected_result_12() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdImageSpan\r\n",
+                " └─MdCompositeSpan\r\n" +
+                "    └─MdImageSpan\r\n",
                 new MdParagraph(new MdImageSpan("My Link", "http://example.com"))
             );
 
@@ -130,9 +135,10 @@ namespace Grynwald.MarkdownGenerator.Test
         public void GetSyntaxTree_returns_expected_result_13() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdSingleLineSpan\r\n" +
-                "    └─MdEmptySpan\r\n",
-                new MdParagraph(new MdSingleLineSpan(MdEmptySpan.Instance))
+                " └─MdCompositeSpan\r\n" +
+                "    └─MdSingleLineSpan\r\n" +
+                "       └─MdTextSpan\r\n",
+                new MdParagraph(new MdSingleLineSpan("Text"))
             );
 
 
@@ -140,7 +146,8 @@ namespace Grynwald.MarkdownGenerator.Test
         public void GetSyntaxTree_returns_expected_result_14() =>
             AssertSyntaxTreeEquals(
                 "MdParagraph\r\n" +
-                " └─MdRawMarkdownSpan\r\n",
+                " └─MdCompositeSpan\r\n" + 
+                "    └─MdRawMarkdownSpan\r\n",
                 new MdParagraph(new MdRawMarkdownSpan(""))
             );
 
