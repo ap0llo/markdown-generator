@@ -43,10 +43,32 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Adds the specified content to the container block.
         /// </summary>
-        /// <param name="content">The content to add to the container</param>
+        /// <remarks>
+        /// <list type="bullet">
+        ///     <item>If the specified object is a <see cref="MdBlock"/> the block is added to the container's block list.</item>
+        ///     <item>
+        ///         If the specified object is a <see cref="MdSpan"/> the span, and the current last block in the container
+        ///         is a <see cref="MdParagraph"/>, the span will be appended to the paragraph.
+        ///         Otherwise the span is wrapped in a new <see cref="MdParagraph"/> and the paragraph is added to the list.
+        ///     </item>
+        ///     <item>If the specified object is a string, it will be wrapped in a <see cref="MdTextSpan"/> and treated like a span.</item>
+        ///     <item>
+        ///         If the item is a primitive data type (<c>bool</c>, <c>byte</c>, <c>sbyte</c>, <c>char</c>, <c>double</c>,
+        ///         <c>float</c>, <c>int</c>, <c>uint</c>, <c>long</c>, <c>ulong</c>, <c>short</c> or <c>ushort</c>) it
+        ///         will be converted to a string, wrapped in a <see cref="MdTextSpan"/> and treated like a span.
+        ///     </item>
+        ///     <item>
+        ///         If the specified object is a <see cref="IEnumerable"/>, it will be enumerated and the individual
+        ///         items will be added to the block as documented above.
+        ///     </item>
+        /// </list>               
+        /// </remarks>
+        /// <param name="content">The content to add to the container.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">Thrown when the specified object cannot be added to the block because it is an instance of an unsupported type.</exception>
         public void Add(object content)
-        {
+        {            
+
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
 

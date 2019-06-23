@@ -14,6 +14,7 @@ namespace Grynwald.MarkdownGenerator
     /// Tables can be serialized either as GitHub Flavored Markdown tables (default) or inline HTML-tables.
     /// For details see <see cref="MdSerializationOptions.TableStyle"/>
     /// </remarks>
+    // TODO: Consider moving this to the Extensions namespace.
     public sealed class MdTable : MdLeafBlock, IReadOnlyCollection<MdTableRow>
     {
         private readonly List<MdTableRow> m_Rows;

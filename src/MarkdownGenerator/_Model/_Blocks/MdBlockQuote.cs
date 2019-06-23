@@ -1,15 +1,16 @@
-﻿using Grynwald.MarkdownGenerator.Internal;
+﻿using System;
+using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represent a block quote in a markdown document.
-    /// For specification see https://spec.commonmark.org/0.28/#block-quotes
+    /// Represents a block quote.
+    /// For specification see https://spec.commonmark.org/0.28/#block-quotes.
     /// </summary>
     public sealed class MdBlockQuote : MdContainerBlockBase
     {
         /// <summary>
-        /// Initializes a new instance of <see cref="MdBlockQuote"/>.
+        /// Initializes a new instance of <see cref="MdBlockQuote"/> without any content.
         /// </summary>
         public MdBlockQuote() : base()
         { }
@@ -17,17 +18,26 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Initializes a new instance of <see cref="MdBlockQuote"/> with the specified content.
         /// </summary>
-        /// <param name="content">The block to initially add to the block quote.</param>
+        /// <param name="content">
+        /// The content to add to the block.
+        /// For documentation on how content is added, see <see cref="MdContainerBlockBase.Add(object)"/>.
+        /// </param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> is <c>null</c>.</exception>
         public MdBlockQuote(object content) : base(content)
         { }
-                
+
         /// <summary>
-        /// Initializes a new instance of <see cref="MdBlockQuote"/> with the specified content
+        /// Initializes a new instance of <see cref="MdBlockQuote"/> with the specified content.
         /// </summary>
-        /// <param name="content">The content of the quote as one or more blocks (see <see cref="MdBlock"/>)</param>
+        /// <param name="content">
+        /// The content to add to the block.
+        /// For documentation on how content is added, see <see cref="MdContainerBlockBase.Add(object)"/>.
+        /// </param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
         public MdBlockQuote(params object[] content) : base(content)
         { }
-        
+
+        /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => other is MdBlockQuote blockQuote ? base.DeepEquals(blockQuote) : false;
 
 

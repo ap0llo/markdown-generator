@@ -40,7 +40,7 @@ namespace Grynwald.MarkdownGenerator.Extensions
         /// </param>
         /// 
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        public MdAdmonition(string type) : this(type, MdEmptySpan.Instance, Array.Empty<MdBlock>())
+        public MdAdmonition(string type) : this(type, MdEmptySpan.Instance)
         { }
 
         /// <summary>
@@ -59,7 +59,33 @@ namespace Grynwald.MarkdownGenerator.Extensions
         ///
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, MdSpan title) : this(type, title, Array.Empty<MdBlock>())
+        public MdAdmonition(string type, MdSpan title) : base()
+        {
+            if (String.IsNullOrWhiteSpace(type))
+                throw new ArgumentException("Value must not be null or whitespace", nameof(type));
+
+            Type = type;
+            Title = title ?? throw new ArgumentNullException(nameof(title));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdAdmonition"/> with the specified type and content.
+        /// </summary>
+        /// 
+        /// <param name="type">
+        /// The admonition's type. Any non-empty string is allowed.
+        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
+        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
+        /// </param>
+        ///
+        /// <param name="content">
+        /// The content to add to the block.
+        /// For documentation on how content is added, see <see cref="MdContainerBlockBase.Add(object)"/>.
+        /// </param>
+        ///
+        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
+        public MdAdmonition(string type, object content) : this(type, MdEmptySpan.Instance, content)
         { }
 
         /// <summary>
@@ -73,11 +99,13 @@ namespace Grynwald.MarkdownGenerator.Extensions
         /// </param>
         ///
         /// <param name="content">
-        /// The admonition's content.
+        /// The content to add to the block.
+        /// For documentation on how content is added, see <see cref="MdContainerBlockBase.Add(object)"/>.
         /// </param>
         ///
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        public MdAdmonition(string type, MdContainerBlockBase content) : this(type, MdEmptySpan.Instance, (MdBlock)content)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
+        public MdAdmonition(string type, params object[] content) : this(type, MdEmptySpan.Instance, (object)content)
         { }
 
         /// <summary>
@@ -95,135 +123,14 @@ namespace Grynwald.MarkdownGenerator.Extensions
         /// </param>
         ///
         /// <param name="content">
-        /// The admonition's content.
-        /// </param>
-        /// 
-        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, MdSpan title, MdContainerBlockBase content) : this(type, title, (MdBlock)content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdAdmonition"/>.
-        /// </summary>
-        /// 
-        /// <param name="type">
-        /// The admonition's type. Any non-empty string is allowed.
-        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
-        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
-        /// </param>
-        ///
-        /// <param name="content">
-        /// The admonition's content.
-        /// </param>
-        /// 
-        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        public MdAdmonition(string type, MdList content) : this(type, MdEmptySpan.Instance, (MdBlock)content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdAdmonition"/>.
-        /// </summary>
-        /// 
-        /// <param name="type">
-        /// The admonition's type. Any non-empty string is allowed.
-        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
-        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
-        /// </param>
-        ///
-        /// <param name="title">
-        /// The admonition's title. To create a admonition without title, use a different constructor overload.
-        /// </param>
-        ///
-        /// <param name="content">
-        /// The admonition's content.
+        /// The content to add to the block.
+        /// For documentation on how content is added, see <see cref="MdContainerBlockBase.Add(object)"/>.
         /// </param>
         ///
         /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, MdSpan title, MdList content) : this(type, title, (MdBlock)content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdAdmonition"/>.
-        /// </summary>
-        /// 
-        /// <param name="type">
-        /// The admonition's type. Any non-empty string is allowed.
-        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
-        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
-        /// </param>
-        ///
-        /// <param name="content">
-        /// The admonition's content.
-        /// </param>
-        ///
-        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        public MdAdmonition(string type, params MdBlock[] content) : this(type, MdEmptySpan.Instance, (IEnumerable<MdBlock>)content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdAdmonition"/>.
-        /// </summary>
-        ///
-        /// <param name="type">
-        /// The admonition's type. Any non-empty string is allowed.
-        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
-        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
-        /// </param>
-        ///
-        /// <param name="title">
-        /// The admonition's title. To create a admonition without title, use a different constructor overload.
-        /// </param>
-        ///
-        /// <param name="content">
-        /// The admonition's content.
-        /// </param>
-        /// 
-        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, MdSpan title, params MdBlock[] content) : this(type, title, (IEnumerable<MdBlock>)content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdAdmonition"/>.
-        /// </summary>
-        ///
-        /// <param name="type">
-        /// The admonition's type. Any non-empty string is allowed.
-        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
-        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
-        /// </param>
-        ///
-        /// <param name="content">
-        /// The admonition's content.
-        /// </param>
-        /// 
-        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        public MdAdmonition(string type, IEnumerable<MdBlock> content) : this(type, MdEmptySpan.Instance, content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdAdmonition"/>.
-        /// </summary>
-        ///
-        /// <param name="type">
-        /// The admonition's type. Any non-empty string is allowed.
-        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
-        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
-        /// </param>
-        ///
-        /// <param name="title">
-        /// The admonition's title. To create a admonition without title, use a different constructor overload.
-        /// </param>
-        ///
-        /// <param name="content">
-        /// The admonition's content.
-        /// </param>
-        ///
-        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> is <c>null</c>.</exception>
-        public MdAdmonition(string type, MdSpan title, IEnumerable<MdBlock> content) : base(content)
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
+        public MdAdmonition(string type, MdSpan title, object content) : base(content)
         {
             if (String.IsNullOrWhiteSpace(type))
                 throw new ArgumentException("Value must not be null or whitespace", nameof(type));
@@ -232,6 +139,30 @@ namespace Grynwald.MarkdownGenerator.Extensions
             Title = title ?? throw new ArgumentNullException(nameof(title));
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MdAdmonition"/>.
+        /// </summary>
+        ///
+        /// <param name="type">
+        /// The admonition's type. Any non-empty string is allowed.
+        /// Recommended values are <c>attention</c>, <c>caution</c>, <c>danger</c>, <c>error</c>,
+        /// <c>hint</c>, <c>important</c>, <c>note</c>, <c>tip</c> and <c>warning</c>
+        /// </param>
+        ///
+        /// <param name="title">
+        /// The admonition's title. To create a admonition without title, use a different constructor overload.
+        /// </param>
+        ///
+        /// <param name="content">
+        /// The content to add to the block.
+        /// For documentation on how content is added, see <see cref="MdContainerBlockBase.Add(object)"/>.
+        /// </param>
+        ///
+        /// <exception cref="ArgumentException">Thrown when <paramref name="type"/> is null or whitespace.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="title"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="content"/> or one of the elements of <paramref name="content"/> is <c>null</c>.</exception>
+        public MdAdmonition(string type, MdSpan title, params object[] content) : this(type, title, (object)content)
+        { }
 
         /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => other is MdAdmonition containerBlock ? DeepEquals(containerBlock) : false;

@@ -5,17 +5,17 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a fenced code block.
-    /// For specification see https://spec.commonmark.org/0.28/#fenced-code-blocks
+    /// For specification see https://spec.commonmark.org/0.28/#fenced-code-blocks.
     /// </summary>
     public sealed class MdCodeBlock : MdLeafBlock
     {
         /// <summary>
-        /// The content of the code block
+        /// The content of the code block.
         /// </summary>
         public string Text { get; }
 
         /// <summary>
-        /// The info string for the code block (typically used to specify the language of the code in the block)
+        /// The info string for the code block (typically used to specify the language of the code in the block).
         /// </summary>
         public string InfoString { get; }
 
@@ -23,17 +23,21 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Initializes a new instance of <see cref="MdCodeBlock"/> with the specified text.
         /// </summary>
-        /// <param name="text">The code blocks content</param>
-        public MdCodeBlock(string text) : this(text, null)
+        /// <param name="text">The code block's content.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="text"/> is <c>null</c>.</exception>
+        public MdCodeBlock(string text) : this(text, default)
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdCodeBlock"/>.
         /// </summary>
-        /// <param name="text">The code blocks content</param>
+        /// <param name="text">
+        /// The code blocks content
+        /// </param>
         /// <param name="infoString">
         /// The code blocks info string, typically used to indicate the language of the code block
         /// </param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="text"/> is <c>null</c>.</exception>
         public MdCodeBlock(string text, string infoString)
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));
@@ -41,6 +45,7 @@ namespace Grynwald.MarkdownGenerator
         }
 
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdCodeBlock);
 
 

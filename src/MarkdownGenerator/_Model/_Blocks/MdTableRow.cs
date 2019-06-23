@@ -6,7 +6,7 @@ using System.Linq;
 namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
-    /// Represent a row in a table (see <see cref="MdTable"/>)
+    /// Represent a row in a table (see <see cref="MdTable"/>).
     /// </summary>
     public sealed class MdTableRow : IReadOnlyList<MdSpan>
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Grynwald.MarkdownGenerator
 {
@@ -8,21 +9,23 @@ namespace Grynwald.MarkdownGenerator
     /// Base class for ordered and bullet lists.
     /// Implementations are <see cref="MdBulletList"/> respectively <see cref="MdOrderedList"/>.
     /// </summary>
+    // TODO: Consider removing IReadOnlyCollection<MdListItem> implementation and instead exposing a IReadOnlyCollection<MdListItem> property
     public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItem>
     {
         private readonly List<MdListItem> m_ListItems;
 
 
         /// <summary>
-        /// Gets the list's items
+        /// Gets the list's items.
         /// </summary>
-        public IEnumerable<MdListItem> Items => m_ListItems;
+        public IReadOnlyCollection<MdListItem> Items => m_ListItems;
 
         /// <summary>
         /// Gets the number of list items in the list.
         /// </summary>
         /// <value>The number of list items in the list.</value>
         public int Count => m_ListItems.Count;
+
 
         // private protected constructor => class cannot be derived from outside this assembly
         private protected MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>) content)
@@ -34,12 +37,15 @@ namespace Grynwald.MarkdownGenerator
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
 
+            if (content.Any(x => x == null))
+                throw new ArgumentNullException(nameof(content), "Enumerable must not contain elements that are null.");
+
             m_ListItems = new List<MdListItem>(content);
         }
 
 
         /// <summary>
-        /// Adds the specified item to the list
+        /// Adds the specified item to the list.
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="item"/> is <c>null</c>.</exception>
         public void Add(MdListItem item)
@@ -84,7 +90,7 @@ namespace Grynwald.MarkdownGenerator
             if (m_ListItems.Count != other.m_ListItems.Count)
                 return false;
 
-            for(int i = 0; i< m_ListItems.Count; i++)
+            for(var i = 0; i< m_ListItems.Count; i++)
             {
                 if (!m_ListItems[i].DeepEquals(other.m_ListItems[i]))
                     return false;

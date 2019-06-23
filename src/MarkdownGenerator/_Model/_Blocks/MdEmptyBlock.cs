@@ -11,6 +11,7 @@ namespace Grynwald.MarkdownGenerator
     /// Empty blocks have no effect on the output as they are serialized to <see cref="String.Empty"/>
     /// </remarks>
     [Obsolete]
+    //TODO: Remove class 
     public sealed class MdEmptyBlock : MdBlock
     {
         /// <summary>

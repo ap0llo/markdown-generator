@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Grynwald.MarkdownGenerator.Internal;
 
@@ -12,13 +11,13 @@ namespace Grynwald.MarkdownGenerator
     public sealed class MdParagraph : MdLeafBlock
     {
         /// <summary>
-        /// Gets the paragraph's text
+        /// Gets the paragraph's text.
         /// </summary>
         public MdSpan Text { get; private set; }
 
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdParagraph"/>.
+        /// Initializes a new instance of <see cref="MdParagraph"/> without any content.
         /// </summary>
         public MdParagraph() : this(MdEmptySpan.Instance)
         { }
@@ -27,6 +26,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdParagraph"/> with the specified content.
         /// </summary>
         /// <param name="text">The paragraph's content</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="text"/> is <c>null</c>.</exception>
         public MdParagraph(MdSpan text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
@@ -79,6 +79,7 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdParagraph);
 
 
