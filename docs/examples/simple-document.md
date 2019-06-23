@@ -15,8 +15,8 @@ public class Program
         var document = new MdDocument();
 
         // add a heading and a paragraph to the root block
-        document.Root.Add(new MdHeading("Heading", 1));
-        document.Root.Add(new MdParagraph("Hello world!"));
+        document.Add(new MdHeading("Heading", 1));
+        document.Add(new MdParagraph("Hello world!"));
 
         // save document to a file
         document.Save("HelloWorld.md");

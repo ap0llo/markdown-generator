@@ -232,8 +232,8 @@ namespace Grynwald.MarkdownGenerator.Test
                 var expectedOutPath1 = Path.Combine(directory, "doc1.md");
                 var expectedOutPath2 = Path.Combine(directory, "subDir/doc2.md");
 
-                document1.Root.Add(new MdHeading(1, "Document 1"));
-                document2.Root.Add(new MdHeading(1, "Document 2"));
+                document1.Add(new MdHeading(1, "Document 1"));
+                document2.Add(new MdHeading(1, "Document 2"));
 
                 // ACT
                 set.Save(directory);

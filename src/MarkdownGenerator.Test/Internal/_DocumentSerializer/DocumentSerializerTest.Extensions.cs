@@ -1,7 +1,5 @@
 ﻿using Grynwald.MarkdownGenerator.Extensions;
 using Xunit;
-using Grynwald.MarkdownGenerator;
-using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {

@@ -2,6 +2,8 @@
 {
     internal partial interface IBlockVisitor
     {
+        void Visit(MdDocument document);
+
         void Visit(MdHeading heading);
 
         void Visit(MdParagraph paragraph);

@@ -25,7 +25,16 @@ namespace Grynwald.MarkdownGenerator.Internal
         }
 
 
-        public void Serialize(MdDocument document) => document.Root.Accept(this);
+        public void Serialize(MdDocument document) => document.Accept(this);
+
+
+        public void Visit(MdDocument document)
+        {
+            foreach (var block in document)
+            {
+                block.Accept(this);
+            }
+        }
 
 
         public void Visit(MdContainerBlock containerBlock)

@@ -24,7 +24,7 @@ public class Program
         // calling CreateDocument() which creates a new document
         // at the specified path
         var document1 = set.CreateDocument("document1.md");
-        document1.Root.Add(new MdHeading(1, "Document 1"));
+        document1.Add(new MdHeading(1, "Document 1"));
 
         // alternatively, existing documents can be added to
         // the set using Add()
@@ -35,7 +35,7 @@ public class Program
 
         // using MdDocumentSet.GetLink(), links between documents
         // in the set can be created
-        document2.Root.Add(new MdParagraph(
+        document2.Add(new MdParagraph(
             "This is a link to ",
             set.GetLink(document2, document1, "Document 1")
         ));

@@ -1,38 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Text;
-using Grynwald.MarkdownGenerator.Extensions;
 using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
 {
-    // TODO: Consider removing Root property and deriving from MdContainerBlock instead
     /// <summary>
     /// Represents a markdown document
     /// </summary>
-    public sealed class MdDocument
+    public sealed class MdDocument : MdContainerBlockBase
     {
-        /// <summary>
-        /// The root container block containing all of the document's blocks
-        /// </summary>
-        public MdContainerBlock Root { get; }
-
         /// <summary>
         /// Initializes a new instance of <see cref="MdDocument"/> with the specified block as root element.
         /// </summary>
-        /// <param name="root">The documents root block</param>
-        public MdDocument(MdContainerBlock root) =>
-            Root = root ?? throw new ArgumentNullException(nameof(root));
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
-        /// </summary>
-        /// <param name="content">
-        /// One or more blocks that make up the documents's content.
-        /// The blocks will be wrapped in an instance of <see cref="MdContainerBlock"/> that will be the documents root block.
-        /// </param>
-        public MdDocument(params MdBlock[] content) : this(new MdContainerBlock(content))
+        public MdDocument() : base()
         { }
 
         /// <summary>
@@ -42,35 +22,17 @@ namespace Grynwald.MarkdownGenerator
         /// One or more blocks that make up the documents's content.
         /// The blocks will be wrapped in an instance of <see cref="MdContainerBlock"/> that will be the documents root block.
         /// </param>
-        public MdDocument(IEnumerable<MdBlock> content) : this(new MdContainerBlock(content))
+        public MdDocument(params object[] content) : base(content)
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
         /// </summary>
-        /// <remarks>
-        /// MdList implements <see cref="IEnumerable{MdListItem}"/> so this constructor is necessary to prevent ambiguities.
-        /// </remarks>
-        public MdDocument(MdList list) : this((MdBlock)list)
-        { }
-
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
-        /// </summary>
-        /// <remarks>
-        /// MdBlockQuote implements <see cref="IEnumerable{MdListItem}"/> so this constructor is necessary to prevent ambiguities.
-        /// </remarks>
-        public MdDocument(MdBlockQuote list) : this((MdBlock)list)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdDocument"/> with the specified content.
-        /// </summary>
-        /// <remarks>
-        /// MdAdmonition implements <see cref="IEnumerable{MdBlock}"/> so this constructor is necessary to prevent ambiguities.
-        /// </remarks>
-        public MdDocument(MdAdmonition admonition) : this((MdBlock)admonition)
+        /// <param name="content">
+        /// One or more blocks that make up the documents's content.
+        /// The blocks will be wrapped in an instance of <see cref="MdContainerBlock"/> that will be the documents root block.
+        /// </param>
+        public MdDocument(object content) : base(content)
         { }
 
         /// <summary>
@@ -118,15 +80,9 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <inheritdoc />
-        public override string ToString() => ToString(null);
+        public override bool DeepEquals(MdBlock other) => other is MdDocument containerBlock ? DeepEquals(containerBlock) : false;
 
-        public string ToString(MdSerializationOptions serializationOptions)
-        {
-            using (var stringWriter = new StringWriter())
-            {
-                Save(stringWriter, serializationOptions);
-                return stringWriter.ToString();
-            }
-        }
+
+        internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
     }
 }

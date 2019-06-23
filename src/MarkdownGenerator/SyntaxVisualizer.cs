@@ -19,6 +19,8 @@ namespace Grynwald.MarkdownGenerator
             public AsciiTreeNode RootNode { get; private set; }
 
 
+            public void Visit(MdDocument document) => VisitContainer(document);
+
             public void Visit(MdHeading heading)
             {
                 PushNewNode(heading);
@@ -173,7 +175,7 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Converts the specified document to a ascci-art syntax tree.
+        /// Converts the specified document to a ASCII-art syntax tree.
         /// </summary>
         /// <returns>Returns a ASCII tree visualizing the structure of the node and all its child nodes.</returns>
         public static string GetSyntaxTree(MdDocument document)
@@ -183,22 +185,19 @@ namespace Grynwald.MarkdownGenerator
 
             // convert the block into a graph
             var visitor = new GraphBuildingVisitor();
-            document.Root.Accept(visitor);
-
-            var rootNode = new AsciiTreeNode(document.GetType().Name);
-            rootNode.Children.Add(visitor.RootNode);
-
-            // generate ascii tree
+            document.Accept(visitor);
+                        
+            // generate ASCII tree
             var treeWriter = new AsciiTreeWriter();
-            treeWriter.WriteNode(rootNode);
+            treeWriter.WriteNode(visitor.RootNode);
 
-            // return ascii tree
+            // return ASCII tree
             return treeWriter.ToString();
         }
 
 
         /// <summary>
-        /// Converts the specified block to a ascci-art syntax tree.
+        /// Converts the specified block to a ASCII-art syntax tree.
         /// </summary>
         /// <returns>Returns a ASCII tree visualizing the structure of the node and all its child nodes.</returns>
         public static string GetSyntaxTree(MdBlock block)
@@ -210,11 +209,11 @@ namespace Grynwald.MarkdownGenerator
             var visitor = new GraphBuildingVisitor();
             block.Accept(visitor);
 
-            // generate ascii tree
+            // generate ASCII tree
             var treeWriter = new AsciiTreeWriter();
             treeWriter.WriteNode(visitor.RootNode);
 
-            // return ascii tree
+            // return ASCII tree
             return treeWriter.ToString();
         }
     }
