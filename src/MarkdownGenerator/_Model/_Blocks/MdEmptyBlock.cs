@@ -10,6 +10,7 @@ namespace Grynwald.MarkdownGenerator
     /// Represents an empty block.
     /// Empty blocks have no effect on the output as they are serialized to <see cref="String.Empty"/>
     /// </remarks>
+    [Obsolete]
     public sealed class MdEmptyBlock : MdBlock
     {
         /// <summary>

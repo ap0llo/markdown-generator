@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Grynwald.MarkdownGenerator.Internal;
 
 namespace Grynwald.MarkdownGenerator
@@ -40,9 +42,11 @@ namespace Grynwald.MarkdownGenerator
         /// The content spans will be wrapped in a instance of <see cref="MdCompositeSpan"/>.
         /// Thus <c>new MdParagraph(span1, span2)</c> is equivalent to <c>new MdParagraph(new MdCompositeSpan(span1, span2))</c>
         /// </remarks>
-        public MdParagraph(params MdSpan[] spans) : this(new MdCompositeSpan(spans))
+        public MdParagraph(params MdSpan[] spans) : this((MdSpan)new MdCompositeSpan(spans))
         { }
 
+        public MdParagraph(IEnumerable<MdSpan> spans) : this((MdSpan)new MdCompositeSpan(spans))
+        { }
 
 
         /// <summary>

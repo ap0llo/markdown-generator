@@ -10,7 +10,7 @@ namespace Grynwald.MarkdownGenerator
     {
         /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => other is MdThematicBreak;
-
+        
 
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
     }

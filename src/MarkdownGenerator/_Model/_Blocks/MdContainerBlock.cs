@@ -19,28 +19,14 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdContainerBlock"/> with the specified content.
         /// </summary>
         /// <param name="content">The block to add to the container.</param>
-        public MdContainerBlock(MdContainerBlockBase content) : base(content)
+        public MdContainerBlock(object content) : base(content)
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdContainerBlock"/> with the specified content.
         /// </summary>
         /// <param name="content">The block to add to the container.</param>
-        public MdContainerBlock(MdList content) : base(content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdContainerBlock"/> with the specified content.
-        /// </summary>
-        /// <param name="content">The blocks to add to the container.</param>
-        public MdContainerBlock(params MdBlock[] content) : base(content)
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="MdContainerBlock"/> with the specified content.
-        /// </summary>
-        /// <param name="content">The blocks the container blocks contains</param>
-        public MdContainerBlock(IEnumerable<MdBlock> content) : base(content)
+        public MdContainerBlock(params object[] content) : base(content)
         { }
 
 
