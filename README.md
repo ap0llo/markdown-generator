@@ -50,7 +50,7 @@ Addititional dependencies used for testing:
 - [Roslyn](https://github.com/dotnet/roslyn)
 - [xUnit](http://xunit.github.io/)
 - [PublicApiGenerator](https://github.com/JakeGinnivan/ApiApprover)
-- [Shouldly](https://github.com/shouldly/shouldly)
+- [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
 
 ## Versioning and Branching
 

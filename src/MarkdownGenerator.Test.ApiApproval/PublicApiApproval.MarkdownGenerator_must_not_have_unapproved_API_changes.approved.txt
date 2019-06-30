@@ -1,4 +1,4 @@
-[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Grynwald.MarkdownGenerator.Test")]
+﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Grynwald.MarkdownGenerator.Test")]
 [assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETStandard,Version=v2.0", FrameworkDisplayName="")]
 namespace Grynwald.MarkdownGenerator
 {
