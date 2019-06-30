@@ -49,6 +49,8 @@ Addititional dependencies used for testing:
 - [Markdig](https://github.com/lunet-io/markdig)
 - [Roslyn](https://github.com/dotnet/roslyn)
 - [xUnit](http://xunit.github.io/)
+- [PublicApiGenerator](https://github.com/JakeGinnivan/ApiApprover)
+- [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
 
 ## Versioning and Branching
 
