@@ -1,0 +1,476 @@
+[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Grynwald.MarkdownGenerator.Test")]
+[assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETStandard,Version=v2.0", FrameworkDisplayName="")]
+namespace Grynwald.MarkdownGenerator
+{
+    public sealed class DocumentNotFoundException : System.Exception
+    {
+        public DocumentNotFoundException(string message) { }
+    }
+    public class static EnumerableExtensions
+    {
+        public static Grynwald.MarkdownGenerator.MdSpan Join(this System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans) { }
+        public static Grynwald.MarkdownGenerator.MdSpan Join(this System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans, string separator) { }
+        public static Grynwald.MarkdownGenerator.MdSpan Join(this System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans, Grynwald.MarkdownGenerator.MdSpan separator) { }
+    }
+    public class static FactoryMethods
+    {
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote() { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(Grynwald.MarkdownGenerator.MdList content) { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(Grynwald.MarkdownGenerator.MdSpan content) { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(string content) { }
+        public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote(params Grynwald.MarkdownGenerator.MdSpan[] content) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(string text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(Grynwald.MarkdownGenerator.MdCompositeSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
+        public static Grynwald.MarkdownGenerator.MdBulletList BulletList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
+        public static Grynwald.MarkdownGenerator.MdBulletList BulletList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public static Grynwald.MarkdownGenerator.MdCodeBlock CodeBlock(string text) { }
+        public static Grynwald.MarkdownGenerator.MdCodeBlock CodeBlock(string text, string infoString) { }
+        public static Grynwald.MarkdownGenerator.MdCodeSpan CodeSpan(string text) { }
+        public static Grynwald.MarkdownGenerator.MdCompositeSpan CompositeSpan(params Grynwald.MarkdownGenerator.MdSpan[] spans) { }
+        public static Grynwald.MarkdownGenerator.MdCompositeSpan CompositeSpan(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans) { }
+        public static Grynwald.MarkdownGenerator.MdContainerBlock Container(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public static Grynwald.MarkdownGenerator.MdContainerBlock Container(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public static Grynwald.MarkdownGenerator.MdContainerBlock Container(Grynwald.MarkdownGenerator.MdList content) { }
+        public static Grynwald.MarkdownGenerator.MdContainerBlock Container(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.MdContainerBlock root) { }
+        public static Grynwald.MarkdownGenerator.MdDocument Document(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public static Grynwald.MarkdownGenerator.MdDocument Document(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.MdList list) { }
+        public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.MdBlockQuote blockQuote) { }
+        public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.Extensions.MdAdmonition admonition) { }
+        public static Grynwald.MarkdownGenerator.MdDocumentSet DocumentSet() { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(string text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(Grynwald.MarkdownGenerator.MdCompositeSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
+        public static Grynwald.MarkdownGenerator.MdHeading Heading(int level, Grynwald.MarkdownGenerator.MdSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdHeading Heading(int level, params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public static Grynwald.MarkdownGenerator.MdHeading Heading(Grynwald.MarkdownGenerator.MdSpan text, int level) { }
+        public static Grynwald.MarkdownGenerator.MdImageSpan Image(string description, string uri) { }
+        public static Grynwald.MarkdownGenerator.MdImageSpan Image(string description, System.Uri uri) { }
+        public static Grynwald.MarkdownGenerator.MdImageSpan Image(Grynwald.MarkdownGenerator.MdSpan description, string uri) { }
+        public static Grynwald.MarkdownGenerator.MdImageSpan Image(Grynwald.MarkdownGenerator.MdSpan description, System.Uri uri) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Italic(string text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Italic(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Italic(Grynwald.MarkdownGenerator.MdCompositeSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Italic(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public static Grynwald.MarkdownGenerator.MdEmphasisSpan Italic(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
+        public static Grynwald.MarkdownGenerator.MdLinkSpan Link(string text, string uri) { }
+        public static Grynwald.MarkdownGenerator.MdLinkSpan Link(string text, System.Uri uri) { }
+        public static Grynwald.MarkdownGenerator.MdLinkSpan Link(Grynwald.MarkdownGenerator.MdSpan text, string uri) { }
+        public static Grynwald.MarkdownGenerator.MdLinkSpan Link(Grynwald.MarkdownGenerator.MdSpan text, System.Uri uri) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem() { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(Grynwald.MarkdownGenerator.MdList content) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(Grynwald.MarkdownGenerator.MdSpan content) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(string content) { }
+        public static Grynwald.MarkdownGenerator.MdListItem ListItem(params Grynwald.MarkdownGenerator.MdSpan[] content) { }
+        public static Grynwald.MarkdownGenerator.MdOrderedList OrderedList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
+        public static Grynwald.MarkdownGenerator.MdOrderedList OrderedList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public static Grynwald.MarkdownGenerator.MdParagraph Paragraph(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdParagraph Paragraph(string text) { }
+        public static Grynwald.MarkdownGenerator.MdParagraph Paragraph(params Grynwald.MarkdownGenerator.MdSpan[] spans) { }
+        public static Grynwald.MarkdownGenerator.MdRawMarkdownSpan RawMarkdown(string content) { }
+        public static Grynwald.MarkdownGenerator.MdTableRow Row() { }
+        public static Grynwald.MarkdownGenerator.MdTableRow Row(System.Collections.Generic.IEnumerable<string> cells) { }
+        public static Grynwald.MarkdownGenerator.MdTableRow Row(params Grynwald.MarkdownGenerator.MdSpan[] cells) { }
+        public static Grynwald.MarkdownGenerator.MdTableRow Row(params string[] cells) { }
+        public static Grynwald.MarkdownGenerator.MdTableRow Row(Grynwald.MarkdownGenerator.MdCompositeSpan cell) { }
+        public static Grynwald.MarkdownGenerator.MdTableRow Row(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> cells) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan StrongEmphasis(string text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan StrongEmphasis(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan StrongEmphasis(Grynwald.MarkdownGenerator.MdCompositeSpan text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan StrongEmphasis(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan StrongEmphasis(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
+        public static Grynwald.MarkdownGenerator.MdTable Table(Grynwald.MarkdownGenerator.MdTableRow headerRow, params Grynwald.MarkdownGenerator.MdTableRow[] rows) { }
+        public static Grynwald.MarkdownGenerator.MdTable Table(Grynwald.MarkdownGenerator.MdTableRow headerRow, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdTableRow> rows) { }
+        public static Grynwald.MarkdownGenerator.MdTextSpan Text(string text) { }
+        public static Grynwald.MarkdownGenerator.MdThematicBreak ThematicBreak() { }
+    }
+    public abstract class MdBlock
+    {
+        internal MdBlock() { }
+        public abstract bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other);
+        public override string ToString() { }
+        public virtual string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public sealed class MdBlockQuote : Grynwald.MarkdownGenerator.MdContainerBlockBase
+    {
+        public MdBlockQuote() { }
+        public MdBlockQuote(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public MdBlockQuote(Grynwald.MarkdownGenerator.MdList content) { }
+        public MdBlockQuote(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdBlockQuote(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public MdBlockQuote(Grynwald.MarkdownGenerator.MdSpan content) { }
+        public MdBlockQuote(params Grynwald.MarkdownGenerator.MdSpan[] content) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public sealed class MdBulletList : Grynwald.MarkdownGenerator.MdList
+    {
+        public MdBulletList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
+        public MdBulletList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public enum MdBulletListStyle
+    {
+        Dash = 0,
+        Plus = 1,
+        Asterisk = 2,
+    }
+    public sealed class MdCodeBlock : Grynwald.MarkdownGenerator.MdLeafBlock
+    {
+        public MdCodeBlock(string text) { }
+        public MdCodeBlock(string text, string infoString) { }
+        public string InfoString { get; }
+        public string Text { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public enum MdCodeBlockStyle
+    {
+        Backtick = 0,
+        Tilde = 1,
+    }
+    public sealed class MdCodeSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdCodeSpan(string text) { }
+        public string Text { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public sealed class MdCompositeSpan : Grynwald.MarkdownGenerator.MdSpan, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdSpan>, System.Collections.IEnumerable
+    {
+        public MdCompositeSpan(params Grynwald.MarkdownGenerator.MdSpan[] spans) { }
+        public MdCompositeSpan(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans) { }
+        public int Count { get; }
+        public System.Collections.Generic.IReadOnlyList<Grynwald.MarkdownGenerator.MdSpan> Spans { get; }
+        public void Add(Grynwald.MarkdownGenerator.MdSpan span) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdSpan> GetEnumerator() { }
+        public void Insert(int index, Grynwald.MarkdownGenerator.MdSpan span) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public sealed class MdContainerBlock : Grynwald.MarkdownGenerator.MdContainerBlockBase
+    {
+        public MdContainerBlock() { }
+        public MdContainerBlock(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public MdContainerBlock(Grynwald.MarkdownGenerator.MdList content) { }
+        public MdContainerBlock(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdContainerBlock(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public abstract class MdContainerBlockBase : Grynwald.MarkdownGenerator.MdBlock, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdBlock>, System.Collections.IEnumerable
+    {
+        internal MdContainerBlockBase() { }
+        internal MdContainerBlockBase(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        internal MdContainerBlockBase(Grynwald.MarkdownGenerator.MdList content) { }
+        internal MdContainerBlockBase(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        internal MdContainerBlockBase(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> Blocks { get; }
+        public int Count { get; }
+        public void Add(Grynwald.MarkdownGenerator.MdBlock block) { }
+        public void Add(params Grynwald.MarkdownGenerator.MdBlock[] blocks) { }
+        protected bool DeepEquals(Grynwald.MarkdownGenerator.MdContainerBlockBase other) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdBlock> GetEnumerator() { }
+        public void Insert(int index, Grynwald.MarkdownGenerator.MdBlock block) { }
+    }
+    public sealed class MdDocument
+    {
+        public MdDocument(Grynwald.MarkdownGenerator.MdContainerBlock root) { }
+        public MdDocument(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdDocument(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public MdDocument(Grynwald.MarkdownGenerator.MdList list) { }
+        public MdDocument(Grynwald.MarkdownGenerator.MdBlockQuote list) { }
+        public MdDocument(Grynwald.MarkdownGenerator.Extensions.MdAdmonition admonition) { }
+        public Grynwald.MarkdownGenerator.MdContainerBlock Root { get; }
+        public void Save(string path) { }
+        public void Save(string path, Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
+        public void Save(System.IO.Stream stream) { }
+        public void Save(System.IO.Stream stream, Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
+        public override string ToString() { }
+        public string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
+    }
+    public sealed class MdDocumentSet : System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdDocument>, System.Collections.IEnumerable
+    {
+        public MdDocumentSet() { }
+        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdDocument> Documents { get; }
+        public Grynwald.MarkdownGenerator.MdDocument this[string path] { get; }
+        public string this[Grynwald.MarkdownGenerator.MdDocument document] { get; }
+        public void Add(string path, Grynwald.MarkdownGenerator.MdDocument document) { }
+        public bool ContainsDocument(Grynwald.MarkdownGenerator.MdDocument document) { }
+        public bool ContainsPath(string path) { }
+        public Grynwald.MarkdownGenerator.MdDocument CreateDocument(string path) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdDocument> GetEnumerator() { }
+        public Grynwald.MarkdownGenerator.MdLinkSpan GetLink(Grynwald.MarkdownGenerator.MdDocument from, Grynwald.MarkdownGenerator.MdDocument to, Grynwald.MarkdownGenerator.MdSpan linkText) { }
+        public void Save(string directoryPath) { }
+        public void Save(string directoryPath, bool cleanOutputDirectory) { }
+        public void Save(string directoryPath, bool cleanOutputDirectory, Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
+    }
+    public sealed class MdEmphasisSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdEmphasisSpan(string text) { }
+        public MdEmphasisSpan(Grynwald.MarkdownGenerator.MdCompositeSpan text) { }
+        public MdEmphasisSpan(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public MdEmphasisSpan(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public MdEmphasisSpan(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
+        public Grynwald.MarkdownGenerator.MdSpan Text { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public enum MdEmphasisStyle
+    {
+        Asterisk = 0,
+        Underscore = 1,
+    }
+    public sealed class MdEmptyBlock : Grynwald.MarkdownGenerator.MdBlock
+    {
+        public static readonly Grynwald.MarkdownGenerator.MdEmptyBlock Instance;
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public sealed class MdEmptySpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public static readonly Grynwald.MarkdownGenerator.MdEmptySpan Instance;
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public sealed class MdHeading : Grynwald.MarkdownGenerator.MdLeafBlock
+    {
+        public MdHeading(Grynwald.MarkdownGenerator.MdSpan text, int level) { }
+        public MdHeading(int level, Grynwald.MarkdownGenerator.MdSpan text) { }
+        public MdHeading(int level, params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public string Anchor { get; }
+        public int Level { get; }
+        public Grynwald.MarkdownGenerator.MdSingleLineSpan Text { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public enum MdHeadingStyle
+    {
+        Atx = 0,
+        Setext = 1,
+    }
+    public sealed class MdImageSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdImageSpan(string description, string uri) { }
+        public MdImageSpan(string description, System.Uri uri) { }
+        public MdImageSpan(Grynwald.MarkdownGenerator.MdSpan description, string uri) { }
+        public MdImageSpan(Grynwald.MarkdownGenerator.MdSpan description, System.Uri uri) { }
+        public Grynwald.MarkdownGenerator.MdSpan Description { get; }
+        public System.Uri Uri { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public abstract class MdLeafBlock : Grynwald.MarkdownGenerator.MdBlock
+    {
+        internal MdLeafBlock() { }
+    }
+    public sealed class MdLinkSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdLinkSpan(string text, string uri) { }
+        public MdLinkSpan(string text, System.Uri uri) { }
+        public MdLinkSpan(Grynwald.MarkdownGenerator.MdSpan text, string uri) { }
+        public MdLinkSpan(Grynwald.MarkdownGenerator.MdSpan text, System.Uri uri) { }
+        public Grynwald.MarkdownGenerator.MdSpan Text { get; }
+        public System.Uri Uri { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public abstract class MdList : Grynwald.MarkdownGenerator.MdBlock, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdListItem>, System.Collections.IEnumerable
+    {
+        internal MdList(params Grynwald.MarkdownGenerator.MdListItem[] content) { }
+        internal MdList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> content) { }
+        public int Count { get; }
+        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> Items { get; }
+        public void Add(Grynwald.MarkdownGenerator.MdListItem item) { }
+        protected bool DeepEquals(Grynwald.MarkdownGenerator.MdList other) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdListItem> GetEnumerator() { }
+        public void Insert(int index, Grynwald.MarkdownGenerator.MdListItem item) { }
+    }
+    public sealed class MdListItem : Grynwald.MarkdownGenerator.MdContainerBlockBase
+    {
+        public MdListItem() { }
+        public MdListItem(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public MdListItem(Grynwald.MarkdownGenerator.MdList content) { }
+        public MdListItem(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdListItem(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public MdListItem(Grynwald.MarkdownGenerator.MdSpan content) { }
+        public MdListItem(params Grynwald.MarkdownGenerator.MdSpan[] content) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public sealed class MdOrderedList : Grynwald.MarkdownGenerator.MdList
+    {
+        public MdOrderedList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
+        public MdOrderedList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public enum MdOrderedListStyle
+    {
+        Dot = 0,
+        Parenthesis = 1,
+    }
+    public sealed class MdParagraph : Grynwald.MarkdownGenerator.MdLeafBlock
+    {
+        public MdParagraph() { }
+        public MdParagraph(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public MdParagraph(params Grynwald.MarkdownGenerator.MdSpan[] spans) { }
+        public Grynwald.MarkdownGenerator.MdSpan Text { get; }
+        public void Add(Grynwald.MarkdownGenerator.MdSpan span) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public sealed class MdRawMarkdownSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdRawMarkdownSpan(string content) { }
+        public string Content { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public class MdSerializationOptions
+    {
+        public static readonly Grynwald.MarkdownGenerator.MdSerializationOptions Default;
+        public MdSerializationOptions() { }
+        public Grynwald.MarkdownGenerator.MdBulletListStyle BulletListStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdCodeBlockStyle CodeBlockStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdEmphasisStyle EmphasisStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdHeadingStyle HeadingStyle { get; set; }
+        public int MaxLineLength { get; set; }
+        public Grynwald.MarkdownGenerator.MdOrderedListStyle OrderedListStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdTableStyle TableStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdThematicBreakStyle ThematicBreakStyle { get; set; }
+    }
+    public sealed class MdSingleLineSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdSingleLineSpan(Grynwald.MarkdownGenerator.MdSpan content) { }
+        public Grynwald.MarkdownGenerator.MdSpan Content { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public abstract class MdSpan
+    {
+        internal MdSpan() { }
+        public abstract bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other);
+        public virtual string ToString() { }
+        public abstract string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options);
+        public static Grynwald.MarkdownGenerator.MdSpan op_Implicit(string text) { }
+    }
+    public sealed class MdStrongEmphasisSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdStrongEmphasisSpan(string text) { }
+        public MdStrongEmphasisSpan(Grynwald.MarkdownGenerator.MdSpan text) { }
+        public MdStrongEmphasisSpan(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
+        public MdStrongEmphasisSpan(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
+        public MdStrongEmphasisSpan(Grynwald.MarkdownGenerator.MdCompositeSpan text) { }
+        public Grynwald.MarkdownGenerator.MdSpan Text { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+    }
+    public sealed class MdTable : Grynwald.MarkdownGenerator.MdLeafBlock, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdTableRow>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdTableRow>, System.Collections.IEnumerable
+    {
+        public MdTable(Grynwald.MarkdownGenerator.MdTableRow headerRow, params Grynwald.MarkdownGenerator.MdTableRow[] rows) { }
+        public MdTable(Grynwald.MarkdownGenerator.MdTableRow headerRow, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdTableRow> rows) { }
+        public int ColumnCount { get; }
+        public int Count { get; }
+        public Grynwald.MarkdownGenerator.MdTableRow HeaderRow { get; }
+        public int RowCount { get; }
+        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdTableRow> Rows { get; }
+        public void Add(Grynwald.MarkdownGenerator.MdTableRow row) { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdTableRow> GetEnumerator() { }
+        public void Insert(int index, Grynwald.MarkdownGenerator.MdTableRow row) { }
+    }
+    public sealed class MdTableRow : System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdSpan>, System.Collections.Generic.IReadOnlyList<Grynwald.MarkdownGenerator.MdSpan>, System.Collections.IEnumerable
+    {
+        public MdTableRow(System.Collections.Generic.IEnumerable<string> cells) { }
+        public MdTableRow(params Grynwald.MarkdownGenerator.MdSpan[] cells) { }
+        public MdTableRow(Grynwald.MarkdownGenerator.MdCompositeSpan cell) { }
+        public MdTableRow(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> cells) { }
+        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> Cells { get; }
+        public int ColumnCount { get; }
+        public int Count { get; }
+        public Grynwald.MarkdownGenerator.MdSpan this[int column] { get; }
+        public void Add(string cell) { }
+        public void Add(Grynwald.MarkdownGenerator.MdSpan cell) { }
+        public bool DeepEquals(Grynwald.MarkdownGenerator.MdTableRow other) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdSpan> GetEnumerator() { }
+        public void Insert(int index, Grynwald.MarkdownGenerator.MdSpan cell) { }
+    }
+    public enum MdTableStyle
+    {
+        GFM = 0,
+        Html = 1,
+    }
+    public sealed class MdTextSpan : Grynwald.MarkdownGenerator.MdSpan
+    {
+        public MdTextSpan(string text) { }
+        public string Text { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdSpan other) { }
+        public override string ToString() { }
+        public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
+        public static Grynwald.MarkdownGenerator.MdTextSpan op_Implicit(string text) { }
+    }
+    public sealed class MdThematicBreak : Grynwald.MarkdownGenerator.MdLeafBlock
+    {
+        public MdThematicBreak() { }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+    public enum MdThematicBreakStyle
+    {
+        Underscore = 0,
+        Dash = 2,
+        Asterisk = 1,
+    }
+    public class static SyntaxVisualizer
+    {
+        public static string GetSyntaxTree(Grynwald.MarkdownGenerator.MdDocument document) { }
+        public static string GetSyntaxTree(Grynwald.MarkdownGenerator.MdBlock block) { }
+    }
+}
+namespace Grynwald.MarkdownGenerator.Extensions
+{
+    public class static FactoryMethods
+    {
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdSpan title) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdSpan title, Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdList content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdSpan title, Grynwald.MarkdownGenerator.MdList content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdSpan title, params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type, Grynwald.MarkdownGenerator.MdSpan title, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+    }
+    public class MdAdmonition : Grynwald.MarkdownGenerator.MdContainerBlockBase
+    {
+        public MdAdmonition(string type) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdSpan title) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdSpan title, Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdList content) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdSpan title, Grynwald.MarkdownGenerator.MdList content) { }
+        public MdAdmonition(string type, params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdSpan title, params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdAdmonition(string type, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdSpan title, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public Grynwald.MarkdownGenerator.MdSpan Title { get; }
+        public string Type { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
+    }
+}
