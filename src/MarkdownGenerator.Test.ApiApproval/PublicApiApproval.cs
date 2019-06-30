@@ -1,5 +1,4 @@
-﻿using System;
-using Grynwald.MarkdownGenerator;
+﻿using Grynwald.MarkdownGenerator;
 using PublicApiGenerator;
 using Shouldly;
 using Xunit;
@@ -12,9 +11,7 @@ namespace MarkdownGenerator.Test.ApiApproval
         public void MarkdownGenerator_must_not_have_unapproved_API_changes()
         {
             var publicApi = ApiGenerator.GeneratePublicApi(typeof(MdDocument).Assembly);
-            
             publicApi.ShouldMatchApproved();
         }
-
     }
 }
