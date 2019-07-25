@@ -169,7 +169,7 @@ jobs:
       target: '$(Build.SourceVersion)'
       tagSource: manual
       tag: v$(Build.BuildNumber)
-      releaseNotesSource: inputs
+      releaseNotesSource: input
       releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/$(nuget_org_PackageName)/$(Build.BuildNumber))'
       assets: $(Build.ArtifactStagingDirectory)/$(artifactsName)/*.nupkg
       addChangeLog: true
