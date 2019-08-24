@@ -644,10 +644,23 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         }
 
         [Theory]
-        [InlineData(MdOrderedListStyle.Dot, '.')]
-        [InlineData(MdOrderedListStyle.Parenthesis, ')')]
-        public void Serializer_respects_OrderedListStyle_serialization_option(MdOrderedListStyle style, char listItemCharacter)
+        [InlineData(MdOrderedListStyle.Dot)]
+        [InlineData(MdOrderedListStyle.Parenthesis)]
+        public void Serializer_respects_OrderedListStyle_serialization_option(MdOrderedListStyle style)
         {
+            char listItemCharacter;
+            switch (style)
+            {
+                case MdOrderedListStyle.Dot:
+                    listItemCharacter = '.';
+                    break;
+                case MdOrderedListStyle.Parenthesis:
+                    listItemCharacter = ')';
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
             var options = new MdSerializationOptions()
             {
                 OrderedListStyle = style
