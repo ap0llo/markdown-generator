@@ -11,7 +11,7 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Represents a markdown document
     /// </summary>
-    public sealed class MdDocument
+    public sealed class MdDocument : IDocument
     {
         /// <summary>
         /// The root container block containing all of the document's blocks

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator
@@ -69,6 +70,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Creates a new instance if <see cref="MdDocumentSet"/>.
         /// </summary>
+        [Obsolete("MdDocumentSet is obsolete, use DocumentSet<MdDocument> instead.")]
         public static MdDocumentSet DocumentSet() => new MdDocumentSet();
     }
 }

@@ -329,3 +329,4 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+src/MarkdownGenerator.Test.ApiApproval/PublicApiApproval.MarkdownGenerator_must_not_have_unapproved_API_changes.received.txt

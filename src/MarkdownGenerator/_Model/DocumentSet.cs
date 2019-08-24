@@ -10,18 +10,17 @@ namespace Grynwald.MarkdownGenerator
     /// A collection of documents associated with a path.
     /// </summary>
     /// <remarks>
-    /// <see cref="MdDocumentSet"/> allows grouping of multiple <see cref="MdDocument"/> instances and associating
+    /// <see cref="DocumentSet{T}"/> allows grouping of multiple <see cref="IDocument"/> instances and associating
     /// them with a path. The document set offers methods to create links between documents and saving all 
     /// documents to a directory at once.
     /// <para>
-    /// <see cref="MdDocumentSet"/> implements a 1:1 mapping between documents and paths.
+    /// It implements a 1:1 mapping between documents and paths.
     /// </para>
     /// </remarks>
-    [Obsolete("MdDocumentSet is obsolete, use DocumentSet<MdDocument> instead.")]
-    public sealed class MdDocumentSet : IEnumerable<MdDocument>
+    public class DocumentSet<T> : IEnumerable<T> where T : IDocument
     {
-        private readonly Dictionary<string, MdDocument> m_DocumentsByPath;
-        private readonly Dictionary<MdDocument, string> m_PathsByDocument;
+        private readonly Dictionary<string, T> m_DocumentsByPath;
+        private readonly Dictionary<T, string> m_PathsByDocument;
 
         /// <summary>
         /// Gets the document associated with the specified path.
@@ -30,7 +29,7 @@ namespace Grynwald.MarkdownGenerator
         /// <returns>Returns the document associated with the specified path.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="path"/> is null.</exception>
         /// <exception cref="DocumentNotFoundException">Thrown when no document associated with the specified path was found.</exception>
-        public MdDocument this[string path]
+        public T this[string path]
         {
             get
             {
@@ -51,7 +50,7 @@ namespace Grynwald.MarkdownGenerator
         /// <returns>Returns the path for the specified document.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="document"/> is null.</exception>
         /// <exception cref="DocumentNotFoundException">Thrown when the specified document is not part of this document set.</exception>
-        public string this[MdDocument document]
+        public string this[T document]
         {
             get
             {
@@ -68,26 +67,26 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Gets all the documents in this document set.
         /// </summary>
-        public IEnumerable<MdDocument> Documents => m_DocumentsByPath.Values;
+        public IEnumerable<T> Documents => m_DocumentsByPath.Values;
 
 
         /// <summary>
-        /// Initializes a new instance of <see cref="MdDocumentSet"/>.
+        /// Initializes a new instance of <see cref="DocumentSet{T}"/>.
         /// </summary>
-        public MdDocumentSet()
+        public DocumentSet()
         {
             // treat paths case-insensitive on Windows
             m_DocumentsByPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                ? new Dictionary<string, MdDocument>(StringComparer.OrdinalIgnoreCase)
-                : new Dictionary<string, MdDocument>(StringComparer.Ordinal);
+                ? new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase)
+                : new Dictionary<string, T>(StringComparer.Ordinal);
             
-            m_PathsByDocument = new Dictionary<MdDocument, string>();            
+            m_PathsByDocument = new Dictionary<T, string>();            
         }
 
         /// <summary>
         /// Determines whether the specified document is part of the document set.
         /// </summary>
-        public bool ContainsDocument(MdDocument document) => m_PathsByDocument.ContainsKey(document);
+        public bool ContainsDocument(T document) => m_PathsByDocument.ContainsKey(document);
 
         /// <summary>
         /// Determines whether a document with the specified path is part of the document set.
@@ -97,20 +96,7 @@ namespace Grynwald.MarkdownGenerator
             path = NormalizeRelativePath(path);
             return m_DocumentsByPath.ContainsKey(path);
         }
-
-        /// <summary>
-        /// Creates a new <see cref="MdDocument"/> and adds it to the document set.
-        /// </summary>
-        /// <param name="path">The path of the document to create.</param>
-        /// <returns>Returns the created document.</returns>
-        /// <exception cref="ArgumentException">Thrown when <paramref name="path"/> is null of empty.</exception>
-        /// <exception cref="ArgumentException">Thrown when the document set already contains a document with the specified path.</exception>
-        public MdDocument CreateDocument(string path)
-        {
-            var document = new MdDocument();
-            Add(path, document);
-            return document;
-        }
+      
 
         /// <summary>
         /// Adds the specified document to the set at the specified path.
@@ -126,7 +112,7 @@ namespace Grynwald.MarkdownGenerator
         /// Value must not be rooted and must not refer to a location outside the root output directory,
         /// e.g. <c>../doc.md</c>.
         /// </exception>
-        public void Add(string path, MdDocument document)
+        public void Add(string path, T document)
         {
             if (String.IsNullOrEmpty(path))
                 throw new ArgumentException("Value must not be null of empty.", nameof(path));
@@ -147,28 +133,23 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Creates a markdown link element (see <see cref="MdLinkSpan"/>) with a relative link between the specified documents.
+        /// Gets the relative link between the specified documents.
         /// </summary>
         /// <param name="from">The link source (i.e. the document the link span will be placed in).</param>
         /// <param name="to">The links's target.</param>
-        /// <param name="linkText">The link text</param>
-        /// <returns>Returns a new <see cref="MdLinkSpan"/>.</returns>
+        /// <returns>The relative path between the specified documents as <c>string</c>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="from"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="to"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="linkText"/> is null.</exception>
         /// <exception cref="DocumentNotFoundException">Thrown when <paramref name="from"/> is not part of the document set.</exception>
         /// <exception cref="DocumentNotFoundException">Thrown when <paramref name="to"/> is not part of the document set.</exception>
-        public MdLinkSpan GetLink(MdDocument from, MdDocument to, MdSpan linkText)
+        public string GetRelativePath(T from, T to)
         {
             if (from == null)
                 throw new ArgumentNullException(nameof(from));
 
             if (to == null)
                 throw new ArgumentNullException(nameof(to));
-
-            if (linkText == null)
-                throw new ArgumentNullException(nameof(linkText));
-
+            
             var rootPath = Environment.CurrentDirectory;
 
             var fromUri = new Uri(Path.Combine(rootPath, this[from]));
@@ -176,11 +157,11 @@ namespace Grynwald.MarkdownGenerator
 
             var uri = fromUri.MakeRelativeUri(toUri);
 
-            return new MdLinkSpan(linkText, uri);
+            return uri.ToString();
         }
 
         /// <inheritdoc />
-        public IEnumerator<MdDocument> GetEnumerator() => Documents.GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => Documents.GetEnumerator();
 
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => Documents.GetEnumerator();
@@ -190,7 +171,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="directoryPath">The directory path to save the documents to.</param>
         public void Save(string directoryPath) =>
-            Save(directoryPath, cleanOutputDirectory: false, serializationOptions: null);
+            Save(directoryPath, cleanOutputDirectory: false);
 
         /// <summary>
         /// Saves all the set's documents to the specified output directory.
@@ -198,22 +179,26 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="directoryPath">The directory path to save the documents to.</param>
         /// <param name="cleanOutputDirectory">Determines whether the output directory is deleted before saving the documents.</param>
         public void Save(string directoryPath, bool cleanOutputDirectory) =>
-            Save(directoryPath, cleanOutputDirectory, serializationOptions: null);
+            Save(directoryPath, cleanOutputDirectory, (document, path) => document.Save(path));
 
         /// <summary>
         /// Saves all the set's documents to the specified output directory.
         /// </summary>
         /// <param name="directoryPath">The directory path to save the documents to.</param>
         /// <param name="cleanOutputDirectory">Determines whether the output directory is deleted before saving the documents.</param>
-        /// <param name="serializationOptions">The serialization options to use for saving the documents. Can be <c>null</c>.</param>
-        public void Save(string directoryPath, bool cleanOutputDirectory, MdSerializationOptions serializationOptions)
+        /// <param name="saveOperation">
+        /// The action to apply to the document when saving.
+        /// <para>
+        /// Allows customization of the save operation. The specified action will be called instead of
+        /// <see cref="IDocument.Save(String)"/>.
+        /// </para>
+        /// </param>
+        public void Save(string directoryPath, bool cleanOutputDirectory, Action<T, string> saveOperation)
         {
             if (directoryPath == null)
                 throw new ArgumentNullException(nameof(directoryPath));
 
-            // serializationOptions can be null
-
-            if(Directory.Exists(directoryPath) && cleanOutputDirectory)
+            if (Directory.Exists(directoryPath) && cleanOutputDirectory)
             {
                 Directory.Delete(directoryPath, recursive: true);
             }
@@ -226,10 +211,9 @@ namespace Grynwald.MarkdownGenerator
                 var outPath = Path.Combine(directoryPath, path);
 
                 Directory.CreateDirectory(Path.GetDirectoryName(outPath));
-                document.Save(outPath, serializationOptions);
+                saveOperation(document, outPath);
             }
         }
-
 
         private string NormalizeRelativePath(string value)
         {

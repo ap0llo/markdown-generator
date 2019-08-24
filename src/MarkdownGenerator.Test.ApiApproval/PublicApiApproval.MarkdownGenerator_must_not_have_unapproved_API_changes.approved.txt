@@ -6,6 +6,29 @@ namespace Grynwald.MarkdownGenerator
     {
         public DocumentNotFoundException(string message) { }
     }
+    public class static DocumentSetExtensions
+    {
+        public static Grynwald.MarkdownGenerator.MdDocument CreateDocument(this Grynwald.MarkdownGenerator.DocumentSet<Grynwald.MarkdownGenerator.MdDocument> documentSet, string path) { }
+        public static Grynwald.MarkdownGenerator.MdLinkSpan GetLink<T>(this Grynwald.MarkdownGenerator.DocumentSet<T> documentSet, T from, T to, Grynwald.MarkdownGenerator.MdSpan linkText)
+            where T : Grynwald.MarkdownGenerator.IDocument { }
+        public static void Save(this Grynwald.MarkdownGenerator.DocumentSet<Grynwald.MarkdownGenerator.MdDocument> documentSet, string directoryPath, bool cleanOutputDirectory, Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
+    }
+    public class DocumentSet<T> : System.Collections.Generic.IEnumerable<T>, System.Collections.IEnumerable
+        where T : Grynwald.MarkdownGenerator.IDocument
+    {
+        public DocumentSet() { }
+        public System.Collections.Generic.IEnumerable<T> Documents { get; }
+        public T this[string path] { get; }
+        public string this[T document] { get; }
+        public void Add(string path, T document) { }
+        public bool ContainsDocument(T document) { }
+        public bool ContainsPath(string path) { }
+        public System.Collections.Generic.IEnumerator<T> GetEnumerator() { }
+        public string GetRelativePath(T from, T to) { }
+        public void Save(string directoryPath) { }
+        public void Save(string directoryPath, bool cleanOutputDirectory) { }
+        public void Save(string directoryPath, bool cleanOutputDirectory, System.Action<T, string> saveOperation) { }
+    }
     public class static EnumerableExtensions
     {
         public static Grynwald.MarkdownGenerator.MdSpan Join(this System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans) { }
@@ -44,6 +67,7 @@ namespace Grynwald.MarkdownGenerator
         public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.MdList list) { }
         public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.MdBlockQuote blockQuote) { }
         public static Grynwald.MarkdownGenerator.MdDocument Document(Grynwald.MarkdownGenerator.Extensions.MdAdmonition admonition) { }
+        [System.ObsoleteAttribute("MdDocumentSet is obsolete, use DocumentSet<MdDocument> instead.")]
         public static Grynwald.MarkdownGenerator.MdDocumentSet DocumentSet() { }
         public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(string text) { }
         public static Grynwald.MarkdownGenerator.MdEmphasisSpan Emphasis(Grynwald.MarkdownGenerator.MdSpan text) { }
@@ -95,6 +119,10 @@ namespace Grynwald.MarkdownGenerator
         public static Grynwald.MarkdownGenerator.MdTable Table(Grynwald.MarkdownGenerator.MdTableRow headerRow, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdTableRow> rows) { }
         public static Grynwald.MarkdownGenerator.MdTextSpan Text(string text) { }
         public static Grynwald.MarkdownGenerator.MdThematicBreak ThematicBreak() { }
+    }
+    public interface IDocument
+    {
+        void Save(string path);
     }
     public abstract class MdBlock
     {
@@ -184,7 +212,7 @@ namespace Grynwald.MarkdownGenerator
         public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdBlock> GetEnumerator() { }
         public void Insert(int index, Grynwald.MarkdownGenerator.MdBlock block) { }
     }
-    public sealed class MdDocument
+    public sealed class MdDocument : Grynwald.MarkdownGenerator.IDocument
     {
         public MdDocument(Grynwald.MarkdownGenerator.MdContainerBlock root) { }
         public MdDocument(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
@@ -200,6 +228,7 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() { }
         public string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
     }
+    [System.ObsoleteAttribute("MdDocumentSet is obsolete, use DocumentSet<MdDocument> instead.")]
     public sealed class MdDocumentSet : System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdDocument>, System.Collections.IEnumerable
     {
         public MdDocumentSet() { }

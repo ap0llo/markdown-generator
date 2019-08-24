@@ -6,15 +6,21 @@ using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test
 {
-    [Obsolete("MdDocumentSet is obsolete, thus the corresponding tests are as well. Implement new tests in DocumentSetTest")]
-    public class MdDocumentSetTest
+    public class DocumentSetTest
     {
+        private class TestDocument : IDocument
+        {
+            public void Save(string path) => File.WriteAllText(path, "Test Document Content");
+        }
+
+
         [Fact]
         public void Indexer_returns_expected_document()
         {
             var path = "some/path/doc.md";
-            var set = new MdDocumentSet();
-            var document = set.CreateDocument(path);
+            var set = new DocumentSet<TestDocument>();
+            var document = new TestDocument();
+            set.Add(path, document);
 
             Assert.Same(document, set[path]);
         }
@@ -22,15 +28,15 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void Indexer_throws_ArgumentNullException_if_path_is_null()
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
             Assert.Throws<ArgumentNullException>(() => set[(string)null]);
         }
 
         [Fact]
         public void Indexer_throws_DocumentNotFoundException_if_path_is_unknown()
         {
-            var set = new MdDocumentSet();
-            _ = set.CreateDocument("doc2.md");
+            var set = new DocumentSet<TestDocument>();
+            set.Add("doc2.md", new TestDocument());
             Assert.Throws<DocumentNotFoundException>(() => set["doc1.md"]);
             Assert.Throws<DocumentNotFoundException>(() => set["path/doc1.md"]);
         }
@@ -39,8 +45,9 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Indexer_returns_a_documents_path()
         {
             var path = "some/path/doc.md";
-            var set = new MdDocumentSet();
-            var document = set.CreateDocument(path);
+            var set = new DocumentSet<TestDocument>();
+            var document = new TestDocument();
+            set.Add(path, document);
 
             Assert.Equal(path, set[document]);
         }
@@ -48,22 +55,22 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void Indexer_throws_ArgumentNullException_if_document_is_null()
         {
-            var set = new MdDocumentSet();
-            Assert.Throws<ArgumentNullException>(() => set[(MdDocument)null]);
+            var set = new DocumentSet<TestDocument>();
+            Assert.Throws<ArgumentNullException>(() => set[(TestDocument)null]);
         }
 
         [Fact]
         public void Indexer_throws_DocumentNotFoundException_if_document_is_unknown()
         {
-            var set = new MdDocumentSet();
-            Assert.Throws<DocumentNotFoundException>(() => set[new MdDocument()]);
+            var set = new DocumentSet<TestDocument>();
+            Assert.Throws<DocumentNotFoundException>(() => set[new TestDocument()]);
         }
 
 
         [Fact]
         public void Documents_is_initially_empty()
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
 
             Assert.NotNull(set.Documents);
             Assert.Empty(set.Documents);
@@ -72,11 +79,14 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void Documents_returns_expected_documents()
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
 
-            var document1 = set.CreateDocument("path1");
-            var document2 = set.CreateDocument("path2");
-            var document3 = set.CreateDocument("path3");
+            var document1 = new TestDocument();
+            set.Add("path1", document1);
+            var document2 = new TestDocument();
+            set.Add("path2", document2);
+            var document3 = new TestDocument();
+            set.Add("path3", document3);
 
             Assert.Equal(3, set.Documents.Count());
             Assert.Contains(document1, set.Documents);
@@ -87,10 +97,10 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void ContainsDocument_returns_expected_value()
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
 
-            var doc1 = new MdDocument();
-            var doc2 = new MdDocument();
+            var doc1 = new TestDocument();
+            var doc2 = new TestDocument();
 
             set.Add("doc1.md", doc1);
 
@@ -101,10 +111,13 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void ContainsPath_returns_expected_value()
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
 
-            _ = set.CreateDocument("doc1.md");
-            _ = set.CreateDocument("doc2.md");
+            var doc1 = new TestDocument();
+            set.Add("doc1.md", doc1);
+            
+            var doc2 = new TestDocument();
+            set.Add("doc2.md", doc2);
 
             Assert.True(set.ContainsPath("doc1.md"));
             Assert.True(set.ContainsPath("subDir/../doc1.md"));
@@ -113,14 +126,14 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.False(set.ContainsPath("doc3.md"));
         }
-
+        
         [Theory]
         [InlineData("")]
         [InlineData(null)]
-        public void CreateDocument_throws_ArgumentException_for_empty_path(string path)
+        public void Add_throws_ArgumentException_for_empty_path(string path)
         {
-            var set = new MdDocumentSet();
-            Assert.Throws<ArgumentException>(() => set.CreateDocument(path));
+            var set = new DocumentSet<TestDocument>();            
+            Assert.Throws<ArgumentException>(() => set.Add(path, new TestDocument()));
         }
 
         [Theory]
@@ -128,12 +141,12 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData("some/path/myPath.md", "some/path/myPath.md")]
         [InlineData("some/path/myPath.md", "some\\path\\myPath.md")]
         [InlineData("some/path/../../myPath.md", "myPath.md")]
-        public void CreateDocument_throw_ArgumentException_for_duplicate_paths(string path1, string path2)
+        public void Add_throw_ArgumentException_for_duplicate_paths(string path1, string path2)
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
 
-            _ = set.CreateDocument(path1);
-            Assert.Throws<ArgumentException>(() => set.CreateDocument(path2));
+            set.Add(path1, new TestDocument());
+            Assert.Throws<ArgumentException>(() => set.Add(path2, new TestDocument()));
         }
 
         [Theory]
@@ -142,20 +155,10 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData("some/path/../../../document.md")]
         [InlineData("/document.md")]
         [InlineData(@"C:\document.md")]
-        public void CreateDocument_throw_ArgumentException_for_invalid_paths(string path)
+        public void Add_throw_ArgumentException_for_invalid_paths(string path)
         {
-            var set = new MdDocumentSet();
-            Assert.Throws<ArgumentException>(() => set.CreateDocument(path));
-        }
-
-        [Theory]
-        [InlineData("some/path/document.md")]
-        [InlineData("some/path/../document.md")]
-        public void CreateDocument_creates_a_new_Document_for_valid_paths(string path)
-        {
-            var set = new MdDocumentSet();
-            var document = set.CreateDocument(path);
-            Assert.NotNull(document);
+            var set = new DocumentSet<TestDocument>();
+            Assert.Throws<ArgumentException>(() => set.Add(path, new TestDocument()));
         }
 
         [Theory]
@@ -168,10 +171,12 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData(@"some\path\.\document.md", "some/path/document.md")]
         [InlineData("some/path/../path/document.md", "some/path/document.md")]
         [InlineData(@"some\path\..\path\document.md", "some/path/document.md")]
-        public void CreateDocument_normalizes_paths(string path, string expectedNormalizedPath)
+        public void Add_normalizes_paths(string path, string expectedNormalizedPath)
         {
-            var set = new MdDocumentSet();
-            var document = set.CreateDocument(path);
+            var set = new DocumentSet<TestDocument>();
+
+            var document = new TestDocument();
+            set.Add(path, document);
 
             var actualNormalizedPath = set[document];
 
@@ -182,8 +187,8 @@ namespace Grynwald.MarkdownGenerator.Test
         [Fact]
         public void Add_throws_ArgumentException_is_document_is_added_twice()
         {
-            var set = new MdDocumentSet();
-            var document = new MdDocument();
+            var set = new DocumentSet<TestDocument>();
+            var document = new TestDocument();
 
             set.Add("doc1.md", document);
 
@@ -196,28 +201,32 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData("some/path/doc1.md", "some/path/doc2.md", "doc2.md")]
         [InlineData("some/path/doc1.md", "somePath/doc2.md", "../../somePath/doc2.md")]
         [InlineData("some/path/doc1.md", "some/path/../doc2.md", "../doc2.md")]
-        public void GetLink_returns_expected_link(string fromPath, string toPath, string expectedLinkUri)
+        public void GetRelativePath_returns_expected_link(string fromPath, string toPath, string expectedLinkUri)
         {
-            var set = new MdDocumentSet();
+            var set = new DocumentSet<TestDocument>();
 
-            var from = set.CreateDocument(fromPath);
-            var to = set.CreateDocument(toPath);
+            var from = new TestDocument();
+            set.Add(fromPath, from);
+            var to = new TestDocument();
+            set.Add(toPath, to);
 
-            var link = set.GetLink(from, to, "Link Text");
+            var relativePath = set.GetRelativePath(from, to);
 
-            Assert.NotNull(link);
-            Assert.Equal(new Uri(expectedLinkUri, UriKind.Relative), link.Uri);
+            Assert.NotNull(relativePath);
+            Assert.Equal(expectedLinkUri, relativePath);
         }
 
         [Fact]
-        public void GetLink_throws_DocumentNotFoundException_if_eiher_document_is_unknown()
+        public void GetRelativePath_throws_DocumentNotFoundException_if_eiher_document_is_unknown()
         {
-            var set = new MdDocumentSet();
-            var doc1 = set.CreateDocument("doc1.md");
-            var doc2 = set.CreateDocument("doc2.md");
+            var set = new DocumentSet<TestDocument>();
+            var doc1 = new TestDocument();
+            set.Add("doc1.md", doc1);
+            var doc2 = new TestDocument();
+            set.Add("doc2.md", doc2);
 
-            Assert.Throws<DocumentNotFoundException>(() => set.GetLink(doc1, new MdDocument(), "Link text"));
-            Assert.Throws<DocumentNotFoundException>(() => set.GetLink(new MdDocument(), doc2, "Link text"));
+            Assert.Throws<DocumentNotFoundException>(() => set.GetRelativePath(doc1, new TestDocument()));
+            Assert.Throws<DocumentNotFoundException>(() => set.GetRelativePath(new TestDocument(), doc2));
         }
 
         [Fact]
@@ -226,9 +235,13 @@ namespace Grynwald.MarkdownGenerator.Test
             using (var directory = new TemporaryDirectory())
             {
                 // ARRANGE
-                var set = new MdDocumentSet();
-                var document1 = set.CreateDocument("doc1.md");
-                var document2 = set.CreateDocument("subDir/doc2.md");
+                var set = new DocumentSet<MdDocument>();
+
+                var document1 = new MdDocument();
+                set.Add("doc1.md", document1);
+
+                var document2 = new MdDocument();
+                set.Add("subDir/doc2.md", document2);
 
                 var expectedOutPath1 = Path.Combine(directory, "doc1.md");
                 var expectedOutPath2 = Path.Combine(directory, "subDir/doc2.md");
@@ -262,13 +275,14 @@ namespace Grynwald.MarkdownGenerator.Test
                 Directory.CreateDirectory(Path.GetDirectoryName(existingPath2));
                 File.WriteAllText(existingPath2, "Content");
 
-                var set = new MdDocumentSet();
-                var document1 = set.CreateDocument("doc1.md");
-                var document2 = set.CreateDocument("subDir/doc2.md");
+                var set = new DocumentSet<TestDocument>();
+                var document1 = new TestDocument();
+                set.Add("doc1.md", document1);
+                var document2 = new TestDocument();
+                set.Add("subDir/doc2.md", document2);
 
                 var expectedOutPath1 = Path.Combine(directory, "doc1.md");
                 var expectedOutPath2 = Path.Combine(directory, "subDir/doc2.md");
-
 
                 // ACT
                 set.Save(directory, cleanOutputDirectory: true);
@@ -295,13 +309,16 @@ namespace Grynwald.MarkdownGenerator.Test
                 Directory.CreateDirectory(Path.GetDirectoryName(existingPath2));
                 File.WriteAllTextAsync(existingPath2, "Content");
 
-                var set = new MdDocumentSet();
-                var document1 = set.CreateDocument("doc1.md");
-                var document2 = set.CreateDocument("subDir/doc2.md");
+                var set = new DocumentSet<TestDocument>();
+
+                var document1 = new TestDocument();
+                set.Add("doc1.md", document1);
+
+                var document2 = new TestDocument();
+                set.Add("subDir/doc2.md", document2);
 
                 var expectedOutPath1 = Path.Combine(directory, "doc1.md");
                 var expectedOutPath2 = Path.Combine(directory, "subDir/doc2.md");
-
 
                 // ACT
                 set.Save(directory, cleanOutputDirectory: false);
