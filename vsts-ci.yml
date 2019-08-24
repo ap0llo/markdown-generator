@@ -24,6 +24,7 @@ jobs:
 
 # Main Build and test job: Builds the projects and runs all tests
 - job: Build_and_Test
+  displayName: Build and Test
   pool: Hosted VS2017
   steps:
 
@@ -81,6 +82,7 @@ jobs:
 
 # Job to push package to MyGet.org after build
 - job: Publish_to_MyGet
+  displayName: Publish to MyGet
   pool: Hosted VS2017
   # Only run after main build job and only if the current branch is master or a release branch
   dependsOn: Build_and_Test
@@ -104,6 +106,7 @@ jobs:
 
 # Job to push package to NuGet.org after build (only for builds of release branches)
 - job: Publish_to_NuGet_org
+  displayName: Publish to NuGet.org
   pool: Hosted VS2017
   # Only run after main build job and only if the current branch is a release branch
   dependsOn: Build_and_Test
@@ -127,6 +130,7 @@ jobs:
 
 # Job to create a GitHub release (only if a package was uploaded to NuGet.org)
 - job: Create_GitHub_Release
+  displayName: Create GitHub Release
   pool: Hosted VS2017
   # Only run if build was successful and a package was uploaded to nuget.org
   dependsOn: 
