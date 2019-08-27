@@ -9,6 +9,7 @@ namespace Grynwald.MarkdownGenerator
     public class static DocumentSetExtensions
     {
         public static Grynwald.MarkdownGenerator.MdDocument CreateMdDocument(this Grynwald.MarkdownGenerator.DocumentSet<Grynwald.MarkdownGenerator.MdDocument> documentSet, string path) { }
+        public static Grynwald.MarkdownGenerator.MdDocument CreateMdDocument(this Grynwald.MarkdownGenerator.DocumentSet<Grynwald.MarkdownGenerator.IDocument> documentSet, string path) { }
         public static Grynwald.MarkdownGenerator.MdLinkSpan GetLink<T>(this Grynwald.MarkdownGenerator.DocumentSet<T> documentSet, T from, T to, Grynwald.MarkdownGenerator.MdSpan linkText)
             where T : Grynwald.MarkdownGenerator.IDocument { }
         public static void Save(this Grynwald.MarkdownGenerator.DocumentSet<Grynwald.MarkdownGenerator.MdDocument> documentSet, string directoryPath, bool cleanOutputDirectory, Grynwald.MarkdownGenerator.MdSerializationOptions serializationOptions) { }
