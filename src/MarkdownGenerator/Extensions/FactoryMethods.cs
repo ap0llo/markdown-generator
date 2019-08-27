@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator.Extensions
 {
+    [Obsolete("FactoryMethods is obsolete. Use the constructors of the markdown data types directly instead.")]
     public static class FactoryMethods
     {
         public static MdAdmonition Admonition(string type) => new MdAdmonition(type);

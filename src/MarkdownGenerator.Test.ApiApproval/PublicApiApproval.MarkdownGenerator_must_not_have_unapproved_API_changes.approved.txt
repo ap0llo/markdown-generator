@@ -36,6 +36,8 @@ namespace Grynwald.MarkdownGenerator
         public static Grynwald.MarkdownGenerator.MdSpan Join(this System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans, string separator) { }
         public static Grynwald.MarkdownGenerator.MdSpan Join(this System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> spans, Grynwald.MarkdownGenerator.MdSpan separator) { }
     }
+    [System.ObsoleteAttribute("FactoryMethods is obsolete. Use the constructors of the markdown data types direc" +
+        "tly instead.")]
     public class static FactoryMethods
     {
         public static Grynwald.MarkdownGenerator.MdBlockQuote BlockQuote() { }
@@ -481,6 +483,8 @@ namespace Grynwald.MarkdownGenerator
 }
 namespace Grynwald.MarkdownGenerator.Extensions
 {
+    [System.ObsoleteAttribute("FactoryMethods is obsolete. Use the constructors of the markdown data types direc" +
+        "tly instead.")]
     public class static FactoryMethods
     {
         public static Grynwald.MarkdownGenerator.Extensions.MdAdmonition Admonition(string type) { }

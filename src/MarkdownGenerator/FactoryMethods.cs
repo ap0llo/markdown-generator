@@ -16,6 +16,7 @@ namespace Grynwald.MarkdownGenerator
     ///   Document(Paragraph("My Content"))
     /// </code>
     /// </summary>
+    [Obsolete("FactoryMethods is obsolete. Use the constructors of the markdown data types directly instead.")]
     public static partial class FactoryMethods
     {
         /// <summary>

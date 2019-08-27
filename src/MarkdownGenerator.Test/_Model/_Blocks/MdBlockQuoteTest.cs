@@ -5,14 +5,10 @@ namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdBlockQuoteTest
     {
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdBlockQuote_can_be_initialized_with_string_content_01(bool useFactoryMethods)
+        [Fact]
+        public void MdBlockQuote_can_be_initialized_with_string_content_01()
         {
-            var block = useFactoryMethods
-                ? FactoryMethods.BlockQuote("Content")
-                : new MdBlockQuote("Content");
+            var block = new MdBlockQuote("Content");
 
             Assert.Single(block.Blocks);
             Assert.IsType<MdParagraph>(block.Blocks.Single());
@@ -24,14 +20,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content", textSpan.Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdBlockQuote_can_be_initialized_with_string_content_02(bool useFactoryMethods)
+        [Fact]
+        public void MdBlockQuote_can_be_initialized_with_string_content_02()
         {
-            var block = useFactoryMethods
-                ? FactoryMethods.BlockQuote("Content1", "Content2")
-                : new MdBlockQuote("Content1", "Content2");
+            var block = new MdBlockQuote("Content1", "Content2");
 
             Assert.Single(block.Blocks);
             Assert.IsType<MdParagraph>(block.Blocks.Single());

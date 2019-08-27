@@ -55,14 +55,10 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content", textSpan.Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdTableRow_can_be_initialized_with_string_content_02(bool useFactoryMethods)
+        [Fact]
+        public void MdTableRow_can_be_initialized_with_string_content_02()
         {
-            var row = useFactoryMethods
-                ? FactoryMethods.Row("Content1", "Content2")
-                : new MdTableRow("Content1", "Content2");
+            var row = new MdTableRow("Content1", "Content2");
 
             Assert.Equal(2, row.ColumnCount);
             Assert.IsType<MdSingleLineSpan>(row[0]);
@@ -78,16 +74,12 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void MdTableRow_can_be_initialized_with_string_content_03(bool useFactoryMethods)
+        [Fact]
+        public void MdTableRow_can_be_initialized_with_string_content_03()
         {
             var cells = (IEnumerable<string>)new[] { "Content1", "Content2" };
 
-            var row = useFactoryMethods
-                ? FactoryMethods.Row(cells)
-                : new MdTableRow(cells);
+            var row = new MdTableRow(cells);
 
             Assert.Equal(2, row.ColumnCount);
             Assert.IsType<MdSingleLineSpan>(row[0]);

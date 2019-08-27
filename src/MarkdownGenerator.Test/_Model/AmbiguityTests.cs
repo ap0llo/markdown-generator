@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator.Test
@@ -39,6 +40,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdDocument(new MdAdmonition("note"), new MdAdmonition("note"));
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdDocument_using_FactoryMethods()
         {
             _ = FactoryMethods.Document();
@@ -77,6 +79,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdListItem(new MdAdmonition("note"));
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdListItem_using_FactoryMethods()
         {
             _ = FactoryMethods.ListItem();
@@ -117,6 +120,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdContainerBlock(new MdAdmonition("note"), new MdAdmonition("note"));
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdContainerBlock_using_FactoryMethods()
         {
             _ = FactoryMethods.Container();
@@ -156,6 +160,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdBlockQuote(new MdAdmonition("note"));
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdBlockQuote_using_FactoryMethods()
         {
             _ = FactoryMethods.BlockQuote();
@@ -184,6 +189,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdEmphasisSpan(new List<MdSpan>() { new MdTextSpan(""), new MdTextSpan("") });
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdEmphasisSpan_using_FactoryMethods()
         {
             _ = FactoryMethods.Emphasis(FactoryMethods.CompositeSpan());
@@ -206,6 +212,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdStrongEmphasisSpan(new List<MdSpan>() { new MdTextSpan(""), new MdTextSpan("") });
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdStrongEmphasisSpan_using_FactoryMethods()
         {
             _ = FactoryMethods.StrongEmphasis(FactoryMethods.CompositeSpan());
@@ -230,6 +237,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = new MdTableRow(new MdCompositeSpan("Cell 1", "Cell 1 continued"));
         }
 
+        [Obsolete("FactoryMethods is obsolete. This test case can be removed once FactoryMethods has been removed.")]
         public void Initialization_of_MdTableRow_using_FactoryMethods()
         {
             _ = FactoryMethods.Row();
