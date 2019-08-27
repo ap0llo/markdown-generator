@@ -471,6 +471,13 @@ namespace Grynwald.MarkdownGenerator
         public static string GetSyntaxTree(Grynwald.MarkdownGenerator.MdDocument document) { }
         public static string GetSyntaxTree(Grynwald.MarkdownGenerator.MdBlock block) { }
     }
+    public class TextDocument : Grynwald.MarkdownGenerator.IDocument
+    {
+        public TextDocument() { }
+        public TextDocument(string content) { }
+        public string Content { get; set; }
+        public void Save(string path) { }
+    }
 }
 namespace Grynwald.MarkdownGenerator.Extensions
 {
