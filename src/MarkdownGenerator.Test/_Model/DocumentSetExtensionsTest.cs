@@ -13,7 +13,7 @@ namespace Grynwald.MarkdownGenerator.Test
         public void CreateDocument_creates_a_new_Document_for_valid_paths(string path)
         {
             var set = new DocumentSet<MdDocument>();
-            var document = set.CreateDocument(path);
+            var document = set.CreateMdDocument(path);
             Assert.NotNull(document);
         }
     }

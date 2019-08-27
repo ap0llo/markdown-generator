@@ -15,7 +15,7 @@ namespace Grynwald.MarkdownGenerator
         /// <returns>Returns the created document.</returns>
         /// <exception cref="ArgumentException">Thrown when <paramref name="path"/> is null of empty.</exception>
         /// <exception cref="ArgumentException">Thrown when the document set already contains a document with the specified path.</exception>
-        public static MdDocument CreateDocument(this DocumentSet<MdDocument> documentSet, string path)
+        public static MdDocument CreateMdDocument(this DocumentSet<MdDocument> documentSet, string path)
         {
             var document = new MdDocument();
             documentSet.Add(path, document);
