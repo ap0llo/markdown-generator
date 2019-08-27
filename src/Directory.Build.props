@@ -16,6 +16,7 @@
 	
 	<PropertyGroup>
 		<LangVersion>7.2</LangVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 </Project>
