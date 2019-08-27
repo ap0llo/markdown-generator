@@ -23,6 +23,22 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
+        /// Creates a new <see cref="MdDocument"/> and adds it to the document set.
+        /// </summary>
+        /// <param name="documentSet">The document set to create the document set in.</param>
+        /// <param name="path">The path of the document to create.</param>
+        /// <returns>Returns the created document.</returns>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="path"/> is null of empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when the document set already contains a document with the specified path.</exception>
+        public static MdDocument CreateMdDocument(this DocumentSet<IDocument> documentSet, string path)
+        {
+            var document = new MdDocument();
+            documentSet.Add(path, document);
+            return document;
+        }
+
+
+        /// <summary>
         /// Creates a markdown link element (see <see cref="MdLinkSpan"/>) with a relative link between the specified documents.
         /// </summary>
         /// <param name="documentSet">The <see cref="DocumentSet{T}"/> to get the relative path from.</param>
