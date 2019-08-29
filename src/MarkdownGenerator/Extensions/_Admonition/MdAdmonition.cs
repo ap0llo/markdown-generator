@@ -7,7 +7,7 @@ namespace Grynwald.MarkdownGenerator.Extensions
     /// <summary>
     /// Represents a "admonition" in a markdown document implemented by
     /// the "Admonition" extension for Python-Markdown.
-    /// For details https://python-markdown.github.io/extensions/admonition/
+    /// For details see https://python-markdown.github.io/extensions/admonition/
     /// </summary>
     /// <remarks>
     /// Using this element will produce markdown which will not be rendered correctly

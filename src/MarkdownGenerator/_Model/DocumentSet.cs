@@ -198,9 +198,22 @@ namespace Grynwald.MarkdownGenerator
             if (directoryPath == null)
                 throw new ArgumentNullException(nameof(directoryPath));
 
+            // If selected, delete all files and directories in the output directory
+            // Keep the root output directory unchanged (it would be recreated
+            // directly afterwards anyways). By keeping the directory
+            // we won't run into problems when an application still
+            // has the directory open.
             if (Directory.Exists(directoryPath) && cleanOutputDirectory)
             {
-                Directory.Delete(directoryPath, recursive: true);
+                foreach(var childDir in Directory.GetDirectories(directoryPath))
+                {
+                    Directory.Delete(childDir, recursive: true);
+                }
+
+                foreach(var file in Directory.GetFiles(directoryPath))
+                {
+                    File.Delete(file);
+                }
             }
 
             foreach (var keyValuePair in m_DocumentsByPath)
