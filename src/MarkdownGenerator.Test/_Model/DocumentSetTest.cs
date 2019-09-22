@@ -217,6 +217,19 @@ namespace Grynwald.MarkdownGenerator.Test
         }
 
         [Fact]
+        public void GetRelativePath_returns_empty_strng_for_self_links()
+        {
+            var set = new DocumentSet<TestDocument>();
+
+            var document = new TestDocument();
+            set.Add("doc1.md", document);
+
+            var relativePath = set.GetRelativePath(document, document);
+
+            Assert.Equal("", relativePath);            
+        }
+
+        [Fact]
         public void GetRelativePath_throws_DocumentNotFoundException_if_eiher_document_is_unknown()
         {
             var set = new DocumentSet<TestDocument>();
