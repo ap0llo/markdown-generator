@@ -24,44 +24,15 @@ namespace Grynwald.MarkdownGenerator
         public MdTextSpan(string text) =>
             Text = text ?? throw new ArgumentNullException(nameof(text));
 
-        // TODO: Consider making the characters to escape configurable
         /// <inheritdoc />
-        public override string ToString()
+        public override string ToString() => ToString(MdSerializationOptions.Default);
+
+        /// <inheritdoc />
+        public override string ToString(MdSerializationOptions options)
         {
-            var stringBuilder = new StringBuilder();
-            for (var i = 0; i < Text.Length; i++)
-            {
-                switch (Text[i])
-                {
-                    case '\\':
-                    case '/':
-                    case '<':
-                    case '>':
-                    case '*':
-                    case '_':
-                    case '-':
-                    case '=':
-                    case '#':
-                    case '`':
-                    case '~':
-                    case '[':
-                    case ']':
-                    case '!':
-                    case '|':
-                        stringBuilder.Append('\\');
-                        break;
-
-                    default:
-                        break;
-                }
-                stringBuilder.Append(Text[i]);
-            }
-
-            return stringBuilder.ToString();
+            var escaper = options.TextFormatter ?? DefaultTextFormatter.Instance;
+            return escaper.EscapeText(Text);
         }
-
-        /// <inheritdoc />
-        public override string ToString(MdSerializationOptions options) => ToString();
 
         /// <inheritdoc />
         public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdTextSpan);

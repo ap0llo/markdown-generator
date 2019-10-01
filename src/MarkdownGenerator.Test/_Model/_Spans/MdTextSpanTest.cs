@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using System;
+using Moq;
+using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test
 {
@@ -20,6 +22,36 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(
                 $"prefix\\{character}suffix",
                 new MdTextSpan($"prefix{character}suffix").ToString()
+            );
+        }
+
+        [Theory]
+        [MarkdownSpecialCharacterData]
+        public void ToString_uses_the_text_formatter_set_in_the_serialization_options_for_escaping(char character)
+        {
+            var value = Guid.NewGuid().ToString();
+
+            var formatterMock = new Mock<ITextFormatter>();
+            // return some placeholder data to ensure text is are passed through the formatter
+            formatterMock.Setup(x => x.EscapeText(It.IsAny<string>())).Returns(value);
+
+            var serializationOptions = new MdSerializationOptions { TextFormatter = formatterMock.Object };
+
+            Assert.Equal(
+                value,
+                new MdTextSpan($"prefix{character}suffix").ToString(serializationOptions)
+            );
+        }
+
+        [Theory]
+        [MarkdownSpecialCharacterData]
+        public void ToString_uses_the_default_text_formatter_if_formatter_from_serialization_options_is_null(char character)
+        {
+            var serializationOptions = new MdSerializationOptions { TextFormatter = null };
+
+            Assert.Equal(
+                $"prefix\\{character}suffix",
+                new MdTextSpan($"prefix{character}suffix").ToString(serializationOptions)
             );
         }
 

@@ -60,5 +60,17 @@
         /// cannot be adhered to
         /// </remarks>
         public int MaxLineLength { get; set; } = -1;
+
+        /// <summary>
+        /// Gets or sets the implementation to use for escaping text when saving a Markdown document.
+        /// </summary>
+        /// <remarks>
+        /// The implementation of <see cref="ITextFormatter" /> set here will be used to escape
+        /// plain text before writing it to the output document.
+        /// <para>
+        /// When no escaper is set, <see cref="DefaultTextFormatter"/> will be used.
+        /// </para>
+        /// </remarks>
+        public ITextFormatter TextFormatter { get; set; } = DefaultTextFormatter.Instance;
     }
 }

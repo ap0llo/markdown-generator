@@ -51,6 +51,7 @@ Addititional dependencies used for testing:
 - [xUnit](http://xunit.github.io/)
 - [PublicApiGenerator](https://github.com/JakeGinnivan/ApiApprover)
 - [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
+- [Moq](https://github.com/moq/moq4)
 
 ## Versioning and Branching
 
