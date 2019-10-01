@@ -7,6 +7,7 @@ using Xunit;
 
 namespace MarkdownGenerator.Test.ApiApproval
 {
+    [Trait("Category", "SkipWhenLiveUnitTesting")]
     [UseReporter(typeof(DiffReporter))]
     public class PublicApiApproval
     {
