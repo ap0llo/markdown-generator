@@ -316,6 +316,38 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             );
 
         [Fact]
+        public void Tables_are_preceded_by_a_blank_line() =>
+            AssertToStringEquals(
+                "___\r\n" +
+                "\r\n" +
+                "| Column1 | Column2 |\r\n" +
+                "| ------- | ------- |\r\n" +
+                "| Cell1   |         |\r\n" +
+                "| Cell3   | Cell4   |\r\n",
+                new MdDocument(
+                    new MdThematicBreak(),
+                    new MdTable(
+                        new MdTableRow("Column1", "Column2"),
+                        new MdTableRow("Cell1"),
+                        new MdTableRow("Cell3", "Cell4"))));
+
+        [Fact]
+        public void Tables_are_followed_by_a_blank_line() =>
+            AssertToStringEquals(
+                "| Column1 | Column2 |\r\n" +
+                "| ------- | ------- |\r\n" +
+                "| Cell1   |         |\r\n" +
+                "| Cell3   | Cell4   |\r\n" +
+                "\r\n" +
+                "___\r\n",
+                new MdDocument(
+                    new MdTable(
+                        new MdTableRow("Column1", "Column2"),
+                        new MdTableRow("Cell1"),
+                        new MdTableRow("Cell3", "Cell4")),
+                    new MdThematicBreak()));
+
+        [Fact]
         public void Serializer_respects_the_TableStyle_serialization_option()
         {
             var options = new MdSerializationOptions()

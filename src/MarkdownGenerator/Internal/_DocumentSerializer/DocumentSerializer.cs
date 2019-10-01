@@ -312,6 +312,8 @@ namespace Grynwald.MarkdownGenerator.Internal
                 m_Writer.WriteLine(lineBuilder.ToString());
             }
 
+            m_Writer.RequestBlankLine();
+
             // save header row
             SaveRow(tableAsString[0]);
 
@@ -331,7 +333,9 @@ namespace Grynwald.MarkdownGenerator.Internal
             foreach(var row in tableAsString.Skip(1))
             {
                 SaveRow(row);
-            }            
+            }
+
+            m_Writer.RequestBlankLine();
         }
 
         public void SerializeHtmlTable(MdTable table)
