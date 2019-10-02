@@ -9,7 +9,7 @@ namespace Grynwald.MarkdownGenerator
     /// as well as the Save() method of <see cref="MdDocument"/>
     /// </summary>
     public class MdSerializationOptions
-    {        
+    {
         public static readonly MdSerializationOptions Default = new MdSerializationOptions(isReadOnly: true);
 
         private readonly bool m_IsReadOnly;
@@ -24,7 +24,6 @@ namespace Grynwald.MarkdownGenerator
         private int m_MaxLineLength = -1;
         private ITextFormatter m_TextFormatter = DefaultTextFormatter.Instance;
 
-
         public MdSerializationOptions() : this(isReadOnly: false)
         { }
 
@@ -35,7 +34,10 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <summary>
-        /// Gets or sets the style for emphasized and strongly emphasized text
+        /// Gets or sets the style for emphasized and strongly emphasized text.
+        /// <para>
+        /// Default value: <see cref="MdEmphasisStyle.Asterisk"/>.
+        /// </para>
         /// </summary>
         public MdEmphasisStyle EmphasisStyle
         {
@@ -44,7 +46,10 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Gets or sets the style to use for thematic breaks
+        /// Gets or sets the style to use for thematic breaks.
+        /// <para>
+        /// Default value: <see cref="MdThematicBreakStyle.Underscore"/>.
+        /// </para>
         /// </summary>
         public MdThematicBreakStyle ThematicBreakStyle
         {
@@ -53,7 +58,10 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Gets or sets the style for headings
+        /// Gets or sets the style for headings.
+        /// <para>
+        /// Default value: <see cref="MdHeadingStyle.Atx"/>.
+        /// </para>
         /// </summary>
         public MdHeadingStyle HeadingStyle
         {
@@ -62,7 +70,10 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Gets or sets the style of code blocks
+        /// Gets or sets the style of code blocks.
+        /// <para>
+        /// Default value: <see cref="MdCodeBlockStyle.Backtick"/>.
+        /// </para>
         /// </summary>
         public MdCodeBlockStyle CodeBlockStyle
         {
@@ -71,7 +82,10 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Gets or sets the style for bullet list items
+        /// Gets or sets the style for bullet list items.
+        /// <para>
+        /// Default value: <see cref="MdBulletListStyle.Dash"/>.
+        /// </para>
         /// </summary>
         public MdBulletListStyle BulletListStyle
         {
@@ -80,7 +94,10 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Gets or sets the style for ordered list items
+        /// Gets or sets the style for ordered list items.
+        /// <para>
+        /// Default value: <see cref="MdOrderedListStyle.Dot"/>.
+        /// </para>
         /// </summary>
         public MdOrderedListStyle OrderedListStyle
         {
@@ -89,7 +106,12 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
-        /// Gets or sets the style for tables
+
+        /// <summary>
+        /// Gets or sets the style for tables.
+        /// <para>
+        /// Default value: <see cref="MdTableStyle.GFM"/>.
+        /// </para>
         /// </summary>
         public MdTableStyle TableStyle
         {
@@ -102,6 +124,9 @@ namespace Grynwald.MarkdownGenerator
         /// When set to a value greater than 0, line breaks
         /// will be inserted after the specified number of characters
         /// when possible.
+        /// <para>
+        /// Default value: <c>-1</c> (no line length limitation)
+        /// </para>
         /// </summary>
         /// <remarks>
         /// Not all types of blocks can be split into multiple lines.
