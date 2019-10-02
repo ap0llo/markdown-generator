@@ -417,10 +417,10 @@ namespace Grynwald.MarkdownGenerator.Internal
             switch (list)
             {
                 case MdBulletList _:
-                    return new BulletListPrefixHandler(m_Options.BulletListStyle);
+                    return new BulletListPrefixHandler(m_Options);
 
                 case MdOrderedList _:
-                    return new OrderedListPrefixHandler(m_Options.OrderedListStyle);
+                    return new OrderedListPrefixHandler(m_Options);
 
                 default:
                     throw new NotSupportedException($"Unsupported list type: {list.GetType().FullName}");

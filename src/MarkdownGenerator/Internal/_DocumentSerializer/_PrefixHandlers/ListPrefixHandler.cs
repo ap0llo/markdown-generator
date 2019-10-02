@@ -4,9 +4,16 @@ namespace Grynwald.MarkdownGenerator.Internal
 {
     internal abstract class ListPrefixHandler : IPrefixHandler
     {
+        protected readonly MdSerializationOptions m_SerializationOptions;
         protected string m_ListPrefix;           // the prefix for lines other than the first line
         protected bool m_LineWritten = false;    // indicates if any lines have been written in the current list item
         protected string m_ListMarker;           // the prefix for list items
+
+
+        public ListPrefixHandler(MdSerializationOptions serializationOptions)
+        {
+            m_SerializationOptions = serializationOptions ?? throw new ArgumentNullException(nameof(serializationOptions));
+        }
 
 
         public int PrefixLength => m_LineWritten ? m_ListPrefix.Length : m_ListMarker.Length;
@@ -38,8 +45,8 @@ namespace Grynwald.MarkdownGenerator.Internal
             // update list marker
             // marker is a dash, plus or asterisk for bullet lists and the number followed by a period for ordered lists            
             m_ListMarker = GetListMarker();
-            
-            m_ListPrefix = new String(' ', m_ListMarker.Length);
+
+            m_ListPrefix = new string(' ', Math.Max(m_ListMarker.Length, m_SerializationOptions.MinimumListIndentationWidth));
         }
 
 

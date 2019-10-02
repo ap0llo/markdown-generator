@@ -20,6 +20,7 @@ namespace Grynwald.MarkdownGenerator
         private MdCodeBlockStyle m_CodeBlockStyle = MdCodeBlockStyle.Backtick;
         private MdBulletListStyle m_BulletListStyle = MdBulletListStyle.Dash;
         private MdOrderedListStyle m_OrderedListStyle = MdOrderedListStyle.Dot;
+        private int m_ListIndentationWidth = 2;
         private MdTableStyle m_TableStyle = MdTableStyle.GFM;
         private int m_MaxLineLength = -1;
         private ITextFormatter m_TextFormatter = DefaultTextFormatter.Instance;
@@ -106,6 +107,32 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <summary>
+        /// Gets or sets the minimum number of characters to use for indenting list items
+        /// in multi-level lists (compared to items of the outer list level).
+        /// <para>
+        /// The value indicates a minimum indentation.
+        /// List items are always indented at least by the length of the list marker.
+        /// </para>
+        /// <para>
+        /// Default value: <c>2</c>
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// Setting the indentation to less than <c>2</c> will cause multi-level lists to
+        /// be "flattened" to a single level.
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when setting the property to a negative value.</exception>
+        public int MinimumListIndentationWidth
+        {
+            get => m_ListIndentationWidth;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), "Value must not be less than 0");
+
+                SetValue(nameof(MinimumListIndentationWidth), value, ref m_ListIndentationWidth);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the style for tables.

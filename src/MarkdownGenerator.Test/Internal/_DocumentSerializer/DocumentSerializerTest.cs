@@ -709,6 +709,92 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         }
 
         [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Serializer_respects_MinimumListIndentationWidth_for_ordered_lists(int indentation)
+        {
+            var options = new MdSerializationOptions()
+            {
+                MinimumListIndentationWidth = indentation
+            };
+
+            // List items are always indented by at least the length of the list marker.
+            // In this test, the marker length is 3 for all items, e.g. '1. '
+
+            AssertToStringEquals(
+                $"1. Item1\r\n" +
+                $"{new String(' ', Math.Max(indentation, 3))}1. Item 1.1\r\n" +
+                $"{new String(' ', Math.Max(indentation, 3) * 2)}1. Item 1.1.1\r\n" +
+                $"2. Item2\r\n" +
+                $"{new String(' ', Math.Max(indentation, 3))}1. Item 2.1\r\n",
+                new MdDocument(
+                    new MdOrderedList(
+                        new MdListItem(
+                            new MdParagraph("Item1"),
+                            new MdOrderedList(
+                                new MdListItem(
+                                    new MdParagraph("Item 1.1"),
+                                    new MdOrderedList(
+                                        new MdListItem("Item 1.1.1"))))
+                        ),
+                        new MdListItem(
+                            new MdParagraph("Item2"),
+                            new MdOrderedList(
+                                new MdListItem("Item 2.1"))
+                        )
+                )),
+                options
+            );
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        public void Serializer_respects_MinimumListIndentationWidth_for_bullet_lists(int indentation)
+        {
+            var options = new MdSerializationOptions()
+            {
+                MinimumListIndentationWidth = indentation
+            };
+
+            // List items are always indented by at least the length of the list marker.
+            // In this test, the marker length is 2 for all items: '- '
+
+            AssertToStringEquals(
+                $"- Item1\r\n" +
+                $"{new String(' ', Math.Max(indentation, 2))}- Item 1.1\r\n" +
+                $"{new String(' ', Math.Max(indentation, 2) * 2)}- Item 1.1.1\r\n" +
+                $"- Item2\r\n" +
+                $"{new String(' ', Math.Max(indentation, 2))}- Item 2.1\r\n",
+                new MdDocument(
+                    new MdBulletList(
+                        new MdListItem(
+                            new MdParagraph("Item1"),
+                            new MdBulletList(
+                                new MdListItem(
+                                    new MdParagraph("Item 1.1"),
+                                    new MdBulletList(
+                                        new MdListItem("Item 1.1.1"))))
+                        ),
+                        new MdListItem(
+                            new MdParagraph("Item2"),
+                            new MdBulletList(
+                                new MdListItem("Item 2.1"))
+                        )
+                )),
+                options
+            );
+        }
+
+        [Theory]
         [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Asterisk, '*')]
         [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Dash, '-')]
         [InlineData(MdThematicBreakStyle.Underscore, '_', MdBulletListStyle.Plus, '+')]

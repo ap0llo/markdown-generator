@@ -53,6 +53,15 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(newValue, actualValue);
         }
 
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(-10)]
+        [InlineData(-5)]
+        public void ListIndentationWidth_throws_ArgumentOutOfRangeException_when_set_to_a_negative_value(int value)
+        {
+            var instance = new MdSerializationOptions();
+            Assert.Throws<ArgumentOutOfRangeException>(() => instance.MinimumListIndentationWidth = value);
+        }
 
         private object GetTestValue(Type type)
         {

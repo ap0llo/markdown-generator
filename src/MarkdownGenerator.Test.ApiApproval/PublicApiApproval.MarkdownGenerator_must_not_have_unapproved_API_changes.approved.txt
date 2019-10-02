@@ -390,6 +390,7 @@ namespace Grynwald.MarkdownGenerator
         public Grynwald.MarkdownGenerator.MdEmphasisStyle EmphasisStyle { get; set; }
         public Grynwald.MarkdownGenerator.MdHeadingStyle HeadingStyle { get; set; }
         public int MaxLineLength { get; set; }
+        public int MinimumListIndentationWidth { get; set; }
         public Grynwald.MarkdownGenerator.MdOrderedListStyle OrderedListStyle { get; set; }
         public Grynwald.MarkdownGenerator.MdTableStyle TableStyle { get; set; }
         public Grynwald.MarkdownGenerator.ITextFormatter TextFormatter { get; set; }
