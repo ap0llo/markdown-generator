@@ -2,28 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Xunit;
 
 namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdSerializationOptionsTest
     {
-        public static IEnumerable<object[]> Properties()
+        private object GetTestValue(Type type)
         {
-            foreach (var property in typeof(MdSerializationOptions).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            if (!type.IsValueType)
             {
-                yield return new[] { property.Name };
+                return null;
+            }
+
+            var defaultValue = Activator.CreateInstance(type);
+            if (type.IsEnum)
+            {
+                var values = Enum.GetValues(type);
+                if (values.Length <= 1)
+                    return defaultValue;
+                else
+                    return values.Cast<object>().First(x => !x.Equals(defaultValue));
+            }
+            else
+            {
+                return defaultValue;
             }
         }
 
+        public static IEnumerable<object[]> DefaultInstancesAndProperties()
+        {
+            foreach (var property in typeof(MdSerializationOptions).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            {
+                yield return new object[] { MdSerializationOptions.Default, property.Name };
+                foreach(var presetField in typeof(MdSerializationOptions.Presets).GetFields(BindingFlags.Static | BindingFlags.Public))
+                {
+                    yield return new object[] { presetField.GetValue(null), property.Name };
+                }
+            }            
+        }
+
         [Theory]
-        [MemberData(nameof(Properties))]
-        public void Properties_of_the_default_instance_cannot_be_modified(string propertyName)
+        [MemberData(nameof(DefaultInstancesAndProperties))]
+        public void Properties_of_the_default_instances_cannot_be_modified(MdSerializationOptions instance, string propertyName)
         {
             // ARRANGE
-            var instance = MdSerializationOptions.Default;
-
             var property = typeof(MdSerializationOptions).GetProperty(propertyName);
 
             var testValue = GetTestValue(property.PropertyType);
@@ -34,6 +57,14 @@ namespace Grynwald.MarkdownGenerator.Test
 
             // exception message should indicate which property cannot be set
             Assert.Contains(propertyName, exception.InnerException.Message);
+        }
+
+        public static IEnumerable<object[]> Properties()
+        {
+            foreach (var property in typeof(MdSerializationOptions).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            {
+                yield return new object[] { property.Name };
+            }
         }
 
         [Theory]
@@ -63,27 +94,44 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Throws<ArgumentOutOfRangeException>(() => instance.MinimumListIndentationWidth = value);
         }
 
-        private object GetTestValue(Type type)
+        [Fact]
+        public void Presets_get_throws_PresetNotFoundException_for_unknown_preset_name()
         {
-            if(!type.IsValueType)
-            {
-                return null;
-            }
+            Assert.Throws<PresetNotFoundException>(() => MdSerializationOptions.Presets.Get("Some unknown preset name"));
+        }
 
-            var defaultValue = Activator.CreateInstance(type);
-            if(type.IsEnum)
+        [Fact]
+        public void Default_Preset_is_the_default_MdSerializationOptions_instance()
+        {
+            Assert.Same(MdSerializationOptions.Default, MdSerializationOptions.Presets.Default);
+        }
+
+
+        public static IEnumerable<object[]> PresetInstancesAndNames()
+        {
+            foreach (var presetField in typeof(MdSerializationOptions.Presets).GetFields(BindingFlags.Static | BindingFlags.Public))
             {
-                var values = Enum.GetValues(type);
-                if (values.Length <= 1)
-                    return defaultValue;
-                else
-                    return values.Cast<object>().First(x => !x.Equals(defaultValue));
-            }
-            else
-            {
-                return defaultValue;
+                yield return new object[] { presetField.GetValue(null), presetField.Name };
             }
         }
 
+        [Theory]
+        [MemberData(nameof(PresetInstancesAndNames))]
+        public void Presets_get_returns_expected_preset(MdSerializationOptions preset, string presetName)
+        {
+            Assert.Same(preset, MdSerializationOptions.Presets.Get(presetName));
+            Assert.Same(preset, MdSerializationOptions.Presets.Get(presetName.ToLower()));
+            Assert.Same(preset, MdSerializationOptions.Presets.Get(presetName.ToUpper()));
+        }
+
+
+        [Fact]
+        public void MkDocs_preset_has_expected_settings()
+        {
+            var sut = MdSerializationOptions.Presets.MkDocs;
+
+            Assert.Equal(4, sut.MinimumListIndentationWidth);
+            Assert.IsType<MkDocsTextFormatter>(sut.TextFormatter);
+        }
     }
 }

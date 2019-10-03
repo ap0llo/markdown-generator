@@ -12,27 +12,94 @@ namespace Grynwald.MarkdownGenerator
     {
         public static readonly MdSerializationOptions Default = new MdSerializationOptions(isReadOnly: true);
 
+        public static class Presets
+        {
+            public static readonly MdSerializationOptions Default = MdSerializationOptions.Default;
+
+            /// <summary>
+            /// Gets serialization options optimized for rendering the generated Markdown file
+            /// using <see href="https://www.mkdocs.org/">MkDocs</see>.
+            /// </summary>
+            /// <remarks>
+            /// The MkDocs preset changes the following settings compared to the default preset:
+            /// <list type="bullet">
+            ///     <item>
+            ///         <description>
+            ///         Increase <see cref="MinimumListIndentationWidth"/> to 4 so nested lists
+            ///         are rendered properly when using MkDocs default settings (see 
+            ///         <see href="https://github.com/mkdocs/mkdocs/issues/545">GitHub issue 545</see>)
+            ///         </description>
+            ///     </item>
+            ///     <item>
+            ///         <description>
+            ///         Change escaping of some characters because documents are not rendered correctly
+            ///         when using the default escaping (see <see cref="MkDocsTextFormatter"/>)
+            ///         </description>
+            ///     </item>
+            /// </list>
+            /// </remarks>
+            public static readonly MdSerializationOptions MkDocs = new MdSerializationOptions(
+                isReadOnly: true,
+                minimumListIndentationWidth: 4,
+                textFormatter: MkDocsTextFormatter.Instance);
+            
+            public static MdSerializationOptions Get(string name)
+            {
+                switch (name.ToLower())
+                {
+                    case "default":
+                        return Default;
+
+                    case "mkdocs":
+                        return MkDocs;
+
+                    default:
+                       throw new PresetNotFoundException($"Unknown preset '{name}'");
+                }
+            }
+        }
+
         private readonly bool m_IsReadOnly;
 
-        private MdEmphasisStyle m_EmphasisStyle = MdEmphasisStyle.Asterisk;
-        private MdThematicBreakStyle m_ThematicBreakStyle = MdThematicBreakStyle.Underscore;
-        private MdHeadingStyle m_HeadingStyle = MdHeadingStyle.Atx;
-        private MdCodeBlockStyle m_CodeBlockStyle = MdCodeBlockStyle.Backtick;
-        private MdBulletListStyle m_BulletListStyle = MdBulletListStyle.Dash;
-        private MdOrderedListStyle m_OrderedListStyle = MdOrderedListStyle.Dot;
-        private int m_ListIndentationWidth = 2;
-        private MdTableStyle m_TableStyle = MdTableStyle.GFM;
-        private int m_MaxLineLength = -1;
-        private ITextFormatter m_TextFormatter = DefaultTextFormatter.Instance;
+        private MdEmphasisStyle m_EmphasisStyle;
+        private MdThematicBreakStyle m_ThematicBreakStyle;
+        private MdHeadingStyle m_HeadingStyle;
+        private MdCodeBlockStyle m_CodeBlockStyle;
+        private MdBulletListStyle m_BulletListStyle;
+        private MdOrderedListStyle m_OrderedListStyle;
+        private int m_MinimumListIndentationWidth;
+        private MdTableStyle m_TableStyle;
+        private int m_MaxLineLength;
+        private ITextFormatter m_TextFormatter;
 
         public MdSerializationOptions() : this(isReadOnly: false)
         { }
 
-        private MdSerializationOptions(bool isReadOnly)
+        private MdSerializationOptions(
+            bool isReadOnly,
+            MdEmphasisStyle emphasisStyle = MdEmphasisStyle.Asterisk,
+            MdThematicBreakStyle thematicBreakStyle = MdThematicBreakStyle.Underscore,
+            MdHeadingStyle headingStyle = MdHeadingStyle.Atx,
+            MdCodeBlockStyle codeBlockStyle = MdCodeBlockStyle.Backtick,
+            MdBulletListStyle bulletListStyle = MdBulletListStyle.Dash,
+            MdOrderedListStyle orderedListStyle = MdOrderedListStyle.Dot,
+            int minimumListIndentationWidth = 2,
+            MdTableStyle tableStyle = MdTableStyle.GFM,
+            int maxLineLength = -1,
+            ITextFormatter textFormatter = null)
         {
             m_IsReadOnly = isReadOnly;
+            m_EmphasisStyle = emphasisStyle;
+            m_ThematicBreakStyle = thematicBreakStyle;
+            m_HeadingStyle = headingStyle;
+            m_CodeBlockStyle = codeBlockStyle;
+            m_BulletListStyle = bulletListStyle;
+            m_OrderedListStyle = orderedListStyle;
+            m_MinimumListIndentationWidth = minimumListIndentationWidth;
+            m_TableStyle = tableStyle;
+            m_MaxLineLength = maxLineLength;
+            m_TextFormatter = textFormatter ?? DefaultTextFormatter.Instance;
         }
-
 
         /// <summary>
         /// Gets or sets the style for emphasized and strongly emphasized text.
@@ -124,13 +191,13 @@ namespace Grynwald.MarkdownGenerator
         /// <exception cref="ArgumentOutOfRangeException">Thrown when setting the property to a negative value.</exception>
         public int MinimumListIndentationWidth
         {
-            get => m_ListIndentationWidth;
+            get => m_MinimumListIndentationWidth;
             set
             {
                 if (value < 0)
                     throw new ArgumentOutOfRangeException(nameof(value), "Value must not be less than 0");
 
-                SetValue(nameof(MinimumListIndentationWidth), value, ref m_ListIndentationWidth);
+                SetValue(nameof(MinimumListIndentationWidth), value, ref m_MinimumListIndentationWidth);
             }
         }
 

@@ -395,6 +395,12 @@ namespace Grynwald.MarkdownGenerator
         public Grynwald.MarkdownGenerator.MdTableStyle TableStyle { get; set; }
         public Grynwald.MarkdownGenerator.ITextFormatter TextFormatter { get; set; }
         public Grynwald.MarkdownGenerator.MdThematicBreakStyle ThematicBreakStyle { get; set; }
+        public class static Presets
+        {
+            public static readonly Grynwald.MarkdownGenerator.MdSerializationOptions Default;
+            public static readonly Grynwald.MarkdownGenerator.MdSerializationOptions MkDocs;
+            public static Grynwald.MarkdownGenerator.MdSerializationOptions Get(string name) { }
+        }
     }
     public sealed class MdSingleLineSpan : Grynwald.MarkdownGenerator.MdSpan
     {
@@ -478,6 +484,15 @@ namespace Grynwald.MarkdownGenerator
         Underscore = 0,
         Dash = 2,
         Asterisk = 1,
+    }
+    public sealed class MkDocsTextFormatter : Grynwald.MarkdownGenerator.ITextFormatter
+    {
+        public static readonly Grynwald.MarkdownGenerator.MkDocsTextFormatter Instance;
+        public string EscapeText(string text) { }
+    }
+    public sealed class PresetNotFoundException : System.Exception
+    {
+        public PresetNotFoundException(string message) { }
     }
     public class static SyntaxVisualizer
     {
