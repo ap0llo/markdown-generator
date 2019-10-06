@@ -21,9 +21,9 @@ public class Program
         var set = new DocumentSet<MdDocument>();
 
         // new documents can be added to the set by
-        // calling CreateDocument() which creates a new document
+        // calling CreateMdDocument() which creates a new document
         // at the specified path
-        var document1 = set.CreateDocument("document1.md");
+        var document1 = set.CreateMdDocument("document1.md");
         document1.Root.Add(new MdHeading(1, "Document 1"));
 
         // alternatively, existing documents can be added to
