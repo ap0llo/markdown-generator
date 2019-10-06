@@ -24,4 +24,13 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62925-02" PrivateAssets="All" />
   </ItemGroup>
 
+
+  <Target Name="RunInheritDoc" 
+          Condition="'$(TargetFramework)' != '' AND '$(RunInheritDocOnBuild)'  == 'true' "
+          AfterTargets="Build" >
+    <Message Importance="High" Text="Running inheritdoc, working directory '$(OutputPath)'" />
+    <Exec Command="dotnet tool run inheritdoc --overwrite"
+          WorkingDirectory="$(OutputPath)" />
+  </Target>
+
 </Project>
