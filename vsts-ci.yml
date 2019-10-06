@@ -35,16 +35,6 @@ jobs:
     inputs:
       version: $(dotNetSdk_Version)
 
-  # Set the build number (utilizes Nerdbank.GitVersioning)
-  - task: DotNetCoreCLI@2
-    displayName: Install NBGV tool    
-    inputs:
-      command: custom
-      custom: tool
-      arguments: install --tool-path . nbgv
-  - script: nbgv cloud
-    displayName: Set Version
-
   # Restore local .NET Core tools
   - task: DotNetCoreCLI@2
     displayName: Restore local tools
@@ -52,6 +42,10 @@ jobs:
       command: custom
       custom: tool
       arguments: restore
+      
+  # Set the build number (utilizes Nerdbank.GitVersioning)
+  - script: dotnet tool run nbgv cloud
+    displayName: Set Version
 
   # Restore, Build, Test
   - task: DotNetCoreCLI@2
