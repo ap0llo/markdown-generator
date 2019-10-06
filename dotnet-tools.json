@@ -2,12 +2,6 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "inheritdoctool": {
-      "version": "2.3.0",
-      "commands": [
-        "InheritDoc"
-      ]
-    },
     "nbgv": {
       "version": "3.0.26",
       "commands": [

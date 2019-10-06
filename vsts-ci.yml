@@ -59,7 +59,7 @@ jobs:
     inputs:
       command: build
       projects: 'src/**/*.csproj'
-      arguments: '--configuration $(configuration) --no-restore -p:RunInheritDocOnBuild=true'  
+      arguments: '--configuration $(configuration) --no-restore'  
   - task: DotNetCoreCLI@2
     displayName: Test
     inputs:
