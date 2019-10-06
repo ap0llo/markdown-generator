@@ -6,7 +6,7 @@ trigger:
 variables:
   # Build settings
   configuration: Release         # the configuration (Debug/Release) to build
-  dotNetSdk_Version: 2.1.505     # the version of the .NET SDK to use
+  dotNetSdk_Version: 3.0.100     # the version of the .NET SDK to use
   artifactsName: drop
   # MyGet.org settings   
   myget_publish: true                                               # enable publishing of master and release branches to MyGet.org
