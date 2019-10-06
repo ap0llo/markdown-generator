@@ -179,10 +179,14 @@ namespace Grynwald.MarkdownGenerator
             return new MdLinkSpan(linkText, uri);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an enumerator that iterates through the document set's documents.
+        /// </summary>
         public IEnumerator<MdDocument> GetEnumerator() => Documents.GetEnumerator();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an (non-generic) enumerator that iterates through the document set's documents.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator() => Documents.GetEnumerator();
 
         /// <summary>

@@ -27,9 +27,16 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
+        /// <summary>
+        /// Recursively compares the block to the specified instance of <see cref="MdBlock"/>.
+        /// </summary>
+        /// <param name="other">The block to compare.</param>
         public abstract bool DeepEquals(MdBlock other);
 
 
+        /// <summary>
+        /// Calls the appropriate <c>Visit</c> method on the specified visitor.
+        /// </summary>
         internal abstract void Accept(IBlockVisitor visitor);
     }
 }

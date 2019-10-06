@@ -13,11 +13,19 @@ namespace Grynwald.MarkdownGenerator
 
 
         // force re-implementation of ToString()
-        /// <inheritdoc />
+        /// <summary>
+        /// Converts the span to a Markdown string.
+        /// </summary>
         public abstract override string ToString();
 
+        /// <summary>
+        /// Converts the span to a Markdown string using the specified serialization options.
+        /// </summary>
         public abstract string ToString(MdSerializationOptions options);
 
+        /// <summary>
+        /// Recursively compares the span to the specified instance of <see cref="MdSpan"/>.
+        /// </summary>
         public abstract bool DeepEquals(MdSpan other);
 
 

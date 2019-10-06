@@ -160,10 +160,14 @@ namespace Grynwald.MarkdownGenerator
             return uri.ToString();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an enumerator that iterates through the document set's documents.
+        /// </summary>
         public IEnumerator<T> GetEnumerator() => Documents.GetEnumerator();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an (non-generic) enumerator that iterates through the document set's documents.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator() => Documents.GetEnumerator();
 
         /// <summary>

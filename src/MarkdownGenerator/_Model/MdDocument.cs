@@ -102,7 +102,7 @@ namespace Grynwald.MarkdownGenerator
         /// Saves the document to a stream using the specified serialization options.
         /// </summary>
         /// <param name="stream">The stream to write the document to.</param>
-        /// <param name="serializationOptions">The options to use for serialization.</param>
+        /// <param name="serializationOptions">The options to use for converting the document to Markdown.</param>
         public void Save(Stream stream, MdSerializationOptions serializationOptions)
         {
             using (var writer = new StreamWriter(stream, Encoding.Default, 1024, true))
@@ -117,9 +117,17 @@ namespace Grynwald.MarkdownGenerator
             serializer.Serialize(this);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Converts the document to a Markdown string.
+        /// </summary>
+        /// <returns>Returns the Markdown representation of the document.</returns>
         public override string ToString() => ToString(null);
 
+        /// <summary>
+        /// Converts the document to a Markdown string using the specified serialization options.
+        /// </summary>
+        /// <param name="serializationOptions">The options to use for converting the document to Markdown.</param>
+        /// <returns>Returns the Markdown representation of the document.</returns>
         public string ToString(MdSerializationOptions serializationOptions)
         {
             using (var stringWriter = new StringWriter())

@@ -68,8 +68,14 @@ namespace Grynwald.MarkdownGenerator
             m_ListItems.Insert(index, item);
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the list's item.
+        /// </summary>
         public IEnumerator<MdListItem> GetEnumerator() => m_ListItems.GetEnumerator();
 
+        /// <summary>
+        /// Returns an (non-generic) enumerator that iterates through the list's item.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator() => m_ListItems.GetEnumerator();
 
 

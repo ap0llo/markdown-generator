@@ -26,9 +26,11 @@ namespace Grynwald.MarkdownGenerator
 
         public override string ToString(MdSerializationOptions options) => "";
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => ReferenceEquals(this, other);
 
 
+        /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
     }
 }

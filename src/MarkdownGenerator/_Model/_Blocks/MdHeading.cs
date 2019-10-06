@@ -102,9 +102,11 @@ namespace Grynwald.MarkdownGenerator
         { }
 
 
+        /// <inheritdoc />
         public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdHeading);
 
 
+        /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 

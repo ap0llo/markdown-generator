@@ -116,10 +116,14 @@ namespace Grynwald.MarkdownGenerator
             m_Cells.Insert(index, cell);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an enumerator that iterates through the table row's cells.
+        /// </summary>
         public IEnumerator<MdSpan> GetEnumerator() => m_Cells.GetEnumerator();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an (non-generic) enumerator that iterates through the table row's cells.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
 
        

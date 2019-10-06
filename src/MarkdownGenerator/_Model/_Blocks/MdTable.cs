@@ -69,10 +69,14 @@ namespace Grynwald.MarkdownGenerator
         }
 
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an enumerator that iterates through the table's rows.
+        /// </summary>
         public IEnumerator<MdTableRow> GetEnumerator() => m_Rows.GetEnumerator();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an (non-generic) enumerator that iterates through the table's rows.
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator() => m_Rows.GetEnumerator();
 
         /// <summary>

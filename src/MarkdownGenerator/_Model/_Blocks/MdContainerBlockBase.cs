@@ -91,8 +91,14 @@ namespace Grynwald.MarkdownGenerator
             m_Blocks.Insert(index, block);
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the container block's child blocks
+        /// </summary>
         public IEnumerator<MdBlock> GetEnumerator() => m_Blocks.GetEnumerator();
 
+        /// <summary>
+        /// Returns an (non-generic) enumerator that iterates through the container block's child blocks
+        /// </summary>
         IEnumerator IEnumerable.GetEnumerator() => m_Blocks.GetEnumerator();
 
 
