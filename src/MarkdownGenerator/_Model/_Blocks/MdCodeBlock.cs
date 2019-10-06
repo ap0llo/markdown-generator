@@ -5,8 +5,9 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a fenced code block.
-    /// For specification see https://spec.commonmark.org/0.28/#fenced-code-blocks
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#fenced-code-blocks">CommonMark -Fenced code blocks</see>.
     /// </summary>
+    /// <seealso cref="MdCodeBlockStyle"/>
     public sealed class MdCodeBlock : MdLeafBlock
     {
         /// <summary>

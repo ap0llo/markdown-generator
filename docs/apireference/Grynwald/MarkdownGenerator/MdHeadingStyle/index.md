@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Defines the available serialization styles for headings (see [MdHeading](../MdHeading/index.md)). For specification see https:\/\/spec.commonmark.org\/0.28\/\#atx\-headings respectively https:\/\/spec.commonmark.org\/0.28\/\#setext\-headings
+Defines the available serialization styles for headings (see [MdHeading](../MdHeading/index.md)). For specification see [CommonMark \- ATX headings](https://spec.commonmark.org/0.28/#atx-headings)respectively [CommonMark \- Setext headings](https://spec.commonmark.org/0.28/#setext-headings).
 
 ```csharp
 public enum MdHeadingStyle
@@ -22,6 +22,10 @@ public enum MdHeadingStyle
 | ------ | --------------------------------------------------------------------------------- |
 | Atx    | Prefix headings with '\#'                                                         |
 | Setext | Underscore level 1 and 2 headings with "\=\=\=\=\=\=" respectively "\-\-\-\-\-\-" |
+
+## See Also
+
+- [MdHeading](../MdHeading/index.md)
 
 ___
 

@@ -6,8 +6,10 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents strongly-emphasized/bold content
-    /// For specification see https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis">CommonMark - Emphasis and strong emphasis</see>.
     /// </summary>
+    /// <seealso cref="MdEmphasisSpan"/>
+    /// <seealso cref="MdEmphasisStyle"/>
     public sealed class MdStrongEmphasisSpan : MdSpan
     {
         /// <summary>

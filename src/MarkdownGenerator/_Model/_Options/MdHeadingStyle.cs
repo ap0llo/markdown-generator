@@ -2,9 +2,10 @@
 {
     /// <summary>
     /// Defines the available serialization styles for headings (see <see cref="MdHeading"/>).
-    /// For specification see https://spec.commonmark.org/0.28/#atx-headings
-    /// respectively https://spec.commonmark.org/0.28/#setext-headings
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#atx-headings">CommonMark - ATX headings</see>
+    /// respectively <see href="https://spec.commonmark.org/0.28/#setext-headings">CommonMark - Setext headings</see>.
     /// </summary>
+    /// <seealso cref="MdHeading"/>
     public enum MdHeadingStyle
     {
         /// <summary>

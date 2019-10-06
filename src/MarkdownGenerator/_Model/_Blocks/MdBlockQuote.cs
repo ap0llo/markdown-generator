@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represent a block quote in a markdown document.
-    /// For specification see https://spec.commonmark.org/0.28/#block-quotes
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#block-quotes">CommonMark - Block quotes</see>.
     /// </summary>
     public sealed class MdBlockQuote : MdContainerBlockBase
     {

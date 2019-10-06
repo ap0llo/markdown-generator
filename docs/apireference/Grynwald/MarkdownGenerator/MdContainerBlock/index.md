@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a block that can contains other blocks. For specification see https:\/\/spec.commonmark.org\/0.28\/\#container\-blocks
+Represents a block that can contains other blocks. For specification see [CommonMark \- Container blocks ](https://spec.commonmark.org/0.28/#container-blocks).
 
 ```csharp
 public sealed class MdContainerBlock : MdContainerBlockBase

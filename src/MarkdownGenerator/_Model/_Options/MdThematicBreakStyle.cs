@@ -2,8 +2,9 @@
 {
     /// <summary>
     /// Defines the available serialization styles for thematic breaks (see <see cref="MdThematicBreak"/>).
-    /// For specification see https://spec.commonmark.org/0.28/#thematic-breaks
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#thematic-breaks">CommonMark - Thematic breaks</see>.
     /// </summary>
+    /// <seealso cref="MdThematicBreak"/>
     public enum MdThematicBreakStyle
     {
         /// <summary>

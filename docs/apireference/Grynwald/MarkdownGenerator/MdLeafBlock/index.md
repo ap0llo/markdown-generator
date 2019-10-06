@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Base class for all types of leaf blocks (blocks that cannot contain other blocks) For specification see https:\/\/spec.commonmark.org\/0.28\/\#leaf\-blocks
+Base class for all types of leaf blocks (blocks that cannot contain other blocks) For specification see [CommonMark \- Leaf blocks](https://spec.commonmark.org/0.28/#leaf-blocks).
 
 ```csharp
 public abstract class MdLeafBlock : MdBlock

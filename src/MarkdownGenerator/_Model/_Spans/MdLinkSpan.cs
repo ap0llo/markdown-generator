@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a link element.
-    /// For specification see https://spec.commonmark.org/0.28/#links
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#links">CommonMark - Links</see>.
     /// </summary>
     public sealed class MdLinkSpan : MdSpan
     {

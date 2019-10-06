@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Defines the available serialization styles for emphasis (see [MdEmphasisSpan](../MdEmphasisSpan/index.md)) and strong emphasis (see [MdStrongEmphasisSpan](../MdStrongEmphasisSpan/index.md)). For specification see https:\/\/spec.commonmark.org\/0.28\/\#emphasis\-and\-strong\-emphasis
+Defines the available serialization styles for emphasis (see [MdEmphasisSpan](../MdEmphasisSpan/index.md)) and strong emphasis (see [MdStrongEmphasisSpan](../MdStrongEmphasisSpan/index.md)). For specification see [CommonMark \- Emphasis and strong emphasis](https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis).
 
 ```csharp
 public enum MdEmphasisStyle
@@ -22,6 +22,11 @@ public enum MdEmphasisStyle
 | ---------- | ------------------------------------------------------------ |
 | Asterisk   | Use '\*' respectively '\*\*' for (strongly) emphasized text. |
 | Underscore | Use '\_' respectively '\_\_' for (strongly) emphasized text. |
+
+## See Also
+
+- [MdEmphasisSpan](../MdEmphasisSpan/index.md)
+- [MdStrongEmphasisSpan](../MdStrongEmphasisSpan/index.md)
 
 ___
 

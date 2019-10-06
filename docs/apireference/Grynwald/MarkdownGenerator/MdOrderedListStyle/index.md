@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Defines the available serialization styles for ordered lists (see [MdBulletList](../MdBulletList/index.md)). For specification see https:\/\/spec.commonmark.org\/0.28\/\#list\-items.
+Defines the available serialization styles for ordered lists (see [MdBulletList](../MdBulletList/index.md)). For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items).
 
 ```csharp
 public enum MdOrderedListStyle
@@ -22,6 +22,10 @@ public enum MdOrderedListStyle
 | ----------- | ---------------------------------------------------------------------- |
 | Dot         | Use dots for ordered list item markers (e.g. "1.", "2." ...) (default) |
 | Parenthesis | Use parentheses for ordered list item markers (e.g. "1)", "2)" ...)    |
+
+## See Also
+
+- [MdOrderedList](../MdOrderedList/index.md)
 
 ___
 

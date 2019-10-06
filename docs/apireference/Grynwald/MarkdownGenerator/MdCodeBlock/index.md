@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a fenced code block. For specification see https:\/\/spec.commonmark.org\/0.28\/\#fenced\-code\-blocks
+Represents a fenced code block. For specification see [CommonMark \-Fenced code blocks](https://spec.commonmark.org/0.28/#fenced-code-blocks).
 
 ```csharp
 public sealed class MdCodeBlock : MdLeafBlock
@@ -31,6 +31,10 @@ public sealed class MdCodeBlock : MdLeafBlock
 | Name                                         | Description                                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | [DeepEquals(MdBlock)](methods/DeepEquals.md) | Recursively compares the block to the specified instance of [MdBlock](../MdBlock/index.md). |
+
+## See Also
+
+- [MdCodeBlockStyle](../MdCodeBlockStyle/index.md)
 
 ___
 

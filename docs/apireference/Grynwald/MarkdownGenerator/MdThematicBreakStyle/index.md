@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Defines the available serialization styles for thematic breaks (see [MdThematicBreak](../MdThematicBreak/index.md)). For specification see https:\/\/spec.commonmark.org\/0.28\/\#thematic\-breaks
+Defines the available serialization styles for thematic breaks (see [MdThematicBreak](../MdThematicBreak/index.md)). For specification see [CommonMark \- Thematic breaks](https://spec.commonmark.org/0.28/#thematic-breaks).
 
 ```csharp
 public enum MdThematicBreakStyle
@@ -24,6 +24,10 @@ public enum MdThematicBreakStyle
 | Asterisk   | Use '\*\*\*' for thematic breaks           |
 | Dash       | Use '\-\-\-' for thematic breaks           |
 | Underscore | Use '\_\_\_' for thematic breaks (default) |
+
+## See Also
+
+- [MdThematicBreak](../MdThematicBreak/index.md)
 
 ___
 

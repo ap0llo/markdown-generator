@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a paragraph in a markdown document.
-    /// For specification see https://spec.commonmark.org/0.28/#paragraphs
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#paragraphs">CommonMark - Paragraphs</see>.
     /// </summary>
     public sealed class MdParagraph : MdLeafBlock
     {

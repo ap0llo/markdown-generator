@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Defines the available serialization styles for bullet lists (see [MdBulletList](../MdBulletList/index.md)). For specification see https:\/\/spec.commonmark.org\/0.28\/\#list\-items.
+Defines the available serialization styles for bullet lists (see [MdBulletList](../MdBulletList/index.md)). For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items).
 
 ```csharp
 public enum MdBulletListStyle
@@ -24,6 +24,10 @@ public enum MdBulletListStyle
 | Asterisk | Start bullet list items with '\*'           |
 | Dash     | Start bullet list items with '\-' (default) |
 | Plus     | Start bullet list items with '+'            |
+
+## See Also
+
+- [MdBulletList](../MdBulletList/index.md)
 
 ___
 

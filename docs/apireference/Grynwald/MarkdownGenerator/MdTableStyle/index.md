@@ -18,10 +18,10 @@ public enum MdTableStyle
 
 ## Fields
 
-| Name | Description                                                                                                                  |
-| ---- | ---------------------------------------------------------------------------------------------------------------------------- |
-| GFM  | Use GitHub Flavored Markdown tables (default). See specification see https:\/\/github.github.com\/gfm\/\#tables\-extension\- |
-| Html | Generate inline HTML for tables                                                                                              |
+| Name | Description                                                                                                               |
+| ---- | ------------------------------------------------------------------------------------------------------------------------- |
+| GFM  | Use GitHub Flavored Markdown tables (default). See specification see GitHub Flavored Markdown Spec \- Tables (extension). |
+| Html | Generate inline HTML for tables                                                                                           |
 
 ___
 

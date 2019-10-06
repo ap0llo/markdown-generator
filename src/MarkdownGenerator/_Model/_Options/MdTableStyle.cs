@@ -7,7 +7,7 @@
     {
         /// <summary>
         /// Use GitHub Flavored Markdown tables (default).
-        /// See specification see https://github.github.com/gfm/#tables-extension-
+        /// See specification see <see href="https://github.github.com/gfm/#tables-extension-">GitHub Flavored Markdown Spec - Tables (extension)</see>.
         /// </summary>
         GFM = 0,
 

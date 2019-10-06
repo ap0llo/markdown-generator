@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a "admonition" in a markdown document implemented by the "Admonition" extension for Python\-Markdown. For details see https:\/\/python\-markdown.github.io\/extensions\/admonition\/
+Represents a "admonition" in a markdown document implemented by the "Admonition" extension for Python\-Markdown. For details see [Python\-Markdown: Admonition](https://python-markdown.github.io/extensions/admonition/).
 
 ```csharp
 public class MdAdmonition : MdContainerBlockBase

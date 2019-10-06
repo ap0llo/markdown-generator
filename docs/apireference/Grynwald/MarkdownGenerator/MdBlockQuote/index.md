@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represent a block quote in a markdown document. For specification see https:\/\/spec.commonmark.org\/0.28\/\#block\-quotes
+Represent a block quote in a markdown document. For specification see [CommonMark \- Block quotes](https://spec.commonmark.org/0.28/#block-quotes).
 
 ```csharp
 public sealed class MdBlockQuote : MdContainerBlockBase

@@ -5,8 +5,9 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a bullet list.
-    /// For specification see https://spec.commonmark.org/0.28/#list-items
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#list-items">CommonMark - List items</see>
     /// </summary>
+    /// <seealso cref="MdBulletListStyle"/>
     public sealed class MdBulletList : MdList
     {
         /// <summary>

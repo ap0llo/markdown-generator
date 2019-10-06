@@ -4,10 +4,10 @@
 
 ## Classes
 
-| Name                                      | Description                                                                                                                                                                                     |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [FactoryMethods](FactoryMethods/index.md) |                                                                                                                                                                                                 |
-| [MdAdmonition](MdAdmonition/index.md)     | Represents a "admonition" in a markdown document implemented by the "Admonition" extension for Python\-Markdown. For details see https:\/\/python\-markdown.github.io\/extensions\/admonition\/ |
+| Name                                      | Description                                                                                                                                                    |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [FactoryMethods](FactoryMethods/index.md) |                                                                                                                                                                |
+| [MdAdmonition](MdAdmonition/index.md)     | Represents a "admonition" in a markdown document implemented by the "Admonition" extension for Python\-Markdown. For details see Python\-Markdown: Admonition. |
 
 ___
 

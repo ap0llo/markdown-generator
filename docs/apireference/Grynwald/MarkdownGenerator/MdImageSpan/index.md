@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents an inline image element For specification see https:\/\/spec.commonmark.org\/0.28\/\#images
+Represents an inline image element For specification see [CommonMark \- Images](https://spec.commonmark.org/0.28/#images).
 
 ```csharp
 public sealed class MdImageSpan : MdSpan

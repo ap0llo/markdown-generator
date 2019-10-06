@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents emphasized\/italic text For specification see https:\/\/spec.commonmark.org\/0.28\/\#emphasis\-and\-strong\-emphasis
+Represents emphasized\/italic text For specification see [CommonMark \- Emphasis and strong emphasis](https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis).
 
 ```csharp
 public sealed class MdEmphasisSpan : MdSpan
@@ -35,6 +35,11 @@ public sealed class MdEmphasisSpan : MdSpan
 | [DeepEquals(MdSpan)](methods/DeepEquals.md)                                            | Recursively compares the span to the specified instance of [MdSpan](../MdSpan/index.md). |
 | [ToString()](methods/ToString.md#tostring)                                             | Converts the span to a Markdown string.                                                  |
 | [ToString(MdSerializationOptions)](methods/ToString.md#tostringmdserializationoptions) | Converts the span to a Markdown string using the specified serialization options.        |
+
+## See Also
+
+- [MdStrongEmphasisSpan](../MdStrongEmphasisSpan/index.md)
+- [MdEmphasisStyle](../MdEmphasisStyle/index.md)
 
 ___
 

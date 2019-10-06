@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a heading in a markdown document For specification see https:\/\/spec.commonmark.org\/0.28\/\#atx\-headings respectively https:\/\/spec.commonmark.org\/0.28\/\#setext\-headings
+Represents a heading in a markdown document For specification see [CommonMark \- ATX headings](https://spec.commonmark.org/0.28/#atx-headings)respectively [CommonMark \- Setext headings](https://spec.commonmark.org/0.28/#setext-headings).
 
 ```csharp
 public sealed class MdHeading : MdLeafBlock
@@ -37,6 +37,10 @@ If a heading is serialized as ATX heading (lines prefixed with '\#') or as setex
 | Name                                         | Description                                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | [DeepEquals(MdBlock)](methods/DeepEquals.md) | Recursively compares the block to the specified instance of [MdBlock](../MdBlock/index.md). |
+
+## See Also
+
+- [MdHeadingStyle](../MdHeadingStyle/index.md)
 
 ___
 

@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a paragraph in a markdown document. For specification see https:\/\/spec.commonmark.org\/0.28\/\#paragraphs
+Represents a paragraph in a markdown document. For specification see [CommonMark \- Paragraphs](https://spec.commonmark.org/0.28/#paragraphs).
 
 ```csharp
 public sealed class MdParagraph : MdLeafBlock

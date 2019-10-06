@@ -2,8 +2,9 @@
 {
     /// <summary>
     /// Defines the available serialization styles for fenced code blocks (see <see cref="MdCodeBlock"/>)
-    /// For specification see https://spec.commonmark.org/0.28/#fenced-code-blocks
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#fenced-code-blocks">CommonMark - Fenced code blocks</see>.
     /// </summary>
+    /// <seealso cref="MdCodeBlock"/>
     public enum MdCodeBlockStyle
     {
         /// <summary>

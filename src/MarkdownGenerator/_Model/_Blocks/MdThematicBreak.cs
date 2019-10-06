@@ -4,8 +4,9 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a thematic break.
-    /// For specification see https://spec.commonmark.org/0.28/#thematic-breaks
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#thematic-breaks">CommonMark - Thematic breaks</see>.
     /// </summary>
+    /// <seealso cref="MdThematicBreakStyle"/>
     public sealed class MdThematicBreak : MdLeafBlock
     {
         /// <inheritdoc />

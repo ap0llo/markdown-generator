@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a inline code span For specification see https:\/\/spec.commonmark.org\/0.28\/\#code\-spans
+Represents a inline code span For specification see [CommonMark \- Code spans](https://spec.commonmark.org/0.28/#code-spans).
 
 ```csharp
 public sealed class MdCodeSpan : MdSpan

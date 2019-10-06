@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a thematic break. For specification see https:\/\/spec.commonmark.org\/0.28\/\#thematic\-breaks
+Represents a thematic break. For specification see [CommonMark \- Thematic breaks](https://spec.commonmark.org/0.28/#thematic-breaks).
 
 ```csharp
 public sealed class MdThematicBreak : MdLeafBlock
@@ -23,6 +23,10 @@ public sealed class MdThematicBreak : MdLeafBlock
 | Name                                         | Description                                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | [DeepEquals(MdBlock)](methods/DeepEquals.md) | Recursively compares the block to the specified instance of [MdBlock](../MdBlock/index.md). |
+
+## See Also
+
+- [MdThematicBreakStyle](../MdThematicBreakStyle/index.md)
 
 ___
 

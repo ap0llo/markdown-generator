@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Defines the available serialization styles for fenced code blocks (see [MdCodeBlock](../MdCodeBlock/index.md)) For specification see https:\/\/spec.commonmark.org\/0.28\/\#fenced\-code\-blocks
+Defines the available serialization styles for fenced code blocks (see [MdCodeBlock](../MdCodeBlock/index.md)) For specification see [CommonMark \- Fenced code blocks](https://spec.commonmark.org/0.28/#fenced-code-blocks).
 
 ```csharp
 public enum MdCodeBlockStyle
@@ -22,6 +22,10 @@ public enum MdCodeBlockStyle
 | -------- | -------------------------------------------- |
 | Backtick | Use backticks (\`) to for fenced code blocks |
 | Tilde    | Use tildes (\~) to for fenced code blocks    |
+
+## See Also
+
+- [MdCodeBlock](../MdCodeBlock/index.md)
 
 ___
 

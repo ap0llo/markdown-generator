@@ -6,14 +6,15 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a heading in a markdown document
-    /// For specification see https://spec.commonmark.org/0.28/#atx-headings
-    /// respectively https://spec.commonmark.org/0.28/#setext-headings
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#atx-headings">CommonMark - ATX headings</see>
+    /// respectively <see href="https://spec.commonmark.org/0.28/#setext-headings">CommonMark - Setext headings</see>.
     /// </summary>
     /// <remarks>
     /// If a heading is serialized as ATX heading (lines prefixed with '#') or as setext heading (underlined with '=' respectively '-')
     /// Is controlled using <see cref="MdSerializationOptions.HeadingStyle" /> property.
     /// See <see cref="MdSerializationOptions"/> for details.
     /// </remarks>
+    /// <seealso cref="MdHeadingStyle"/>
     public sealed class MdHeading : MdLeafBlock
     {
         private string m_Anchor;

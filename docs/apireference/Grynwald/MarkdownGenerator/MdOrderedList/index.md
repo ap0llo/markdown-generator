@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a ordered list. For specification see https:\/\/spec.commonmark.org\/0.28\/\#list\-items
+Represents a ordered list. For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items).
 
 ```csharp
 public sealed class MdOrderedList : MdList
@@ -24,6 +24,10 @@ public sealed class MdOrderedList : MdList
 | Name                                         | Description                                                                                 |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | [DeepEquals(MdBlock)](methods/DeepEquals.md) | Recursively compares the block to the specified instance of [MdBlock](../MdBlock/index.md). |
+
+## See Also
+
+- [MdOrderedListStyle](../MdOrderedListStyle/index.md)
 
 ___
 

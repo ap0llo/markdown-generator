@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Represents a link element. For specification see https:\/\/spec.commonmark.org\/0.28\/\#links
+Represents a link element. For specification see [CommonMark \- Links](https://spec.commonmark.org/0.28/#links).
 
 ```csharp
 public sealed class MdLinkSpan : MdSpan

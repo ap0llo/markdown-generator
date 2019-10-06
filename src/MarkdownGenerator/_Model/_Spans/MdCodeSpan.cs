@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a inline code span
-    /// For specification see https://spec.commonmark.org/0.28/#code-spans
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#code-spans">CommonMark - Code spans</see>.
     /// </summary>
     public sealed class MdCodeSpan : MdSpan
     {

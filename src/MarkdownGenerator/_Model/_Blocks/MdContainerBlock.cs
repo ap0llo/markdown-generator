@@ -5,7 +5,7 @@ namespace Grynwald.MarkdownGenerator
 {
     /// <summary>
     /// Represents a block that can contains other blocks.
-    /// For specification see https://spec.commonmark.org/0.28/#container-blocks
+    /// For specification see <see href="https://spec.commonmark.org/0.28/#container-blocks">CommonMark - Container blocks </see>.
     /// </summary>
     public sealed class MdContainerBlock : MdContainerBlockBase
     {

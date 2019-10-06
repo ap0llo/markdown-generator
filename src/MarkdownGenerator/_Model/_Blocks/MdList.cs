@@ -8,6 +8,8 @@ namespace Grynwald.MarkdownGenerator
     /// Base class for ordered and bullet lists.
     /// Implementations are <see cref="MdBulletList"/> respectively <see cref="MdOrderedList"/>.
     /// </summary>
+    /// <seealso cref="MdBulletList"/>
+    /// <seealso cref="MdOrderedList"/>
     public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItem>
     {
         private readonly List<MdListItem> m_ListItems;
