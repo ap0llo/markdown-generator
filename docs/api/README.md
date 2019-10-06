@@ -27,15 +27,9 @@ A full list of span types can be found [here](./span-types.md).
 For several markdown constructs, CommonMark defines multiple possible syntaxes.
 (e.g. text can be emphasized using both `*` and `_`).
 
-All serialization methods (`ToString()` in `MdDocument`, blocks and spans as well as
-`MdDocument.Save()` have overloads that accept a `MdSerializationOptions` parameter.
+[`MdSerializationOptions`](../apireference/Grynwald/MarkdownGenerator/MdSerializationOptions/index.md)
+can be used to customize how these constructs are serialized.
 
-See [Serialization options](./serialization-options.md) for details.
+## See also
 
-## Factory methods
-
-To ease construction of markdown documents, all block and span types can
-be created using factory methods defined in the class `Grynwald.MarkdownGenerator.FactoryMethods`
-instead of using the `new` operator.
-
-See [Factory Methods](./factorymethods.md) for details.
+- [API Reference](../apireference/Grynwald/MarkdownGenerator/index.md)

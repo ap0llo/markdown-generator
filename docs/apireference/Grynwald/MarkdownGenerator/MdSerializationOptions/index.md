@@ -4,7 +4,7 @@
 
 **Assembly:** Grynwald.MarkdownGenerator
 
-Encapsulates settings that control how a document is serialized. A instance of MdSerializationOptions can be passed to the ToString overloads in [MdBlock](../MdBlock/index.md), [MdSpan](../MdSpan/index.md) and [MdDocument](../MdDocument/index.md)as well as the Save() method of [MdDocument](../MdDocument/index.md)
+Encapsulates settings that control how a document is serialized. A instance of MdSerializationOptions can be passed to the ToString overloads in [MdBlock](../MdBlock/index.md), [MdSpan](../MdSpan/index.md) and [MdDocument](../MdDocument/index.md) as well as the Save() method of [MdDocument](../MdDocument/index.md)
 
 ```csharp
 public class MdSerializationOptions

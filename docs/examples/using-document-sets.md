@@ -18,7 +18,7 @@ public class Program
     static void Main()
     {
         // create a new document set
-        var set = new MdDocumentSet();
+        var set = new DocumentSet<MdDocument>();
 
         // new documents can be added to the set by
         // calling CreateDocument() which creates a new document
@@ -64,3 +64,7 @@ The code sample above saves two markdown files with the following content:
 This is a link to [Document 1](../document1.md)
 
 ```
+
+## See Also
+
+- [DocumentSet\<T\>](../apireference/Grynwald/MarkdownGenerator/DocumentSet-1/index.md)

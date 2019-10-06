@@ -5,8 +5,8 @@ namespace Grynwald.MarkdownGenerator
     /// <summary>
     /// Encapsulates settings that control how a document is serialized.
     /// A instance of <see cref="MdSerializationOptions"/> can be passed to
-    /// the ToString overloads in <see cref="MdBlock"/>, <see cref="MdSpan"/> and <see cref="MdDocument"/>
-    /// as well as the Save() method of <see cref="MdDocument"/>
+    /// the ToString overloads in <see cref="MdBlock"/>, <see cref="MdSpan"/> and <see cref="MdDocument"/> as
+    /// well as the Save() method of <see cref="MdDocument"/>
     /// </summary>
     public class MdSerializationOptions
     {

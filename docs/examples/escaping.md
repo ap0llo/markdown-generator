@@ -1,7 +1,8 @@
 # Example: Escaping
 
-By default, all string content passed to blocks and spans will be escaped in the output.
-To include a string unchanged, use `MdRawMarkdownSpan`
+By default, all string content passed to blocks and spans will be escaped in 
+the output.
+To include a string unchanged, use [`MdRawMarkdownSpan`](../apireference/Grynwald/MarkdownGenerator/MdRawMarkdownSpan/index.md)
 
 ```csharp
 using Grynwald.MarkdownGenerator;
@@ -34,23 +35,3 @@ The first line is passed to the paragraph as `MdTextSpan` and is escaped in the 
 The second line is wrapped in an instance of `MdRawMarkdownSpan` and written
 to the output unchanged. Thus, the second line will be rendered as emphasized text
 when displaying the markdown document as HTML.
-
-The code can also be rewritten using [factory methods](../api/factorymethods.md):
-
-```csharp
-using static Grynwald.MarkdownGenerator.FactoryMethods;
-
-public class Program
-{
-    static void Main()
-    {
-        Document(
-            Paragraph(
-                Text("**not emphasized**"),     // this span will be escaped in the output
-                RawMarkdown("**emphasized**")   // this span will NOT be escaped in the output
-            )
-        )
-        .Save("HelloWorld.md");
-    }
-}
-```
