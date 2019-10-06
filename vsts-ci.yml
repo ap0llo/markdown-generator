@@ -29,12 +29,18 @@ jobs:
   pool: Hosted VS2017
   steps:
 
-  # Install .NET Core SDK (version specified in the variables section)
+  # Install .NET Core SDK and runtime (version specified in the variables section)
   - task: UseDotNet@2
     displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
     inputs:
       packageType: sdk
       version: $(dotNetSdk_Version)
+  # Also install the .NET Core 2.1 runtime (required for testing as tests target netcoreapp2.1)
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core 2.1 runtime'
+    inputs:
+      packageType: runtime
+      version: 2.1.13
 
   # Restore local .NET Core tools
   - task: DotNetCoreCLI@2
