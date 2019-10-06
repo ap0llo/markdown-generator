@@ -139,20 +139,23 @@ jobs:
   steps:
 
   # Install .NET Core SDK (version specified in the variables section)
-  - task: DotNetCoreInstaller@0
-    displayName: Install .NET Core SDK
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
     inputs:
+      packageType: sdk
       version: $(dotNetSdk_Version)
 
-  # Set the build number (utilizes Nerdbank.GitVersioning). 
-  # This step is necessary as $(Build.BuildNumber) is used as name of the GitHub release
+  # Restore local .NET Core tools
   - task: DotNetCoreCLI@2
-    displayName: Install NBGV tool    
+    displayName: Restore local tools
     inputs:
       command: custom
       custom: tool
-      arguments: install --tool-path . nbgv
-  - script: nbgv cloud
+      arguments: restore
+
+  # Set the build number (utilizes Nerdbank.GitVersioning)
+  # This step is necessary as $(Build.BuildNumber) is used as name of the GitHub release
+  - script: dotnet tool run nbgv cloud
     displayName: Set Version
 
   # Get build artifacts and create a GitHub release
