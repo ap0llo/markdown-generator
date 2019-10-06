@@ -38,13 +38,14 @@ Markdown Generator was made possible through a number of libraries (aside from
 
 - [Nerdbank.GitVersioning](https://github.com/AArnott/Nerdbank.GitVersioning/)
 - [SourceLink](https://github.com/dotnet/sourcelink)
+- [SauceControl.InheritDoc](https://github.com/saucecontrol/InheritDoc)
 
 The implementation of ASCII-art tree used to visualize the structure of a document
 is basd on [AsciiTreeDiagram](https://github.com/andrewlock/blog-examples/tree/bf9da19db2867cbf371f74299148f17e1f82ad09/AsciiTreeDiagram) 
 by Andrew Lock, licensed under the MIT license.  
 See [Creating an ASCII-art tree in C#](https://andrewlock.net/creating-an-ascii-art-tree-in-csharp/) for details.
 
-Addititional dependencies used for testing:
+Addititional dependencies (used for testing), in no specific order:
 
 - [Markdig](https://github.com/lunet-io/markdig)
 - [Roslyn](https://github.com/dotnet/roslyn)
@@ -52,6 +53,7 @@ Addititional dependencies used for testing:
 - [PublicApiGenerator](https://github.com/JakeGinnivan/ApiApprover)
 - [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
 - [Moq](https://github.com/moq/moq4)
+- [Xunit.Combinatorial](https://github.com/AArnott/Xunit.Combinatorial)
 
 ## Versioning and Branching
 
