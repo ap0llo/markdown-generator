@@ -28,9 +28,8 @@
   <Target Name="RunInheritDoc" 
           Condition="'$(TargetFramework)' != '' AND '$(RunInheritDocOnBuild)'  == 'true' "
           AfterTargets="Build" >
-    <Message Importance="High" Text="Running inheritdoc, working directory '$(OutputPath)'" />
-    <Exec Command="dotnet tool run inheritdoc --overwrite"
-          WorkingDirectory="$(OutputPath)" />
+    <Message Importance="High" Text="Running inheritdoc " />
+    <Exec Command="dotnet tool run inheritdoc --overwrite --base $(OutputPath) " />
   </Target>
 
 </Project>
