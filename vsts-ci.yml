@@ -6,7 +6,7 @@ trigger:
 variables:
   # Build settings
   configuration: Release         # the configuration (Debug/Release) to build
-  dotNetSdk_Version: 2.1.505     # the version of the .NET SDK to use
+  dotNetSdk_Version: 3.0.100     # the version of the .NET SDK to use
   artifactsName: drop
   # MyGet.org settings   
   myget_publish: true                                               # enable publishing of master and release branches to MyGet.org
@@ -19,6 +19,7 @@ variables:
   github_createRelease: true                          # enable creation of GitHub releases when a package was uploaded to NuGet.org
   github_ServiceConnectionName: 'GitHub: ap0llo'      # the name of the Azure DevOps service connection to use for creating GitHub releases
   github_repositoryName: 'ap0llo/markdown-generator'  # the name of the github repo to create the release in
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 
 jobs:
 
@@ -28,40 +29,45 @@ jobs:
   pool: Hosted VS2017
   steps:
 
-  # Install .NET Core SDK (version specified in the variables section)
-  - task: DotNetCoreInstaller@0
-    displayName: Install .NET Core SDK
+  # Install .NET Core SDK and runtime (version specified in the variables section)
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
     inputs:
+      packageType: sdk
       version: $(dotNetSdk_Version)
+  # Also install the .NET Core 2.1 runtime (required for testing as tests target netcoreapp2.1)
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core 2.1 runtime'
+    inputs:
+      packageType: runtime
+      version: 2.1.13
 
-  # Set the build number (utilizes Nerdbank.GitVersioning)
+  # Restore local .NET Core tools
   - task: DotNetCoreCLI@2
-    displayName: Install NBGV tool    
-    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    displayName: Restore local tools
     inputs:
       command: custom
       custom: tool
-      arguments: install --tool-path . nbgv
-  - script: nbgv cloud
+      arguments: restore
+      
+  # Set the build number (utilizes Nerdbank.GitVersioning)
+  - script: dotnet tool run nbgv cloud
     displayName: Set Version
 
   # Restore, Build, Test
   - task: DotNetCoreCLI@2
     displayName: Restore NuGet dependencies
-    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: restore
       projects: 'src/**/*.csproj'  
   - task: DotNetCoreCLI@2
     displayName: Build
-    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: build
       projects: 'src/**/*.csproj'
       arguments: '--configuration $(configuration) --no-restore'  
   - task: DotNetCoreCLI@2
     displayName: Test
-    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: test
       projects: 'src/**/*Test*.csproj'
@@ -70,7 +76,6 @@ jobs:
   # Create NuGet Package and  publish as build artifact
   - task: DotNetCoreCLI@2
     displayName: Pack NuGet package
-    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
     inputs:
       command: pack
       projects: 'src/**/*.csproj'
@@ -140,21 +145,23 @@ jobs:
   steps:
 
   # Install .NET Core SDK (version specified in the variables section)
-  - task: DotNetCoreInstaller@0
-    displayName: Install .NET Core SDK
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
     inputs:
+      packageType: sdk
       version: $(dotNetSdk_Version)
 
-  # Set the build number (utilizes Nerdbank.GitVersioning). 
-  # This step is necessary as $(Build.BuildNumber) is used as name of the GitHub release
+  # Restore local .NET Core tools
   - task: DotNetCoreCLI@2
-    displayName: Install NBGV tool    
-    env: { DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true }
+    displayName: Restore local tools
     inputs:
       command: custom
       custom: tool
-      arguments: install --tool-path . nbgv
-  - script: nbgv cloud
+      arguments: restore
+
+  # Set the build number (utilizes Nerdbank.GitVersioning)
+  # This step is necessary as $(Build.BuildNumber) is used as name of the GitHub release
+  - script: dotnet tool run nbgv cloud
     displayName: Set Version
 
   # Get build artifacts and create a GitHub release
