@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "inheritdoctool": {
+      "version": "2.3.0",
+      "commands": [
+        "InheritDoc"
+      ]
+    }
+  }
+}
