@@ -30,9 +30,10 @@ jobs:
   steps:
 
   # Install .NET Core SDK (version specified in the variables section)
-  - task: DotNetCoreInstaller@0
-    displayName: Install .NET Core SDK
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
     inputs:
+      packageType: sdk
       version: $(dotNetSdk_Version)
 
   # Restore local .NET Core tools
