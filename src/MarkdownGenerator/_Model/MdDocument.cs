@@ -105,7 +105,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="serializationOptions">The options to use for serialization.</param>
         public void Save(Stream stream, MdSerializationOptions serializationOptions)
         {
-            using (var writer = new StreamWriter(stream, Encoding.Default, 1024, true))
+            using (var writer = new StreamWriter(stream, Encoding.UTF8, 1024, true))
             {
                 Save(writer, serializationOptions);
             }
