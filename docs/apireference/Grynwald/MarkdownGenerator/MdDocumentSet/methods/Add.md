@@ -1,4 +1,4 @@
-# MdDocumentSet.Add Method
+﻿# MdDocumentSet.Add Method
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

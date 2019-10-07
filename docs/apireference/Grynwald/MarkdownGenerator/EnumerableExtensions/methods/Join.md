@@ -1,4 +1,4 @@
-# EnumerableExtensions.Join Method
+﻿# EnumerableExtensions.Join Method
 
 **Declaring Type:** [EnumerableExtensions](../index.md)
 

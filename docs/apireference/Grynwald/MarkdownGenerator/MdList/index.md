@@ -1,4 +1,4 @@
-# MdList Class
+﻿# MdList Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

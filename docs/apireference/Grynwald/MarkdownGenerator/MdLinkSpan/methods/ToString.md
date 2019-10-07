@@ -1,4 +1,4 @@
-# MdLinkSpan.ToString Method
+﻿# MdLinkSpan.ToString Method
 
 **Declaring Type:** [MdLinkSpan](../index.md)
 

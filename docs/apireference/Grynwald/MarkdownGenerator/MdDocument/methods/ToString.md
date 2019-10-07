@@ -1,4 +1,4 @@
-# MdDocument.ToString Method
+﻿# MdDocument.ToString Method
 
 **Declaring Type:** [MdDocument](../index.md)
 

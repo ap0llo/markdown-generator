@@ -1,4 +1,4 @@
-# MdTableRow.Count Property
+﻿# MdTableRow.Count Property
 
 **Declaring Type:** [MdTableRow](../index.md)
 

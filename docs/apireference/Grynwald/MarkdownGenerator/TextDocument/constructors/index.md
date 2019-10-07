@@ -1,4 +1,4 @@
-# TextDocument Constructors
+﻿# TextDocument Constructors
 
 **Declaring Type:** [TextDocument](../index.md)
 

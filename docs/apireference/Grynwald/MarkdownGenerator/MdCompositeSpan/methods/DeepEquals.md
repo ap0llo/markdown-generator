@@ -1,4 +1,4 @@
-# MdCompositeSpan.DeepEquals Method
+﻿# MdCompositeSpan.DeepEquals Method
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

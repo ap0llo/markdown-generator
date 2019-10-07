@@ -1,4 +1,4 @@
-# MdLinkSpan Constructors
+﻿# MdLinkSpan Constructors
 
 **Declaring Type:** [MdLinkSpan](../index.md)
 

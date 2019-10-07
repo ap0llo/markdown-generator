@@ -1,4 +1,4 @@
-# PresetNotFoundException Class
+﻿# PresetNotFoundException Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

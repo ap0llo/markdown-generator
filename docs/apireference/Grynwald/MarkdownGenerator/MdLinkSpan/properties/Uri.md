@@ -1,4 +1,4 @@
-# MdLinkSpan.Uri Property
+﻿# MdLinkSpan.Uri Property
 
 **Declaring Type:** [MdLinkSpan](../index.md)
 

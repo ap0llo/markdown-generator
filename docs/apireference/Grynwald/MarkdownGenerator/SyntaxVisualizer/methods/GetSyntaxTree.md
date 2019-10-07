@@ -1,4 +1,4 @@
-# SyntaxVisualizer.GetSyntaxTree Method
+﻿# SyntaxVisualizer.GetSyntaxTree Method
 
 **Declaring Type:** [SyntaxVisualizer](../index.md)
 

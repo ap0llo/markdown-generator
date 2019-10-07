@@ -1,4 +1,4 @@
-# MdSerializationOptions.ThematicBreakStyle Property
+﻿# MdSerializationOptions.ThematicBreakStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

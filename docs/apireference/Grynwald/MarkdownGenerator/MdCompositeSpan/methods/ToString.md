@@ -1,4 +1,4 @@
-# MdCompositeSpan.ToString Method
+﻿# MdCompositeSpan.ToString Method
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

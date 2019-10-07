@@ -1,4 +1,4 @@
-# MkDocsTextFormatter.EscapeText Method
+﻿# MkDocsTextFormatter.EscapeText Method
 
 **Declaring Type:** [MkDocsTextFormatter](../index.md)
 

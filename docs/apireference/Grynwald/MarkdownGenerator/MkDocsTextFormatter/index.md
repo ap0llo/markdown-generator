@@ -1,4 +1,4 @@
-# MkDocsTextFormatter Class
+﻿# MkDocsTextFormatter Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

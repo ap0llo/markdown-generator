@@ -1,4 +1,4 @@
-# FactoryMethods.Container Method
+﻿# FactoryMethods.Container Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

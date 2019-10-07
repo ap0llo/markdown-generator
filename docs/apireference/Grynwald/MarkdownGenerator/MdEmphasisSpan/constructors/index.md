@@ -1,4 +1,4 @@
-# MdEmphasisSpan Constructors
+﻿# MdEmphasisSpan Constructors
 
 **Declaring Type:** [MdEmphasisSpan](../index.md)
 

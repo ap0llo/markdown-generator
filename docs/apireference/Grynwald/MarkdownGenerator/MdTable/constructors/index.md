@@ -1,4 +1,4 @@
-# MdTable Constructors
+﻿# MdTable Constructors
 
 **Declaring Type:** [MdTable](../index.md)
 

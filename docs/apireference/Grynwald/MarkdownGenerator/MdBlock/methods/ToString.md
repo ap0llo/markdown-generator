@@ -1,4 +1,4 @@
-# MdBlock.ToString Method
+﻿# MdBlock.ToString Method
 
 **Declaring Type:** [MdBlock](../index.md)
 

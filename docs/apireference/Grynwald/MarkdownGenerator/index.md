@@ -1,4 +1,4 @@
-# Grynwald.MarkdownGenerator Namespace
+﻿# Grynwald.MarkdownGenerator Namespace
 
 **Namespace:** [Grynwald](../index.md)
 

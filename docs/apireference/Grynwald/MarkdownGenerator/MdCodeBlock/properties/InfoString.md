@@ -1,4 +1,4 @@
-# MdCodeBlock.InfoString Property
+﻿# MdCodeBlock.InfoString Property
 
 **Declaring Type:** [MdCodeBlock](../index.md)
 

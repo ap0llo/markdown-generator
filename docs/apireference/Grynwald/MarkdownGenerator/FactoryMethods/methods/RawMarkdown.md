@@ -1,4 +1,4 @@
-# FactoryMethods.RawMarkdown Method
+﻿# FactoryMethods.RawMarkdown Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

@@ -1,4 +1,4 @@
-# MdList.Insert Method
+﻿# MdList.Insert Method
 
 **Declaring Type:** [MdList](../index.md)
 

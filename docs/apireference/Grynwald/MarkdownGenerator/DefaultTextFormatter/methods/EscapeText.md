@@ -1,4 +1,4 @@
-# DefaultTextFormatter.EscapeText Method
+﻿# DefaultTextFormatter.EscapeText Method
 
 **Declaring Type:** [DefaultTextFormatter](../index.md)
 

@@ -1,4 +1,4 @@
-# MdStrongEmphasisSpan.Text Property
+﻿# MdStrongEmphasisSpan.Text Property
 
 **Declaring Type:** [MdStrongEmphasisSpan](../index.md)
 

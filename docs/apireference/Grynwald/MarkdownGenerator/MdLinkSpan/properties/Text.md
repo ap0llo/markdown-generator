@@ -1,4 +1,4 @@
-# MdLinkSpan.Text Property
+﻿# MdLinkSpan.Text Property
 
 **Declaring Type:** [MdLinkSpan](../index.md)
 

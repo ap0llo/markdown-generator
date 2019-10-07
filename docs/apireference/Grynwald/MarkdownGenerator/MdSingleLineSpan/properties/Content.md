@@ -1,4 +1,4 @@
-# MdSingleLineSpan.Content Property
+﻿# MdSingleLineSpan.Content Property
 
 **Declaring Type:** [MdSingleLineSpan](../index.md)
 

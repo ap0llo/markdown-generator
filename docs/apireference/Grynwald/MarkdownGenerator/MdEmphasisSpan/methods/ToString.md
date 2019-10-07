@@ -1,4 +1,4 @@
-# MdEmphasisSpan.ToString Method
+﻿# MdEmphasisSpan.ToString Method
 
 **Declaring Type:** [MdEmphasisSpan](../index.md)
 

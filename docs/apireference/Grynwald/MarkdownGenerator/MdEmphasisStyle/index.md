@@ -1,4 +1,4 @@
-# MdEmphasisStyle Enum
+﻿# MdEmphasisStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

@@ -1,4 +1,4 @@
-# MdEmptySpan.ToString Method
+﻿# MdEmptySpan.ToString Method
 
 **Declaring Type:** [MdEmptySpan](../index.md)
 

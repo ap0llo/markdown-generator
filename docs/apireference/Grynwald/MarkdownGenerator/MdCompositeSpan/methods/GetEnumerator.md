@@ -1,4 +1,4 @@
-# MdCompositeSpan.GetEnumerator Method
+﻿# MdCompositeSpan.GetEnumerator Method
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

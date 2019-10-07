@@ -1,4 +1,4 @@
-# MdCodeSpan Constructors
+﻿# MdCodeSpan Constructors
 
 **Declaring Type:** [MdCodeSpan](../index.md)
 

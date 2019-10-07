@@ -1,4 +1,4 @@
-# MdTable.Add Method
+﻿# MdTable.Add Method
 
 **Declaring Type:** [MdTable](../index.md)
 

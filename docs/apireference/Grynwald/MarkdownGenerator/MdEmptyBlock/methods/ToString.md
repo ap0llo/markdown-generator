@@ -1,4 +1,4 @@
-# MdEmptyBlock.ToString Method
+﻿# MdEmptyBlock.ToString Method
 
 **Declaring Type:** [MdEmptyBlock](../index.md)
 

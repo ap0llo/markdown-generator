@@ -1,4 +1,4 @@
-# MdSerializationOptions.OrderedListStyle Property
+﻿# MdSerializationOptions.OrderedListStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

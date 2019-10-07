@@ -1,4 +1,4 @@
-# MdRawMarkdownSpan.ToString Method
+﻿# MdRawMarkdownSpan.ToString Method
 
 **Declaring Type:** [MdRawMarkdownSpan](../index.md)
 

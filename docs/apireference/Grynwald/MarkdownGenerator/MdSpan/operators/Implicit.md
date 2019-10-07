@@ -1,4 +1,4 @@
-# MdSpan.Implicit Operator
+﻿# MdSpan.Implicit Operator
 
 **Declaring Type:** [MdSpan](../index.md)
 

@@ -1,4 +1,4 @@
-# MdDocumentSet.GetLink Method
+﻿# MdDocumentSet.GetLink Method
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

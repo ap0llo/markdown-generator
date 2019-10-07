@@ -1,4 +1,4 @@
-# FactoryMethods.BlockQuote Method
+﻿# FactoryMethods.BlockQuote Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

@@ -1,4 +1,4 @@
-# MdSerializationOptions Class
+﻿# MdSerializationOptions Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

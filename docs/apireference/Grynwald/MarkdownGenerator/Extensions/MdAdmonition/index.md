@@ -1,4 +1,4 @@
-# MdAdmonition Class
+﻿# MdAdmonition Class
 
 **Namespace:** [Grynwald.MarkdownGenerator.Extensions](../index.md)
 

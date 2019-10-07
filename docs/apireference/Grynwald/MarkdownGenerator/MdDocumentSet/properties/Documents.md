@@ -1,4 +1,4 @@
-# MdDocumentSet.Documents Property
+﻿# MdDocumentSet.Documents Property
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

@@ -1,4 +1,4 @@
-# MdOrderedList.DeepEquals Method
+﻿# MdOrderedList.DeepEquals Method
 
 **Declaring Type:** [MdOrderedList](../index.md)
 

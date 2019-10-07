@@ -1,4 +1,4 @@
-# FactoryMethods.Text Method
+﻿# FactoryMethods.Text Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

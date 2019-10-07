@@ -1,4 +1,4 @@
-# FactoryMethods.Emphasis Method
+﻿# FactoryMethods.Emphasis Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

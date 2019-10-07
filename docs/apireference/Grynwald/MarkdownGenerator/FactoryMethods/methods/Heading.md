@@ -1,4 +1,4 @@
-# FactoryMethods.Heading Method
+﻿# FactoryMethods.Heading Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

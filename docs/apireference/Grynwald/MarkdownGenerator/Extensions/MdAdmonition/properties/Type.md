@@ -1,4 +1,4 @@
-# MdAdmonition.Type Property
+﻿# MdAdmonition.Type Property
 
 **Declaring Type:** [MdAdmonition](../index.md)
 

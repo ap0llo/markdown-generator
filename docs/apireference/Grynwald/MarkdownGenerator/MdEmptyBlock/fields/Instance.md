@@ -1,4 +1,4 @@
-# MdEmptyBlock.Instance Field
+﻿# MdEmptyBlock.Instance Field
 
 **Declaring Type:** [MdEmptyBlock](../index.md)
 

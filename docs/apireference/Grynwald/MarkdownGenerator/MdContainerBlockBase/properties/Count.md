@@ -1,4 +1,4 @@
-# MdContainerBlockBase.Count Property
+﻿# MdContainerBlockBase.Count Property
 
 **Declaring Type:** [MdContainerBlockBase](../index.md)
 

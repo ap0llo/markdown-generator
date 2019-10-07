@@ -1,4 +1,4 @@
-# FactoryMethods.Link Method
+﻿# FactoryMethods.Link Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

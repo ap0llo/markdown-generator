@@ -1,4 +1,4 @@
-# DefaultTextFormatter.Instance Field
+﻿# DefaultTextFormatter.Instance Field
 
 **Declaring Type:** [DefaultTextFormatter](../index.md)
 

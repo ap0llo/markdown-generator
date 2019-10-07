@@ -1,4 +1,4 @@
-# DocumentSet\<T\>.GetRelativePath Method
+﻿# DocumentSet\<T\>.GetRelativePath Method
 
 **Declaring Type:** [DocumentSet\<T\>](../index.md)
 

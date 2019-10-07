@@ -1,4 +1,4 @@
-# FactoryMethods.Paragraph Method
+﻿# FactoryMethods.Paragraph Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

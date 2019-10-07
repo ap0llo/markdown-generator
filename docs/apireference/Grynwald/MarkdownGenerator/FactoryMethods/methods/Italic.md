@@ -1,4 +1,4 @@
-# FactoryMethods.Italic Method
+﻿# FactoryMethods.Italic Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

@@ -1,4 +1,4 @@
-# MdImageSpan.ToString Method
+﻿# MdImageSpan.ToString Method
 
 **Declaring Type:** [MdImageSpan](../index.md)
 

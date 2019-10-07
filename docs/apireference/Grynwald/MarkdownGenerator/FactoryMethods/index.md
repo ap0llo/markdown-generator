@@ -1,4 +1,4 @@
-# FactoryMethods Class
+﻿# FactoryMethods Class
 
 ⚠️ **Warning:** FactoryMethods is obsolete. Use the constructors of the markdown data types directly instead.
 

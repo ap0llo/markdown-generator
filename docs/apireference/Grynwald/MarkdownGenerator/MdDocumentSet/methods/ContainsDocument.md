@@ -1,4 +1,4 @@
-# MdDocumentSet.ContainsDocument Method
+﻿# MdDocumentSet.ContainsDocument Method
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

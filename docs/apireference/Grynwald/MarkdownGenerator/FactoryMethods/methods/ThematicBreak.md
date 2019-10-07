@@ -1,4 +1,4 @@
-# FactoryMethods.ThematicBreak Method
+﻿# FactoryMethods.ThematicBreak Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

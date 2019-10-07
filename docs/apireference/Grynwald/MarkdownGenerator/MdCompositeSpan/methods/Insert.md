@@ -1,4 +1,4 @@
-# MdCompositeSpan.Insert Method
+﻿# MdCompositeSpan.Insert Method
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

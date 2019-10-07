@@ -1,4 +1,4 @@
-# EnumerableExtensions Class
+﻿# EnumerableExtensions Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

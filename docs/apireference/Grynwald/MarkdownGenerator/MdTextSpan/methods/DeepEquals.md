@@ -1,4 +1,4 @@
-# MdTextSpan.DeepEquals Method
+﻿# MdTextSpan.DeepEquals Method
 
 **Declaring Type:** [MdTextSpan](../index.md)
 

@@ -1,4 +1,4 @@
-# MdSerializationOptions Constructors
+﻿# MdSerializationOptions Constructors
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

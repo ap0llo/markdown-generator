@@ -1,4 +1,4 @@
-# MdTextSpan.Implicit Operator
+﻿# MdTextSpan.Implicit Operator
 
 **Declaring Type:** [MdTextSpan](../index.md)
 

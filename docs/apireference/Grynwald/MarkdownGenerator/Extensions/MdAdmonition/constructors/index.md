@@ -1,4 +1,4 @@
-# MdAdmonition Constructors
+﻿# MdAdmonition Constructors
 
 **Declaring Type:** [MdAdmonition](../index.md)
 

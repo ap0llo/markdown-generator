@@ -1,4 +1,4 @@
-# TextDocument.Content Property
+﻿# TextDocument.Content Property
 
 **Declaring Type:** [TextDocument](../index.md)
 

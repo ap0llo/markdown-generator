@@ -1,4 +1,4 @@
-# DocumentNotFoundException Constructors
+﻿# DocumentNotFoundException Constructors
 
 **Declaring Type:** [DocumentNotFoundException](../index.md)
 

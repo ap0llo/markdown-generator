@@ -1,4 +1,4 @@
-# FactoryMethods.Document Method
+﻿# FactoryMethods.Document Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

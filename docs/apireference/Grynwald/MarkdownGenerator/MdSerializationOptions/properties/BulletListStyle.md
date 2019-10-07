@@ -1,4 +1,4 @@
-# MdSerializationOptions.BulletListStyle Property
+﻿# MdSerializationOptions.BulletListStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

@@ -1,4 +1,4 @@
-# MdImageSpan.Description Property
+﻿# MdImageSpan.Description Property
 
 **Declaring Type:** [MdImageSpan](../index.md)
 

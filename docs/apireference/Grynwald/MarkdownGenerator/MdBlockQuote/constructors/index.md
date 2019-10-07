@@ -1,4 +1,4 @@
-# MdBlockQuote Constructors
+﻿# MdBlockQuote Constructors
 
 **Declaring Type:** [MdBlockQuote](../index.md)
 

@@ -1,4 +1,4 @@
-# MdSingleLineSpan Constructors
+﻿# MdSingleLineSpan Constructors
 
 **Declaring Type:** [MdSingleLineSpan](../index.md)
 

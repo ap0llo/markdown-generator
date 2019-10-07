@@ -1,4 +1,4 @@
-# MdCompositeSpan.Count Property
+﻿# MdCompositeSpan.Count Property
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

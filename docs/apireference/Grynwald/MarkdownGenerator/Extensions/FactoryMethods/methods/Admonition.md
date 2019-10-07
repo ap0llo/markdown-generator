@@ -1,4 +1,4 @@
-# FactoryMethods.Admonition Method
+﻿# FactoryMethods.Admonition Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

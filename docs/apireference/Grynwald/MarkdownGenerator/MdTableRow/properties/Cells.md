@@ -1,4 +1,4 @@
-# MdTableRow.Cells Property
+﻿# MdTableRow.Cells Property
 
 **Declaring Type:** [MdTableRow](../index.md)
 

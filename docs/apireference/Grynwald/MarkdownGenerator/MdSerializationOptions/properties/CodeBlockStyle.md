@@ -1,4 +1,4 @@
-# MdSerializationOptions.CodeBlockStyle Property
+﻿# MdSerializationOptions.CodeBlockStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

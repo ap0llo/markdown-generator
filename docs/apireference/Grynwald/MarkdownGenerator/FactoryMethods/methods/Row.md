@@ -1,4 +1,4 @@
-# FactoryMethods.Row Method
+﻿# FactoryMethods.Row Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

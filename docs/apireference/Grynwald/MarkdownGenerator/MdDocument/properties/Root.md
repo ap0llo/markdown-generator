@@ -1,4 +1,4 @@
-# MdDocument.Root Property
+﻿# MdDocument.Root Property
 
 **Declaring Type:** [MdDocument](../index.md)
 

@@ -1,4 +1,4 @@
-# MdDocumentSet.Item Indexer
+﻿# MdDocumentSet.Item Indexer
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

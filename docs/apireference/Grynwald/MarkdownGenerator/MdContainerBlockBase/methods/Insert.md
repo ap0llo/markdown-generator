@@ -1,4 +1,4 @@
-# MdContainerBlockBase.Insert Method
+﻿# MdContainerBlockBase.Insert Method
 
 **Declaring Type:** [MdContainerBlockBase](../index.md)
 

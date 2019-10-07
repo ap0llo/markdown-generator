@@ -1,4 +1,4 @@
-# ITextFormatter.EscapeText Method
+﻿# ITextFormatter.EscapeText Method
 
 **Declaring Type:** [ITextFormatter](../index.md)
 

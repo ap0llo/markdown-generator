@@ -1,4 +1,4 @@
-# MdListItem.DeepEquals Method
+﻿# MdListItem.DeepEquals Method
 
 **Declaring Type:** [MdListItem](../index.md)
 

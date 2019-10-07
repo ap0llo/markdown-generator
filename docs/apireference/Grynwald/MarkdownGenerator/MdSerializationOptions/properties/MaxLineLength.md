@@ -1,4 +1,4 @@
-# MdSerializationOptions.MaxLineLength Property
+﻿# MdSerializationOptions.MaxLineLength Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

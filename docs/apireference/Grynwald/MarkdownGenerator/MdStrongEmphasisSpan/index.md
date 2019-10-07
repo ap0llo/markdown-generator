@@ -1,4 +1,4 @@
-# MdStrongEmphasisSpan Class
+﻿# MdStrongEmphasisSpan Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

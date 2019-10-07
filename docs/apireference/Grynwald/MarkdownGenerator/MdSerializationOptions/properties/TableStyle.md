@@ -1,4 +1,4 @@
-# MdSerializationOptions.TableStyle Property
+﻿# MdSerializationOptions.TableStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

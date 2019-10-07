@@ -1,4 +1,4 @@
-# MkDocsTextFormatter.Instance Field
+﻿# MkDocsTextFormatter.Instance Field
 
 **Declaring Type:** [MkDocsTextFormatter](../index.md)
 

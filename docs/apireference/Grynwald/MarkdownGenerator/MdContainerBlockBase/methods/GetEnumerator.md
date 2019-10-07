@@ -1,4 +1,4 @@
-# MdContainerBlockBase.GetEnumerator Method
+﻿# MdContainerBlockBase.GetEnumerator Method
 
 **Declaring Type:** [MdContainerBlockBase](../index.md)
 

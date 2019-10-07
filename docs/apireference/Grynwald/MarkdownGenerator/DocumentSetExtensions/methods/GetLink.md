@@ -1,4 +1,4 @@
-# DocumentSetExtensions.GetLink Method
+﻿# DocumentSetExtensions.GetLink Method
 
 **Declaring Type:** [DocumentSetExtensions](../index.md)
 

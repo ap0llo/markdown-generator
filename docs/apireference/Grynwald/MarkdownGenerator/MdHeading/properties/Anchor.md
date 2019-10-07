@@ -1,4 +1,4 @@
-# MdHeading.Anchor Property
+﻿# MdHeading.Anchor Property
 
 **Declaring Type:** [MdHeading](../index.md)
 

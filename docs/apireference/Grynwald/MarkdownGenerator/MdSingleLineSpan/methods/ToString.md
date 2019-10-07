@@ -1,4 +1,4 @@
-# MdSingleLineSpan.ToString Method
+﻿# MdSingleLineSpan.ToString Method
 
 **Declaring Type:** [MdSingleLineSpan](../index.md)
 

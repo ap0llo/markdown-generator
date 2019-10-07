@@ -1,4 +1,4 @@
-# MdParagraph.Add Method
+﻿# MdParagraph.Add Method
 
 **Declaring Type:** [MdParagraph](../index.md)
 

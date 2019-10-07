@@ -1,4 +1,4 @@
-# MdRawMarkdownSpan.Content Property
+﻿# MdRawMarkdownSpan.Content Property
 
 **Declaring Type:** [MdRawMarkdownSpan](../index.md)
 

@@ -1,4 +1,4 @@
-# FactoryMethods.Bold Method
+﻿# FactoryMethods.Bold Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

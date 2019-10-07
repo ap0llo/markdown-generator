@@ -1,4 +1,4 @@
-# MdParagraph.Text Property
+﻿# MdParagraph.Text Property
 
 **Declaring Type:** [MdParagraph](../index.md)
 

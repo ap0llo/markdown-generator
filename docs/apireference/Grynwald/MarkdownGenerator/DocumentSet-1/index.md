@@ -1,4 +1,4 @@
-# DocumentSet\<T\> Class
+﻿# DocumentSet\<T\> Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

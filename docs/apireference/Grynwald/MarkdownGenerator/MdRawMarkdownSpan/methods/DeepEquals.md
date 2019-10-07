@@ -1,4 +1,4 @@
-# MdRawMarkdownSpan.DeepEquals Method
+﻿# MdRawMarkdownSpan.DeepEquals Method
 
 **Declaring Type:** [MdRawMarkdownSpan](../index.md)
 

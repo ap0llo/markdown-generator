@@ -1,4 +1,4 @@
-# FactoryMethods.BulletList Method
+﻿# FactoryMethods.BulletList Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

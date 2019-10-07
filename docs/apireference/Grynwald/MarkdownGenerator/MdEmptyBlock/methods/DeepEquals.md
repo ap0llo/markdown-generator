@@ -1,4 +1,4 @@
-# MdEmptyBlock.DeepEquals Method
+﻿# MdEmptyBlock.DeepEquals Method
 
 **Declaring Type:** [MdEmptyBlock](../index.md)
 

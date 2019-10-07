@@ -1,4 +1,4 @@
-# MdTableRow Constructors
+﻿# MdTableRow Constructors
 
 **Declaring Type:** [MdTableRow](../index.md)
 

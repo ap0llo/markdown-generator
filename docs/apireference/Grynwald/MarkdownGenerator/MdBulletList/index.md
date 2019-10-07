@@ -1,4 +1,4 @@
-# MdBulletList Class
+﻿# MdBulletList Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

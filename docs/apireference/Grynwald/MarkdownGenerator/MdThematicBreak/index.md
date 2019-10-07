@@ -1,4 +1,4 @@
-# MdThematicBreak Class
+﻿# MdThematicBreak Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

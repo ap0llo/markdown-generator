@@ -1,4 +1,4 @@
-# MdEmptySpan.DeepEquals Method
+﻿# MdEmptySpan.DeepEquals Method
 
 **Declaring Type:** [MdEmptySpan](../index.md)
 

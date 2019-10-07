@@ -1,4 +1,4 @@
-# SyntaxVisualizer Class
+﻿# SyntaxVisualizer Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

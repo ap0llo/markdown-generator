@@ -1,4 +1,4 @@
-# MdImageSpan.DeepEquals Method
+﻿# MdImageSpan.DeepEquals Method
 
 **Declaring Type:** [MdImageSpan](../index.md)
 

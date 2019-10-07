@@ -1,4 +1,4 @@
-# MdSerializationOptions.Default Field
+﻿# MdSerializationOptions.Default Field
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

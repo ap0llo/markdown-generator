@@ -1,4 +1,4 @@
-# DocumentSet\<T\>.Add Method
+﻿# DocumentSet\<T\>.Add Method
 
 **Declaring Type:** [DocumentSet\<T\>](../index.md)
 

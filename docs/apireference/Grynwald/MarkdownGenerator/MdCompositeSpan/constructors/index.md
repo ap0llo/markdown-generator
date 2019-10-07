@@ -1,4 +1,4 @@
-# MdCompositeSpan Constructors
+﻿# MdCompositeSpan Constructors
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

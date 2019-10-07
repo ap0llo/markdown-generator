@@ -1,4 +1,4 @@
-# MdContainerBlockBase.Blocks Property
+﻿# MdContainerBlockBase.Blocks Property
 
 **Declaring Type:** [MdContainerBlockBase](../index.md)
 

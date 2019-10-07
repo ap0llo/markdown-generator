@@ -1,4 +1,4 @@
-# MdCompositeSpan.Spans Property
+﻿# MdCompositeSpan.Spans Property
 
 **Declaring Type:** [MdCompositeSpan](../index.md)
 

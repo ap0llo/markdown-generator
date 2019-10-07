@@ -1,4 +1,4 @@
-# MdTableRow.Item Indexer
+﻿# MdTableRow.Item Indexer
 
 **Declaring Type:** [MdTableRow](../index.md)
 

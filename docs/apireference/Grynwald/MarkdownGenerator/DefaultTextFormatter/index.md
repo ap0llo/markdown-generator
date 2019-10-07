@@ -1,4 +1,4 @@
-# DefaultTextFormatter Class
+﻿# DefaultTextFormatter Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

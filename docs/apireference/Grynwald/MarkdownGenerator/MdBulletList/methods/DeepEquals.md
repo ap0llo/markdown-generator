@@ -1,4 +1,4 @@
-# MdBulletList.DeepEquals Method
+﻿# MdBulletList.DeepEquals Method
 
 **Declaring Type:** [MdBulletList](../index.md)
 

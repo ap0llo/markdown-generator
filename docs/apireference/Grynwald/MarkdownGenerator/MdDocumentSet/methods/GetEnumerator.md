@@ -1,4 +1,4 @@
-# MdDocumentSet.GetEnumerator Method
+﻿# MdDocumentSet.GetEnumerator Method
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

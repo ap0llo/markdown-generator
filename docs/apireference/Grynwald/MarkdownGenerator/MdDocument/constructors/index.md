@@ -1,4 +1,4 @@
-# MdDocument Constructors
+﻿# MdDocument Constructors
 
 **Declaring Type:** [MdDocument](../index.md)
 

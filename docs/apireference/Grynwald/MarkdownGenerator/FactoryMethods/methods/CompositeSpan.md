@@ -1,4 +1,4 @@
-# FactoryMethods.CompositeSpan Method
+﻿# FactoryMethods.CompositeSpan Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

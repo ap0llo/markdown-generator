@@ -1,4 +1,4 @@
-# FactoryMethods.Image Method
+﻿# FactoryMethods.Image Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

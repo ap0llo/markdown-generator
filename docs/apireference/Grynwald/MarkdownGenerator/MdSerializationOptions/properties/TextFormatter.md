@@ -1,4 +1,4 @@
-# MdSerializationOptions.TextFormatter Property
+﻿# MdSerializationOptions.TextFormatter Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

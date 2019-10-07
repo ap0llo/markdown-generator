@@ -1,4 +1,4 @@
-# MdRawMarkdownSpan Constructors
+﻿# MdRawMarkdownSpan Constructors
 
 **Declaring Type:** [MdRawMarkdownSpan](../index.md)
 

@@ -1,4 +1,4 @@
-# MdCodeSpan.ToString Method
+﻿# MdCodeSpan.ToString Method
 
 **Declaring Type:** [MdCodeSpan](../index.md)
 

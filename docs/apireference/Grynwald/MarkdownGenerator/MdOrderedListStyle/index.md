@@ -1,4 +1,4 @@
-# MdOrderedListStyle Enum
+﻿# MdOrderedListStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

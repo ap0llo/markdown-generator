@@ -1,4 +1,4 @@
-# MdThematicBreak.DeepEquals Method
+﻿# MdThematicBreak.DeepEquals Method
 
 **Declaring Type:** [MdThematicBreak](../index.md)
 

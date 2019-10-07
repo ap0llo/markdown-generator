@@ -1,4 +1,4 @@
-# MdHeading.DeepEquals Method
+﻿# MdHeading.DeepEquals Method
 
 **Declaring Type:** [MdHeading](../index.md)
 

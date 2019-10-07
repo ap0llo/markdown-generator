@@ -1,4 +1,4 @@
-# MdSerializationOptions.EmphasisStyle Property
+﻿# MdSerializationOptions.EmphasisStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

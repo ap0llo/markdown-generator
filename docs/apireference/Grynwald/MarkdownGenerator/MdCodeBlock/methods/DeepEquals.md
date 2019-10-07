@@ -1,4 +1,4 @@
-# MdCodeBlock.DeepEquals Method
+﻿# MdCodeBlock.DeepEquals Method
 
 **Declaring Type:** [MdCodeBlock](../index.md)
 

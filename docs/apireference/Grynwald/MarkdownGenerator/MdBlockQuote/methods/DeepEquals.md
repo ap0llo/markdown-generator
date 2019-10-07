@@ -1,4 +1,4 @@
-# MdBlockQuote.DeepEquals Method
+﻿# MdBlockQuote.DeepEquals Method
 
 **Declaring Type:** [MdBlockQuote](../index.md)
 

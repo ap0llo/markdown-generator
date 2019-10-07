@@ -1,4 +1,4 @@
-# MdList.Count Property
+﻿# MdList.Count Property
 
 **Declaring Type:** [MdList](../index.md)
 

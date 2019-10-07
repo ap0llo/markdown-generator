@@ -1,4 +1,4 @@
-# MdStrongEmphasisSpan Constructors
+﻿# MdStrongEmphasisSpan Constructors
 
 **Declaring Type:** [MdStrongEmphasisSpan](../index.md)
 

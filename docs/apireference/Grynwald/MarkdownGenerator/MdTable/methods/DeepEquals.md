@@ -1,4 +1,4 @@
-# MdTable.DeepEquals Method
+﻿# MdTable.DeepEquals Method
 
 **Declaring Type:** [MdTable](../index.md)
 

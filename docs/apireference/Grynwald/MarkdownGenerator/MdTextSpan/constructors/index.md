@@ -1,4 +1,4 @@
-# MdTextSpan Constructors
+﻿# MdTextSpan Constructors
 
 **Declaring Type:** [MdTextSpan](../index.md)
 

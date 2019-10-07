@@ -1,4 +1,4 @@
-# MdThematicBreak Constructors
+﻿# MdThematicBreak Constructors
 
 **Declaring Type:** [MdThematicBreak](../index.md)
 

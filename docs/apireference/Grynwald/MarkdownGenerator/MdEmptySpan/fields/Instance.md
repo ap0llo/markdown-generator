@@ -1,4 +1,4 @@
-# MdEmptySpan.Instance Field
+﻿# MdEmptySpan.Instance Field
 
 **Declaring Type:** [MdEmptySpan](../index.md)
 

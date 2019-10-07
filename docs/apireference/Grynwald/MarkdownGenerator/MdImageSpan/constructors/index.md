@@ -1,4 +1,4 @@
-# MdImageSpan Constructors
+﻿# MdImageSpan Constructors
 
 **Declaring Type:** [MdImageSpan](../index.md)
 

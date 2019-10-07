@@ -1,4 +1,4 @@
-# MdParagraph.DeepEquals Method
+﻿# MdParagraph.DeepEquals Method
 
 **Declaring Type:** [MdParagraph](../index.md)
 

@@ -1,4 +1,4 @@
-# MdContainerBlock Class
+﻿# MdContainerBlock Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

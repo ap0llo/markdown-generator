@@ -1,4 +1,4 @@
-# MdStrongEmphasisSpan.DeepEquals Method
+﻿# MdStrongEmphasisSpan.DeepEquals Method
 
 **Declaring Type:** [MdStrongEmphasisSpan](../index.md)
 

@@ -1,4 +1,4 @@
-# MdSerializationOptions.HeadingStyle Property
+﻿# MdSerializationOptions.HeadingStyle Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

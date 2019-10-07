@@ -1,4 +1,4 @@
-# MdHeading.Level Property
+﻿# MdHeading.Level Property
 
 **Declaring Type:** [MdHeading](../index.md)
 

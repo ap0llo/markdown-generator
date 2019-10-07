@@ -1,4 +1,4 @@
-# DocumentNotFoundException Class
+﻿# DocumentNotFoundException Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

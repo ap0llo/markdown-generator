@@ -1,4 +1,4 @@
-# MdAdmonition.DeepEquals Method
+﻿# MdAdmonition.DeepEquals Method
 
 **Declaring Type:** [MdAdmonition](../index.md)
 

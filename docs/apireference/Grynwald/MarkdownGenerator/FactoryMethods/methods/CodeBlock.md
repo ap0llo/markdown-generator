@@ -1,4 +1,4 @@
-# FactoryMethods.CodeBlock Method
+﻿# FactoryMethods.CodeBlock Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

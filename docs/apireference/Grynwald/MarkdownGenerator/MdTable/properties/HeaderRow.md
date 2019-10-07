@@ -1,4 +1,4 @@
-# MdTable.HeaderRow Property
+﻿# MdTable.HeaderRow Property
 
 **Declaring Type:** [MdTable](../index.md)
 

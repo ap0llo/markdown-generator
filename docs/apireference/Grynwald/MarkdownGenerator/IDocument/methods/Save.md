@@ -1,4 +1,4 @@
-# IDocument.Save Method
+﻿# IDocument.Save Method
 
 **Declaring Type:** [IDocument](../index.md)
 

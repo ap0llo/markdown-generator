@@ -1,4 +1,4 @@
-# MdHeading Constructors
+﻿# MdHeading Constructors
 
 **Declaring Type:** [MdHeading](../index.md)
 

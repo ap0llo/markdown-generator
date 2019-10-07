@@ -1,4 +1,4 @@
-# MdList.GetEnumerator Method
+﻿# MdList.GetEnumerator Method
 
 **Declaring Type:** [MdList](../index.md)
 

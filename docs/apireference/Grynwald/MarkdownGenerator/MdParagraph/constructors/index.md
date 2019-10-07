@@ -1,4 +1,4 @@
-# MdParagraph Constructors
+﻿# MdParagraph Constructors
 
 **Declaring Type:** [MdParagraph](../index.md)
 

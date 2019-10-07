@@ -1,4 +1,4 @@
-# MdBulletList Constructors
+﻿# MdBulletList Constructors
 
 **Declaring Type:** [MdBulletList](../index.md)
 

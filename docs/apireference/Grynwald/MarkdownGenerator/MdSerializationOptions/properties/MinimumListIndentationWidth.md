@@ -1,4 +1,4 @@
-# MdSerializationOptions.MinimumListIndentationWidth Property
+﻿# MdSerializationOptions.MinimumListIndentationWidth Property
 
 **Declaring Type:** [MdSerializationOptions](../index.md)
 

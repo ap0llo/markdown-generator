@@ -1,4 +1,4 @@
-# IDocument Interface
+﻿# IDocument Interface
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

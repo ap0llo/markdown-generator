@@ -1,4 +1,4 @@
-# MdDocumentSet.ContainsPath Method
+﻿# MdDocumentSet.ContainsPath Method
 
 **Declaring Type:** [MdDocumentSet](../index.md)
 

@@ -1,4 +1,4 @@
-# FactoryMethods.CodeSpan Method
+﻿# FactoryMethods.CodeSpan Method
 
 **Declaring Type:** [FactoryMethods](../index.md)
 

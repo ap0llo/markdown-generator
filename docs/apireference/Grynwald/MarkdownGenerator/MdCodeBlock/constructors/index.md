@@ -1,4 +1,4 @@
-# MdCodeBlock Constructors
+﻿# MdCodeBlock Constructors
 
 **Declaring Type:** [MdCodeBlock](../index.md)
 

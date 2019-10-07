@@ -1,4 +1,4 @@
-# MdEmptySpan Class
+﻿# MdEmptySpan Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

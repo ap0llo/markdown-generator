@@ -1,4 +1,4 @@
-# MdHeadingStyle Enum
+﻿# MdHeadingStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 

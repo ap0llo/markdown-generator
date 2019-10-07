@@ -1,4 +1,4 @@
-# MdBulletListStyle Enum
+﻿# MdBulletListStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)
 
