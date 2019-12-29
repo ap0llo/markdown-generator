@@ -23,7 +23,7 @@ namespace Grynwald.MarkdownGenerator
         /// </item>
         /// </list>
         /// </returns>
-        public static MdSpan Join(this IEnumerable<MdSpan> spans) => Join(spans, (string)null);
+        public static MdSpan Join(this IEnumerable<MdSpan> spans) => Join(spans, null);
 
         /// <summary>
         /// Combines the sequence of spans to a single span and adds a separator between them.
@@ -47,7 +47,7 @@ namespace Grynwald.MarkdownGenerator
         /// </item>
         /// </list>
         /// </returns>
-        public static MdSpan Join(this IEnumerable<MdSpan> spans, string separator) =>
+        public static MdSpan Join(this IEnumerable<MdSpan> spans, string? separator) =>
             Join(spans, separator == null ? null : new MdTextSpan(separator));
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Grynwald.MarkdownGenerator
         /// </item>
         /// </list>
         /// </returns>
-        public static MdSpan Join(this IEnumerable<MdSpan> spans, MdSpan separator)
+        public static MdSpan Join(this IEnumerable<MdSpan> spans, MdSpan? separator)
         {
             // no spans to join => return empty span
             if (!spans.Any())

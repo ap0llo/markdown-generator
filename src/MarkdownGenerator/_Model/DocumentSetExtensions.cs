@@ -51,7 +51,7 @@ namespace Grynwald.MarkdownGenerator
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="linkText"/> is null.</exception>
         /// <exception cref="DocumentNotFoundException">Thrown when <paramref name="from"/> is not part of the document set.</exception>
         /// <exception cref="DocumentNotFoundException">Thrown when <paramref name="to"/> is not part of the document set.</exception>
-        public static MdLinkSpan GetLink<T>(this DocumentSet<T> documentSet, T from, T to, MdSpan linkText) where T : IDocument
+        public static MdLinkSpan GetLink<T>(this DocumentSet<T> documentSet, T from, T to, MdSpan linkText) where T : notnull, IDocument
         {
             if (linkText == null)
                 throw new ArgumentNullException(nameof(linkText));
@@ -68,7 +68,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="directoryPath">The directory path to save the documents to.</param>
         /// <param name="cleanOutputDirectory">Determines whether the output directory is deleted before saving the documents.</param>
         /// <param name="serializationOptions">The serialization options to use for saving the documents. Can be <c>null</c>.</param>
-        public static void Save(this DocumentSet<MdDocument> documentSet, string directoryPath, bool cleanOutputDirectory, MdSerializationOptions serializationOptions)
+        public static void Save(this DocumentSet<MdDocument> documentSet, string directoryPath, bool cleanOutputDirectory, MdSerializationOptions? serializationOptions)
         {
             documentSet.Save(directoryPath, cleanOutputDirectory, (document, path) => document.Save(path, serializationOptions));
         }

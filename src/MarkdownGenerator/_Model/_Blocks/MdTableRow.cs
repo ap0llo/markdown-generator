@@ -127,7 +127,7 @@ namespace Grynwald.MarkdownGenerator
         IEnumerator IEnumerable.GetEnumerator() => m_Cells.GetEnumerator();
 
        
-        public bool DeepEquals(MdTableRow other)
+        public bool DeepEquals(MdTableRow? other)
         {
             if (other == null)
                 return false;

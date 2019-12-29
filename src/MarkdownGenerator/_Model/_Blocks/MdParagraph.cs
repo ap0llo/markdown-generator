@@ -76,14 +76,14 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdParagraph);
+        public override bool DeepEquals(MdBlock? other) => DeepEquals(other as MdParagraph);
 
 
         /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdParagraph other)
+        private bool DeepEquals(MdParagraph? other)
         {
             if (other == null)
                 return false;

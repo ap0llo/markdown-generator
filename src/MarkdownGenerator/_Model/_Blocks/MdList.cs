@@ -81,7 +81,7 @@ namespace Grynwald.MarkdownGenerator
         IEnumerator IEnumerable.GetEnumerator() => m_ListItems.GetEnumerator();
 
 
-        protected bool DeepEquals(MdList other)
+        protected bool DeepEquals(MdList? other)
         {
             if (other == null)
                 return false;

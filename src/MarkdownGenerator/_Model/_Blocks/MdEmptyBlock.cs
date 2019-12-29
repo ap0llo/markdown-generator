@@ -24,10 +24,10 @@ namespace Grynwald.MarkdownGenerator
 
         public override string ToString() => "";
 
-        public override string ToString(MdSerializationOptions options) => "";
+        public override string ToString(MdSerializationOptions? options) => "";
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => ReferenceEquals(this, other);
+        public override bool DeepEquals(MdBlock? other) => ReferenceEquals(this, other);
 
 
         /// <inheritdoc />

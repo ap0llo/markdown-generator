@@ -86,7 +86,7 @@ namespace Grynwald.MarkdownGenerator
             int minimumListIndentationWidth = 2,
             MdTableStyle tableStyle = MdTableStyle.GFM,
             int maxLineLength = -1,
-            ITextFormatter textFormatter = null)
+            ITextFormatter? textFormatter = null)
         {
             m_IsReadOnly = isReadOnly;
             m_EmphasisStyle = emphasisStyle;

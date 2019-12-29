@@ -27,10 +27,10 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() => String.IsNullOrEmpty(Text) ? String.Empty : $"`{Text}`";
 
         /// <inheritdoc />
-        public override string ToString(MdSerializationOptions options) => ToString();
+        public override string ToString(MdSerializationOptions? options) => ToString();
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdCodeSpan);
+        public override bool DeepEquals(MdSpan? other) => DeepEquals(other as MdCodeSpan);
         
 
         internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
@@ -38,7 +38,7 @@ namespace Grynwald.MarkdownGenerator
         internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdCodeSpan other)
+        private bool DeepEquals(MdCodeSpan? other)
         {
             if (other == null)
                 return false;

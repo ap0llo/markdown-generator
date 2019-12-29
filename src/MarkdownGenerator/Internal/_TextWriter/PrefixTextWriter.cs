@@ -15,9 +15,9 @@ namespace Grynwald.MarkdownGenerator.Internal
         private readonly LinkedList<IPrefixHandler> m_PrefixHandlers = new LinkedList<IPrefixHandler>();
 
 
-        public event EventHandler<EventArgs> LineWritten;
+        public event EventHandler<EventArgs>? LineWritten;
 
-        public event EventHandler<EventArgs> BlankLineRequested;
+        public event EventHandler<EventArgs>? BlankLineRequested;
 
 
         public int PrefixLength => m_PrefixHandlers.Sum(x => x.PrefixLength);

@@ -234,7 +234,7 @@ namespace Grynwald.MarkdownGenerator.Extensions
 
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => other is MdAdmonition containerBlock ? DeepEquals(containerBlock) : false;
+        public override bool DeepEquals(MdBlock? other) => other is MdAdmonition containerBlock ? DeepEquals(containerBlock) : false;
 
         /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);

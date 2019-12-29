@@ -28,14 +28,16 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
         /// <inheritdoc />
-        public override string ToString(MdSerializationOptions options)
+        public override string ToString(MdSerializationOptions? options)
         {
+            options ??= MdSerializationOptions.Default;
+
             var escaper = options.TextFormatter ?? DefaultTextFormatter.Instance;
             return escaper.EscapeText(Text);
         }
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdTextSpan);
+        public override bool DeepEquals(MdSpan? other) => DeepEquals(other as MdTextSpan);
 
 
         internal override MdSpan DeepCopy() => new MdTextSpan(Text);
@@ -43,7 +45,7 @@ namespace Grynwald.MarkdownGenerator
         internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdTextSpan other)
+        private bool DeepEquals(MdTextSpan? other)
         {
             if (other == null)
                 return false;
@@ -58,6 +60,6 @@ namespace Grynwald.MarkdownGenerator
         /// Implicitly creates a <see cref="MdTextSpan"/> from a string.
         /// </summary>
         /// <param name="text">The string value to wrap in an instance of <see cref="MdTextSpan"/></param>
-        public static implicit operator MdTextSpan(string text) => text == null ? null : new MdTextSpan(text);
+        public static implicit operator MdTextSpan?(string text) => text == null ? null : new MdTextSpan(text);
     }
 }

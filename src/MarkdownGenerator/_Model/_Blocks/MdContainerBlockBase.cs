@@ -102,7 +102,7 @@ namespace Grynwald.MarkdownGenerator
         IEnumerator IEnumerable.GetEnumerator() => m_Blocks.GetEnumerator();
 
 
-        protected bool DeepEquals(MdContainerBlockBase other)
+        protected bool DeepEquals(MdContainerBlockBase? other)
         {
             if (other == null)
                 return false;

@@ -17,7 +17,7 @@ namespace Grynwald.MarkdownGenerator
 
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
-        public virtual string ToString(MdSerializationOptions options)
+        public virtual string ToString(MdSerializationOptions? options)
         {
             using (var stringWriter = new StringWriter())
             {
@@ -31,7 +31,7 @@ namespace Grynwald.MarkdownGenerator
         /// Recursively compares the block to the specified instance of <see cref="MdBlock"/>.
         /// </summary>
         /// <param name="other">The block to compare.</param>
-        public abstract bool DeepEquals(MdBlock other);
+        public abstract bool DeepEquals(MdBlock? other);
 
 
         /// <summary>

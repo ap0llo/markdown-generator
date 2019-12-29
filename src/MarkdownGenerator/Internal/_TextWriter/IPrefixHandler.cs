@@ -8,8 +8,8 @@
         int PrefixLength { get; }
 
 
-        string GetLinePrefix();
+        string? GetLinePrefix();
 
-        string GetBlankLinePrefix();
+        string? GetBlankLinePrefix();
     }
 }

@@ -21,12 +21,12 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Converts the span to a Markdown string using the specified serialization options.
         /// </summary>
-        public abstract string ToString(MdSerializationOptions options);
+        public abstract string ToString(MdSerializationOptions? options);
 
         /// <summary>
         /// Recursively compares the span to the specified instance of <see cref="MdSpan"/>.
         /// </summary>
-        public abstract bool DeepEquals(MdSpan other);
+        public abstract bool DeepEquals(MdSpan? other);
 
 
         internal abstract MdSpan DeepCopy();
@@ -39,6 +39,6 @@ namespace Grynwald.MarkdownGenerator
         /// The string value will be wrapped into an instance of <see cref="MdTextSpan"/> and thus be escaped in the output.
         /// </summary>
         /// <param name="text">The string value to wrap in a span.</param>
-        public static implicit operator MdSpan(string text) => text == null ? null : new MdTextSpan(text);
+        public static implicit operator MdSpan?(string? text) => text == null ? null : new MdTextSpan(text);
     }
 }

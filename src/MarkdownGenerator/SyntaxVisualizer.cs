@@ -16,7 +16,7 @@ namespace Grynwald.MarkdownGenerator
 
             private AsciiTreeNode CurrentNode => m_Nodes.Peek();
 
-            public AsciiTreeNode RootNode { get; private set; }
+            public AsciiTreeNode? RootNode { get; private set; }
 
 
             public void Visit(MdHeading heading)
@@ -188,7 +188,10 @@ namespace Grynwald.MarkdownGenerator
             document.Root.Accept(visitor);
 
             var rootNode = new AsciiTreeNode(document.GetType().Name);
-            rootNode.Children.Add(visitor.RootNode);
+            if(visitor.RootNode != null)
+            {
+                rootNode.Children.Add(visitor.RootNode);
+            }
 
             // generate ascii tree
             var treeWriter = new AsciiTreeWriter();
@@ -210,11 +213,14 @@ namespace Grynwald.MarkdownGenerator
 
             // convert the block into a graph
             var visitor = new GraphBuildingVisitor();
-            block.Accept(visitor);
+            block!.Accept(visitor);
 
             // generate ascii tree
             var treeWriter = new AsciiTreeWriter();
-            treeWriter.WriteNode(visitor.RootNode);
+            if (visitor.RootNode != null)
+            {
+                treeWriter.WriteNode(visitor.RootNode);
+            }
 
             // return ascii tree
             return treeWriter.ToString();
