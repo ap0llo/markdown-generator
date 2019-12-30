@@ -63,8 +63,10 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
         /// <inheritdoc />
-        public override string ToString(MdSerializationOptions options)
+        public override string ToString(MdSerializationOptions? options)
         {
+            options ??= MdSerializationOptions.Default;
+
             var text = Text.ToString(options);
 
             if (String.IsNullOrEmpty(text))
@@ -72,7 +74,7 @@ namespace Grynwald.MarkdownGenerator
                 return String.Empty;
             }
 
-            char emphasisChar;
+            char emphasisChar;          
             switch (options.EmphasisStyle)
             {
                 case MdEmphasisStyle.Asterisk:
@@ -90,7 +92,7 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdEmphasisSpan);
+        public override bool DeepEquals(MdSpan? other) => DeepEquals(other as MdEmphasisSpan);
 
 
         internal override MdSpan DeepCopy() => new MdEmphasisSpan(Text.DeepCopy());
@@ -98,7 +100,7 @@ namespace Grynwald.MarkdownGenerator
         internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdEmphasisSpan other)
+        private bool DeepEquals(MdEmphasisSpan? other)
         {
             if (other == null)
                 return false;

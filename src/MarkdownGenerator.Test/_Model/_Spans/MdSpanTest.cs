@@ -18,8 +18,8 @@ namespace Grynwald.MarkdownGenerator.Test
             }
             else
             {
-                Assert.IsType<MdTextSpan>(span);
-                Assert.Equal(str, (span as MdTextSpan).Text);
+                var textSpan = Assert.IsType<MdTextSpan>(span);
+                Assert.Equal(str, textSpan.Text);
             }
         }
     }

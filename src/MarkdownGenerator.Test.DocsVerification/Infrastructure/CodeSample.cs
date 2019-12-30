@@ -15,7 +15,8 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
         // parameterless constructor required for deserialization by xunit
         public CodeSample()
         {
-
+            RelativePath = null!;  // Set by Deserialize();
+            SourceCode = null!;    // Set by Deserialize();
         }
 
         public CodeSample(string relativePath, int line, string code)

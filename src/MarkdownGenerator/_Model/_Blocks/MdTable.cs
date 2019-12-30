@@ -111,13 +111,13 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdTable);
+        public override bool DeepEquals(MdBlock? other) => DeepEquals(other as MdTable);
 
         /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdTable other)
+        private bool DeepEquals(MdTable? other)
         {
             if (other == null)
                 return false;

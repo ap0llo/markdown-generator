@@ -65,7 +65,7 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => other is MdBlockQuote blockQuote ? base.DeepEquals(blockQuote) : false;
+        public override bool DeepEquals(MdBlock? other) => other is MdBlockQuote blockQuote ? base.DeepEquals(blockQuote) : false;
 
 
         /// <inheritdoc />

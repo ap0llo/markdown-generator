@@ -18,7 +18,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// The info string for the code block (typically used to specify the language of the code in the block)
         /// </summary>
-        public string InfoString { get; }
+        public string? InfoString { get; }
 
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="infoString">
         /// The code blocks info string, typically used to indicate the language of the code block
         /// </param>
-        public MdCodeBlock(string text, string infoString)
+        public MdCodeBlock(string text, string? infoString)
         {
             Text = text ?? throw new ArgumentNullException(nameof(text));
             InfoString = infoString;
@@ -43,14 +43,14 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdCodeBlock);
+        public override bool DeepEquals(MdBlock? other) => DeepEquals(other as MdCodeBlock);
 
 
         /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdCodeBlock other)
+        private bool DeepEquals(MdCodeBlock? other)
         {
             if (other == null)
                 return false;

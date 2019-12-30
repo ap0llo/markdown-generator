@@ -84,7 +84,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="path">The path of the file to save the document to.</param>
         /// <param name="serializationOptions">The options to use for serialization.</param>
-        public void Save(string path, MdSerializationOptions serializationOptions)
+        public void Save(string path, MdSerializationOptions? serializationOptions)
         {
             using(var stream = File.Open(path, FileMode.Create))
             {
@@ -103,7 +103,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="stream">The stream to write the document to.</param>
         /// <param name="serializationOptions">The options to use for converting the document to Markdown.</param>
-        public void Save(Stream stream, MdSerializationOptions serializationOptions)
+        public void Save(Stream stream, MdSerializationOptions? serializationOptions)
         {
             using (var writer = new StreamWriter(stream, Encoding.UTF8, 1024, true))
             {
@@ -111,7 +111,7 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
-        private void Save(TextWriter writer, MdSerializationOptions serializationOptions)
+        private void Save(TextWriter writer, MdSerializationOptions? serializationOptions)
         {
             var serializer = new DocumentSerializer(writer, serializationOptions);
             serializer.Serialize(this);
@@ -128,7 +128,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="serializationOptions">The options to use for converting the document to Markdown.</param>
         /// <returns>Returns the Markdown representation of the document.</returns>
-        public string ToString(MdSerializationOptions serializationOptions)
+        public string ToString(MdSerializationOptions? serializationOptions)
         {
             using (var stringWriter = new StringWriter())
             {

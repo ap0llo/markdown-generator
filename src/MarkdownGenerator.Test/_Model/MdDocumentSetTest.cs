@@ -23,7 +23,7 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Indexer_throws_ArgumentNullException_if_path_is_null()
         {
             var set = new MdDocumentSet();
-            Assert.Throws<ArgumentNullException>(() => set[(string)null]);
+            Assert.Throws<ArgumentNullException>(() => set[(string)null!]);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Indexer_throws_ArgumentNullException_if_document_is_null()
         {
             var set = new MdDocumentSet();
-            Assert.Throws<ArgumentNullException>(() => set[(MdDocument)null]);
+            Assert.Throws<ArgumentNullException>(() => set[(MdDocument)null!]);
         }
 
         [Fact]

@@ -959,7 +959,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             AssertToStringEquals("", new MdDocument(MdEmptyBlock.Instance));
 
 
-        private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions options = null)
+        private void AssertToStringEquals(string expected, MdDocument document, MdSerializationOptions? options = null)
         {
             using (var writer = new StringWriter())
             {

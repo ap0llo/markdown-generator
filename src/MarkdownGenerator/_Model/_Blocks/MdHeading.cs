@@ -17,7 +17,7 @@ namespace Grynwald.MarkdownGenerator
     /// <seealso cref="MdHeadingStyle"/>
     public sealed class MdHeading : MdLeafBlock
     {
-        private string m_Anchor;
+        private string? m_Anchor;
 
         /// <summary>
         /// The text of the heading
@@ -104,14 +104,14 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => DeepEquals(other as MdHeading);
+        public override bool DeepEquals(MdBlock? other) => DeepEquals(other as MdHeading);
 
 
         /// <inheritdoc />
         internal override void Accept(IBlockVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdHeading other)
+        private bool DeepEquals(MdHeading? other)
         {
             if (other == null)
                 return false;

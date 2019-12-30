@@ -91,7 +91,7 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() => ToString(MdSerializationOptions.Default);
 
         /// <inheritdoc />
-        public override string ToString(MdSerializationOptions options)
+        public override string ToString(MdSerializationOptions? options)
         {
             var stringBuilder = new StringBuilder();
             foreach (var span in Spans)
@@ -102,7 +102,7 @@ namespace Grynwald.MarkdownGenerator
         }
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdCompositeSpan);
+        public override bool DeepEquals(MdSpan? other) => DeepEquals(other as MdCompositeSpan);
 
 
         internal override MdSpan DeepCopy() => new MdCompositeSpan(m_Spans.Select(x => x.DeepCopy()));
@@ -110,7 +110,7 @@ namespace Grynwald.MarkdownGenerator
         internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdCompositeSpan other)
+        private bool DeepEquals(MdCompositeSpan? other)
         {
             if (other == null)
                 return false;

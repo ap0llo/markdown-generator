@@ -54,7 +54,7 @@ namespace Grynwald.MarkdownGenerator
         /// Creates a new instance of <see cref="MdParagraph"/> with the specified content.
         /// </summary>
         /// <param name="text">The paragraph's content</param>
-        public static MdParagraph Paragraph(MdSpan text) => new MdParagraph(text);
+        public static MdParagraph Paragraph(MdSpan text) => new MdParagraph(text!);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdParagraph"/> with the specified content.
@@ -68,7 +68,7 @@ namespace Grynwald.MarkdownGenerator
         /// the compiler does not seem to match the method in all situations,
         /// e.g. <c>new [] { "foo", "bar" }).Select(Paragraph)</c> so this overload is still necessary.
         /// </remarks>
-        public static MdParagraph Paragraph(string text) => new MdParagraph(text);
+        public static MdParagraph Paragraph(string text) => new MdParagraph(text!);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdParagraph"/> with the specified content.
@@ -170,7 +170,7 @@ namespace Grynwald.MarkdownGenerator
         /// the compiler does not seem to match the method in all situations,
         /// e.g. <c>new [] { "foo", "bar" }).Select(ListItem)</c> so this overload is still necessary.
         /// </remarks>
-        public static MdListItem ListItem(string content) => new MdListItem(content);
+        public static MdListItem ListItem(string content) => new MdListItem(content!);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdListItem"/> containing the specified spans
@@ -233,7 +233,7 @@ namespace Grynwald.MarkdownGenerator
         /// the compiler does not seem to match the method in all situations,
         /// e.g. <c>new [] { "foo", "bar" }).Select(BlockQuote)</c> so this overload is still necessary.
         /// </remarks>
-        public static MdBlockQuote BlockQuote(string content) => new MdBlockQuote(content);
+        public static MdBlockQuote BlockQuote(string content) => new MdBlockQuote(content!);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdBlockQuote"/> with the specified content

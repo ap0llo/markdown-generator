@@ -5,9 +5,9 @@ namespace Grynwald.MarkdownGenerator.Internal
     internal abstract class ListPrefixHandler : IPrefixHandler
     {
         protected readonly MdSerializationOptions m_SerializationOptions;
-        protected string m_ListPrefix;           // the prefix for lines other than the first line
+        protected string? m_ListPrefix;          // the prefix for lines other than the first line
         protected bool m_LineWritten = false;    // indicates if any lines have been written in the current list item
-        protected string m_ListMarker;           // the prefix for list items
+        protected string? m_ListMarker;          // the prefix for list items
 
 
         public ListPrefixHandler(MdSerializationOptions serializationOptions)
@@ -16,12 +16,12 @@ namespace Grynwald.MarkdownGenerator.Internal
         }
 
 
-        public int PrefixLength => m_LineWritten ? m_ListPrefix.Length : m_ListMarker.Length;
+        public int PrefixLength => m_LineWritten ? m_ListPrefix!.Length : m_ListMarker!.Length;
 
 
-        public string GetBlankLinePrefix() => m_ListPrefix;
+        public string? GetBlankLinePrefix() => m_ListPrefix;
 
-        public string GetLinePrefix()
+        public string? GetLinePrefix()
         {
             // prefix the first line in the list item with the list marker,
             // other lines are just indented by the width of the list marker

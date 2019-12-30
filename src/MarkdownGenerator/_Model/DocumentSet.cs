@@ -17,7 +17,7 @@ namespace Grynwald.MarkdownGenerator
     /// It implements a 1:1 mapping between documents and paths.
     /// </para>
     /// </remarks>
-    public class DocumentSet<T> : IEnumerable<T> where T : IDocument
+    public class DocumentSet<T> : IEnumerable<T> where T : notnull, IDocument
     {
         private readonly Dictionary<string, T> m_DocumentsByPath;
         private readonly Dictionary<T, string> m_PathsByDocument;

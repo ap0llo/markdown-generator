@@ -26,7 +26,7 @@ namespace Grynwald.MarkdownGenerator
 
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdBlock other) => other is MdOrderedList list ? DeepEquals(list) : false;
+        public override bool DeepEquals(MdBlock? other) => other is MdOrderedList list ? DeepEquals(list) : false;
 
 
         /// <inheritdoc />

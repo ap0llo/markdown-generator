@@ -26,10 +26,10 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() => Content;
 
         /// <inheritdoc />
-        public override string ToString(MdSerializationOptions options) => ToString();
+        public override string ToString(MdSerializationOptions? options) => ToString();
 
         /// <inheritdoc />
-        public override bool DeepEquals(MdSpan other) => DeepEquals(other as MdRawMarkdownSpan);
+        public override bool DeepEquals(MdSpan? other) => DeepEquals(other as MdRawMarkdownSpan);
 
 
         internal override MdSpan DeepCopy() => new MdRawMarkdownSpan(Content);
@@ -37,7 +37,7 @@ namespace Grynwald.MarkdownGenerator
         internal override void Accept(ISpanVisitor visitor) => visitor.Visit(this);
 
 
-        private bool DeepEquals(MdRawMarkdownSpan other)
+        private bool DeepEquals(MdRawMarkdownSpan? other)
         {
             if (other == null)
                 return false;

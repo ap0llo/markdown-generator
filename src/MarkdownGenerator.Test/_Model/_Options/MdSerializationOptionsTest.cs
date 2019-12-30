@@ -8,7 +8,7 @@ namespace Grynwald.MarkdownGenerator.Test
 {
     public class MdSerializationOptionsTest
     {
-        private object GetTestValue(Type type)
+        private object? GetTestValue(Type type)
         {
             if (!type.IsValueType)
             {
@@ -37,7 +37,7 @@ namespace Grynwald.MarkdownGenerator.Test
                 yield return new object[] { MdSerializationOptions.Default, property.Name };
                 foreach(var presetField in typeof(MdSerializationOptions.Presets).GetFields(BindingFlags.Static | BindingFlags.Public))
                 {
-                    yield return new object[] { presetField.GetValue(null), property.Name };
+                    yield return new object[] { presetField.GetValue(null)!, property.Name };
                 }
             }            
         }
@@ -47,16 +47,17 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Properties_of_the_default_instances_cannot_be_modified(MdSerializationOptions instance, string propertyName)
         {
             // ARRANGE
-            var property = typeof(MdSerializationOptions).GetProperty(propertyName);
+            var property = typeof(MdSerializationOptions).GetProperty(propertyName)!;
 
             var testValue = GetTestValue(property.PropertyType);
 
             // ACT / ASSERT
-            var exception = Assert.Throws<TargetInvocationException>(() => property.SetMethod.Invoke(instance, new[] { testValue }));
-            Assert.IsType<InvalidOperationException>(exception.InnerException);
+            var exception = Assert.Throws<TargetInvocationException>(() => property.SetMethod!.Invoke(instance, new[] { testValue }));
+            Assert.NotNull(exception.InnerException);
+            var innerException = Assert.IsType<InvalidOperationException>(exception.InnerException);
 
             // exception message should indicate which property cannot be set
-            Assert.Contains(propertyName, exception.InnerException.Message);
+            Assert.Contains(propertyName, innerException.Message);
         }
 
         public static IEnumerable<object[]> Properties()
@@ -76,11 +77,11 @@ namespace Grynwald.MarkdownGenerator.Test
 
             var property = typeof(MdSerializationOptions).GetProperty(propertyName);
 
-            var newValue = GetTestValue(property.PropertyType);
+            var newValue = GetTestValue(property!.PropertyType);
 
             // ACT / ASSERT
-            property.SetMethod.Invoke(instance, new[] { newValue });
-            var actualValue = property.GetMethod.Invoke(instance, Array.Empty<object>());
+            property.SetMethod!.Invoke(instance, new[] { newValue });
+            var actualValue = property.GetMethod!.Invoke(instance, Array.Empty<object>());
             Assert.Equal(newValue, actualValue);
         }
 
@@ -111,7 +112,7 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             foreach (var presetField in typeof(MdSerializationOptions.Presets).GetFields(BindingFlags.Static | BindingFlags.Public))
             {
-                yield return new object[] { presetField.GetValue(null), presetField.Name };
+                yield return new object[] { presetField.GetValue(null)!, presetField.Name };
             }
         }
 

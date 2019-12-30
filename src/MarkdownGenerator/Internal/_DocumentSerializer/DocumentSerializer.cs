@@ -18,7 +18,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         public DocumentSerializer(TextWriter writer) : this(writer, null)
         { }
 
-        public DocumentSerializer(TextWriter writer, MdSerializationOptions options)
+        public DocumentSerializer(TextWriter writer, MdSerializationOptions? options)
         {
             m_Writer = new PrefixTextWriter(writer ?? throw new ArgumentNullException(nameof(writer)));
             m_Options = options ?? MdSerializationOptions.Default;

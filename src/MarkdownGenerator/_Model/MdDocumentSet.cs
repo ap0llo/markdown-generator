@@ -210,7 +210,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="directoryPath">The directory path to save the documents to.</param>
         /// <param name="cleanOutputDirectory">Determines whether the output directory is deleted before saving the documents.</param>
         /// <param name="serializationOptions">The serialization options to use for saving the documents. Can be <c>null</c>.</param>
-        public void Save(string directoryPath, bool cleanOutputDirectory, MdSerializationOptions serializationOptions)
+        public void Save(string directoryPath, bool cleanOutputDirectory, MdSerializationOptions? serializationOptions)
         {
             if (directoryPath == null)
                 throw new ArgumentNullException(nameof(directoryPath));

@@ -67,11 +67,11 @@ namespace Grynwald.MarkdownGenerator.Test
             var singleLineSpan1 = (MdSingleLineSpan)row[0];
             var singleLineSpan2 = (MdSingleLineSpan)row[1];
 
-            Assert.IsType<MdTextSpan>(singleLineSpan1.Content);
-            Assert.IsType<MdTextSpan>(singleLineSpan2.Content);
+            var textSpan1 = Assert.IsType<MdTextSpan>(singleLineSpan1.Content);
+            var textSpan2 = Assert.IsType<MdTextSpan>(singleLineSpan2.Content);
 
-            Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
-            Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
+            Assert.Equal("Content1", textSpan1.Text);
+            Assert.Equal("Content2", textSpan2.Text);
         }
 
         [Fact]
@@ -88,11 +88,11 @@ namespace Grynwald.MarkdownGenerator.Test
             var singleLineSpan1 = (MdSingleLineSpan)row[0];
             var singleLineSpan2 = (MdSingleLineSpan)row[1];
 
-            Assert.IsType<MdTextSpan>(singleLineSpan1.Content);
-            Assert.IsType<MdTextSpan>(singleLineSpan2.Content);
+            var textSpan1 = Assert.IsType<MdTextSpan>(singleLineSpan1.Content);
+            var textSpan2 = Assert.IsType<MdTextSpan>(singleLineSpan2.Content);
 
-            Assert.Equal("Content1", (singleLineSpan1.Content as MdTextSpan).Text);
-            Assert.Equal("Content2", (singleLineSpan2.Content as MdTextSpan).Text);
+            Assert.Equal("Content1", textSpan1.Text);
+            Assert.Equal("Content2", textSpan2.Text);
         }
 
         [Fact]

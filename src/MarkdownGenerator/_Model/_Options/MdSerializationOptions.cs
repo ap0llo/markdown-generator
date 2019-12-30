@@ -70,7 +70,7 @@ namespace Grynwald.MarkdownGenerator
         private int m_MinimumListIndentationWidth;
         private MdTableStyle m_TableStyle;
         private int m_MaxLineLength;
-        private ITextFormatter m_TextFormatter;
+        private ITextFormatter? m_TextFormatter;
 
         public MdSerializationOptions() : this(isReadOnly: false)
         { }
@@ -86,7 +86,7 @@ namespace Grynwald.MarkdownGenerator
             int minimumListIndentationWidth = 2,
             MdTableStyle tableStyle = MdTableStyle.GFM,
             int maxLineLength = -1,
-            ITextFormatter textFormatter = null)
+            ITextFormatter? textFormatter = null)
         {
             m_IsReadOnly = isReadOnly;
             m_EmphasisStyle = emphasisStyle;
@@ -244,7 +244,7 @@ namespace Grynwald.MarkdownGenerator
         /// When no escaper is set, <see cref="DefaultTextFormatter"/> will be used.
         /// </para>
         /// </remarks>
-        public ITextFormatter TextFormatter
+        public ITextFormatter? TextFormatter
         {
             get => m_TextFormatter;
             set => SetValue(nameof(TextFormatter), value, ref m_TextFormatter);
