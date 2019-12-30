@@ -34,7 +34,7 @@ Thrown when `block` is `null`.
 Adds the specified blocks to the container blocks
 
 ```csharp
-public void Add(MdBlock[] blocks);
+public void Add(params MdBlock[] blocks);
 ```
 
 ### Parameters

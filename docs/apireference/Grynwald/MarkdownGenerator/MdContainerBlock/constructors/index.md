@@ -39,7 +39,7 @@ The blocks the container blocks contains
 Initializes a new instance of [MdContainerBlock](../index.md) with the specified content.
 
 ```csharp
-public MdContainerBlock(MdBlock[] content);
+public MdContainerBlock(params MdBlock[] content);
 ```
 
 ### Parameters

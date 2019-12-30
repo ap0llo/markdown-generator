@@ -66,7 +66,7 @@ Thrown when `type` is null or whitespace.
 Initializes a new instance of [MdAdmonition](../index.md).
 
 ```csharp
-public MdAdmonition(string type, MdBlock[] content);
+public MdAdmonition(string type, params MdBlock[] content);
 ```
 
 ### Parameters
@@ -198,7 +198,7 @@ Thrown when `title` is `null`.
 Initializes a new instance of [MdAdmonition](../index.md).
 
 ```csharp
-public MdAdmonition(string type, MdSpan title, MdBlock[] content);
+public MdAdmonition(string type, MdSpan title, params MdBlock[] content);
 ```
 
 ### Parameters

@@ -32,7 +32,7 @@ The spans to add to the composite span.
 Creates a new instance of [MdCompositeSpan](../../MdCompositeSpan/index.md) with the specified inline\-elements.
 
 ```csharp
-public static MdCompositeSpan CompositeSpan(MdSpan[] spans);
+public static MdCompositeSpan CompositeSpan(params MdSpan[] spans);
 ```
 
 ### Parameters

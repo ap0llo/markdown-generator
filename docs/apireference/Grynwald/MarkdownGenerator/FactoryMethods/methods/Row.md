@@ -84,7 +84,7 @@ The row's cells
 Creates a new instance of [MdTableRow](../../MdTableRow/index.md) with the specified cells\/columns.
 
 ```csharp
-public static MdTableRow Row(MdSpan[] cells);
+public static MdTableRow Row(params MdSpan[] cells);
 ```
 
 ### Parameters
@@ -102,7 +102,7 @@ The row's cells\/columns
 Creates a new instance of [MdTableRow](../../MdTableRow/index.md) with the specified cells\/columns.
 
 ```csharp
-public static MdTableRow Row(string[] cells);
+public static MdTableRow Row(params string[] cells);
 ```
 
 ### Parameters

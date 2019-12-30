@@ -50,7 +50,7 @@ The blocks to initially add to the list item.
 Creates a new instance of [MdListItem](../../MdListItem/index.md) containing the specified blocks.
 
 ```csharp
-public static MdListItem ListItem(MdBlock[] content);
+public static MdListItem ListItem(params MdBlock[] content);
 ```
 
 ### Parameters
@@ -122,7 +122,7 @@ The list item's content as a [MdSpan](../../MdSpan/index.md).  The span will imp
 Creates a new instance of [MdListItem](../../MdListItem/index.md) containing the specified spans
 
 ```csharp
-public static MdListItem ListItem(MdSpan[] content);
+public static MdListItem ListItem(params MdSpan[] content);
 ```
 
 ### Parameters

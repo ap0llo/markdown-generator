@@ -83,7 +83,7 @@ The text to emphasize
 Creates a new instance of [MdStrongEmphasisSpan](../../MdStrongEmphasisSpan/index.md) with the specified content.
 
 ```csharp
-public static MdStrongEmphasisSpan Bold(MdSpan[] text);
+public static MdStrongEmphasisSpan Bold(params MdSpan[] text);
 ```
 
 ### Parameters

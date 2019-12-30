@@ -32,7 +32,7 @@ The table's content rows
 Initializes a new instance of [MdTable](../index.md) with the specified content
 
 ```csharp
-public MdTable(MdTableRow headerRow, MdTableRow[] rows);
+public MdTable(MdTableRow headerRow, params MdTableRow[] rows);
 ```
 
 ### Parameters

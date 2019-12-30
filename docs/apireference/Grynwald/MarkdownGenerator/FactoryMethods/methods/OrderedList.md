@@ -32,7 +32,7 @@ The list items to initially add to the list
 Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items.
 
 ```csharp
-public static MdOrderedList OrderedList(MdListItem[] listItems);
+public static MdOrderedList OrderedList(params MdListItem[] listItems);
 ```
 
 ### Parameters

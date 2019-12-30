@@ -32,7 +32,7 @@ The list items to initially add to the list
 Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items
 
 ```csharp
-public static MdBulletList BulletList(MdListItem[] listItems);
+public static MdBulletList BulletList(params MdListItem[] listItems);
 ```
 
 ### Parameters

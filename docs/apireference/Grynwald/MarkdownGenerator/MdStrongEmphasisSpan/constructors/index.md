@@ -59,7 +59,7 @@ The text to emphasize
 Initializes a new instance of [MdStrongEmphasisSpan](../index.md) with the specified content.
 
 ```csharp
-public MdStrongEmphasisSpan(MdSpan[] text);
+public MdStrongEmphasisSpan(params MdSpan[] text);
 ```
 
 ### Parameters
