@@ -28,7 +28,7 @@ The list items to initially add to the list
 Initializes a new instance of [MdOrderedList](../index.md) with the specified list items.
 
 ```csharp
-public MdOrderedList(MdListItem[] listItems);
+public MdOrderedList(params MdListItem[] listItems);
 ```
 
 ### Parameters

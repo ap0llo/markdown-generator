@@ -48,7 +48,7 @@ MdAdmonition implements IEnumerable\<T\> so this constructor is necessary to pre
 Initializes a new instance of [MdDocument](../index.md) with the specified content.
 
 ```csharp
-public MdDocument(MdBlock[] content);
+public MdDocument(params MdBlock[] content);
 ```
 
 ### Parameters

@@ -34,7 +34,7 @@ The blocks the container blocks contains
 Creates a new instance of [MdContainerBlock](../../MdContainerBlock/index.md) with the specified content.
 
 ```csharp
-public static MdContainerBlock Container(MdBlock[] content);
+public static MdContainerBlock Container(params MdBlock[] content);
 ```
 
 ### Parameters

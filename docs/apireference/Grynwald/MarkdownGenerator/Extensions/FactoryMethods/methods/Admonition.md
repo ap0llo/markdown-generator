@@ -50,7 +50,7 @@ public static MdAdmonition Admonition(string type, IEnumerable<MdBlock> content)
 ## Admonition(string, MdBlock\[\])
 
 ```csharp
-public static MdAdmonition Admonition(string type, MdBlock[] content);
+public static MdAdmonition Admonition(string type, params MdBlock[] content);
 ```
 
 ### Parameters
@@ -132,7 +132,7 @@ public static MdAdmonition Admonition(string type, MdSpan title, IEnumerable<MdB
 ## Admonition(string, MdSpan, MdBlock\[\])
 
 ```csharp
-public static MdAdmonition Admonition(string type, MdSpan title, MdBlock[] content);
+public static MdAdmonition Admonition(string type, MdSpan title, params MdBlock[] content);
 ```
 
 ### Parameters

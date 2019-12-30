@@ -58,7 +58,7 @@ The row's cell
 Initializes a new instance of [MdTableRow](../index.md) with the specified cells\/columns.
 
 ```csharp
-public MdTableRow(MdSpan[] cells);
+public MdTableRow(params MdSpan[] cells);
 ```
 
 ### Parameters

@@ -50,7 +50,7 @@ The content of the quote as one or more blocks (see [MdBlock](../../MdBlock/inde
 Creates a new instance of [MdBlockQuote](../../MdBlockQuote/index.md) with the specified content
 
 ```csharp
-public static MdBlockQuote BlockQuote(MdBlock[] content);
+public static MdBlockQuote BlockQuote(params MdBlock[] content);
 ```
 
 ### Parameters
@@ -122,7 +122,7 @@ The content of the quote as a span (see [MdSpan](../../MdSpan/index.md). The spa
 Creates a new instance of [MdBlockQuote](../../MdBlockQuote/index.md) with the specified content
 
 ```csharp
-public static MdBlockQuote BlockQuote(MdSpan[] content);
+public static MdBlockQuote BlockQuote(params MdSpan[] content);
 ```
 
 ### Parameters

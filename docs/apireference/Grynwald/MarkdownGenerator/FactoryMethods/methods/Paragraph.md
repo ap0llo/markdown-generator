@@ -33,7 +33,7 @@ The paragraph's content
 Creates a new instance of [MdParagraph](../../MdParagraph/index.md) with the specified content.
 
 ```csharp
-public static MdParagraph Paragraph(MdSpan[] spans);
+public static MdParagraph Paragraph(params MdSpan[] spans);
 ```
 
 ### Parameters

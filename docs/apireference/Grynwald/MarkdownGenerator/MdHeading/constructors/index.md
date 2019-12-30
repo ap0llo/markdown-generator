@@ -33,7 +33,7 @@ The text of the heading. Must not be null.
 Initializes a new instance of [MdHeading](../index.md)
 
 ```csharp
-public MdHeading(int level, MdSpan[] text);
+public MdHeading(int level, params MdSpan[] text);
 ```
 
 ### Parameters

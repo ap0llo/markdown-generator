@@ -28,7 +28,7 @@ The list items to initially add to the list
 Initializes a new instance of [MdBulletList](../index.md) with the specified list items
 
 ```csharp
-public MdBulletList(MdListItem[] listItems);
+public MdBulletList(params MdListItem[] listItems);
 ```
 
 ### Parameters
