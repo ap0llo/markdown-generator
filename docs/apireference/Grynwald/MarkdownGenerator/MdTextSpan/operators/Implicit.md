@@ -14,6 +14,10 @@ public static implicit operator MdTextSpan(string text);
 
 The string value to wrap in an instance of [MdTextSpan](../index.md)
 
+## Remarks
+
+Wraps a string in an instance of [MdTextSpan](../index.md). Although the nullable annotations do not indicate it, passing in `null` will return `null`.
+
 ## Returns
 
 [MdTextSpan](../index.md)
