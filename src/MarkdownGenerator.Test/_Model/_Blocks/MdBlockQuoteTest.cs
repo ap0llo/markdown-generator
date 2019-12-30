@@ -34,11 +34,11 @@ namespace Grynwald.MarkdownGenerator.Test
             var compositeSpan = (MdCompositeSpan)paragraph.Text;
 
             Assert.Equal(2, compositeSpan.Spans.Count);
-            Assert.IsType<MdTextSpan>(compositeSpan.Spans[0]);
-            Assert.IsType<MdTextSpan>(compositeSpan.Spans[1]);
+            var textSpan1 = Assert.IsType<MdTextSpan>(compositeSpan.Spans[0]);
+            var textSpan2 = Assert.IsType<MdTextSpan>(compositeSpan.Spans[1]);
 
-            Assert.Equal("Content1", (compositeSpan.Spans[0] as MdTextSpan).Text);
-            Assert.Equal("Content2", (compositeSpan.Spans[1] as MdTextSpan).Text);
+            Assert.Equal("Content1", textSpan1.Text);
+            Assert.Equal("Content2", textSpan2.Text);
         }
 
         [Fact]
