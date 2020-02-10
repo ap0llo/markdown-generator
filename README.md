@@ -31,6 +31,15 @@ MarkdownGenerator is a .NET Standard library and can be built using the .NET SDK
   dotnet build .\src\MarkdownGenerator.sln
 ```
 
+## Issues
+
+If you run into any issues or if you are missing a feature, feel free
+to open an [issue](https://github.com/ap0llo/markdown-generator/issues).
+
+I'm also using issues as a backlog of things that come into my mind or
+things I plan to implement, so don't be surprised if many issues were
+created by me without anyone else being involved in the discussion.
+
 ## Acknowledgments
 
 Markdown Generator was made possible through a number of libraries (aside from
