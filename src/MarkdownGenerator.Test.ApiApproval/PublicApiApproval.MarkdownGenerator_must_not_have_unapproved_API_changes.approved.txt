@@ -298,6 +298,11 @@ namespace Grynwald.MarkdownGenerator
         public Grynwald.MarkdownGenerator.MdSingleLineSpan Text { get; }
         public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }
     }
+    public enum MdHeadingAnchorStyle
+    {
+        None = 0,
+        Tag = 1,
+    }
     public enum MdHeadingStyle
     {
         Atx = 0,
@@ -388,6 +393,7 @@ namespace Grynwald.MarkdownGenerator
         public Grynwald.MarkdownGenerator.MdBulletListStyle BulletListStyle { get; set; }
         public Grynwald.MarkdownGenerator.MdCodeBlockStyle CodeBlockStyle { get; set; }
         public Grynwald.MarkdownGenerator.MdEmphasisStyle EmphasisStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdHeadingAnchorStyle HeadingAnchorStyle { get; set; }
         public Grynwald.MarkdownGenerator.MdHeadingStyle HeadingStyle { get; set; }
         public int MaxLineLength { get; set; }
         public int MinimumListIndentationWidth { get; set; }

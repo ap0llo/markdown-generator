@@ -62,11 +62,23 @@ namespace Grynwald.MarkdownGenerator.Internal
         public void Visit(MdHeading block)
         {
             m_Writer.RequestBlankLine();
-            
-            if(m_Options.HeadingStyle == MdHeadingStyle.Setext && block.Level <= 2)
+
+            string anchor = "";
+            if (m_Options.HeadingAnchorStyle == MdHeadingAnchorStyle.Tag)
+            {
+                anchor = $"<a name=\"{block.Anchor}\" />";
+            }
+
+            if (m_Options.HeadingStyle == MdHeadingStyle.Setext && block.Level <= 2)
             {
                 var underlineChar = block.Level == 1 ? '=' : '-';
                 var text = block.Text.ToString(m_Options);
+
+                if(!String.IsNullOrEmpty(anchor))
+                {
+                    m_Writer.WriteLine(anchor);
+                    m_Writer.WriteLine("");
+                }
 
                 // if no maximum line length was specified, write heading into a single line
                 if(m_Options.MaxLineLength <= 0)
@@ -74,10 +86,11 @@ namespace Grynwald.MarkdownGenerator.Internal
                     m_Writer.WriteLine(text);
                     m_Writer.WriteLine(new String(underlineChar, text.Length));
                 }
-                // is max line length was specified, split the value into multiple lines if necessary
+                // if max line length was specified, split the value into multiple lines if necessary
                 else
                 {
                     var headingTextLines = LineFormatter.GetLines(text, m_Options.MaxLineLength - m_Writer.PrefixLength);
+
                     foreach(var line in headingTextLines)
                     {
                         m_Writer.WriteLine(line);
@@ -87,7 +100,21 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
             else
             {
-                m_Writer.WriteLine($"{new String('#', block.Level)} {block.Text.ToString(m_Options)}");
+                var lineBuilder = new StringBuilder();
+
+                lineBuilder.Append('#', block.Level);
+                lineBuilder.Append(' ');
+
+                if(!String.IsNullOrEmpty(anchor))
+                {
+                    lineBuilder
+                        .Append(anchor)
+                        .Append(" ");
+                }
+
+                lineBuilder.Append(block.Text.ToString(m_Options));
+
+                m_Writer.WriteLine(lineBuilder.ToString());
             }
 
             m_Writer.RequestBlankLine();

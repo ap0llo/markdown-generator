@@ -630,6 +630,64 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             }
         }
 
+        [Fact]
+        public void Serializer_respects_HeadingAnchor_serialization_option_01()
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Atx,
+                HeadingAnchorStyle = MdHeadingAnchorStyle.Tag
+            };
+
+            AssertToStringEquals(
+                "## <a name=\"heading\" /> Heading\r\n",
+                new MdDocument(new MdHeading(2, "Heading")),
+                options
+            );
+        }
+
+        [Fact]
+        public void Serializer_respects_HeadingAnchor_serialization_option_02()
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Setext,
+                HeadingAnchorStyle = MdHeadingAnchorStyle.Tag
+            };
+
+            AssertToStringEquals(
+                 "<a name=\"heading\" />\r\n" +
+                 "\r\n" +
+                 "Heading\r\n" +
+                $"-------\r\n",
+                new MdDocument(new MdHeading(2, "Heading")),
+                options
+            );
+        }
+
+        [Fact]
+        public void Serializer_respects_HeadingAnchor_serialization_option_03()
+        {
+            var options = new MdSerializationOptions()
+            {
+                MaxLineLength = 10,
+                HeadingStyle = MdHeadingStyle.Setext,
+                HeadingAnchorStyle = MdHeadingAnchorStyle.Tag
+            };
+
+            AssertToStringEquals(
+                "<a name=\"heading-heading-part-2\" />\r\n" +
+                "\r\n" +
+                "Heading,\r\n" +
+                "heading\r\n" +
+                "part 2\r\n" +
+                "========\r\n",
+                new MdDocument(new MdHeading(1, "Heading, heading part 2")),
+                options
+            );
+        }
+
+
         [Theory]
         [InlineData(MdCodeBlockStyle.Tilde, '~')]
         [InlineData(MdCodeBlockStyle.Backtick, '`')]

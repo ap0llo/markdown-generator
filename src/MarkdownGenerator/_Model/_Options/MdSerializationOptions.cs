@@ -64,6 +64,7 @@ namespace Grynwald.MarkdownGenerator
         private MdEmphasisStyle m_EmphasisStyle;
         private MdThematicBreakStyle m_ThematicBreakStyle;
         private MdHeadingStyle m_HeadingStyle;
+        private MdHeadingAnchorStyle m_HeadingAnchorStyle;
         private MdCodeBlockStyle m_CodeBlockStyle;
         private MdBulletListStyle m_BulletListStyle;
         private MdOrderedListStyle m_OrderedListStyle;
@@ -135,6 +136,18 @@ namespace Grynwald.MarkdownGenerator
         {
             get => m_HeadingStyle;
             set => SetValue(nameof(HeadingStyle), value, ref m_HeadingStyle);
+        }
+
+        /// <summary>
+        /// Gets or sets if anchors for headings are to be included in the output.
+        /// <para>
+        /// Default value: <see cref="MdHeadingAnchorStyle.None"/>
+        /// </para>
+        /// </summary>        
+        public MdHeadingAnchorStyle HeadingAnchorStyle
+        {
+            get => m_HeadingAnchorStyle;
+            set => SetValue(nameof(HeadingAnchorStyle), value, ref m_HeadingAnchorStyle);
         }
 
         /// <summary>
