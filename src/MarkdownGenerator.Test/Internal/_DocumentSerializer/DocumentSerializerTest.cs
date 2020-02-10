@@ -577,7 +577,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         [InlineData(4)]
         [InlineData(5)]
         [InlineData(6)]
-        public void Serializer_respects_HeaderStyle_serialization_option_01(int level)
+        public void Serializer_respects_HeadingStyle_serialization_option_01(int level)
         {
             var options = new MdSerializationOptions()
             {
@@ -598,7 +598,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
         [InlineData(4)]
         [InlineData(5)]
         [InlineData(6)]
-        public void Serializer_respects_HeaderStyle_serialization_option_02(int level)
+        public void Serializer_respects_HeadingStyle_serialization_option_02(int level)
         {
             var options = new MdSerializationOptions()
             {
