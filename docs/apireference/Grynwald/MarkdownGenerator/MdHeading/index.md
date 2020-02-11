@@ -28,7 +28,7 @@ If a heading is serialized as ATX heading (lines prefixed with '\#') or as setex
 
 | Name                           | Description                                                   |
 | ------------------------------ | ------------------------------------------------------------- |
-| [Anchor](properties/Anchor.md) | Gets the HTML anchor for this heading.                        |
+| [Anchor](properties/Anchor.md) | Gets or sets the HTML anchor for this heading.                |
 | [Level](properties/Level.md)   | Gets the level of the heading, 1 being the top\-most heading. |
 | [Text](properties/Text.md)     | The text of the heading                                       |
 
@@ -41,6 +41,7 @@ If a heading is serialized as ATX heading (lines prefixed with '\#') or as setex
 ## See Also
 
 - [MdHeadingStyle](../MdHeadingStyle/index.md)
+- [MdHeadingAnchorStyle](../MdHeadingAnchorStyle/index.md)
 
 ___
 

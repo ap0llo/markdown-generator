@@ -64,7 +64,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.RequestBlankLine();
 
             string anchor = "";
-            if (m_Options.HeadingAnchorStyle == MdHeadingAnchorStyle.Tag)
+            if (m_Options.HeadingAnchorStyle == MdHeadingAnchorStyle.Tag && !String.IsNullOrWhiteSpace(block.Anchor))
             {
                 anchor = $"<a id=\"{block.Anchor}\"></a>";
             }
