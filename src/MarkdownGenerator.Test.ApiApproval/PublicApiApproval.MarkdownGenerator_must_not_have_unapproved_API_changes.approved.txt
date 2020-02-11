@@ -293,7 +293,7 @@ namespace Grynwald.MarkdownGenerator
         public MdHeading(Grynwald.MarkdownGenerator.MdSpan text, int level) { }
         public MdHeading(int level, Grynwald.MarkdownGenerator.MdSpan text) { }
         public MdHeading(int level, params Grynwald.MarkdownGenerator.MdSpan[] text) { }
-        public string Anchor { get; }
+        public string Anchor { get; set; }
         public int Level { get; }
         public Grynwald.MarkdownGenerator.MdSingleLineSpan Text { get; }
         public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock other) { }

@@ -689,6 +689,29 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
 
         [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("\t")]
+        public void Serializer_does_not_include_anchor_in_output_is_anchor_is_null_or_whitespace(string anchor)
+        {
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Atx,
+                HeadingAnchorStyle = MdHeadingAnchorStyle.Tag
+            };
+
+            var heading = new MdHeading(2, "Heading");
+            heading.Anchor = anchor;
+
+            AssertToStringEquals(
+                "## Heading\r\n",
+                new MdDocument(heading),
+                options
+            );
+        }
+
+        [Theory]
         [InlineData(MdCodeBlockStyle.Tilde, '~')]
         [InlineData(MdCodeBlockStyle.Backtick, '`')]
         public void Serializer_respects_CodeBlockStyle_serialization_option(MdCodeBlockStyle style, char codeBlockChar)

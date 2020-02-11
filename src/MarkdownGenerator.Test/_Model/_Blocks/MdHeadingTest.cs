@@ -61,16 +61,13 @@ namespace Grynwald.MarkdownGenerator.Test
         [InlineData("Heading", "heading")]
         [InlineData("My Heading", "my-heading")]
         [InlineData("My Heading with a [link]()", "my-heading-with-a-link")]
-        public void Anchor_returns_expected_value(string headingText, string expectedAnchor)
+        public void Anchor_is_initlaized_with_auto_generated_value(string headingText, string expectedAnchor)
         {
             // ARRANGE
             var heading = new MdHeading(1, new MdRawMarkdownSpan(headingText));
 
-            // ACT
-            var actualAnchor = heading.Anchor;
-
-            // ASSERT
-            Assert.Equal(expectedAnchor, actualAnchor);
+            // ACT / ASSERT
+            Assert.Equal(expectedAnchor, heading.Anchor);            
         }
 
 
@@ -89,6 +86,19 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.False(instance1.DeepEquals(null));
             Assert.False(instance1.DeepEquals(instance3));
             Assert.False(instance1.DeepEquals(new MdParagraph()));
+        }
+
+        [Fact]
+        public void Anchor_can_be_set()
+        {
+            // ARRANGE
+            var heading = new MdHeading(1, "My Heading");
+
+            // ACT
+            heading.Anchor = "custom-anchor";
+
+            // ASSERT
+            Assert.Equal("custom-anchor", heading.Anchor);
         }
     }
 }
