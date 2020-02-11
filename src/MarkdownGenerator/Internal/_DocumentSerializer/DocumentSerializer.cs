@@ -66,7 +66,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             string anchor = "";
             if (m_Options.HeadingAnchorStyle == MdHeadingAnchorStyle.Tag)
             {
-                anchor = $"<a name=\"{block.Anchor}\" />";
+                anchor = $"<a id=\"{block.Anchor}\"></a>";
             }
 
             if (m_Options.HeadingStyle == MdHeadingStyle.Setext && block.Level <= 2)

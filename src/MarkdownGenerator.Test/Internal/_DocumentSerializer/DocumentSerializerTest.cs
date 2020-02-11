@@ -640,7 +640,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             };
 
             AssertToStringEquals(
-                "## <a name=\"heading\" /> Heading\r\n",
+                "## <a id=\"heading\"></a> Heading\r\n",
                 new MdDocument(new MdHeading(2, "Heading")),
                 options
             );
@@ -656,7 +656,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             };
 
             AssertToStringEquals(
-                 "<a name=\"heading\" />\r\n" +
+                 "<a id=\"heading\"></a>\r\n" +
                  "\r\n" +
                  "Heading\r\n" +
                 $"-------\r\n",
@@ -676,7 +676,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             };
 
             AssertToStringEquals(
-                "<a name=\"heading-heading-part-2\" />\r\n" +
+                "<a id=\"heading-heading-part-2\"></a>\r\n" +
                 "\r\n" +
                 "Heading,\r\n" +
                 "heading\r\n" +
