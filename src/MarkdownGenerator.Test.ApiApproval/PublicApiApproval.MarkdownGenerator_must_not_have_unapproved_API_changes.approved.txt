@@ -128,6 +128,10 @@ namespace Grynwald.MarkdownGenerator
         public static Grynwald.MarkdownGenerator.MdTextSpan Text(string text) { }
         public static Grynwald.MarkdownGenerator.MdThematicBreak ThematicBreak() { }
     }
+    public class static HtmlUtilities
+    {
+        public static string ToUrlSlug(string value) { }
+    }
     public interface IDocument
     {
         void Save(string path);

@@ -43,7 +43,6 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal("Content2", textSpan2.Text);
         }
 
-
         [Fact]
         public void MdHeading_can_be_initialized_with_span_content()
         {
@@ -67,13 +66,13 @@ namespace Grynwald.MarkdownGenerator.Test
             var heading = new MdHeading(1, new MdRawMarkdownSpan(headingText));
 
             // ACT / ASSERT
-            Assert.Equal(expectedAnchor, heading.Anchor);            
+            Assert.Equal(expectedAnchor, heading.Anchor);
         }
 
 
         [Theory, CombinatorialData]
         public void DeepEquals_returns_expected_value(
-            [CombinatorialValues(1,2,3,4,5,6)]int level,
+            [CombinatorialValues(1, 2, 3, 4, 5, 6)]int level,
             [CombinatorialValues("Heading", "", "some text")] string text)
         {
             var instance1 = new MdHeading(level, text);
@@ -92,10 +91,12 @@ namespace Grynwald.MarkdownGenerator.Test
         public void Anchor_can_be_set()
         {
             // ARRANGE
-            var heading = new MdHeading(1, "My Heading");
+            var heading = new MdHeading(1, "My Heading")
+            {
 
-            // ACT
-            heading.Anchor = "custom-anchor";
+                // ACT
+                Anchor = "custom-anchor"
+            };
 
             // ASSERT
             Assert.Equal("custom-anchor", heading.Anchor);
