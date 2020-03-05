@@ -42,7 +42,6 @@ namespace Grynwald.MarkdownGenerator
                         break;
 
                     case '\\':
-                    case '/':
                     case '*':
                     case '_':
                     case '-':
@@ -58,6 +57,7 @@ namespace Grynwald.MarkdownGenerator
                         stringBuilder.Append(text[i]);
                         break;
 
+                    case '/':
                     default:
                         stringBuilder.Append(text[i]);
                         break;
