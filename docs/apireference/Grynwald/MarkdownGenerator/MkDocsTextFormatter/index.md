@@ -20,6 +20,7 @@ This implementation works largely the same as [DefaultTextFormatter](../DefaultT
 
 - `<` is escaped as `&lt;`.
 - `>` is escaped as `&gt;`.
+- `/` is not escaped.
 
 ## Fields
 

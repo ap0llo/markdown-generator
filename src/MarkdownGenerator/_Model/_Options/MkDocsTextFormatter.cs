@@ -12,6 +12,7 @@ namespace Grynwald.MarkdownGenerator
     /// <list type="bullet">
     ///     <item><description><c>&lt;</c> is escaped as <c>&amp;lt;</c>.</description></item>
     ///     <item><description><c>&gt;</c> is escaped as <c>&amp;gt;</c>.</description></item>
+    ///     <item><description><c>/</c> is not escaped.</description></item>
     /// </list>
     /// </remarks>
     public sealed class MkDocsTextFormatter : ITextFormatter
