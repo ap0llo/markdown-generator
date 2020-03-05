@@ -8,7 +8,7 @@ namespace Grynwald.MarkdownGenerator
     /// the ToString overloads in <see cref="MdBlock"/>, <see cref="MdSpan"/> and <see cref="MdDocument"/> as
     /// well as the Save() method of <see cref="MdDocument"/>
     /// </summary>
-    public class MdSerializationOptions
+    public class MdSerializationOptions : ICloneable
     {
         public static readonly MdSerializationOptions Default = new MdSerializationOptions(isReadOnly: true);
 
@@ -59,7 +59,7 @@ namespace Grynwald.MarkdownGenerator
             }
         }
 
-        private readonly bool m_IsReadOnly;
+        private bool m_IsReadOnly;
 
         private MdEmphasisStyle m_EmphasisStyle;
         private MdThematicBreakStyle m_ThematicBreakStyle;
@@ -261,6 +261,34 @@ namespace Grynwald.MarkdownGenerator
         {
             get => m_TextFormatter;
             set => SetValue(nameof(TextFormatter), value, ref m_TextFormatter);
+        }
+
+        /// <summary>
+        /// Creates a copy of the serialization options instance.
+        /// </summary>
+        /// <returns>Returns a new instance of <see cref="MdSerializationOptions"/> with the same settings as the current instance.</returns>
+        public MdSerializationOptions Clone()
+        {
+            var copy = (MdSerializationOptions)MemberwiseClone();
+            copy.m_IsReadOnly = false;
+            return copy;
+        }
+
+        /// <inheritdoc />
+        object ICloneable.Clone() => Clone();
+
+        /// <summary>
+        /// Creates a copy of the serialization options instance and applies the specified update action.
+        /// </summary>
+        /// <param name="updateAction">The action to execute after copying.</param>        
+        public MdSerializationOptions With(Action<MdSerializationOptions> updateAction)
+        {
+            if (updateAction is null)
+                throw new ArgumentNullException(nameof(updateAction));
+
+            var copy = Clone();
+            updateAction(copy);
+            return copy;
         }
 
 

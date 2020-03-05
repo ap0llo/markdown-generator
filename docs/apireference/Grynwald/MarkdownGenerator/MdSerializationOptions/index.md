@@ -7,10 +7,12 @@
 Encapsulates settings that control how a document is serialized. A instance of MdSerializationOptions can be passed to the ToString overloads in [MdBlock](../MdBlock/index.md), [MdSpan](../MdSpan/index.md) and [MdDocument](../MdDocument/index.md) as well as the Save() method of [MdDocument](../MdDocument/index.md)
 
 ```csharp
-public class MdSerializationOptions
+public class MdSerializationOptions : ICloneable
 ```
 
 **Inheritance:** object → MdSerializationOptions
+
+**Implements:** ICloneable
 
 ## Constructors
 
@@ -39,6 +41,13 @@ public class MdSerializationOptions
 | [TableStyle](properties/TableStyle.md)                                   | Gets or sets the style for tables. Default value: GFM.                                                                                                                                                                                                                                   |
 | [TextFormatter](properties/TextFormatter.md)                             | Gets or sets the implementation to use for escaping text when saving a Markdown document.                                                                                                                                                                                                |
 | [ThematicBreakStyle](properties/ThematicBreakStyle.md)                   | Gets or sets the style to use for thematic breaks. Default value: Underscore.                                                                                                                                                                                                            |
+
+## Methods
+
+| Name                                                      | Description                                                                                   |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [Clone()](methods/Clone.md)                               | Creates a copy of the serialization options instance.                                         |
+| [With(Action\<MdSerializationOptions\>)](methods/With.md) | Creates a copy of the serialization options instance and applies the specified update action. |
 
 ## Nested Types
 

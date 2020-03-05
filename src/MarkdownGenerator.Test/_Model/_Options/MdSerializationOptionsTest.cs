@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using Xunit;
 
@@ -15,18 +16,24 @@ namespace Grynwald.MarkdownGenerator.Test
                 return null;
             }
 
-            var defaultValue = Activator.CreateInstance(type);
             if (type.IsEnum)
             {
+                var defaultValue = Activator.CreateInstance(type);
+
                 var values = Enum.GetValues(type);
                 if (values.Length <= 1)
                     return defaultValue;
                 else
                     return values.Cast<object>().First(x => !x.Equals(defaultValue));
             }
+            else if(type == typeof(int))
+            {
+                var random = new Random();
+                return random.Next();
+            }
             else
             {
-                return defaultValue;
+                throw new NotImplementedException();
             }
         }
 
@@ -134,5 +141,77 @@ namespace Grynwald.MarkdownGenerator.Test
             Assert.Equal(4, sut.MinimumListIndentationWidth);
             Assert.IsType<MkDocsTextFormatter>(sut.TextFormatter);
         }
+
+
+        [Theory]
+        [MemberData(nameof(Properties))]
+        public void Clone_returns_a_copy_of_the_instance(string propertyName)
+        {
+            // ARRANGE
+            var property = typeof(MdSerializationOptions).GetProperty(propertyName);
+            var instance = new MdSerializationOptions();
+
+            var value = GetTestValue(property!.PropertyType);
+
+            property.SetMethod!.Invoke(instance, new[] { value });
+
+            // ACT
+            var copy = instance.Clone();
+
+            // ASSERT
+            var clonedValue = property.GetMethod!.Invoke(copy, Array.Empty<object>());
+            Assert.Equal(value, clonedValue);
+        }
+
+        [Theory]
+        [MemberData(nameof(DefaultInstancesAndProperties))]
+        public void Cloning_a_readonly_instance_returns_a_non_readonly_instance(MdSerializationOptions instance, string propertyName)
+        {
+            // ARRANGE
+            var property = typeof(MdSerializationOptions).GetProperty(propertyName);
+            var testValue = GetTestValue(property!.PropertyType);
+
+            // Create a copy of the default instance
+            // The default instance is read-only and cannot be modified
+            // The copy must not be read-only and thus can be modified             
+            var copy = instance.Clone();
+
+            // ACT
+            property!.SetMethod!.Invoke(copy, new[] { testValue });
+
+            // ASSERT
+            var setValue = property.GetMethod!.Invoke(copy, Array.Empty<object>());
+            Assert.Equal(testValue, setValue);
+        }
+
+
+        [Theory]
+        [MemberData(nameof(Properties))]
+        public void With_creates_a_copy_and_applies_changes(string propertyName)
+        {
+            // ARRANGE
+            var property = typeof(MdSerializationOptions).GetProperty(propertyName);
+            var testValue = GetTestValue(property!.PropertyType);
+
+            var sut = new MdSerializationOptions();
+
+            // ACT
+            var copy = sut.With(opts =>
+                property.SetMethod!.Invoke(opts, new[] { testValue })
+            );
+
+            // ASSERT
+            var newValue = property.GetMethod!.Invoke(copy, Array.Empty<object>());
+            Assert.Equal(testValue, newValue);
+        }
+
+
+        [Fact]
+        public void With_checks_update_action_for_null()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MdSerializationOptions().With(null!));
+        }
+
+
     }
 }

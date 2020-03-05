@@ -390,7 +390,7 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() { }
         public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions options) { }
     }
-    public class MdSerializationOptions
+    public class MdSerializationOptions : System.ICloneable
     {
         public static readonly Grynwald.MarkdownGenerator.MdSerializationOptions Default;
         public MdSerializationOptions() { }
@@ -405,6 +405,8 @@ namespace Grynwald.MarkdownGenerator
         public Grynwald.MarkdownGenerator.MdTableStyle TableStyle { get; set; }
         public Grynwald.MarkdownGenerator.ITextFormatter TextFormatter { get; set; }
         public Grynwald.MarkdownGenerator.MdThematicBreakStyle ThematicBreakStyle { get; set; }
+        public Grynwald.MarkdownGenerator.MdSerializationOptions Clone() { }
+        public Grynwald.MarkdownGenerator.MdSerializationOptions With(System.Action<Grynwald.MarkdownGenerator.MdSerializationOptions> updateAction) { }
         public class static Presets
         {
             public static readonly Grynwald.MarkdownGenerator.MdSerializationOptions Default;
