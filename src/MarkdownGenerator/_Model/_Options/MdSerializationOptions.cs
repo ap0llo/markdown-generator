@@ -274,7 +274,10 @@ namespace Grynwald.MarkdownGenerator
             return copy;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Creates a copy of the serialization options instance.
+        /// </summary>
+        /// <returns>Returns a new instance of <see cref="MdSerializationOptions"/> with the same settings as the current instance.</returns>
         object ICloneable.Clone() => Clone();
 
         /// <summary>

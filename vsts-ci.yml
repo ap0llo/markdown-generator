@@ -74,13 +74,13 @@ jobs:
   - task: CmdLine@2
     displayName: Restore NuGet packages
     inputs:
-      script: dotnet restore $(solutionPath)
+      script: dotnet restore $(solutionPath) /warnaserror
   - task: DotNetCoreCLI@2
     displayName: Build
     inputs:
       command: build
       projects: $(solutionPath)
-      arguments: '--configuration $(configuration) --no-restore'  
+      arguments: '--configuration $(configuration) --no-restore /warnaserror'  
   - task: DotNetCoreCLI@2
     displayName: Test
     inputs:
@@ -94,7 +94,7 @@ jobs:
     inputs:
       command: pack
       projects: $(solutionPath)
-      arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build'  
+      arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build /warnaserror'  
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifacts'
     inputs:
