@@ -20,6 +20,11 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
 
+	<!-- Enable deterministic builds when building in Azure DevOps-->
+	<PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<Deterministic>true</Deterministic>
+	</PropertyGroup>
 
 	<!-- SourceLink  (https://github.com/dotnet/sourcelink) -->
 	<PropertyGroup>
