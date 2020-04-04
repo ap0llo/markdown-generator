@@ -13,12 +13,18 @@
     <PackageReference Include="PublicApiGenerator" Version="9.0.0" />    
   </ItemGroup>
 
+  <!-- 
+    Disable deterministic builds for this project because
+    deterministic builds break the logic to determine
+    the output path for ApprovalTests.
+  -->
+	<PropertyGroup>
+		<ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
+		<Deterministic>false</Deterministic>
+	</PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\MarkdownGenerator\Grynwald.MarkdownGenerator.csproj" />
   </ItemGroup>
-
-
-
-
 
 </Project>
