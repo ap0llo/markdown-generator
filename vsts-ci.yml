@@ -30,7 +30,7 @@ variables:
   # Build settings
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true    # do not populate NuGet caches on build agents (VM will be deleted afterwards anyways)
   configuration: Release                      # the configuration (Debug/Release) to build
-  dotNetSdk_Version: 3.1.100                  # the version of the .NET SDK to use
+  dotNetSdk_Version: 3.1.200                  # the version of the .NET SDK to use
   solutionPath : src/MarkdownGenerator.sln    # The path of the solution to be buildt
   artifactsName: drop
   # MyGet.org settings   
