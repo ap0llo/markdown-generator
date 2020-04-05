@@ -3,10 +3,10 @@
 	<PropertyGroup>
 		<!-- Output paths -->
 		<BaseOutputPath Condition="'$(BUILD_BINARIESDIRECTORY)' != '' ">$(BUILD_BINARIESDIRECTORY)</BaseOutputPath>
-		<BaseOutputPath Condition="'$(BaseOutputPath)' == '' ">$(MSBuildThisFileDirectory)..\Build\</BaseOutputPath>
-		<BaseOutputPath Condition="!HasTrailingSlash('BaseOutputPath')">$(BaseOutputPath)\</BaseOutputPath>
-		<BaseIntermediateOutputPath>$(BaseOutputPath)intermediate\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-		<OutputPath>$(BaseOutputPath)$(Configuration)\$(MSBuildProjectName)\</OutputPath>
+		<BaseOutputPath Condition="'$(BaseOutputPath)' == '' ">$(MSBuildThisFileDirectory)../Build/</BaseOutputPath>
+		<BaseOutputPath Condition="!HasTrailingSlash('BaseOutputPath')">$(BaseOutputPath)/</BaseOutputPath>
+		<OutputPath>$(BaseOutputPath)$(Configuration)/$(MSBuildProjectName)/</OutputPath>		
+		<BaseIntermediateOutputPath>$(BaseOutputPath)intermediate/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -21,9 +21,16 @@
 	</PropertyGroup>
 
 	<!-- Enable deterministic builds when building in Azure DevOps-->
-	<PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+	<PropertyGroup Condition=" '$(TF_BUILD)' == 'true' ">
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 		<Deterministic>true</Deterministic>
+		<!-- 
+			Change the intermediate output path to a directory inside the repository,
+			otherwise the compiler will not put deterministic source paths
+			into the assembly
+			(on Azure DevOps, the binaries directory lies outside the repository directory)
+		-->
+		<BaseIntermediateOutputPath>$(MSBuildProjectDirectory)/obj/</BaseIntermediateOutputPath>
 	</PropertyGroup>
 
 	<!-- SourceLink  (https://github.com/dotnet/sourcelink) -->
