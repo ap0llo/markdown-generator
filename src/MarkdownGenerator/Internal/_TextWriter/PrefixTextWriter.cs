@@ -6,8 +6,8 @@ using System.Text;
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
-    internal sealed class PrefixTextWriter 
-    {        
+    internal sealed class PrefixTextWriter
+    {
         private readonly TextWriter m_InnerWriter;
         private bool m_AnyLinesWritten = false;
         private bool m_BlankLineRequested = false;
@@ -25,18 +25,18 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public PrefixTextWriter(TextWriter innerWriter)
         {
-            m_InnerWriter = innerWriter ?? throw new ArgumentNullException(nameof(innerWriter));            
+            m_InnerWriter = innerWriter ?? throw new ArgumentNullException(nameof(innerWriter));
         }
-        
+
 
         public void WriteLine(string value)
         {
             // write a blank line if previously requested
-            if(m_BlankLineRequested)
+            if (m_BlankLineRequested)
             {
                 // only write blank line if document is not empty
-                if(m_AnyLinesWritten)
-                {                    
+                if (m_AnyLinesWritten)
+                {
                     m_InnerWriter.WriteLine(GetBlankLinePrefix());
                 }
                 m_BlankLineRequested = false;
@@ -55,7 +55,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public void RequestBlankLine()
         {
-            if(m_SupressNextBlankLine)
+            if (m_SupressNextBlankLine)
             {
                 m_SupressNextBlankLine = false;
                 return;
@@ -81,7 +81,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             {
                 prefixBuilder.Append(handler.GetBlankLinePrefix());
             }
-            var prefix= prefixBuilder.ToString();
+            var prefix = prefixBuilder.ToString();
 
             if (String.IsNullOrWhiteSpace(prefix))
                 return "";

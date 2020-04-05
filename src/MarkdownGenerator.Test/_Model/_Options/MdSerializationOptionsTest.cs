@@ -26,7 +26,7 @@ namespace Grynwald.MarkdownGenerator.Test
                 else
                     return values.Cast<object>().First(x => !x.Equals(defaultValue));
             }
-            else if(type == typeof(int))
+            else if (type == typeof(int))
             {
                 var random = new Random();
                 return random.Next();
@@ -42,11 +42,11 @@ namespace Grynwald.MarkdownGenerator.Test
             foreach (var property in typeof(MdSerializationOptions).GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
                 yield return new object[] { MdSerializationOptions.Default, property.Name };
-                foreach(var presetField in typeof(MdSerializationOptions.Presets).GetFields(BindingFlags.Static | BindingFlags.Public))
+                foreach (var presetField in typeof(MdSerializationOptions.Presets).GetFields(BindingFlags.Static | BindingFlags.Public))
                 {
                     yield return new object[] { presetField.GetValue(null)!, property.Name };
                 }
-            }            
+            }
         }
 
         [Theory]

@@ -22,7 +22,7 @@ namespace Grynwald.MarkdownGenerator
             using (var stringWriter = new StringWriter())
             {
                 var documentSerializer = new DocumentSerializer(stringWriter, options);
-                Accept(documentSerializer);                
+                Accept(documentSerializer);
                 return stringWriter.ToString();
             }
         }

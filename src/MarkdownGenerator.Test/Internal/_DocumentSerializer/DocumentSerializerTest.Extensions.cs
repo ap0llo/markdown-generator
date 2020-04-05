@@ -21,7 +21,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
 
         [Fact]
         public void Admonitions_are_serialized_as_expected_02()
-        {            
+        {
             AssertToStringEquals(
                 "# Heading\r\n" +
                 "\r\n" +

@@ -47,7 +47,7 @@ namespace Grynwald.MarkdownGenerator.Test
 
             _ = FactoryMethods.Document(FactoryMethods.Container());
             _ = FactoryMethods.Document(FactoryMethods.Container(), FactoryMethods.Container());
-            
+
             _ = FactoryMethods.Document(FactoryMethods.ListItem(), FactoryMethods.ListItem());
 
             _ = FactoryMethods.Document(FactoryMethods.BlockQuote());

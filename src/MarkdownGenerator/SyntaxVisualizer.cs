@@ -188,7 +188,7 @@ namespace Grynwald.MarkdownGenerator
             document.Root.Accept(visitor);
 
             var rootNode = new AsciiTreeNode(document.GetType().Name);
-            if(visitor.RootNode != null)
+            if (visitor.RootNode != null)
             {
                 rootNode.Children.Add(visitor.RootNode);
             }

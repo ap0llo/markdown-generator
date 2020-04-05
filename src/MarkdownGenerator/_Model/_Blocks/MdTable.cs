@@ -101,7 +101,7 @@ namespace Grynwald.MarkdownGenerator
         /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is negative or greater than the number of rows in the table.</exception>
         public void Insert(int index, MdTableRow row)
         {
-            if(row == null)
+            if (row == null)
                 throw new ArgumentNullException(nameof(row));
 
             if (index < 0 || index > m_Rows.Count)
@@ -131,7 +131,7 @@ namespace Grynwald.MarkdownGenerator
             if (!HeaderRow.DeepEquals(other.HeaderRow))
                 return false;
 
-            for(int i = 0; i< RowCount; i++)
+            for (int i = 0; i < RowCount; i++)
             {
                 if (!m_Rows[i].DeepEquals(other.m_Rows[i]))
                     return false;

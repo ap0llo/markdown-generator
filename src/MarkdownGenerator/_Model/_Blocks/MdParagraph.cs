@@ -55,12 +55,12 @@ namespace Grynwald.MarkdownGenerator
             span = span ?? throw new ArgumentNullException(nameof(span));
 
             // if current text is empty, replace current content with new span
-            if(Text is MdEmptySpan)
+            if (Text is MdEmptySpan)
             {
                 Text = span;
             }
             // append new content to composite span
-            else if(Text is MdCompositeSpan compositeSpan)
+            else if (Text is MdCompositeSpan compositeSpan)
             {
                 compositeSpan.Add(span);
             }

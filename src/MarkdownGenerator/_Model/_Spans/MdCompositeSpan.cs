@@ -29,7 +29,7 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdCompositeSpan"/> with the specified inline-elements.
         /// </summary>
         /// <param name="spans">The spans to add to the composite span.</param>
-        public MdCompositeSpan(params MdSpan[] spans) : this((IEnumerable<MdSpan>) spans)
+        public MdCompositeSpan(params MdSpan[] spans) : this((IEnumerable<MdSpan>)spans)
         { }
 
         /// <summary>

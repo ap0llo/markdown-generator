@@ -35,7 +35,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
             var dirPath = Path.Combine("content", m_RelativeSourcePath);
 
             // iterate over all files and read the code samples from the markdown file
-            foreach(var filePath in Directory.GetFiles(dirPath, "*.md"))
+            foreach (var filePath in Directory.GetFiles(dirPath, "*.md"))
             {
                 var relativeFilePath = Path.Combine(m_RelativeSourcePath, Path.GetFileName(filePath));
 

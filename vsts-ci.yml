@@ -1,8 +1,9 @@
 # Pipeline consists of 4 jobs
 # - Build_an_Test: 
+#   - Checks formatting
 #   - Builds the project
 #   - Runs all the tests
-#   - creates a NuGet package
+#   - Creates a NuGet package
 # - Publish_to_MyGet: 
 #   - Pushes the NuGet package to MyGet 
 #   - Assumes a Service Connection for MyGet was set up in the Team project running the pipeline
@@ -73,6 +74,10 @@ jobs:
   - script: dotnet tool run nbgv cloud
     displayName: Set Version
 
+  # Check the formatting using dotnet-format
+  - script: dotnet format --folder ./src --check
+    displayName: Check code formatting
+  
   # Restore, Build, Test
   - task: CmdLine@2
     displayName: Restore NuGet packages

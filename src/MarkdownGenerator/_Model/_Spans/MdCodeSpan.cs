@@ -31,7 +31,7 @@ namespace Grynwald.MarkdownGenerator
 
         /// <inheritdoc />
         public override bool DeepEquals(MdSpan? other) => DeepEquals(other as MdCodeSpan);
-        
+
 
         internal override MdSpan DeepCopy() => new MdCodeSpan(Text);
 

@@ -27,7 +27,7 @@ namespace Grynwald.MarkdownGenerator
         public int Count => m_ListItems.Count;
 
         // private protected constructor => class cannot be derived from outside this assembly
-        private protected MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>) content)
+        private protected MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>)content)
         { }
 
         // private protected constructor => class cannot be derived from outside this assembly
@@ -92,7 +92,7 @@ namespace Grynwald.MarkdownGenerator
             if (m_ListItems.Count != other.m_ListItems.Count)
                 return false;
 
-            for(int i = 0; i< m_ListItems.Count; i++)
+            for (int i = 0; i < m_ListItems.Count; i++)
             {
                 if (!m_ListItems[i].DeepEquals(other.m_ListItems[i]))
                     return false;

@@ -115,7 +115,7 @@ namespace Grynwald.MarkdownGenerator.Test
 
             var doc1 = new TestDocument();
             set.Add("doc1.md", doc1);
-            
+
             var doc2 = new TestDocument();
             set.Add("doc2.md", doc2);
 
@@ -126,13 +126,13 @@ namespace Grynwald.MarkdownGenerator.Test
 
             Assert.False(set.ContainsPath("doc3.md"));
         }
-        
+
         [Theory]
         [InlineData("")]
         [InlineData(null)]
         public void Add_throws_ArgumentException_for_empty_path(string path)
         {
-            var set = new DocumentSet<TestDocument>();            
+            var set = new DocumentSet<TestDocument>();
             Assert.Throws<ArgumentException>(() => set.Add(path, new TestDocument()));
         }
 
@@ -226,7 +226,7 @@ namespace Grynwald.MarkdownGenerator.Test
 
             var relativePath = set.GetRelativePath(document, document);
 
-            Assert.Equal("", relativePath);            
+            Assert.Equal("", relativePath);
         }
 
         [Fact]

@@ -21,7 +21,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="content">The block to initially add to the block quote.</param>
         public MdBlockQuote(MdContainerBlockBase content) : base(content)
         { }
-        
+
         /// <summary>
         /// Initializes a new instance of <see cref="MdBlockQuote"/> with the specified content.
         /// </summary>
