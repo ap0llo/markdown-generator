@@ -85,7 +85,7 @@ namespace Grynwald.MarkdownGenerator
                 return spans.Single();
             }
             // multiple span but no separator => create composite span with all the specified spans
-            else if(separator == null)
+            else if (separator == null)
             {
                 return new MdCompositeSpan(spans);
             }
@@ -95,9 +95,9 @@ namespace Grynwald.MarkdownGenerator
             {
                 var composite = new MdCompositeSpan();
 
-                foreach(var span in spans)
+                foreach (var span in spans)
                 {
-                    if(composite.Spans.Count > 0)
+                    if (composite.Spans.Count > 0)
                     {
                         composite.Add(separator.DeepCopy());
                     }

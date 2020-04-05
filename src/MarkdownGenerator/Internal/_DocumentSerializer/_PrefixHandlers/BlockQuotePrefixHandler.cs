@@ -13,7 +13,7 @@
 
         // do no prefix blank lines before the quote, then prefix all lines
         public string GetBlankLinePrefix() => m_LineWritten ? "> " : "";
-        
+
         public string GetLinePrefix()
         {
             m_LineWritten = true;

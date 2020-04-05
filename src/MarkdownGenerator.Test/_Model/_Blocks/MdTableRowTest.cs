@@ -115,7 +115,7 @@ namespace Grynwald.MarkdownGenerator.Test
             var row = new MdTableRow(new MdTextSpan("Cell 1"));
             row.Add("Cell 2");
 
-            Assert.All(row.Cells, cell => Assert.IsType<MdSingleLineSpan>(cell));            
+            Assert.All(row.Cells, cell => Assert.IsType<MdSingleLineSpan>(cell));
         }
 
         [Fact]
@@ -123,7 +123,7 @@ namespace Grynwald.MarkdownGenerator.Test
         {
             var cell1 = new MdSingleLineSpan(new MdTextSpan("Cell 1"));
             var cell2 = new MdSingleLineSpan(new MdTextSpan("Cell 2"));
-                        
+
             var row = new MdTableRow(cell1);
             row.Add(cell2);
 

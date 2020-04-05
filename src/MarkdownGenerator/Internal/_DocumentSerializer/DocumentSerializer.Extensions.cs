@@ -23,7 +23,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
             m_Writer.PushPrefixHandler(new AdmonitionPrefixHandler());
 
-            if(admonition.Any())
+            if (admonition.Any())
                 m_Writer.SuppressNextBlankLine();
 
             foreach (var block in admonition)

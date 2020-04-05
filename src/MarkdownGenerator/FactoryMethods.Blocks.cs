@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Grynwald.MarkdownGenerator
 {
     public static partial class FactoryMethods
-    {       
+    {
         /// <summary>
         /// Creates a new instance of <see cref="MdContainerBlock"/> with the specified content.
         /// </summary>
@@ -302,10 +302,10 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="cells">The row's cells/columns</param>
         public static MdTableRow Row(IEnumerable<MdSpan> cells) => new MdTableRow(cells);
-    
+
         /// <summary>
         /// Creates a new instance of <see cref="MdThematicBreak"/>
         /// </summary>
-        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();      
+        public static MdThematicBreak ThematicBreak() => new MdThematicBreak();
     }
 }

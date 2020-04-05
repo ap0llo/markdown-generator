@@ -79,8 +79,8 @@ namespace Grynwald.MarkdownGenerator
             m_DocumentsByPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
                 ? new Dictionary<string, T>(StringComparer.OrdinalIgnoreCase)
                 : new Dictionary<string, T>(StringComparer.Ordinal);
-            
-            m_PathsByDocument = new Dictionary<T, string>();            
+
+            m_PathsByDocument = new Dictionary<T, string>();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Grynwald.MarkdownGenerator
             path = NormalizeRelativePath(path);
             return m_DocumentsByPath.ContainsKey(path);
         }
-      
+
 
         /// <summary>
         /// Adds the specified document to the set at the specified path.
@@ -149,7 +149,7 @@ namespace Grynwald.MarkdownGenerator
 
             if (to == null)
                 throw new ArgumentNullException(nameof(to));
-            
+
             var rootPath = Environment.CurrentDirectory;
 
             var fromUri = new Uri(Path.Combine(rootPath, this[from]));
@@ -209,12 +209,12 @@ namespace Grynwald.MarkdownGenerator
             // has the directory open.
             if (Directory.Exists(directoryPath) && cleanOutputDirectory)
             {
-                foreach(var childDir in Directory.GetDirectories(directoryPath))
+                foreach (var childDir in Directory.GetDirectories(directoryPath))
                 {
                     Directory.Delete(childDir, recursive: true);
                 }
 
-                foreach(var file in Directory.GetFiles(directoryPath))
+                foreach (var file in Directory.GetFiles(directoryPath))
                 {
                     File.Delete(file);
                 }
@@ -234,7 +234,7 @@ namespace Grynwald.MarkdownGenerator
 
         private string NormalizeRelativePath(string value)
         {
-            if(Path.IsPathRooted(value))
+            if (Path.IsPathRooted(value))
                 throw new ArgumentException($"Path '{value}' is not a relative path", nameof(value));
 
             // normalize directory separators to always use '/'
@@ -256,7 +256,7 @@ namespace Grynwald.MarkdownGenerator
                 throw new ArgumentException($"Relative path '{value}' leaves the root directory");
 
             // return a (normalized) relative path
-            return rootPathUri.MakeRelativeUri(fullPathUri).ToString();                       
+            return rootPathUri.MakeRelativeUri(fullPathUri).ToString();
         }
     }
 }

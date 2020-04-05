@@ -356,23 +356,23 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             };
 
             AssertToStringEquals(
-                "<table>"                           + "\r\n" +
-                "  <thead>"                         + "\r\n" +
-                "    <tr>"                          + "\r\n" +
-                "      <th>Column1</th>"            + "\r\n" +
-                "      <th>Column2</th>"            + "\r\n" +
-                "    </tr>"                         + "\r\n" +
-                "  </thead>"                        + "\r\n" +
-                "  <tbody>"                         + "\r\n" +
-                "    <tr>"                          + "\r\n" +
-                "      <td>Cell1</td>"              + "\r\n" +
-                "    </tr>"                         + "\r\n" +
-                "    <tr>"                          + "\r\n" +
-                "      <td>Cell3</td>"              + "\r\n" +
-                "      <td>Cell4</td>"              + "\r\n" +
-                "    </tr>"                         + "\r\n" +
-                "  </tbody>"                       + "\r\n" +
-                "</table>"                          + "\r\n",
+                "<table>" + "\r\n" +
+                "  <thead>" + "\r\n" +
+                "    <tr>" + "\r\n" +
+                "      <th>Column1</th>" + "\r\n" +
+                "      <th>Column2</th>" + "\r\n" +
+                "    </tr>" + "\r\n" +
+                "  </thead>" + "\r\n" +
+                "  <tbody>" + "\r\n" +
+                "    <tr>" + "\r\n" +
+                "      <td>Cell1</td>" + "\r\n" +
+                "    </tr>" + "\r\n" +
+                "    <tr>" + "\r\n" +
+                "      <td>Cell3</td>" + "\r\n" +
+                "      <td>Cell4</td>" + "\r\n" +
+                "    </tr>" + "\r\n" +
+                "  </tbody>" + "\r\n" +
+                "</table>" + "\r\n",
                 new MdDocument(
                     new MdTable(
                         new MdTableRow("Column1", "Column2"),
@@ -605,7 +605,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 HeadingStyle = MdHeadingStyle.Setext
             };
 
-            if(level == 1)
+            if (level == 1)
             {
                 AssertToStringEquals(
                    $"Heading\r\n" +
@@ -613,7 +613,7 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                    new MdDocument(new MdHeading(level, "Heading")),
                    options);
             }
-            else if(level == 2)
+            else if (level == 2)
             {
                 AssertToStringEquals(
                    $"Heading\r\n" +

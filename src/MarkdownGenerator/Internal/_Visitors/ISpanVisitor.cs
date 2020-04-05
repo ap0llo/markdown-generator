@@ -13,13 +13,13 @@
         void Visit(MdCodeSpan codeSpan);
 
         void Visit(MdCompositeSpan compositeSpan);
-        
+
         void Visit(MdLinkSpan linkSpan);
 
         void Visit(MdImageSpan imageSpan);
 
         void Visit(MdSingleLineSpan singleLineSpan);
 
-        void Visit(MdRawMarkdownSpan rawMarkdownSpan);        
+        void Visit(MdRawMarkdownSpan rawMarkdownSpan);
     }
 }

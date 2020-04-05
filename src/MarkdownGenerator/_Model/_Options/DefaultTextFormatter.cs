@@ -17,7 +17,7 @@ namespace Grynwald.MarkdownGenerator
         public static readonly DefaultTextFormatter Instance = new DefaultTextFormatter();
 
 
-        private  DefaultTextFormatter()
+        private DefaultTextFormatter()
         { }
 
 

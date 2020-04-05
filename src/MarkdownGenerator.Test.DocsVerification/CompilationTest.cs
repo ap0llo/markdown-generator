@@ -20,7 +20,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification
         }
 
 
-        [Theory(DisplayName ="Sample code is compile clean ")]
+        [Theory(DisplayName = "Sample code is compile clean ")]
         [CodeSampleFromDocs(@"docs/examples")]
         [CodeSampleFromDocs(@"docs/api")]
         public void Sample_code_is_compile_clean(CodeSample codeSample)

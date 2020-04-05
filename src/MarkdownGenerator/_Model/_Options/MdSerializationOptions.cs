@@ -42,7 +42,7 @@ namespace Grynwald.MarkdownGenerator
                 isReadOnly: true,
                 minimumListIndentationWidth: 4,
                 textFormatter: MkDocsTextFormatter.Instance);
-            
+
             public static MdSerializationOptions Get(string name)
             {
                 switch (name.ToLower())
@@ -54,7 +54,7 @@ namespace Grynwald.MarkdownGenerator
                         return MkDocs;
 
                     default:
-                       throw new PresetNotFoundException($"Unknown preset '{name}'");
+                        throw new PresetNotFoundException($"Unknown preset '{name}'");
                 }
             }
         }

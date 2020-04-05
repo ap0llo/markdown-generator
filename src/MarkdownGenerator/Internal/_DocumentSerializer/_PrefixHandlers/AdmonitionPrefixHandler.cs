@@ -6,6 +6,6 @@
 
         public string GetBlankLinePrefix() => "    ";
 
-        public string GetLinePrefix() => "    ";        
+        public string GetLinePrefix() => "    ";
     }
 }

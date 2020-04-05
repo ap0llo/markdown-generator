@@ -24,5 +24,5 @@ namespace Grynwald.MarkdownGenerator.Internal
         public void Append(string value) => m_StringBuilder.Append(value);
 
         public override string ToString() => m_StringBuilder.ToString();
-    }    
+    }
 }

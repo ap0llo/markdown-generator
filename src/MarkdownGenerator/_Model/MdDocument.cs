@@ -86,7 +86,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="serializationOptions">The options to use for serialization.</param>
         public void Save(string path, MdSerializationOptions? serializationOptions)
         {
-            using(var stream = File.Open(path, FileMode.Create))
+            using (var stream = File.Open(path, FileMode.Create))
             {
                 Save(stream, serializationOptions);
             }

@@ -13,7 +13,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         private readonly MdSerializationOptions m_Options;
         private int m_ListLevel = 0;
         private int m_BulletListLevel = 0;
-        
+
 
         public DocumentSerializer(TextWriter writer) : this(writer, null)
         { }
@@ -30,7 +30,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
         public void Visit(MdContainerBlock containerBlock)
         {
-            foreach(var block in containerBlock)
+            foreach (var block in containerBlock)
             {
                 block.Accept(this);
             }
@@ -42,13 +42,13 @@ namespace Grynwald.MarkdownGenerator.Internal
         }
 
         public void Visit(MdBlockQuote blockQuote)
-        {         
+        {
             m_Writer.PushPrefixHandler(new BlockQuotePrefixHandler());
             foreach (var block in blockQuote)
             {
                 block.Accept(this);
             }
-            m_Writer.PopPrefixHandler();            
+            m_Writer.PopPrefixHandler();
         }
 
         public void Visit(MdListItem listItem)
@@ -74,14 +74,14 @@ namespace Grynwald.MarkdownGenerator.Internal
                 var underlineChar = block.Level == 1 ? '=' : '-';
                 var text = block.Text.ToString(m_Options);
 
-                if(!String.IsNullOrEmpty(anchor))
+                if (!String.IsNullOrEmpty(anchor))
                 {
                     m_Writer.WriteLine(anchor);
                     m_Writer.WriteLine("");
                 }
 
                 // if no maximum line length was specified, write heading into a single line
-                if(m_Options.MaxLineLength <= 0)
+                if (m_Options.MaxLineLength <= 0)
                 {
                     m_Writer.WriteLine(text);
                     m_Writer.WriteLine(new String(underlineChar, text.Length));
@@ -91,12 +91,12 @@ namespace Grynwald.MarkdownGenerator.Internal
                 {
                     var headingTextLines = LineFormatter.GetLines(text, m_Options.MaxLineLength - m_Writer.PrefixLength);
 
-                    foreach(var line in headingTextLines)
+                    foreach (var line in headingTextLines)
                     {
                         m_Writer.WriteLine(line);
                     }
                     m_Writer.WriteLine(new String(underlineChar, headingTextLines.Max(x => x.Length)));
-                }                
+                }
             }
             else
             {
@@ -105,7 +105,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 lineBuilder.Append('#', block.Level);
                 lineBuilder.Append(' ');
 
-                if(!String.IsNullOrEmpty(anchor))
+                if (!String.IsNullOrEmpty(anchor))
                 {
                     lineBuilder
                         .Append(anchor)
@@ -123,7 +123,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         public void Visit(MdParagraph paragraph)
         {
             m_Writer.RequestBlankLine();
-            
+
             var lines = paragraph.Text.ToString(m_Options).Split(s_LineBreakChars, StringSplitOptions.RemoveEmptyEntries);
 
             // skip paragraph if it is empty
@@ -145,7 +145,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                 }
 
                 // no maximum line length specified => write the line to the output
-                if(m_Options.MaxLineLength <= 0)
+                if (m_Options.MaxLineLength <= 0)
                 {
                     m_Writer.WriteLine(line);
                 }
@@ -154,11 +154,11 @@ namespace Grynwald.MarkdownGenerator.Internal
                 else
                 {
                     var formattedLines = LineFormatter.GetLines(line, m_Options.MaxLineLength - m_Writer.PrefixLength);
-                    foreach(var formattedLine in formattedLines)
+                    foreach (var formattedLine in formattedLines)
                     {
                         m_Writer.WriteLine(formattedLine);
                     }
-                }               
+                }
             }
 
             m_Writer.RequestBlankLine();
@@ -170,7 +170,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             VisitList(bulletList);
             m_BulletListLevel -= 1;
         }
-        
+
         public void Visit(MdOrderedList orderedList) => VisitList(orderedList);
 
         private void VisitList(MdList list)
@@ -178,7 +178,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_ListLevel += 1;
 
 
-            if(m_ListLevel == 1)
+            if (m_ListLevel == 1)
             {
                 // top-level lists should be surrounded by blank lines
                 m_Writer.RequestBlankLine();
@@ -210,7 +210,7 @@ namespace Grynwald.MarkdownGenerator.Internal
                         return;
 
                     // while no other line was written, suppress blank lines
-                    if(!lineWritten)
+                    if (!lineWritten)
                         m_Writer.CancelRequestBlankLine();
                 }
 
@@ -246,7 +246,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
             m_ListLevel -= 1;
         }
-        
+
         public void Visit(MdCodeBlock codeBlock)
         {
             string codeFence;
@@ -265,9 +265,9 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
 
             m_Writer.WriteLine($"{codeFence}{codeBlock.InfoString ?? ""}");
-            
+
             var lines = codeBlock.Text.Split(s_LineBreakChars, StringSplitOptions.RemoveEmptyEntries);
-            foreach(var line in lines)
+            foreach (var line in lines)
             {
                 m_Writer.WriteLine(line);
             }
@@ -286,14 +286,14 @@ namespace Grynwald.MarkdownGenerator.Internal
                 case MdTableStyle.Html:
                     SerializeHtmlTable(table);
                     break;
-                
+
                 default:
                     throw new ArgumentException($"Unsupported table style: {m_Options.TableStyle}");
             }
         }
 
         public void SerializeGFMTable(MdTable table)
-        {      
+        {
             // convert table to string
             var tableAsString = new[] { table.HeaderRow }.Union(table.Rows)
                     .Select(row =>
@@ -305,29 +305,29 @@ namespace Grynwald.MarkdownGenerator.Internal
             // determine the maximum width of every column
             var columnWidths = new int[table.ColumnCount];
             for (var rowIndex = 0; rowIndex < tableAsString.Length; rowIndex++)
-            {                
+            {
                 for (var columnIndex = 0; columnIndex < tableAsString[rowIndex].Length; columnIndex++)
                 {
                     columnWidths[columnIndex] = Math.Max(
                         columnWidths[columnIndex],
                         tableAsString[rowIndex][columnIndex].Length);
                 }
-            }            
+            }
 
             // helper functions that writes a single row to the output
             void SaveRow(string[] row)
-            {                
-                var lineBuilder = new StringBuilder();                
+            {
+                var lineBuilder = new StringBuilder();
                 lineBuilder.Append("|");
                 for (var i = 0; i < columnWidths.Length; i++)
-                {                   
+                {
                     // current row has a cell for column i
                     if (i < row.Length)
                     {
                         lineBuilder.Append(" ");
                         lineBuilder.Append(row[i].PadRight(columnWidths[i]));
                         lineBuilder.Append(" ");
-                    }                        
+                    }
                     // row has less columns than the table => write out empty cell
                     else
                     {
@@ -355,9 +355,9 @@ namespace Grynwald.MarkdownGenerator.Internal
                 separatorLineBuilder.Append("|");
             }
             m_Writer.WriteLine(separatorLineBuilder.ToString());
-            
+
             // write table rows
-            foreach(var row in tableAsString.Skip(1))
+            foreach (var row in tableAsString.Skip(1))
             {
                 SaveRow(row);
             }
@@ -373,7 +373,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             // table head
             m_Writer.WriteLine("  <thead>");
             m_Writer.WriteLine("    <tr>");
-            foreach(var cell in table.HeaderRow)
+            foreach (var cell in table.HeaderRow)
             {
                 m_Writer.WriteLine($"      <th>{cell.ToString(m_Options)}</th>");
             }
@@ -382,7 +382,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
             // table body
             m_Writer.WriteLine("  <tbody>");
-            foreach(var row in table.Rows)
+            foreach (var row in table.Rows)
             {
                 m_Writer.WriteLine("    <tr>");
                 foreach (var cell in row)
@@ -411,12 +411,12 @@ namespace Grynwald.MarkdownGenerator.Internal
             // of the thematic break if necessary
             if (m_BulletListLevel > 0)
             {
-                if((style == MdThematicBreakStyle.Dash && m_Options.BulletListStyle == MdBulletListStyle.Dash)
+                if ((style == MdThematicBreakStyle.Dash && m_Options.BulletListStyle == MdBulletListStyle.Dash)
                     ||
                     (style == MdThematicBreakStyle.Asterisk && m_Options.BulletListStyle == MdBulletListStyle.Asterisk))
                 {
                     style = MdThematicBreakStyle.Underscore;
-                }               
+                }
             }
 
             switch (style)
@@ -434,8 +434,8 @@ namespace Grynwald.MarkdownGenerator.Internal
                     break;
 
                 default:
-                    throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");                    
-            }            
+                    throw new ArgumentException($"Unsupported thematic break style: {m_Options.ThematicBreakStyle}");
+            }
         }
 
 

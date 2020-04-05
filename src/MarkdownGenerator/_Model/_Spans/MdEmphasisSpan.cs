@@ -74,7 +74,7 @@ namespace Grynwald.MarkdownGenerator
                 return String.Empty;
             }
 
-            char emphasisChar;          
+            char emphasisChar;
             switch (options.EmphasisStyle)
             {
                 case MdEmphasisStyle.Asterisk:
