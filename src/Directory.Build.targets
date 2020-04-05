@@ -27,10 +27,5 @@
       <_LocalTopLevelSourceRoot Include="@(SourceRoot)" Condition="'%(SourceRoot.NestedRoot)' == ''"/>
     </ItemGroup>
   </Target>
-
-
-  <Target Name="PrintDeterministicSettings" BeforeTargets="Build">
-    <Message Text="Deterministic Build settings: Deterministic = '$(Deterministic)', ContinuousIntegrationBuild = '$(ContinuousIntegrationBuild)', TF_BUILD = '$(TF_BUILD)' " Importance="High" />
-  </Target>
   
 </Project>
