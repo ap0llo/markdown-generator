@@ -5,11 +5,11 @@
 #   - Runs all the tests
 #   - Creates a NuGet package
 # - Publish_to_MyGet: 
-#   - Pushes the NuGet package to MyGet 
+#   - Pushes the NuGet package to MyGet
 #   - Assumes a Service Connection for MyGet was set up in the Team project running the pipeline
 #   - The name of the service connection is stored in the variable myget_ServiceConnectionName (defined below)
 #   - Only runs when building a release branch or the master branch
-# -Publish_to_NuGet_org
+# - Publish_to_NuGet_org
 #   - Pushes the NuGet package to NuGet.org 
 #   - Assumes a Service Connection for NuGet was set up in the Team project running the pipeline
 #   - The name of the service connection is stored in the variable nuget_org_ServiceConnectionName (defined below)
@@ -17,7 +17,7 @@
 #   - Whether this step runs can be controlled by the variable 'Settings.PublishToNuGetOrg' (modify at queue time when necessary):
 #     - 'auto' or empty: Run when building a release branch
 #     - 'false': Do not run
-#     - 'true': Rn regardless of the current branch
+#     - 'true': Run regardless of the current branch
 # - Create_GitHub_Release
 #   - Creates a GitHub release for the build
 #   - Only runs if the build was published to NuGet.org
@@ -36,12 +36,16 @@ variables:
   configuration: Release                      # the configuration (Debug/Release) to build
   dotNetSdk_Version: 3.1.200                  # the version of the .NET SDK to use
   solutionPath : src/MarkdownGenerator.sln    # The path of the solution to be buildt
-  artifactsName: drop
+  artifactsName_Binaries: Binaries
+  artifactsName_ChangeLog: ChangeLog
+
   # MyGet.org settings   
   myget_ServiceConnectionName: 'MyGet - ap0llo-markdown-generator'  # the name of the Azure DevOps service connection to use for MyGet.org
+  
   # NuGet.org settings
   nuget_org_ServiceConnectionName: 'NuGet.org - markdown-generator'  # the name of the Azure DevOps service connection to use for NuGet.org
   nuget_org_PackageName: 'Grynwald.MarkdownGenerator'                # the name of the package being published
+
   # GitHub settings
   github_createRelease: true                          # enable creation of GitHub releases when a package was uploaded to NuGet.org
   github_ServiceConnectionName: 'GitHub: ap0llo'      # the name of the Azure DevOps service connection to use for creating GitHub releases
@@ -71,7 +75,7 @@ jobs:
       arguments: restore
 
   # Set the build number using Nerdbank.GitVersioning
-  - script: dotnet tool run nbgv cloud
+  - script: dotnet tool run nbgv cloud --all-vars
     displayName: Set Version
 
   # Check the formatting using dotnet-format
@@ -104,9 +108,29 @@ jobs:
       projects: $(solutionPath)
       arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build /warnaserror'  
   - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifacts'
+    displayName: 'Publish Artifacts: $(artifactsName_Binaries)'
     inputs:
-      artifactName: $(artifactsName)
+      artifactName: $(artifactsName_Binaries)
+
+  # Generate changelog and publish as build artifact
+  - task: CmdLine@2
+    displayName: Generate Change Log
+    inputs:
+      script: >-
+        dotnet tool run changelog
+        --repository $(Build.SourcesDirectory)
+        --currentVersion $(NBGV_NuGetPackageVersion) 
+        --versionRange [$(NBGV_NuGetPackageVersion)]
+        --outputpath $(Build.StagingDirectory)/changelog.md
+        --verbose
+    env:
+      CHANGELOG__INTEGRATIONS__GITHUB__ACCESSTOKEN: $(GitHub.AccessToken)
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifacts: $(artifactsName_ChangeLog)'
+    inputs:
+      pathToPublish: $(Build.StagingDirectory)/changelog.md
+      artifactName: $(artifactsName_ChangeLog)
 
 # Job to push package to MyGet.org after build
 - job: Publish_to_MyGet
@@ -118,11 +142,11 @@ jobs:
   steps:
   # Get artifacts
   - task: DownloadBuildArtifacts@0
-    displayName: 'Download Build Artifacts'
+    displayName: 'Download Artifacts: $(artifactsName_Binaries)'
     inputs: 
       buildType: current
       downloadType: single
-      artifactName: $(artifactsName)
+      artifactName: $(artifactsName_Binaries)
       downloadPath: $(Build.ArtifactStagingDirectory)
   # Upload to MyGet.org
   - task: NuGetCommand@2
@@ -159,11 +183,11 @@ jobs:
   steps:
   # Get artifacts
   - task: DownloadBuildArtifacts@0
-    displayName: 'Download Build Artifacts'
+    displayName: 'Download Artifacts: $(artifactsName_Binaries)'
     inputs: 
       buildType: current
       downloadType: single
-      artifactName: $(artifactsName)
+      artifactName: $(artifactsName_Binaries)
       downloadPath: $(Build.ArtifactStagingDirectory)
   # Upload to NuGet.org
   - task: NuGetCommand@2
@@ -200,17 +224,26 @@ jobs:
       arguments: restore
 
   # Set the build number using Nerdbank.GitVersioning
-  - script: dotnet tool run nbgv cloud
+  - script: dotnet tool run nbgv cloud --all-vars
     displayName: Set Version
 
-  # Get build artifacts and create a GitHub release
+  # Get artifacts 
   - task: DownloadBuildArtifacts@0
-    displayName: 'Download Build Artifacts'
+    displayName: 'Download Artifacts: $(artifactsName_Binaries)'
     inputs: 
       buildType: current
       downloadType: single
-      artifactName: $(artifactsName)
+      artifactName: $(artifactsName_Binaries)
       downloadPath: $(Build.ArtifactStagingDirectory)
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Artifacts: $(artifactsName_ChangeLog)'
+    inputs: 
+      buildType: current
+      downloadType: single
+      artifactName: $(artifactsName_ChangeLog)
+      downloadPath: $(Build.ArtifactStagingDirectory)
+
+  # Create GitHub release
   - task: GithubRelease@0
     inputs:
       gitHubConnection: $(github_ServiceConnectionName)
@@ -218,10 +251,8 @@ jobs:
       action: 'create'
       target: '$(Build.SourceVersion)'
       tagSource: manual
-      tag: v$(Build.BuildNumber)
-      releaseNotesSource: input
-      releaseNotes: 'Automatic release by Azure DevOps. Package available on [NuGet.org](https://www.nuget.org/packages/$(nuget_org_PackageName)/$(Build.BuildNumber))'
-      assets: $(Build.ArtifactStagingDirectory)/$(artifactsName)/*.nupkg
-      addChangeLog: true
-
-      
+      tag: v$(NBGV_NuGetPackageVersion)
+      releaseNotesSource: file
+      releaseNotesFile: $(Build.ArtifactStagingDirectory)/$(artifactsName_ChangeLog)/changelog.md
+      assets: $(Build.ArtifactStagingDirectory)/$(artifactsName_Binaries)/*.nupkg
+      addChangeLog: false
