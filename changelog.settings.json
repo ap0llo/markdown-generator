@@ -1,0 +1,10 @@
+{
+    "changelog": {
+        "markdown": {
+            "preset": "Default"
+        },
+        "integrations": {
+            "provider": "GitHub"
+        }
+    }
+}
