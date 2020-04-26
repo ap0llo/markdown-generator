@@ -10,7 +10,8 @@ Defines the available options for including text anchors for headings in the out
 public enum MdHeadingAnchorStyle
 {
     None = 0,
-    Tag = 1
+    Tag = 1,
+    Auto = 2
 }
 ```
 
@@ -18,10 +19,11 @@ public enum MdHeadingAnchorStyle
 
 ## Fields
 
-| Name | Description                                                 |
-| ---- | ----------------------------------------------------------- |
-| None | Do not emit an anchor (default)                             |
-| Tag  | Include an anchor\-tag (`<a />`) for headings in the output |
+| Name | Description                                                                                             |
+| ---- | ------------------------------------------------------------------------------------------------------- |
+| Auto | Include an anchor tag for heading if the heading's id is different from the automatically\-generated id |
+| None | Do not emit an anchor (default)                                                                         |
+| Tag  | Include an anchor\-tag (`<a />`) for headings in the output                                             |
 
 ___
 

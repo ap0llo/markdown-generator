@@ -306,6 +306,7 @@ namespace Grynwald.MarkdownGenerator
     {
         None = 0,
         Tag = 1,
+        Auto = 2,
     }
     public enum MdHeadingStyle
     {

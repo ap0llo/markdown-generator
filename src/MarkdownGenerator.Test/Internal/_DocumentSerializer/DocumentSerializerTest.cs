@@ -687,6 +687,43 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             );
         }
 
+        [Fact]
+        public void Serializer_respects_HeadingAnchor_serialization_option_04()
+        {
+            // When HeadingAnchorStyle is 'Auto' do not include a tag if the
+            // id is the same as the auto generated one
+
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Atx,
+                HeadingAnchorStyle = MdHeadingAnchorStyle.Auto
+            };
+
+            AssertToStringEquals(
+                "## Heading\r\n",
+                new MdDocument(new MdHeading(2, "Heading")),
+                options
+            );
+        }
+
+        [Fact]
+        public void Serializer_respects_HeadingAnchor_serialization_option_05()
+        {
+            // When HeadingAnchorStyle is 'Auto' include a tag if the
+            // id is the different from the auto generated one
+
+            var options = new MdSerializationOptions()
+            {
+                HeadingStyle = MdHeadingStyle.Atx,
+                HeadingAnchorStyle = MdHeadingAnchorStyle.Auto
+            };
+
+            AssertToStringEquals(
+                "## <a id=\"foo\"></a> Heading\r\n",
+                new MdDocument(new MdHeading(2, "Heading") { Anchor = "foo" }),
+                options
+            );
+        }
 
         [Theory]
         [InlineData(null)]

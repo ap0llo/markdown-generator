@@ -13,6 +13,11 @@
         /// <summary>
         /// Include an anchor-tag (<c>&lt;a /&gt;</c>) for headings in the output
         /// </summary>
-        Tag = 1
+        Tag = 1,
+
+        /// <summary>
+        /// Include an anchor tag for heading if the heading's id is different from the automatically-generated id
+        /// </summary>
+        Auto = 2
     }
 }
