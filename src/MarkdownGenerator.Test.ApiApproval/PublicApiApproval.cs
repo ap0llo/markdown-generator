@@ -18,7 +18,7 @@ namespace MarkdownGenerator.Test.ApiApproval
             var assembly = typeof(MdDocument).Assembly;
 
             // ACT
-            var publicApi = ApiGenerator.GeneratePublicApi(assembly);
+            var publicApi = ApiGenerator.GeneratePublicApi(assembly, options: null);
 
             // ASSERT
             var writer = new ApprovalTextWriter(publicApi);
