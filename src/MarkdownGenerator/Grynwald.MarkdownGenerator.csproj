@@ -16,7 +16,7 @@
   
   <!-- InheritDoc -->
   <ItemGroup>
-    <PackageReference Include="SauceControl.InheritDoc" Version="0.3.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <PackageReference Include="SauceControl.InheritDoc" Version="1.0.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
   
   <!-- MdDocs (generates API Reference docs)-->
