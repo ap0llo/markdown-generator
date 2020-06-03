@@ -122,6 +122,7 @@ jobs:
         --currentVersion $(NBGV_NuGetPackageVersion) 
         --versionRange [$(NBGV_NuGetPackageVersion)]
         --outputpath $(Build.StagingDirectory)/changelog.md
+        --template GitHubRelease
         --verbose
     env:
       CHANGELOG__INTEGRATIONS__GITHUB__ACCESSTOKEN: $(GitHub.AccessToken)
