@@ -72,7 +72,7 @@ namespace Grynwald.MarkdownGenerator.Test
 
         [Theory, CombinatorialData]
         public void DeepEquals_returns_expected_value(
-            [CombinatorialValues(1, 2, 3, 4, 5, 6)]int level,
+            [CombinatorialValues(1, 2, 3, 4, 5, 6)] int level,
             [CombinatorialValues("Heading", "", "some text")] string text)
         {
             var instance1 = new MdHeading(level, text);

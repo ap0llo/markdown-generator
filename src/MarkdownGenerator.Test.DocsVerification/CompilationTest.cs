@@ -1,7 +1,7 @@
 ﻿using System;
+using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
 using Xunit;
 using Xunit.Abstractions;
-using Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure;
 
 namespace Grynwald.MarkdownGenerator.Test.DocsVerification
 {

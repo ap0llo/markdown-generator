@@ -9,7 +9,7 @@ try {
     Invoke-Expression "dotnet tool restore"
 
     Write-Host "Running dotnet format"
-    Invoke-Expression "dotnet format --folder ./src"
+    Invoke-Expression "dotnet format ./src --folder"
 }
 finally {
     Pop-Location
