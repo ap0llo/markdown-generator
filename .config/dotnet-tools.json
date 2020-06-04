@@ -8,16 +8,16 @@
         "nbgv"
       ]
     },
-    "dotnet-format": {
-      "version": "4.0.130203",
-      "commands": [
-        "dotnet-format"
-      ]
-    },
     "grynwald.changelog": {
       "version": "0.2.88",
       "commands": [
         "changelog"
+      ]
+    },
+    "dotnet-format": {
+      "version": "4.0.130203",
+      "commands": [
+        "dotnet-format"
       ]
     }
   }

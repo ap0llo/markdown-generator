@@ -34,20 +34,18 @@ variables:
   # Build settings
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE : true    # do not populate NuGet caches on build agents (VM will be deleted afterwards anyways)
   configuration: Release                      # the configuration (Debug/Release) to build
-  dotNetSdk_Version: 3.1.200                  # the version of the .NET SDK to use
   solutionPath : src/MarkdownGenerator.sln    # The path of the solution to be buildt
   artifactsName_Binaries: Binaries
   artifactsName_ChangeLog: ChangeLog
 
   # MyGet.org settings   
   myget_ServiceConnectionName: 'MyGet - ap0llo-markdown-generator'  # the name of the Azure DevOps service connection to use for MyGet.org
-  
+
   # NuGet.org settings
   nuget_org_ServiceConnectionName: 'NuGet.org - markdown-generator'  # the name of the Azure DevOps service connection to use for NuGet.org
   nuget_org_PackageName: 'Grynwald.MarkdownGenerator'                # the name of the package being published
 
   # GitHub settings
-  github_createRelease: true                          # enable creation of GitHub releases when a package was uploaded to NuGet.org
   github_ServiceConnectionName: 'GitHub: ap0llo'      # the name of the Azure DevOps service connection to use for creating GitHub releases
   github_repositoryName: 'ap0llo/markdown-generator'  # the name of the github repo to create the release in
 
@@ -61,10 +59,10 @@ jobs:
 
   # Install .NET Core SDK and runtime (version specified in the variables section)
   - task: UseDotNet@2
-    displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
+    displayName: 'Install .NET Core SDK'
     inputs:
       packageType: sdk
-      version: $(dotNetSdk_Version)
+      useGlobalJson: true
 
   # Restore local .NET Core tools
   - task: DotNetCoreCLI@2
@@ -211,10 +209,10 @@ jobs:
 
   # Install .NET Core SDK and runtime (version specified in the variables section)
   - task: UseDotNet@2
-    displayName: 'Use .NET Core SDK $(dotNetSdk_Version)'
+    displayName: 'Install .NET Core SDK'
     inputs:
       packageType: sdk
-      version: $(dotNetSdk_Version)
+      useGlobalJson: true
 
   # Restore local .NET Core tools
   - task: DotNetCoreCLI@2

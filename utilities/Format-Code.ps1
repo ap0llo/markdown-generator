@@ -1,15 +1,23 @@
+#
+# This scripts runs the "dotnet-format" tool over the entire code base and fixes formatting errors.
+# The script schould be run before every commit.
+# The CI pipeline in Azure DevOps verifies the formatting and the build will fail if any formatting errors are found
+#
 
-$root = Join-Path $PSScriptRoot ".."
-$root = (Resolve-Path $root).Path
+# Imports
+. (Join-Path $PSScriptRoot "common.ps1")
 
-Push-Location $root
+# Variables
+$srcFolder = "./src" # The path of the folder to format (relative to the repository root)
 
+# Main script
+Push-Location (Get-RepositoryRoot)
 try {
-    Write-Host "Restoring tools"
-    Invoke-Expression "dotnet tool restore"
+    log "Restoring tools"
+    exec "dotnet tool restore"
 
-    Write-Host "Running dotnet format"
-    Invoke-Expression "dotnet format ./src --folder"
+    log "Running dotnet format"
+    exec "dotnet format `"$srcFolder`" --folder"
 }
 finally {
     Pop-Location

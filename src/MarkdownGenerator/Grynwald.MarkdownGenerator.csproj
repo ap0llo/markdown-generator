@@ -6,13 +6,6 @@
     <NoWarn>$(NoWarn),1591</NoWarn>    
   </PropertyGroup>
 
-  <!-- NuGet settings -->
-  <PropertyGroup>
-    <Authors>Andreas Gruenwald</Authors>
-    <PackageProjectUrl>https://github.com/ap0llo/markdown-generator</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/ap0llo/markdown-generator/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>A utility library to programatically generate markdown files</Description>
-  </PropertyGroup>
   
   <!-- InheritDoc -->
   <ItemGroup>
