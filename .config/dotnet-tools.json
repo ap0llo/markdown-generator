@@ -15,7 +15,7 @@
       ]
     },
     "dotnet-format": {
-      "version": "4.0.130203",
+      "version": "4.1.131201",
       "commands": [
         "dotnet-format"
       ]
