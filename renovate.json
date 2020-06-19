@@ -1,32 +1,5 @@
 {
   "extends": [
-    "config:base",
-    ":semanticCommits",
-    ":semanticCommitTypeAll(build)"
-  ],
-  "packageRules": [
-    {
-      "packagePatterns": [ "^Microsoft\\.Extensions\\.Logging.*" ],
-      "groupName": "Microsoft.Extensions.Logging"
-    },
-    {
-      "packagePatterns": [ "^Microsoft\\.Extensions\\.Configuration.*" ],
-      "groupName": "Microsoft.Extensions.Configuration"
-    },
-    {
-      "packagePatterns": [ "^xunit.*" ],
-      "groupName": "xunit"
-    },
-    {
-      "packagePatterns": [ "^NuGet\\..*" ],
-      "groupName": "NuGet"
-    },
-    {
-      "packagePatterns": [ "^Nerdbank.GitVersioning$", "^nbgv$" ],
-      "groupName": "Nerdbank.GitVersioning"
-    }
-  ],
-  "labels": [
-    "dependencies"
+      "github>ap0llo/renovate-config"
   ]
 }
