@@ -8,8 +8,7 @@
 # MdListItem Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents a item in an bullet or ordered list. For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items).
 

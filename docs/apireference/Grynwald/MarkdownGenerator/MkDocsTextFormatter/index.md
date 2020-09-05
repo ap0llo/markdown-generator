@@ -8,8 +8,7 @@
 # MkDocsTextFormatter Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Implementation of [ITextFormatter](../ITextFormatter/index.md) optimized for rendering generated Markdown file using [MkDocs](https://www.mkdocs.org/).
 

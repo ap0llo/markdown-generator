@@ -8,8 +8,7 @@
 # MdList Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Base class for ordered and bullet lists. Implementations are [MdBulletList](../MdBulletList/index.md) respectively [MdOrderedList](../MdOrderedList/index.md).
 

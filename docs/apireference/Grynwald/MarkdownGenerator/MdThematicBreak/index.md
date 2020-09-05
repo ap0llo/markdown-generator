@@ -8,8 +8,7 @@
 # MdThematicBreak Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents a thematic break. For specification see [CommonMark \- Thematic breaks](https://spec.commonmark.org/0.28/#thematic-breaks).
 

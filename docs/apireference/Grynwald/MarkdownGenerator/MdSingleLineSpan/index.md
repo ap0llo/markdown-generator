@@ -8,8 +8,7 @@
 # MdSingleLineSpan Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents a span that will be written to the output as a single line. All line breaks will be removed and replaced by spaces. Trailing line breaks are removed
 

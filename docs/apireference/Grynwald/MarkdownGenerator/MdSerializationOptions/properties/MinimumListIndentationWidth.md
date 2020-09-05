@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdSerializationOptions](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Gets or sets the minimum number of characters to use for indenting list items in multi\-level lists (compared to items of the outer list level).
 

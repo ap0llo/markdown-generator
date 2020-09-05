@@ -8,8 +8,7 @@
 # MdTableStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Defines the available serialization styles for tables (see [MdTable](../MdTable/index.md)).
 

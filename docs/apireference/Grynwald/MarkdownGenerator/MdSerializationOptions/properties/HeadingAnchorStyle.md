@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdSerializationOptions](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Gets or sets if anchors for headings are to be included in the output.
 

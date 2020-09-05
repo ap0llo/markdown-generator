@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdCodeBlock](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 The info string for the code block (typically used to specify the language of the code in the block)
 

@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdCodeSpan](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 The code span's content. The value will not be escaped.
 

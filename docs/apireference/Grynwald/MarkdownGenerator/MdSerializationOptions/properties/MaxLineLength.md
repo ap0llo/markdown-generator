@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdSerializationOptions](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Gets or sets the maximum length of a line in the output. When set to a value greater than 0, line breaks will be inserted after the specified number of characters when possible.
 

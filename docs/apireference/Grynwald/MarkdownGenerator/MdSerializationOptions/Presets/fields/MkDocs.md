@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdSerializationOptions.Presets](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Gets serialization options optimized for rendering the generated Markdown file using [MkDocs](https://www.mkdocs.org/).
 

@@ -8,8 +8,7 @@
 # MdParagraph Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents a paragraph in a markdown document. For specification see [CommonMark \- Paragraphs](https://spec.commonmark.org/0.28/#paragraphs).
 

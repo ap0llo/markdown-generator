@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdSingleLineSpan](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Initializes a new instance of [MdSingleLineSpan](../index.md).
 

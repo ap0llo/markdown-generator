@@ -8,8 +8,7 @@
 # MdBlockQuote Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represent a block quote in a markdown document. For specification see [CommonMark \- Block quotes](https://spec.commonmark.org/0.28/#block-quotes).
 

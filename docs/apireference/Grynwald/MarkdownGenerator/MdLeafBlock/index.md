@@ -8,8 +8,7 @@
 # MdLeafBlock Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Base class for all types of leaf blocks (blocks that cannot contain other blocks) For specification see [CommonMark \- Leaf blocks](https://spec.commonmark.org/0.28/#leaf-blocks).
 

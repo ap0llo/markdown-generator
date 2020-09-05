@@ -8,8 +8,7 @@
 # MdOrderedListStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Defines the available serialization styles for ordered lists (see [MdBulletList](../MdBulletList/index.md)). For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items).
 

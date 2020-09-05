@@ -9,8 +9,7 @@
 
 **Declaring Type:** [DocumentSetExtensions](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Creates a markdown link element (see [MdLinkSpan](../../MdLinkSpan/index.md)) with a relative link between the specified documents.
 

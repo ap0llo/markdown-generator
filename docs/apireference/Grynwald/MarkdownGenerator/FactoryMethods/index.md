@@ -10,8 +10,7 @@
 ⚠️ **Warning:** FactoryMethods is obsolete. Use the constructors of the markdown data types directly instead.
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Defines static factory methods for blocks in markdown documents. When imported via "using static", this allows for more readable  construction of documents, e.g.
 

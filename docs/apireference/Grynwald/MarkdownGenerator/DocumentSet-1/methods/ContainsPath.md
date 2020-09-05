@@ -9,8 +9,7 @@
 
 **Declaring Type:** [DocumentSet\<T\>](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Determines whether a document with the specified path is part of the document set.
 

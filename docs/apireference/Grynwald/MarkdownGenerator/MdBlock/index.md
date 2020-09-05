@@ -8,8 +8,7 @@
 # MdBlock Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents a block in a markdown document. Blocks are the basic building units of markdown documents. A document consists of one or more blocks.
 

@@ -8,8 +8,7 @@
 # DocumentSetExtensions Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Provides Markdown\-specific extension methods for [DocumentSet\<T\>](../DocumentSet-1/index.md).
 

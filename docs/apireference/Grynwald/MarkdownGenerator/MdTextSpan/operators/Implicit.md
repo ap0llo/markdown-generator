@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdTextSpan](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Implicitly creates a [MdTextSpan](../index.md) from a string.
 

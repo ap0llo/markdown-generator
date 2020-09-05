@@ -8,8 +8,7 @@
 # MdThematicBreakStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Defines the available serialization styles for thematic breaks (see [MdThematicBreak](../MdThematicBreak/index.md)). For specification see [CommonMark \- Thematic breaks](https://spec.commonmark.org/0.28/#thematic-breaks).
 

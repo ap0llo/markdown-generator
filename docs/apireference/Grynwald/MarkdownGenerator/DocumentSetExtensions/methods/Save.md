@@ -9,8 +9,7 @@
 
 **Declaring Type:** [DocumentSetExtensions](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Saves all the set's documents to the specified output directory using the specified serialization options.
 

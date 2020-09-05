@@ -8,8 +8,7 @@
 # MdStrongEmphasisSpan Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents strongly\-emphasized\/bold content For specification see [CommonMark \- Emphasis and strong emphasis](https://spec.commonmark.org/0.28/#emphasis-and-strong-emphasis).
 

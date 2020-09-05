@@ -15,6 +15,7 @@
   <!-- MdDocs (generates API Reference docs)-->
   <PropertyGroup>
     <ApiReferenceDocumentationOutputPath>$(MSBuildThisFileDirectory)..\..\docs\apireference\</ApiReferenceDocumentationOutputPath>
+    <MdDocsConfigurationFilePath>$(MSBuildThisFileDirectory)..\..\mddocs.settings.json</MdDocsConfigurationFilePath>
     <GenerateApiReferenceDocumentationOnBuild>true</GenerateApiReferenceDocumentationOnBuild>
   </PropertyGroup>
   <ItemGroup>

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://raw.githubusercontent.com/ap0llo/mddocs/master/schemas/configuration/v0.4/schema.json",
+    "mddocs": {
+        "apireference": {
+            "template": {
+                "default": {
+                    "includeVersion": false
+                }
+            }
+        }
+    }
+}

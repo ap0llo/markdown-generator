@@ -8,8 +8,7 @@
 # MdHeadingStyle Enum
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Defines the available serialization styles for headings (see [MdHeading](../MdHeading/index.md)). For specification see [CommonMark \- ATX headings](https://spec.commonmark.org/0.28/#atx-headings)respectively [CommonMark \- Setext headings](https://spec.commonmark.org/0.28/#setext-headings).
 

@@ -8,8 +8,7 @@
 # MdRawMarkdownSpan Class
 
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Represents a span of raw Markdown content that will not be escaped before being written to the output
 

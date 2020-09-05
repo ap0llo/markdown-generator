@@ -9,8 +9,7 @@
 
 **Declaring Type:** [MdAdmonition](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator.Extensions](../../index.md)  
-**Assembly:** Grynwald.MarkdownGenerator  
-**Assembly Version:** 2.6.49\-pre+a57fff491b
+**Assembly:** Grynwald.MarkdownGenerator
 
 Recursively compares the block to the specified instance of [MdBlock](../../../MdBlock/index.md).
 
