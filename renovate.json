@@ -1,5 +1,6 @@
 {
   "extends": [
       "github>ap0llo/renovate-config"
-  ]
+  ],
+  "commitBodyTable" : true
 }
