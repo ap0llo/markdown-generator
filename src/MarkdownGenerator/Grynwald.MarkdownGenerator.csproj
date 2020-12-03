@@ -3,15 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <NoWarn>$(NoWarn),1591</NoWarn>    
+    <NoWarn>$(NoWarn),1591</NoWarn>
   </PropertyGroup>
 
-  
+
   <!-- InheritDoc -->
   <ItemGroup>
-    <PackageReference Include="SauceControl.InheritDoc" Version="1.0.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <PackageReference Include="SauceControl.InheritDoc" Version="1.1.1" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
   </ItemGroup>
-  
+  <PropertyGroup>
+    <InheritDocEnabled>true</InheritDocEnabled>
+  </PropertyGroup>
+
   <!-- MdDocs (generates API Reference docs)-->
   <PropertyGroup>
     <ApiReferenceDocumentationOutputPath>$(MSBuildThisFileDirectory)..\..\docs\apireference\</ApiReferenceDocumentationOutputPath>
@@ -19,7 +22,7 @@
     <GenerateApiReferenceDocumentationOnBuild>true</GenerateApiReferenceDocumentationOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Grynwald.MdDocs.MSBuild" Version="0.4.178" PrivateAssets="all" />    
+    <PackageReference Include="Grynwald.MdDocs.MSBuild" Version="0.4.178" PrivateAssets="all" />
   </ItemGroup>
-  
+
 </Project>
