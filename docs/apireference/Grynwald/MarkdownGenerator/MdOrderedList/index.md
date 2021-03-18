@@ -13,10 +13,10 @@
 Represents a ordered list. For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items).
 
 ```csharp
-public sealed class MdOrderedList : MdList
+public sealed class MdOrderedList : MdList<MdListItem>
 ```
 
-**Inheritance:** object → [MdBlock](../MdBlock/index.md) → [MdList](../MdList/index.md) → MdOrderedList
+**Inheritance:** object → [MdBlock](../MdBlock/index.md) → [MdList](../MdList/index.md) → [MdList\<T\>](../MdList-1/index.md) → MdOrderedList
 
 ## Constructors
 

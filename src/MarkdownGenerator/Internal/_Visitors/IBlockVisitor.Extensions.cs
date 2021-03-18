@@ -5,5 +5,9 @@ namespace Grynwald.MarkdownGenerator.Internal
     internal partial interface IBlockVisitor
     {
         void Visit(MdAdmonition codeBlock);
+
+        void Visit(MdTaskList taskList);
+
+        void Visit(MdTaskListItem taskListItem);
     }
 }

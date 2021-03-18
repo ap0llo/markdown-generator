@@ -5,21 +5,18 @@
   </auto-generated>   
 -->
 
-# MdList.Items Property
+# MdListItemBase Class
 
-**Declaring Type:** [MdList](../index.md)  
-**Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
+**Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
 **Assembly:** Grynwald.MarkdownGenerator
 
-Gets the list's items
+Base class for all list item types
 
 ```csharp
-public IEnumerable<MdListItem> Items { get; }
+public abstract class MdListItemBase : MdContainerBlockBase
 ```
 
-## Property Value
-
-IEnumerable\<[MdListItem](../../MdListItem/index.md)\>
+**Inheritance:** object → [MdBlock](../MdBlock/index.md) → [MdContainerBlockBase](../MdContainerBlockBase/index.md) → MdListItemBase
 
 ___
 

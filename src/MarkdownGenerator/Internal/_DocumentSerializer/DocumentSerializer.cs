@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using Grynwald.MarkdownGenerator.Extensions;
 
 namespace Grynwald.MarkdownGenerator.Internal
 {
@@ -51,13 +52,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.PopPrefixHandler();
         }
 
-        public void Visit(MdListItem listItem)
-        {
-            foreach (var block in listItem)
-            {
-                block.Accept(this);
-            }
-        }
+        public void Visit(MdListItem listItem) => VisitListItem(listItem);
 
         public void Visit(MdHeading block)
         {
@@ -235,7 +230,9 @@ namespace Grynwald.MarkdownGenerator.Internal
                 m_Writer.BlankLineRequested += OnBlankLineRequested;
 
                 // write list item
+                m_Writer.PushPrefixHandler(GetListItemPrefixHandler(listItem));
                 listItem.Accept(this);
+                m_Writer.PopPrefixHandler();
 
                 // detach event handlers
                 m_Writer.LineWritten -= OnLineWritten;
@@ -450,21 +447,36 @@ namespace Grynwald.MarkdownGenerator.Internal
             }
         }
 
+        public void VisitListItem(MdListItemBase listItem)
+        {
+            foreach (var block in listItem)
+            {
+                block.Accept(this);
+            }
+        }
 
         private ListPrefixHandler GetListPrefixHandler(MdList list)
         {
             switch (list)
             {
                 case MdBulletList _:
+                case MdTaskList _:
                     return new BulletListPrefixHandler(m_Options);
 
                 case MdOrderedList _:
                     return new OrderedListPrefixHandler(m_Options);
-
+                    
                 default:
                     throw new NotSupportedException($"Unsupported list type: {list.GetType().FullName}");
             }
         }
+
+        private IPrefixHandler GetListItemPrefixHandler(MdListItemBase listItem) => listItem switch
+        {
+            MdTaskListItem taskListItem => new TaskListItemPrefixHandler(taskListItem),
+            _ => NullPrefixHandler.Instance
+        };
+            
 
     }
 }

@@ -5,19 +5,21 @@
   </auto-generated>   
 -->
 
-# MdList.Count Property
+# MdList\<T\>.Items Property
 
-**Declaring Type:** [MdList](../index.md)  
+**Declaring Type:** [MdList\<T\>](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
 **Assembly:** Grynwald.MarkdownGenerator
 
+Gets the list's items
+
 ```csharp
-public int Count { get; }
+public IEnumerable<T> Items { get; }
 ```
 
 ## Property Value
 
-int
+IEnumerable\<T\>
 
 ___
 

@@ -5,37 +5,27 @@
   </auto-generated>   
 -->
 
-# MdList.Insert Method
+# MdList\<T\>.Add Method
 
-**Declaring Type:** [MdList](../index.md)  
+**Declaring Type:** [MdList\<T\>](../index.md)  
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
 **Assembly:** Grynwald.MarkdownGenerator
 
-Inserts the specified item into the list at the specified index.
+Adds the specified item to the list
 
 ```csharp
-public void Insert(int index, MdListItem item);
+public void Add(T item);
 ```
 
 ## Parameters
 
-`index`  int
-
-The index (zero\-based) to insert the item at.
-
-`item`  [MdListItem](../../MdListItem/index.md)
-
-The item to insert.
+`item`  T
 
 ## Exceptions
 
 ArgumentNullException
 
 Thrown when `item` is `null`.
-
-ArgumentOutOfRangeException
-
-Thrown when `index` is negative or greater than the number of items in the list.
 
 ___
 

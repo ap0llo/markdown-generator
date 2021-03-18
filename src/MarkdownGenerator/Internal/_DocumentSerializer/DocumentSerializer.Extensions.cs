@@ -34,5 +34,10 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_Writer.PopPrefixHandler();
             m_Writer.RequestBlankLine();
         }
+
+
+        public void Visit(MdTaskList taskList) => VisitList(taskList);
+
+        public void Visit(MdTaskListItem listItem) => VisitListItem(listItem);
     }
 }

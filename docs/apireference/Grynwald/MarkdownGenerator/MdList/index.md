@@ -10,35 +10,25 @@
 **Namespace:** [Grynwald.MarkdownGenerator](../index.md)  
 **Assembly:** Grynwald.MarkdownGenerator
 
-Base class for ordered and bullet lists. Implementations are [MdBulletList](../MdBulletList/index.md) respectively [MdOrderedList](../MdOrderedList/index.md).
-
 ```csharp
-public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItem>, IEnumerable<MdListItem>, IEnumerable
+public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItemBase>, IEnumerable<MdListItemBase>, IEnumerable
 ```
 
 **Inheritance:** object → [MdBlock](../MdBlock/index.md) → MdList
 
-**Implements:** IReadOnlyCollection\<[MdListItem](../MdListItem/index.md)\>,IEnumerable\<[MdListItem](../MdListItem/index.md)\>,IEnumerable
+**Implements:** IReadOnlyCollection\<[MdListItemBase](../MdListItemBase/index.md)\>,IEnumerable\<[MdListItemBase](../MdListItemBase/index.md)\>,IEnumerable
 
 ## Properties
 
-| Name                         | Description                                |
-| ---------------------------- | ------------------------------------------ |
-| [Count](properties/Count.md) | Gets the number of list items in the list. |
-| [Items](properties/Items.md) | Gets the list's items                      |
+| Name                         | Description |
+| ---------------------------- | ----------- |
+| [Count](properties/Count.md) |             |
 
 ## Methods
 
-| Name                                         | Description                                                      |
-| -------------------------------------------- | ---------------------------------------------------------------- |
-| [Add(MdListItem)](methods/Add.md)            | Adds the specified item to the list                              |
-| [GetEnumerator()](methods/GetEnumerator.md)  | Returns an enumerator that iterates through the list's item.     |
-| [Insert(int, MdListItem)](methods/Insert.md) | Inserts the specified item into the list at the specified index. |
-
-## See Also
-
-- [MdBulletList](../MdBulletList/index.md)
-- [MdOrderedList](../MdOrderedList/index.md)
+| Name                                        | Description |
+| ------------------------------------------- | ----------- |
+| [GetEnumerator()](methods/GetEnumerator.md) |             |
 
 ___
 

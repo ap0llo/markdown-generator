@@ -13,10 +13,10 @@
 Represents a bullet list. For specification see [CommonMark \- List items](https://spec.commonmark.org/0.28/#list-items)
 
 ```csharp
-public sealed class MdBulletList : MdList
+public sealed class MdBulletList : MdList<MdListItem>
 ```
 
-**Inheritance:** object → [MdBlock](../MdBlock/index.md) → [MdList](../MdList/index.md) → MdBulletList
+**Inheritance:** object → [MdBlock](../MdBlock/index.md) → [MdList](../MdList/index.md) → [MdList\<T\>](../MdList-1/index.md) → MdBulletList
 
 ## Constructors
 

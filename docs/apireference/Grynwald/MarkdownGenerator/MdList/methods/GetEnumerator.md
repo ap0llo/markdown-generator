@@ -11,15 +11,13 @@
 **Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
 **Assembly:** Grynwald.MarkdownGenerator
 
-Returns an enumerator that iterates through the list's item.
-
 ```csharp
-public IEnumerator<MdListItem> GetEnumerator();
+public IEnumerator<MdListItemBase> GetEnumerator();
 ```
 
 ## Returns
 
-IEnumerator\<[MdListItem](../../MdListItem/index.md)\>
+IEnumerator\<[MdListItemBase](../../MdListItemBase/index.md)\>
 
 ___
 

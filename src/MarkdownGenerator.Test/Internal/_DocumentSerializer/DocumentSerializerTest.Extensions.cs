@@ -53,5 +53,38 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                         new MdParagraph("Note content")))
             );
         }
+
+        [Fact]
+        public void TaskList_is_serialized_as_expected_01()
+        {
+            AssertToStringEquals(
+                "- [ ] Item 1\r\n" +
+                "- [ ] Item 2\r\n",
+
+                new MdDocument(
+                    new MdTaskList(
+                        new MdTaskListItem("Item 1"),
+                        new MdTaskListItem("Item 2")
+                    )
+                )
+            );
+        }
+
+
+        [Fact]
+        public void TaskList_is_serialized_as_expected_02()
+        {
+            AssertToStringEquals(
+                "- [ ] Item 1\r\n" +
+                "- [x] Item 2\r\n",
+
+                new MdDocument(
+                    new MdTaskList(
+                        new MdTaskListItem("Item 1"),
+                        new MdTaskListItem("Item 2") {  IsChecked = true }
+                    )
+                )
+            );
+        }
     }
 }

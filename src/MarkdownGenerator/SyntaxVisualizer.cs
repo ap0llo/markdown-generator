@@ -109,6 +109,10 @@ namespace Grynwald.MarkdownGenerator
 
             public void Visit(MdAdmonition admonition) => VisitContainer(admonition);
 
+            public void Visit(MdTaskList taskList) => VisitList(taskList);
+
+            public void Visit(MdTaskListItem listItem) => VisitContainer(listItem);
+
 
             private void CreateLeafNode(object item)
             {

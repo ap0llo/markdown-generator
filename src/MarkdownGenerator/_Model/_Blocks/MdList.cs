@@ -4,39 +4,55 @@ using System.Collections.Generic;
 
 namespace Grynwald.MarkdownGenerator
 {
+    public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItemBase>
+    {
+        public int Count => throw new NotImplementedException();
+
+        public IEnumerator<MdListItemBase> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     /// <summary>
     /// Base class for ordered and bullet lists.
     /// Implementations are <see cref="MdBulletList"/> respectively <see cref="MdOrderedList"/>.
     /// </summary>
     /// <seealso cref="MdBulletList"/>
     /// <seealso cref="MdOrderedList"/>
-    public abstract class MdList : MdBlock, IReadOnlyCollection<MdListItem>
+    /// <seealso cref="Extensions.MdTaskList"/>
+    public abstract class MdList<T> : MdList, IReadOnlyCollection<T> where T : MdListItemBase
     {
-        private readonly List<MdListItem> m_ListItems;
+        private readonly List<T> m_ListItems;
 
 
         /// <summary>
         /// Gets the list's items
         /// </summary>
-        public IEnumerable<MdListItem> Items => m_ListItems;
+        public IEnumerable<T> Items => m_ListItems;
 
         /// <summary>
         /// Gets the number of list items in the list.
         /// </summary>
         /// <value>The number of list items in the list.</value>
-        public int Count => m_ListItems.Count;
+        //public int Count => m_ListItems.Count;
 
         // private protected constructor => class cannot be derived from outside this assembly
-        private protected MdList(params MdListItem[] content) : this((IEnumerable<MdListItem>)content)
+        private protected MdList(params T[] content) : this((IEnumerable<T>)content)
         { }
 
         // private protected constructor => class cannot be derived from outside this assembly
-        private protected MdList(IEnumerable<MdListItem> content)
+        private protected MdList(IEnumerable<T> content)
         {
             if (content == null)
                 throw new ArgumentNullException(nameof(content));
 
-            m_ListItems = new List<MdListItem>(content);
+            m_ListItems = new List<T>(content);
         }
 
 
@@ -44,7 +60,7 @@ namespace Grynwald.MarkdownGenerator
         /// Adds the specified item to the list
         /// </summary>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="item"/> is <c>null</c>.</exception>
-        public void Add(MdListItem item)
+        public void Add(T item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
@@ -59,7 +75,7 @@ namespace Grynwald.MarkdownGenerator
         /// <param name="item">The item to insert.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="item"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is negative or greater than the number of items in the list.</exception>
-        public void Insert(int index, MdListItem item)
+        public void Insert(int index, T item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
@@ -73,7 +89,7 @@ namespace Grynwald.MarkdownGenerator
         /// <summary>
         /// Returns an enumerator that iterates through the list's item.
         /// </summary>
-        public IEnumerator<MdListItem> GetEnumerator() => m_ListItems.GetEnumerator();
+        public new IEnumerator<T> GetEnumerator() => m_ListItems.GetEnumerator();
 
         /// <summary>
         /// Returns an (non-generic) enumerator that iterates through the list's item.
@@ -81,7 +97,7 @@ namespace Grynwald.MarkdownGenerator
         IEnumerator IEnumerable.GetEnumerator() => m_ListItems.GetEnumerator();
 
 
-        protected bool DeepEquals(MdList? other)
+        protected bool DeepEquals(MdList<T>? other)
         {
             if (other == null)
                 return false;
