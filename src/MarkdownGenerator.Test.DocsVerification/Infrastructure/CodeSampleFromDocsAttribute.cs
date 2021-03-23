@@ -61,7 +61,7 @@ namespace Grynwald.MarkdownGenerator.Test.DocsVerification.Infrastructure
 
         private static bool IsCSharpCodeBlock(FencedCodeBlock codeBlock)
         {
-            return codeBlock.Info
+            return (codeBlock?.Info ?? "")
                 .Split()
                 .Any(x => x.Equals("csharp", StringComparison.OrdinalIgnoreCase));
         }
