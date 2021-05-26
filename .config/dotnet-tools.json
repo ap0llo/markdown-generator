@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "nbgv": {
-      "version": "3.4.194",
+      "version": "3.4.203",
       "commands": [
         "nbgv"
       ]
