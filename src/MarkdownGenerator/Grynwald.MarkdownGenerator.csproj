@@ -25,12 +25,4 @@
     <PackageReference Include="Grynwald.MdDocs.MSBuild" Version="0.4.178" PrivateAssets="all" />
   </ItemGroup>
 
-  <!-- Package Validation -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.PackageValidation" Version="1.0.0-preview.7.21379.12" />
-  </ItemGroup>
-  <PropertyGroup>
-    <PackageValidationBaselineVersion>2.0.78</PackageValidationBaselineVersion>
-  </PropertyGroup>
-
 </Project>
