@@ -5,21 +5,21 @@
   </auto-generated>   
 -->
 
-# MdList.Items Property
+# MdTaskListItem.IsChecked Property
 
-**Declaring Type:** [MdList](../index.md)  
-**Namespace:** [Grynwald.MarkdownGenerator](../../index.md)  
+**Declaring Type:** [MdTaskListItem](../index.md)  
+**Namespace:** [Grynwald.MarkdownGenerator.Extensions](../../index.md)  
 **Assembly:** Grynwald.MarkdownGenerator
 
-Gets the list's items
+Gets or sets whether the task list item is checked
 
 ```csharp
-public IEnumerable<MdListItemBase> Items { get; }
+public bool IsChecked { get; set; }
 ```
 
 ## Property Value
 
-IEnumerable\<[MdListItemBase](../../MdListItemBase/index.md)\>
+bool
 
 ___
 

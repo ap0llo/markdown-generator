@@ -14,14 +14,14 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public MdBulletList(params MdListItem[] listItems) : base(listItems)
+        public MdBulletList(params MdListItemBase[] listItems) : base(listItems)
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public MdBulletList(IEnumerable<MdListItem> listItems) : base(listItems)
+        public MdBulletList(IEnumerable<MdListItemBase> listItems) : base(listItems)
         { }
 
 

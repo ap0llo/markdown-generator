@@ -20,10 +20,10 @@ public sealed class MdOrderedList : MdList
 
 ## Constructors
 
-| Name                                                                                                 | Description                                                                |
-| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [MdOrderedList(IEnumerable\<MdListItem\>)](constructors/index.md#mdorderedlistienumerablemdlistitem) | Initializes a new instance of MdOrderedList with the specified list items. |
-| [MdOrderedList(MdListItem\[\])](constructors/index.md#mdorderedlistmdlistitem)                       | Initializes a new instance of MdOrderedList with the specified list items. |
+| Name                                                                                                         | Description                                                                |
+| ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| [MdOrderedList(IEnumerable\<MdListItemBase\>)](constructors/index.md#mdorderedlistienumerablemdlistitembase) | Initializes a new instance of MdOrderedList with the specified list items. |
+| [MdOrderedList(MdListItemBase\[\])](constructors/index.md#mdorderedlistmdlistitembase)                       | Initializes a new instance of MdOrderedList with the specified list items. |
 
 ## Methods
 

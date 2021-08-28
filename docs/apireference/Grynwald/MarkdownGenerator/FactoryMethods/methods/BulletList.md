@@ -13,22 +13,22 @@
 
 ## Overloads
 
-| Signature                                                                 | Description                                                                                         |
-| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [BulletList(IEnumerable\<MdListItem\>)](#bulletlistienumerablemdlistitem) | Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items |
-| [BulletList(MdListItem\[\])](#bulletlistmdlistitem)                       | Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items |
+| Signature                                                                         | Description                                                                                         |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [BulletList(IEnumerable\<MdListItemBase\>)](#bulletlistienumerablemdlistitembase) | Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items |
+| [BulletList(MdListItemBase\[\])](#bulletlistmdlistitembase)                       | Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items |
 
-## BulletList(IEnumerable\<MdListItem\>)
+## BulletList(IEnumerable\<MdListItemBase\>)
 
 Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items
 
 ```csharp
-public static MdBulletList BulletList(IEnumerable<MdListItem> listItems);
+public static MdBulletList BulletList(IEnumerable<MdListItemBase> listItems);
 ```
 
 ### Parameters
 
-`listItems`  IEnumerable\<[MdListItem](../../MdListItem/index.md)\>
+`listItems`  IEnumerable\<[MdListItemBase](../../MdListItemBase/index.md)\>
 
 The list items to initially add to the list
 
@@ -36,17 +36,17 @@ The list items to initially add to the list
 
 [MdBulletList](../../MdBulletList/index.md)
 
-## BulletList(MdListItem\[\])
+## BulletList(MdListItemBase\[\])
 
 Creates a new instance of [MdBulletList](../../MdBulletList/index.md) with the specified list items
 
 ```csharp
-public static MdBulletList BulletList(params MdListItem[] listItems);
+public static MdBulletList BulletList(params MdListItemBase[] listItems);
 ```
 
 ### Parameters
 
-`listItems`  [MdListItem](../../MdListItem/index.md)\[\]
+`listItems`  [MdListItemBase](../../MdListItemBase/index.md)\[\]
 
 The list items to initially add to the list
 

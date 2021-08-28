@@ -3,11 +3,20 @@ using System.IO;
 using System.Linq;
 using Grynwald.MarkdownGenerator.Internal;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Grynwald.MarkdownGenerator.Test.Internal
 {
     public partial class DocumentSerializerTest
     {
+        private readonly ITestOutputHelper m_OutputHelper;
+
+        public DocumentSerializerTest(ITestOutputHelper outputHelper)
+        {
+            m_OutputHelper = outputHelper ?? throw new ArgumentNullException(nameof(outputHelper));
+        }
+
+
         [Fact]
         public void Headings_are_serialized_as_expected() =>
             AssertToStringEquals(
@@ -738,8 +747,10 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 HeadingAnchorStyle = MdHeadingAnchorStyle.Tag
             };
 
-            var heading = new MdHeading(2, "Heading");
-            heading.Anchor = anchor;
+            var heading = new MdHeading(2, "Heading")
+            {
+                Anchor = anchor
+            };
 
             AssertToStringEquals(
                 "## Heading\r\n",
@@ -1085,6 +1096,17 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
                 serializer.Serialize(document);
 
                 var actual = writer.ToString();
+
+                m_OutputHelper.WriteLine("--------------");
+                m_OutputHelper.WriteLine("Expected:");
+                m_OutputHelper.WriteLine("--------------");
+                m_OutputHelper.WriteLine(expected);
+                m_OutputHelper.WriteLine("--------------");
+                m_OutputHelper.WriteLine("Actual:");
+                m_OutputHelper.WriteLine("--------------");
+                m_OutputHelper.WriteLine(actual);
+                m_OutputHelper.WriteLine("--------------");
+
                 Assert.Equal(expected, actual);
             }
         }

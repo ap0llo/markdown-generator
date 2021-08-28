@@ -14,7 +14,7 @@
 Inserts the specified item into the list at the specified index.
 
 ```csharp
-public void Insert(int index, MdListItem item);
+public void Insert(int index, MdListItemBase item);
 ```
 
 ## Parameters
@@ -23,7 +23,7 @@ public void Insert(int index, MdListItem item);
 
 The index (zero\-based) to insert the item at.
 
-`item`  [MdListItem](../../MdListItem/index.md)
+`item`  [MdListItemBase](../../MdListItemBase/index.md)
 
 The item to insert.
 

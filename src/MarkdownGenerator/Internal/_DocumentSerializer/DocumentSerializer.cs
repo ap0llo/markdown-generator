@@ -203,7 +203,7 @@ namespace Grynwald.MarkdownGenerator.Internal
             var listItemNumber = 1;
             foreach (var listItem in list)
             {
-                prefixHandler.BeginListItem();
+                prefixHandler.BeginListItem(listItem);
 
                 var lineWritten = false;
 

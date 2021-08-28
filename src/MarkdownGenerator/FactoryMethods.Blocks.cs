@@ -99,25 +99,25 @@ namespace Grynwald.MarkdownGenerator
         /// Creates a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public static MdBulletList BulletList(params MdListItem[] listItems) => new MdBulletList(listItems);
+        public static MdBulletList BulletList(params MdListItemBase[] listItems) => new MdBulletList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdBulletList"/> with the specified list items
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public static MdBulletList BulletList(IEnumerable<MdListItem> listItems) => new MdBulletList(listItems);
+        public static MdBulletList BulletList(IEnumerable<MdListItemBase> listItems) => new MdBulletList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public static MdOrderedList OrderedList(params MdListItem[] listItems) => new MdOrderedList(listItems);
+        public static MdOrderedList OrderedList(params MdListItemBase[] listItems) => new MdOrderedList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public static MdOrderedList OrderedList(IEnumerable<MdListItem> listItems) => new MdOrderedList(listItems);
+        public static MdOrderedList OrderedList(IEnumerable<MdListItemBase> listItems) => new MdOrderedList(listItems);
 
         /// <summary>
         /// Creates a new instance of <see cref="MdListItem"/>.

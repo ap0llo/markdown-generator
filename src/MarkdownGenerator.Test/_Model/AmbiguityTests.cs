@@ -56,7 +56,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.Document(FactoryMethods.BulletList());
             _ = FactoryMethods.Document(FactoryMethods.OrderedList());
 
-            _ = FactoryMethods.Document(Extensions.FactoryMethods.Admonition("note"));
+            _ = FactoryMethods.Document(MarkdownGenerator.Extensions.FactoryMethods.Admonition("note"));
         }
 
 
@@ -96,7 +96,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.ListItem(FactoryMethods.BulletList());
             _ = FactoryMethods.ListItem(FactoryMethods.OrderedList());
 
-            _ = FactoryMethods.ListItem(Extensions.FactoryMethods.Admonition("note"));
+            _ = FactoryMethods.ListItem(MarkdownGenerator.Extensions.FactoryMethods.Admonition("note"));
         }
 
 
@@ -137,7 +137,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.Container(FactoryMethods.BulletList());
             _ = FactoryMethods.Container(FactoryMethods.OrderedList());
 
-            _ = FactoryMethods.Container(Extensions.FactoryMethods.Admonition("note"));
+            _ = FactoryMethods.Container(MarkdownGenerator.Extensions.FactoryMethods.Admonition("note"));
         }
 
 
@@ -177,7 +177,7 @@ namespace Grynwald.MarkdownGenerator.Test
             _ = FactoryMethods.BlockQuote(FactoryMethods.BulletList());
             _ = FactoryMethods.BlockQuote(FactoryMethods.OrderedList());
 
-            _ = FactoryMethods.BlockQuote(Extensions.FactoryMethods.Admonition("note"));
+            _ = FactoryMethods.BlockQuote(MarkdownGenerator.Extensions.FactoryMethods.Admonition("note"));
         }
 
 
