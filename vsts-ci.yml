@@ -138,6 +138,7 @@ jobs:
       }
     displayName: Publish test results
     condition: succeededOrFailed()
+
   # Create NuGet Package and  publish as build artifact
   - task: CmdLine@2
     displayName: Pack NuGet package
@@ -158,8 +159,6 @@ jobs:
         Write-Host "##vso[artifact.upload artifactname=$(artifactsName_Binaries)]$($packageFile.FullName)"
       }
     displayName: 'Publish Artifacts: $(artifactsName_Binaries)'
-    inputs:
-      artifactName: $(artifactsName_Binaries)
 
   # Generate changelog and publish as build artifact
   - task: CmdLine@2
