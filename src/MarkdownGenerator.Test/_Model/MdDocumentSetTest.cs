@@ -257,9 +257,9 @@ namespace Grynwald.MarkdownGenerator.Test
                 var existingPath1 = Path.Combine(directory, "file1.txt");
                 var existingPath2 = Path.Combine(directory, "subDir/file2.txt");
 
-                Directory.CreateDirectory(Path.GetDirectoryName(existingPath1));
+                Directory.CreateDirectory(Path.GetDirectoryName(existingPath1)!);
                 File.WriteAllText(existingPath1, "Content");
-                Directory.CreateDirectory(Path.GetDirectoryName(existingPath2));
+                Directory.CreateDirectory(Path.GetDirectoryName(existingPath2)!);
                 File.WriteAllText(existingPath2, "Content");
 
                 var set = new MdDocumentSet();
@@ -290,9 +290,9 @@ namespace Grynwald.MarkdownGenerator.Test
                 var existingPath1 = Path.Combine(directory, "file1.txt");
                 var existingPath2 = Path.Combine(directory, "subDir/file1.txt");
 
-                Directory.CreateDirectory(Path.GetDirectoryName(existingPath1));
+                Directory.CreateDirectory(Path.GetDirectoryName(existingPath1)!);
                 File.WriteAllTextAsync(existingPath1, "Content");
-                Directory.CreateDirectory(Path.GetDirectoryName(existingPath2));
+                Directory.CreateDirectory(Path.GetDirectoryName(existingPath2)!);
                 File.WriteAllTextAsync(existingPath2, "Content");
 
                 var set = new MdDocumentSet();
