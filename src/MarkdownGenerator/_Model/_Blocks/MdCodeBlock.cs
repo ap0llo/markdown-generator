@@ -33,7 +33,7 @@ namespace Grynwald.MarkdownGenerator
         /// </summary>
         /// <param name="text">The code blocks content</param>
         /// <param name="infoString">
-        /// The code blocks info string, typically used to indicate the language of the code block
+        /// The code block's info string, typically used to indicate the language of the code block
         /// </param>
         public MdCodeBlock(string text, string? infoString)
         {

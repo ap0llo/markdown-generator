@@ -16,7 +16,7 @@
 
 	<!-- Compiler settings-->
 	<PropertyGroup>
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
@@ -29,7 +29,9 @@
 
 	<!-- SourceLink  (https://github.com/dotnet/sourcelink) -->
 	<PropertyGroup>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>    
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <!-- Do not generate a "RepositoryUrl" AssemblyMetadata attribute because that breaks the "PublicApiApproval" test -->
+		<GenerateRepositoryUrlAttribute>false</GenerateRepositoryUrlAttribute>
 		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 	</PropertyGroup>
@@ -48,9 +50,9 @@
 	<PropertyGroup>
 		<Authors>Andreas Gruenwald</Authors>
 		<PackageProjectUrl>https://github.com/ap0llo/markdown-generator</PackageProjectUrl>
-		<PackageLicenseUrl>https://github.com/ap0llo/markdown-generator/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>A utility library to programatically generate markdown files</Description>
-		<Copyright>Copyright (c) 2018-2020 Andreas Gruenwald</Copyright>
+		<Copyright>Copyright (c) 2018-2021 Andreas Gruenwald</Copyright>
 	</PropertyGroup>
 
 
