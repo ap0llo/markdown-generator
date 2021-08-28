@@ -1,26 +1,25 @@
 # Pipeline consists of 4 jobs
-# - Build_an_Test: 
+# - Build_an_Test:
 #   - Checks formatting
 #   - Builds the project
 #   - Runs all the tests
 #   - Creates a NuGet package
-# - Publish_to_MyGet: 
+# - Publish_to_MyGet:
 #   - Pushes the NuGet package to MyGet
 #   - Assumes a Service Connection for MyGet was set up in the Team project running the pipeline
 #   - The name of the service connection is stored in the variable myget_ServiceConnectionName (defined below)
-#   - Only runs when building a release branch or the master branch
+#   - Only runs when building a release branch or the 'master' branch
 # - Publish_to_NuGet_org
-#   - Pushes the NuGet package to NuGet.org 
+#   - Pushes the NuGet package to NuGet.org
 #   - Assumes a Service Connection for NuGet was set up in the Team project running the pipeline
 #   - The name of the service connection is stored in the variable nuget_org_ServiceConnectionName (defined below)
 #   - The variable nuget_org_PackageName defines which package is produced by the pipeline
-#   - Whether this step runs can be controlled by the variable 'Settings.PublishToNuGetOrg' (modify at queue time when necessary):
-#     - 'auto' or empty: Run when building a release branch
-#     - 'false': Do not run
-#     - 'true': Run regardless of the current branch
 # - Create_GitHub_Release
 #   - Creates a GitHub release for the build
-#   - Only runs if the build was published to NuGet.org
+#   - Only runs when building the a release branch and publishing to nuget.org succeeded
+# - Create_GitHub_Draft_Release
+#   - Creates a *DRAFT* release on GitHub
+#   - Only runs when building the 'master' branch
 
 trigger:
   - master
@@ -28,7 +27,7 @@ trigger:
 
 pr:
   - master
-  - releases/*
+  - release/*
 
 variables:
   # Build settings
@@ -37,8 +36,9 @@ variables:
   solutionPath : src/MarkdownGenerator.sln    # The path of the solution to be buildt
   artifactsName_Binaries: Binaries
   artifactsName_ChangeLog: ChangeLog
+  artifactsName_Variables: Variables
 
-  # MyGet.org settings   
+  # MyGet.org settings
   myget_ServiceConnectionName: 'MyGet - ap0llo-markdown-generator'  # the name of the Azure DevOps service connection to use for MyGet.org
 
   # NuGet.org settings
@@ -49,15 +49,19 @@ variables:
   github_ServiceConnectionName: 'GitHub: ap0llo'      # the name of the Azure DevOps service connection to use for creating GitHub releases
   github_repositoryName: 'ap0llo/markdown-generator'  # the name of the github repo to create the release in
 
+  # Azure DevOps agent settings
+  azuredevops_vmimage: windows-latest
+
 jobs:
 
 # Main Build and test job: Builds the projects and runs all tests
 - job: Build_and_Test
   displayName: Build and Test
-  pool: Hosted VS2017
+  pool:
+    vmImage: $(azuredevops_vmimage)
   steps:
 
-  # Install .NET Core SDK and runtime (version specified in the variables section)
+  # Install .NET Core SDK and runtime (version specified in global.json)
   - task: UseDotNet@2
     displayName: 'Install .NET Core SDK'
     inputs:
@@ -76,11 +80,36 @@ jobs:
   - script: dotnet tool run nbgv cloud --all-vars
     displayName: Set Version
 
+  # Save nbgv variables as JSON artifact
+  - powershell: |
+      # Caculate output path
+      $outDirPath = Join-Path "$(Build.ArtifactStagingDirectory)" "$(artifactsName_Variables)"
+      $outFilePath = Join-Path $outDirPath "nbgv.json"
+
+      # Get version variables (the value of the 'CloudBuildAllVars' property in the JSON output of nbgv)
+      $json = Invoke-Expression "dotnet tool run nbgv -- get-version --format json" | ConvertFrom-Json
+      if($LASTEXITCODE -ne 0) {
+        throw "'nbgv get-version' completed with exit code $LASTEXITCODE"
+      }
+      $json = $json.CloudBuildAllVars | ConvertTo-Json
+
+      # Create output directory
+      if(-not (Test-Path $outDirPath)) {
+        New-Item -ItemType Directory -Path $outDirPath | Out-Null
+      }
+
+      # Save variables to file
+      [System.IO.File]::WriteAllText($outFilePath, $json)
+
+      # Publish artifacts
+      Write-Host "##vso[artifact.upload artifactname=$(artifactsName_Variables)]$outFilePath"
+    displayName: Save version variables
+
   # Check the formatting using dotnet-format
   - script: dotnet format ./src --folder --check
     displayName: Check code formatting
-  
-  # Restore, Build, Test
+
+    # Restore, Build, Test
   - task: CmdLine@2
     displayName: Restore NuGet packages
     inputs:
@@ -90,22 +119,44 @@ jobs:
     inputs:
       command: build
       projects: $(solutionPath)
-      arguments: '--configuration $(configuration) --no-restore /warnaserror'  
+      arguments: '--configuration $(configuration) --no-restore /warnaserror'
   - task: DotNetCoreCLI@2
     displayName: Test
     inputs:
       command: test
+      publishTestResults: true
       projects: $(solutionPath)
       arguments: '--configuration $(configuration) --no-build'
-  
+
+  - powershell: |
+      $trxFiles = Get-ChildItem -Path "$(Agent.TempDirectory)" -Filter "*.trx" -File -Recurse
+      $trxFileCount = ($trxFiles | Measure-Object).Count
+      Write-Host "Found $trxFileCount trx files in '$(Agent.TempDirectory)'"
+      foreach($trxFile in $trxFiles) {
+        Write-Host "Publishing Artifact '$($trxFile.FullName)'"
+        Write-Host "##vso[artifact.upload artifactname=TestResults]$($trxFile.FullName)"
+      }
+    displayName: Publish test results
+    condition: succeededOrFailed()
   # Create NuGet Package and  publish as build artifact
-  - task: DotNetCoreCLI@2
+  - task: CmdLine@2
     displayName: Pack NuGet package
     inputs:
-      command: pack
-      projects: $(solutionPath)
-      arguments: '--configuration $(configuration) --output $(Build.ArtifactStagingDirectory) --no-build /warnaserror'  
-  - task: PublishBuildArtifacts@1
+      script: >-
+        dotnet pack $(solutionPath)
+        --configuration $(configuration)
+        --output $(Build.ArtifactStagingDirectory)
+        --no-build
+        /warnaserror
+  # Use a inline Powershell script for publishing artifacts instead of the built-in PublishBuildArtifacts task
+  # because the built-in task does not support wildcards and the artifacts staging directory contains other
+  # artifacts as well (e.g. the variables JSON file published as the 'Variables' artifacts)
+  - powershell: |
+      $packageFiles = Get-ChildItem -Path "$(Build.ArtifactStagingDirectory)" -Filter "*.nupkg"
+      foreach($packageFile in $packageFiles) {
+        Write-Host "Publishing Artifact '$($packageFile.FullName)'"
+        Write-Host "##vso[artifact.upload artifactname=$(artifactsName_Binaries)]$($packageFile.FullName)"
+      }
     displayName: 'Publish Artifacts: $(artifactsName_Binaries)'
     inputs:
       artifactName: $(artifactsName_Binaries)
@@ -134,19 +185,25 @@ jobs:
 # Job to push package to MyGet.org after build
 - job: Publish_to_MyGet
   displayName: Publish to MyGet
-  pool: Hosted VS2017
+  pool:
+    vmImage: $(azuredevops_vmimage)
   # Only run after main build job and only if the current branch is master or a release branch
   dependsOn: Build_and_Test
   condition: and(succeeded('Build_and_Test'), or(eq(variables['build.sourceBranch'], 'refs/heads/master'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/') ))
   steps:
+
+  # Skip checkout of sources, all data required for this step can be laoded from the previous job's artifacts
+  - checkout: none
+
   # Get artifacts
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Artifacts: $(artifactsName_Binaries)'
-    inputs: 
+    inputs:
       buildType: current
       downloadType: single
       artifactName: $(artifactsName_Binaries)
       downloadPath: $(Build.ArtifactStagingDirectory)
+
   # Upload to MyGet.org
   - task: NuGetCommand@2
     displayName: "Upload package"
@@ -158,36 +215,30 @@ jobs:
 # Job to push package to NuGet.org after build (only for builds of release branches)
 - job: Publish_to_NuGet_org
   displayName: Publish to NuGet.org
-  pool: Hosted VS2017
+  pool:
+    vmImage: $(azuredevops_vmimage)
   # Only run after main build job and only if the current branch is a release branch
   dependsOn: Build_and_Test
   condition: |
     and
     (
-      succeeded('Build_and_Test'), 
-      not(eq(variables['Settings.PublishToNuGetOrg'], 'false')),
-      or(
-        eq(variables['Settings.PublishToNuGetOrg'], 'true'),
-        and
-        (
-          startsWith(variables['Build.SourceBranch'], 'refs/heads/release/'),
-          or
-          (
-            eq(variables['Settings.PublishToNuGetOrg'], ''),
-            eq(variables['Settings.PublishToNuGetOrg'], 'auto')
-          )
-        )
-      )
+      succeeded('Build_and_Test'),
+      startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')
     )
   steps:
+
+  # Skip checkout of sources, all data required for this step can be laoded from the previous job's artifacts
+  - checkout: none
+
   # Get artifacts
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Artifacts: $(artifactsName_Binaries)'
-    inputs: 
+    inputs:
       buildType: current
       downloadType: single
       artifactName: $(artifactsName_Binaries)
       downloadPath: $(Build.ArtifactStagingDirectory)
+
   # Upload to NuGet.org
   - task: NuGetCommand@2
     displayName: 'Upload package to NuGet.org'
@@ -196,47 +247,58 @@ jobs:
       nugetFeedType: external
       publishFeedCredentials: $(nuget_org_ServiceConnectionName)
 
-# Job to create a GitHub release (only if a package was uploaded to NuGet.org)
+# Job to create a GitHub release (only when building a release branch and the package was uploaded to NuGet.org)
 - job: Create_GitHub_Release
   displayName: Create GitHub Release
-  pool: Hosted VS2017
+  pool:
+    vmImage: $(azuredevops_vmimage)
   # Only run if build was successful and a package was uploaded to nuget.org
-  dependsOn: 
+  dependsOn:
   - Build_and_Test
   - Publish_to_NuGet_org
-  condition: succeeded('Publish_to_NuGet_org')
+  condition: |
+    and
+    (
+      succeeded('Publish_to_NuGet_org'),
+      startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')
+    )
   steps:
 
-  # Install .NET Core SDK and runtime (version specified in the variables section)
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core SDK'
+  # Skip checkout of sources, all data required for this step can be laoded from the previous job's artifacts
+  - checkout: none
+
+  # Get variables from Build job (the Build_an_Test job saves variables to a JSON files and publishes it as build artifact)
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Artifacts: $(artifactsName_Variables)'
     inputs:
-      packageType: sdk
-      useGlobalJson: true
+      buildType: current
+      downloadType: single
+      artifactName: variables
+      downloadPath: $(Build.ArtifactStagingDirectory)
+  - powershell : |
+      # Load variables JSON file generated during build
+      $json = Get-Content -Raw "$(Build.ArtifactStagingDirectory)/$(artifactsName_Variables)/nbgv.json" | ConvertFrom-Json
 
-  # Restore local .NET Core tools
-  - task: DotNetCoreCLI@2
-    displayName: Restore local tools
-    inputs:
-      command: custom
-      custom: tool
-      arguments: restore
+      # for each variable, set the value as Azure Pipelines variable
+      $variableNames = $json | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name
+      foreach($variableName in $variableNames) {
+        $value = $json."$variableName"
+        Write-Host "Setting variable '$variableName' to '$value'"
+        Write-Host "##vso[task.setvariable variable=$variableName]$value"
+      }
+    displayName: Load version variables
 
-  # Set the build number using Nerdbank.GitVersioning
-  - script: dotnet tool run nbgv cloud --all-vars
-    displayName: Set Version
-
-  # Get artifacts 
+  # Get artifacts (Changelog and Binaries/packages)
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Artifacts: $(artifactsName_Binaries)'
-    inputs: 
+    inputs:
       buildType: current
       downloadType: single
       artifactName: $(artifactsName_Binaries)
       downloadPath: $(Build.ArtifactStagingDirectory)
   - task: DownloadBuildArtifacts@0
     displayName: 'Download Artifacts: $(artifactsName_ChangeLog)'
-    inputs: 
+    inputs:
       buildType: current
       downloadType: single
       artifactName: $(artifactsName_ChangeLog)
@@ -244,6 +306,7 @@ jobs:
 
   # Create GitHub release
   - task: GithubRelease@0
+    displayName: Create GitHub Release
     inputs:
       gitHubConnection: $(github_ServiceConnectionName)
       repositoryName: $(github_repositoryName)
@@ -256,3 +319,64 @@ jobs:
       releaseNotesFile: $(Build.ArtifactStagingDirectory)/$(artifactsName_ChangeLog)/changelog.md
       assets: $(Build.ArtifactStagingDirectory)/$(artifactsName_Binaries)/*.nupkg
       addChangeLog: false
+
+# Job to create a GitHub *DRAFT* release (only when building the 'master' branch)
+- job: Create_GitHub_Draft_Release
+  displayName: Create GitHub DRAFT Release
+  pool:
+    vmImage: $(azuredevops_vmimage)
+  # Only run if build was successful and a package was uploaded to nuget.org
+  dependsOn:
+  - Build_and_Test
+  condition: eq(variables['build.sourceBranch'], 'refs/heads/master')
+
+  steps:
+
+  # Skip checkout of sources, all data required for this step can be laoded from the previous job's artifacts
+  - checkout: none
+
+  # Get variables from Build job (the Build_an_Test job saves variables to a JSON files and publishes it as build artifact)
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Artifacts: $(artifactsName_Variables)'
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: variables
+      downloadPath: $(Build.ArtifactStagingDirectory)
+  - powershell : |
+      # Load variables JSON file generated during build
+      $json = Get-Content -Raw "$(Build.ArtifactStagingDirectory)/$(artifactsName_Variables)/nbgv.json" | ConvertFrom-Json
+
+      # for each variable, set the value as Azure Pipelines variable
+      $variableNames = $json | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name
+      foreach($variableName in $variableNames) {
+        $value = $json."$variableName"
+        Write-Host "Setting variable '$variableName' to '$value'"
+        Write-Host "##vso[task.setvariable variable=$variableName]$value"
+      }
+    displayName: Load version variables
+
+  # Download changelog (generated by the Build_and_Test job and published as build artifact)
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Artifacts: $(artifactsName_ChangeLog)'
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: $(artifactsName_ChangeLog)
+      downloadPath: $(Build.ArtifactStagingDirectory)
+
+  # Create GitHub *DRAFT* release
+  - task: GithubRelease@0
+    displayName: Create GitHub Release
+    inputs:
+      gitHubConnection: $(github_ServiceConnectionName)
+      repositoryName: $(github_repositoryName)
+      action: 'edit'
+      target: '$(Build.SourceVersion)'
+      tagSource: manual
+      tag: vNext
+      title: v$(NBGV_NuGetPackageVersion)
+      releaseNotesSource: file
+      releaseNotesFile: $(Build.ArtifactStagingDirectory)/$(artifactsName_ChangeLog)/changelog.md
+      addChangeLog: false
+      isDraft: true
