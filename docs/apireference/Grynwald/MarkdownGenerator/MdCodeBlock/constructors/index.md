@@ -48,7 +48,7 @@ The code blocks content
 
 `infoString`  string
 
-The code blocks info string, typically used to indicate the language of the code block
+The code block's info string, typically used to indicate the language of the code block
 
 ___
 
