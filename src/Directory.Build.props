@@ -29,7 +29,9 @@
 
 	<!-- SourceLink  (https://github.com/dotnet/sourcelink) -->
 	<PropertyGroup>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>    
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <!-- Do not generate a "RepositoryUrl" AssemblyMetadata attribute because that breaks the "PublicApiApproval" test -->
+		<GenerateRepositoryUrlAttribute>false</GenerateRepositoryUrlAttribute>
 		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 	</PropertyGroup>
