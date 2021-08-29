@@ -13,22 +13,22 @@
 
 ## Overloads
 
-| Signature                                                                   | Description                                                                                            |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [OrderedList(IEnumerable\<MdListItem\>)](#orderedlistienumerablemdlistitem) | Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items. |
-| [OrderedList(MdListItem\[\])](#orderedlistmdlistitem)                       | Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items. |
+| Signature                                                                           | Description                                                                                            |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| [OrderedList(IEnumerable\<MdListItemBase\>)](#orderedlistienumerablemdlistitembase) | Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items. |
+| [OrderedList(MdListItemBase\[\])](#orderedlistmdlistitembase)                       | Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items. |
 
-## OrderedList(IEnumerable\<MdListItem\>)
+## OrderedList(IEnumerable\<MdListItemBase\>)
 
 Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items.
 
 ```csharp
-public static MdOrderedList OrderedList(IEnumerable<MdListItem> listItems);
+public static MdOrderedList OrderedList(IEnumerable<MdListItemBase> listItems);
 ```
 
 ### Parameters
 
-`listItems`  IEnumerable\<[MdListItem](../../MdListItem/index.md)\>
+`listItems`  IEnumerable\<[MdListItemBase](../../MdListItemBase/index.md)\>
 
 The list items to initially add to the list
 
@@ -36,17 +36,17 @@ The list items to initially add to the list
 
 [MdOrderedList](../../MdOrderedList/index.md)
 
-## OrderedList(MdListItem\[\])
+## OrderedList(MdListItemBase\[\])
 
 Creates a new instance of [MdOrderedList](../../MdOrderedList/index.md) with the specified list items.
 
 ```csharp
-public static MdOrderedList OrderedList(params MdListItem[] listItems);
+public static MdOrderedList OrderedList(params MdListItemBase[] listItems);
 ```
 
 ### Parameters
 
-`listItems`  [MdListItem](../../MdListItem/index.md)\[\]
+`listItems`  [MdListItemBase](../../MdListItemBase/index.md)\[\]
 
 The list items to initially add to the list
 

@@ -58,8 +58,8 @@ namespace Grynwald.MarkdownGenerator
         public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(params Grynwald.MarkdownGenerator.MdSpan[] text) { }
         public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdSpan> text) { }
         public static Grynwald.MarkdownGenerator.MdStrongEmphasisSpan Bold(string text) { }
-        public static Grynwald.MarkdownGenerator.MdBulletList BulletList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
-        public static Grynwald.MarkdownGenerator.MdBulletList BulletList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public static Grynwald.MarkdownGenerator.MdBulletList BulletList(params Grynwald.MarkdownGenerator.MdListItemBase[] listItems) { }
+        public static Grynwald.MarkdownGenerator.MdBulletList BulletList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItemBase> listItems) { }
         public static Grynwald.MarkdownGenerator.MdCodeBlock CodeBlock(string text) { }
         public static Grynwald.MarkdownGenerator.MdCodeBlock CodeBlock(string text, string infoString) { }
         public static Grynwald.MarkdownGenerator.MdCodeSpan CodeSpan(string text) { }
@@ -106,8 +106,8 @@ namespace Grynwald.MarkdownGenerator
         public static Grynwald.MarkdownGenerator.MdListItem ListItem(params Grynwald.MarkdownGenerator.MdSpan[] content) { }
         public static Grynwald.MarkdownGenerator.MdListItem ListItem(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
         public static Grynwald.MarkdownGenerator.MdListItem ListItem(string content) { }
-        public static Grynwald.MarkdownGenerator.MdOrderedList OrderedList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
-        public static Grynwald.MarkdownGenerator.MdOrderedList OrderedList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public static Grynwald.MarkdownGenerator.MdOrderedList OrderedList(params Grynwald.MarkdownGenerator.MdListItemBase[] listItems) { }
+        public static Grynwald.MarkdownGenerator.MdOrderedList OrderedList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItemBase> listItems) { }
         public static Grynwald.MarkdownGenerator.MdParagraph Paragraph(params Grynwald.MarkdownGenerator.MdSpan[] spans) { }
         public static Grynwald.MarkdownGenerator.MdParagraph Paragraph(Grynwald.MarkdownGenerator.MdSpan text) { }
         public static Grynwald.MarkdownGenerator.MdParagraph Paragraph(string text) { }
@@ -159,8 +159,8 @@ namespace Grynwald.MarkdownGenerator
     }
     public sealed class MdBulletList : Grynwald.MarkdownGenerator.MdList
     {
-        public MdBulletList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
-        public MdBulletList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public MdBulletList(params Grynwald.MarkdownGenerator.MdListItemBase[] listItems) { }
+        public MdBulletList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItemBase> listItems) { }
         public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock? other) { }
     }
     public enum MdBulletListStyle
@@ -332,16 +332,16 @@ namespace Grynwald.MarkdownGenerator
         public override string ToString() { }
         public override string ToString(Grynwald.MarkdownGenerator.MdSerializationOptions? options) { }
     }
-    public abstract class MdList : Grynwald.MarkdownGenerator.MdBlock, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdListItem>, System.Collections.IEnumerable
+    public abstract class MdList : Grynwald.MarkdownGenerator.MdBlock, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItemBase>, System.Collections.Generic.IReadOnlyCollection<Grynwald.MarkdownGenerator.MdListItemBase>, System.Collections.IEnumerable
     {
         public int Count { get; }
-        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> Items { get; }
-        public void Add(Grynwald.MarkdownGenerator.MdListItem item) { }
+        public System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItemBase> Items { get; }
+        public void Add(Grynwald.MarkdownGenerator.MdListItemBase item) { }
         protected bool DeepEquals(Grynwald.MarkdownGenerator.MdList? other) { }
-        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdListItem> GetEnumerator() { }
-        public void Insert(int index, Grynwald.MarkdownGenerator.MdListItem item) { }
+        public System.Collections.Generic.IEnumerator<Grynwald.MarkdownGenerator.MdListItemBase> GetEnumerator() { }
+        public void Insert(int index, Grynwald.MarkdownGenerator.MdListItemBase item) { }
     }
-    public sealed class MdListItem : Grynwald.MarkdownGenerator.MdContainerBlockBase
+    public sealed class MdListItem : Grynwald.MarkdownGenerator.MdListItemBase
     {
         public MdListItem() { }
         public MdListItem(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
@@ -352,10 +352,11 @@ namespace Grynwald.MarkdownGenerator
         public MdListItem(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
         public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock? other) { }
     }
+    public abstract class MdListItemBase : Grynwald.MarkdownGenerator.MdContainerBlockBase { }
     public sealed class MdOrderedList : Grynwald.MarkdownGenerator.MdList
     {
-        public MdOrderedList(params Grynwald.MarkdownGenerator.MdListItem[] listItems) { }
-        public MdOrderedList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItem> listItems) { }
+        public MdOrderedList(params Grynwald.MarkdownGenerator.MdListItemBase[] listItems) { }
+        public MdOrderedList(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdListItemBase> listItems) { }
         public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock? other) { }
     }
     public enum MdOrderedListStyle
@@ -539,6 +540,18 @@ namespace Grynwald.MarkdownGenerator.Extensions
         public MdAdmonition(string type, Grynwald.MarkdownGenerator.MdSpan title, System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
         public Grynwald.MarkdownGenerator.MdSpan Title { get; }
         public string Type { get; }
+        public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock? other) { }
+    }
+    public sealed class MdTaskListItem : Grynwald.MarkdownGenerator.MdListItemBase
+    {
+        public MdTaskListItem() { }
+        public MdTaskListItem(params Grynwald.MarkdownGenerator.MdBlock[] content) { }
+        public MdTaskListItem(Grynwald.MarkdownGenerator.MdContainerBlockBase content) { }
+        public MdTaskListItem(Grynwald.MarkdownGenerator.MdList content) { }
+        public MdTaskListItem(Grynwald.MarkdownGenerator.MdSpan content) { }
+        public MdTaskListItem(params Grynwald.MarkdownGenerator.MdSpan[] content) { }
+        public MdTaskListItem(System.Collections.Generic.IEnumerable<Grynwald.MarkdownGenerator.MdBlock> content) { }
+        public bool IsChecked { get; set; }
         public override bool DeepEquals(Grynwald.MarkdownGenerator.MdBlock? other) { }
     }
 }

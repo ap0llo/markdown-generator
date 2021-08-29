@@ -8,6 +8,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         protected string? m_ListPrefix;          // the prefix for lines other than the first line
         protected bool m_LineWritten = false;    // indicates if any lines have been written in the current list item
         protected string? m_ListMarker;          // the prefix for list items
+        protected MdListItemBase? m_CurrentListItem;
 
 
         public ListPrefixHandler(MdSerializationOptions serializationOptions)
@@ -33,11 +34,12 @@ namespace Grynwald.MarkdownGenerator.Internal
             else
             {
                 m_LineWritten = true;
-                return m_ListMarker;
+                var additionalListItemMarker = m_CurrentListItem?.AdditionalListItemMarker ?? "";
+                return String.Concat(m_ListMarker, additionalListItemMarker);
             }
         }
 
-        public virtual void BeginListItem()
+        public virtual void BeginListItem(MdListItemBase listItem)
         {
             // reset line written (new list item is initially empty)
             m_LineWritten = false;
@@ -47,6 +49,8 @@ namespace Grynwald.MarkdownGenerator.Internal
             m_ListMarker = GetListMarker();
 
             m_ListPrefix = new string(' ', Math.Max(m_ListMarker.Length, m_SerializationOptions.MinimumListIndentationWidth));
+
+            m_CurrentListItem = listItem;
         }
 
 

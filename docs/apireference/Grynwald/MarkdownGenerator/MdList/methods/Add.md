@@ -14,12 +14,12 @@
 Adds the specified item to the list
 
 ```csharp
-public void Add(MdListItem item);
+public void Add(MdListItemBase item);
 ```
 
 ## Parameters
 
-`item`  [MdListItem](../../MdListItem/index.md)
+`item`  [MdListItemBase](../../MdListItemBase/index.md)
 
 ## Exceptions
 

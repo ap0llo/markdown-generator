@@ -13,36 +13,36 @@
 
 ## Overloads
 
-| Signature                                                                       | Description                                                                               |
-| ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [MdOrderedList(IEnumerable\<MdListItem\>)](#mdorderedlistienumerablemdlistitem) | Initializes a new instance of [MdOrderedList](../index.md) with the specified list items. |
-| [MdOrderedList(MdListItem\[\])](#mdorderedlistmdlistitem)                       | Initializes a new instance of [MdOrderedList](../index.md) with the specified list items. |
+| Signature                                                                               | Description                                                                               |
+| --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [MdOrderedList(IEnumerable\<MdListItemBase\>)](#mdorderedlistienumerablemdlistitembase) | Initializes a new instance of [MdOrderedList](../index.md) with the specified list items. |
+| [MdOrderedList(MdListItemBase\[\])](#mdorderedlistmdlistitembase)                       | Initializes a new instance of [MdOrderedList](../index.md) with the specified list items. |
 
-## MdOrderedList(IEnumerable\<MdListItem\>)
+## MdOrderedList(IEnumerable\<MdListItemBase\>)
 
 Initializes a new instance of [MdOrderedList](../index.md) with the specified list items.
 
 ```csharp
-public MdOrderedList(IEnumerable<MdListItem> listItems);
+public MdOrderedList(IEnumerable<MdListItemBase> listItems);
 ```
 
 ### Parameters
 
-`listItems`  IEnumerable\<[MdListItem](../../MdListItem/index.md)\>
+`listItems`  IEnumerable\<[MdListItemBase](../../MdListItemBase/index.md)\>
 
 The list items to initially add to the list
 
-## MdOrderedList(MdListItem\[\])
+## MdOrderedList(MdListItemBase\[\])
 
 Initializes a new instance of [MdOrderedList](../index.md) with the specified list items.
 
 ```csharp
-public MdOrderedList(params MdListItem[] listItems);
+public MdOrderedList(params MdListItemBase[] listItems);
 ```
 
 ### Parameters
 
-`listItems`  [MdListItem](../../MdListItem/index.md)\[\]
+`listItems`  [MdListItemBase](../../MdListItemBase/index.md)\[\]
 
 The list items to initially add to the list
 

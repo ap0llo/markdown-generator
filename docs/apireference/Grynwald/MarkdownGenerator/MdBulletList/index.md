@@ -20,10 +20,10 @@ public sealed class MdBulletList : MdList
 
 ## Constructors
 
-| Name                                                                                               | Description                                                              |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [MdBulletList(IEnumerable\<MdListItem\>)](constructors/index.md#mdbulletlistienumerablemdlistitem) | Initializes a new instance of MdBulletList with the specified list items |
-| [MdBulletList(MdListItem\[\])](constructors/index.md#mdbulletlistmdlistitem)                       | Initializes a new instance of MdBulletList with the specified list items |
+| Name                                                                                                       | Description                                                              |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [MdBulletList(IEnumerable\<MdListItemBase\>)](constructors/index.md#mdbulletlistienumerablemdlistitembase) | Initializes a new instance of MdBulletList with the specified list items |
+| [MdBulletList(MdListItemBase\[\])](constructors/index.md#mdbulletlistmdlistitembase)                       | Initializes a new instance of MdBulletList with the specified list items |
 
 ## Methods
 

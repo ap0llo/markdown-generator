@@ -15,6 +15,7 @@
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [FactoryMethods](FactoryMethods/index.md) |                                                                                                                                                                                                                            |
 | [MdAdmonition](MdAdmonition/index.md)     | Represents a "admonition" in a markdown document implemented by the "Admonition" extension for Python\-Markdown. For details see [Python\-Markdown: Admonition](https://python-markdown.github.io/extensions/admonition/). |
+| [MdTaskListItem](MdTaskListItem/index.md) | Represents a "task list item" as defined by GitHub Flavored Markdown                                                                                                                                                       |
 
 ___
 

@@ -14,12 +14,12 @@ namespace Grynwald.MarkdownGenerator.Internal
         { }
 
 
-        public override void BeginListItem()
+        public override void BeginListItem(MdListItemBase listItem)
         {
             // increment list item number
             m_ListItemNumber += 1;
 
-            base.BeginListItem();
+            base.BeginListItem(listItem);
         }
 
 

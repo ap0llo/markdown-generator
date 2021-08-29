@@ -14,14 +14,14 @@ namespace Grynwald.MarkdownGenerator
         /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public MdOrderedList(params MdListItem[] listItems) : base(listItems)
+        public MdOrderedList(params MdListItemBase[] listItems) : base(listItems)
         { }
 
         /// <summary>
         /// Initializes a new instance of <see cref="MdOrderedList"/> with the specified list items.
         /// </summary>
         /// <param name="listItems">The list items to initially add to the list</param>
-        public MdOrderedList(IEnumerable<MdListItem> listItems) : base(listItems)
+        public MdOrderedList(IEnumerable<MdListItemBase> listItems) : base(listItems)
         { }
 
 
