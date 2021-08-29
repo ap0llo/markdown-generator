@@ -15,9 +15,31 @@
 
 | Signature                                      | Description                                                     |
 | ---------------------------------------------- | --------------------------------------------------------------- |
+| [Heading(MdSpan, int)](#headingmdspan-int)     | Creates a new instance of [MdHeading](../../MdHeading/index.md) |
 | [Heading(int, MdSpan)](#headingint-mdspan)     | Creates a new instance of [MdHeading](../../MdHeading/index.md) |
 | [Heading(int, MdSpan\[\])](#headingint-mdspan) | Creates a new instance of [MdHeading](../../MdHeading/index.md) |
-| [Heading(MdSpan, int)](#headingmdspan-int)     | Creates a new instance of [MdHeading](../../MdHeading/index.md) |
+
+## Heading(MdSpan, int)
+
+Creates a new instance of [MdHeading](../../MdHeading/index.md)
+
+```csharp
+public static MdHeading Heading(MdSpan text, int level);
+```
+
+### Parameters
+
+`text`  [MdSpan](../../MdSpan/index.md)
+
+The text of the heading. Must not be null.
+
+`level`  int
+
+The heading's level. Value must be in the range \[1,6\]
+
+### Returns
+
+[MdHeading](../../MdHeading/index.md)
 
 ## Heading(int, MdSpan)
 
@@ -58,28 +80,6 @@ The heading's level. Value must be in the range \[1,6\]
 `text`  [MdSpan](../../MdSpan/index.md)\[\]
 
 The text of the heading. Must not be null.
-
-### Returns
-
-[MdHeading](../../MdHeading/index.md)
-
-## Heading(MdSpan, int)
-
-Creates a new instance of [MdHeading](../../MdHeading/index.md)
-
-```csharp
-public static MdHeading Heading(MdSpan text, int level);
-```
-
-### Parameters
-
-`text`  [MdSpan](../../MdSpan/index.md)
-
-The text of the heading. Must not be null.
-
-`level`  int
-
-The heading's level. Value must be in the range \[1,6\]
 
 ### Returns
 

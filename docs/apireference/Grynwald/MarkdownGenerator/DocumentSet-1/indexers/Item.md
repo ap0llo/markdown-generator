@@ -15,36 +15,8 @@
 
 | Signature                     | Description                                           |
 | ----------------------------- | ----------------------------------------------------- |
-| [Item\[string\]](#itemstring) | Gets the document associated with the specified path. |
 | [Item\[T\]](#itemt)           | Gets the path associated with the specified document. |
-
-## Item\[string\]
-
-Gets the document associated with the specified path.
-
-```csharp
-public T this[string path] { get; }
-```
-
-### Parameters
-
-`path`  string
-
-The path to get the document for.
-
-### Indexer Value
-
-T
-
-### Exceptions
-
-ArgumentNullException
-
-Thrown when `path` is null.
-
-[DocumentNotFoundException](../../DocumentNotFoundException/index.md)
-
-Thrown when no document associated with the specified path was found.
+| [Item\[string\]](#itemstring) | Gets the document associated with the specified path. |
 
 ## Item\[T\]
 
@@ -73,6 +45,34 @@ Thrown when `document` is null.
 [DocumentNotFoundException](../../DocumentNotFoundException/index.md)
 
 Thrown when the specified document is not part of this document set.
+
+## Item\[string\]
+
+Gets the document associated with the specified path.
+
+```csharp
+public T this[string path] { get; }
+```
+
+### Parameters
+
+`path`  string
+
+The path to get the document for.
+
+### Indexer Value
+
+T
+
+### Exceptions
+
+ArgumentNullException
+
+Thrown when `path` is null.
+
+[DocumentNotFoundException](../../DocumentNotFoundException/index.md)
+
+Thrown when no document associated with the specified path was found.
 
 ___
 

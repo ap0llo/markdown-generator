@@ -26,9 +26,9 @@ If a heading is serialized as ATX heading (lines prefixed with '\#') or as setex
 
 | Name                                                                    | Description                             |
 | ----------------------------------------------------------------------- | --------------------------------------- |
+| [MdHeading(MdSpan, int)](constructors/index.md#mdheadingmdspan-int)     | Initializes a new instance of MdHeading |
 | [MdHeading(int, MdSpan)](constructors/index.md#mdheadingint-mdspan)     | Initializes a new instance of MdHeading |
 | [MdHeading(int, MdSpan\[\])](constructors/index.md#mdheadingint-mdspan) | Initializes a new instance of MdHeading |
-| [MdHeading(MdSpan, int)](constructors/index.md#mdheadingmdspan-int)     | Initializes a new instance of MdHeading |
 
 ## Properties
 

@@ -46,8 +46,8 @@ It implements a 1:1 mapping between documents and paths.
 
 | Name                                          | Description                                           |
 | --------------------------------------------- | ----------------------------------------------------- |
-| [Item\[string\]](indexers/Item.md#itemstring) | Gets the document associated with the specified path. |
 | [Item\[T\]](indexers/Item.md#itemt)           | Gets the path associated with the specified document. |
+| [Item\[string\]](indexers/Item.md#itemstring) | Gets the document associated with the specified path. |
 
 ## Methods
 

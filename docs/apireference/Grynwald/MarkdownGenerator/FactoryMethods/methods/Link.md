@@ -15,32 +15,10 @@
 
 | Signature                                  | Description                                                                |
 | ------------------------------------------ | -------------------------------------------------------------------------- |
-| [Link(MdSpan, string)](#linkmdspan-string) | Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).         |
 | [Link(MdSpan, Uri)](#linkmdspan-uri)       | Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).         |
-| [Link(string, string)](#linkstring-string) | Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).         |
+| [Link(MdSpan, string)](#linkmdspan-string) | Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).         |
 | [Link(string, Uri)](#linkstring-uri)       | Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).         |
-
-## Link(MdSpan, string)
-
-Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).        
-
-```csharp
-public static MdLinkSpan Link(MdSpan text, string uri);
-```
-
-### Parameters
-
-`text`  [MdSpan](../../MdSpan/index.md)
-
-The link's text.
-
-`uri`  string
-
-The link's target uri. Value must be a valid absolute or relative Uri
-
-### Returns
-
-[MdLinkSpan](../../MdLinkSpan/index.md)
+| [Link(string, string)](#linkstring-string) | Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).         |
 
 ## Link(MdSpan, Uri)
 
@@ -64,19 +42,19 @@ The link's target uri.
 
 [MdLinkSpan](../../MdLinkSpan/index.md)
 
-## Link(string, string)
+## Link(MdSpan, string)
 
-Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).
+Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).        
 
 ```csharp
-public static MdLinkSpan Link(string text, string uri);
+public static MdLinkSpan Link(MdSpan text, string uri);
 ```
 
 ### Parameters
 
-`text`  string
+`text`  [MdSpan](../../MdSpan/index.md)
 
-The link's text.  The string value will be wrapped into an instance of [MdTextSpan](../../MdTextSpan/index.md) and thus be escaped in the output.
+The link's text.
 
 `uri`  string
 
@@ -103,6 +81,28 @@ The link's text.  The string value will be wrapped into an instance of [MdTextSp
 `uri`  Uri
 
 The link's target uri.
+
+### Returns
+
+[MdLinkSpan](../../MdLinkSpan/index.md)
+
+## Link(string, string)
+
+Creates a new instance of [MdLinkSpan](../../MdLinkSpan/index.md).
+
+```csharp
+public static MdLinkSpan Link(string text, string uri);
+```
+
+### Parameters
+
+`text`  string
+
+The link's text.  The string value will be wrapped into an instance of [MdTextSpan](../../MdTextSpan/index.md) and thus be escaped in the output.
+
+`uri`  string
+
+The link's target uri. Value must be a valid absolute or relative Uri
 
 ### Returns
 

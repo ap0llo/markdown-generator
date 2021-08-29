@@ -17,8 +17,8 @@
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [MdDocument(IEnumerable\<MdBlock\>)](#mddocumentienumerablemdblock) | Initializes a new instance of [MdDocument](../index.md) with the specified content.               |
 | [MdDocument(MdAdmonition)](#mddocumentmdadmonition)                 | Initializes a new instance of [MdDocument](../index.md) with the specified content.               |
-| [MdDocument(MdBlock\[\])](#mddocumentmdblock)                       | Initializes a new instance of [MdDocument](../index.md) with the specified content.               |
 | [MdDocument(MdBlockQuote)](#mddocumentmdblockquote)                 | Initializes a new instance of [MdDocument](../index.md) with the specified content.               |
+| [MdDocument(MdBlock\[\])](#mddocumentmdblock)                       | Initializes a new instance of [MdDocument](../index.md) with the specified content.               |
 | [MdDocument(MdContainerBlock)](#mddocumentmdcontainerblock)         | Initializes a new instance of [MdDocument](../index.md) with the specified block as root element. |
 | [MdDocument(MdList)](#mddocumentmdlist)                             | Initializes a new instance of [MdDocument](../index.md) with the specified content.               |
 
@@ -52,20 +52,6 @@ public MdDocument(MdAdmonition admonition);
 
 MdAdmonition implements IEnumerable\<T\> so this constructor is necessary to prevent ambiguities.
 
-## MdDocument(MdBlock\[\])
-
-Initializes a new instance of [MdDocument](../index.md) with the specified content.
-
-```csharp
-public MdDocument(params MdBlock[] content);
-```
-
-### Parameters
-
-`content`  [MdBlock](../../MdBlock/index.md)\[\]
-
-One or more blocks that make up the documents's content. The blocks will be wrapped in an instance of [MdContainerBlock](../../MdContainerBlock/index.md) that will be the documents root block.
-
 ## MdDocument(MdBlockQuote)
 
 Initializes a new instance of [MdDocument](../index.md) with the specified content.
@@ -81,6 +67,20 @@ public MdDocument(MdBlockQuote list);
 ### Remarks
 
 MdBlockQuote implements IEnumerable\<T\> so this constructor is necessary to prevent ambiguities.
+
+## MdDocument(MdBlock\[\])
+
+Initializes a new instance of [MdDocument](../index.md) with the specified content.
+
+```csharp
+public MdDocument(params MdBlock[] content);
+```
+
+### Parameters
+
+`content`  [MdBlock](../../MdBlock/index.md)\[\]
+
+One or more blocks that make up the documents's content. The blocks will be wrapped in an instance of [MdContainerBlock](../../MdContainerBlock/index.md) that will be the documents root block.
 
 ## MdDocument(MdContainerBlock)
 

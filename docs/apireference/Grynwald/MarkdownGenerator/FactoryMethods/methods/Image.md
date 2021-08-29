@@ -15,32 +15,10 @@
 
 | Signature                                    | Description                                                           |
 | -------------------------------------------- | --------------------------------------------------------------------- |
-| [Image(MdSpan, string)](#imagemdspan-string) | Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md).  |
 | [Image(MdSpan, Uri)](#imagemdspan-uri)       | Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md).  |
-| [Image(string, string)](#imagestring-string) | Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md).  |
+| [Image(MdSpan, string)](#imagemdspan-string) | Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md).  |
 | [Image(string, Uri)](#imagestring-uri)       | Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md).  |
-
-## Image(MdSpan, string)
-
-Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md). 
-
-```csharp
-public static MdImageSpan Image(MdSpan description, string uri);
-```
-
-### Parameters
-
-`description`  [MdSpan](../../MdSpan/index.md)
-
-The image's description
-
-`uri`  string
-
-The image's uri. Value must be a valid absolute or relative Uri
-
-### Returns
-
-[MdImageSpan](../../MdImageSpan/index.md)
+| [Image(string, string)](#imagestring-string) | Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md).  |
 
 ## Image(MdSpan, Uri)
 
@@ -64,19 +42,19 @@ The image's uri
 
 [MdImageSpan](../../MdImageSpan/index.md)
 
-## Image(string, string)
+## Image(MdSpan, string)
 
 Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md). 
 
 ```csharp
-public static MdImageSpan Image(string description, string uri);
+public static MdImageSpan Image(MdSpan description, string uri);
 ```
 
 ### Parameters
 
-`description`  string
+`description`  [MdSpan](../../MdSpan/index.md)
 
-The image's description.  The string value will be wrapped into an instance of [MdTextSpan](../../MdTextSpan/index.md) and thus be escaped in the output.
+The image's description
 
 `uri`  string
 
@@ -103,6 +81,28 @@ The image's description.  The string value will be wrapped into an instance of [
 `uri`  Uri
 
 The image's uri
+
+### Returns
+
+[MdImageSpan](../../MdImageSpan/index.md)
+
+## Image(string, string)
+
+Creates a new instance of [MdImageSpan](../../MdImageSpan/index.md). 
+
+```csharp
+public static MdImageSpan Image(string description, string uri);
+```
+
+### Parameters
+
+`description`  string
+
+The image's description.  The string value will be wrapped into an instance of [MdTextSpan](../../MdTextSpan/index.md) and thus be escaped in the output.
+
+`uri`  string
+
+The image's uri. Value must be a valid absolute or relative Uri
 
 ### Returns
 

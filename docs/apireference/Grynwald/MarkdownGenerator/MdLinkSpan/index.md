@@ -22,10 +22,10 @@ public sealed class MdLinkSpan : MdSpan
 
 | Name                                                                        | Description                               |
 | --------------------------------------------------------------------------- | ----------------------------------------- |
-| [MdLinkSpan(MdSpan, string)](constructors/index.md#mdlinkspanmdspan-string) | Initializes a new instance of MdLinkSpan. |
 | [MdLinkSpan(MdSpan, Uri)](constructors/index.md#mdlinkspanmdspan-uri)       | Initializes a new instance of MdLinkSpan. |
-| [MdLinkSpan(string, string)](constructors/index.md#mdlinkspanstring-string) | Initializes a new instance of MdLinkSpan. |
+| [MdLinkSpan(MdSpan, string)](constructors/index.md#mdlinkspanmdspan-string) | Initializes a new instance of MdLinkSpan. |
 | [MdLinkSpan(string, Uri)](constructors/index.md#mdlinkspanstring-uri)       | Initializes a new instance of MdLinkSpan. |
+| [MdLinkSpan(string, string)](constructors/index.md#mdlinkspanstring-string) | Initializes a new instance of MdLinkSpan. |
 
 ## Properties
 

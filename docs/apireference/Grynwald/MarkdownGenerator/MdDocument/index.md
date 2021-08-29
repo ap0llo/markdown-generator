@@ -26,8 +26,8 @@ public sealed class MdDocument : IDocument
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | [MdDocument(IEnumerable\<MdBlock\>)](constructors/index.md#mddocumentienumerablemdblock) | Initializes a new instance of MdDocument with the specified content.               |
 | [MdDocument(MdAdmonition)](constructors/index.md#mddocumentmdadmonition)                 | Initializes a new instance of MdDocument with the specified content.               |
-| [MdDocument(MdBlock\[\])](constructors/index.md#mddocumentmdblock)                       | Initializes a new instance of MdDocument with the specified content.               |
 | [MdDocument(MdBlockQuote)](constructors/index.md#mddocumentmdblockquote)                 | Initializes a new instance of MdDocument with the specified content.               |
+| [MdDocument(MdBlock\[\])](constructors/index.md#mddocumentmdblock)                       | Initializes a new instance of MdDocument with the specified content.               |
 | [MdDocument(MdContainerBlock)](constructors/index.md#mddocumentmdcontainerblock)         | Initializes a new instance of MdDocument with the specified block as root element. |
 | [MdDocument(MdList)](constructors/index.md#mddocumentmdlist)                             | Initializes a new instance of MdDocument with the specified content.               |
 

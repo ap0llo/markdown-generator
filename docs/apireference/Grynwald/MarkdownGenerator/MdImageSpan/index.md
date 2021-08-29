@@ -22,10 +22,10 @@ public sealed class MdImageSpan : MdSpan
 
 | Name                                                                          | Description                                |
 | ----------------------------------------------------------------------------- | ------------------------------------------ |
-| [MdImageSpan(MdSpan, string)](constructors/index.md#mdimagespanmdspan-string) | Initializes a new instance of MdImageSpan. |
 | [MdImageSpan(MdSpan, Uri)](constructors/index.md#mdimagespanmdspan-uri)       | Initializes a new instance of MdImageSpan. |
-| [MdImageSpan(string, string)](constructors/index.md#mdimagespanstring-string) | Initializes a new instance of MdImageSpan. |
+| [MdImageSpan(MdSpan, string)](constructors/index.md#mdimagespanmdspan-string) | Initializes a new instance of MdImageSpan. |
 | [MdImageSpan(string, Uri)](constructors/index.md#mdimagespanstring-uri)       | Initializes a new instance of MdImageSpan. |
+| [MdImageSpan(string, string)](constructors/index.md#mdimagespanstring-string) | Initializes a new instance of MdImageSpan. |
 
 ## Properties
 
