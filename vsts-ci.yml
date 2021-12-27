@@ -106,7 +106,7 @@ jobs:
     displayName: Save version variables
 
   # Check the formatting using dotnet-format
-  - script: dotnet dotnet-format ./src --folder --check
+  - script: dotnet format $(solutionPath) --verify-no-changes
     displayName: Check code formatting
 
     # Restore, Build, Test
