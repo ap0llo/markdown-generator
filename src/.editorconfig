@@ -12,6 +12,12 @@ root = true
 indent_style = space
 # (Please don't specify an indent_size here; that has too many unintended consequences.)
 
+# Visual Studio demands 2-spaced project files
+# Tabs are not legal whitespace for YAML files
+[*.{csproj,json,props,targets,xslt,yaml,yml}]
+indent_style = space
+indent_size = 2
+
 # Code files
 [*.{cs,csx,vb,vbx}]
 indent_size = 4
