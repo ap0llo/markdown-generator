@@ -16,8 +16,8 @@ try {
     log "Restoring tools"
     exec "dotnet tool restore"
 
-    log "Running dotnet format"
-    exec "dotnet format `"$srcFolder`" --folder"
+    log "Running dotnet-format"
+    exec "dotnet dotnet-format `"$srcFolder`" --folder"
 }
 finally {
     Pop-Location

@@ -16,7 +16,7 @@
 
 	<!-- Compiler settings-->
 	<PropertyGroup>
-		<LangVersion>9.0</LangVersion>
+		<LangVersion>10.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
@@ -54,6 +54,5 @@
 		<Description>A utility library to programatically generate markdown files</Description>
 		<Copyright>Copyright (c) 2018-2021 Andreas Gruenwald</Copyright>
 	</PropertyGroup>
-
 
 </Project>
