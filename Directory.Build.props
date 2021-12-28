@@ -2,8 +2,8 @@
 
   <!--
     Configure Output paths :
-	  Output paths of the build needs to match the expectations of the Cake-based build.
-	  See https://github.com/ap0llo/shared-build#project-output-structure for details
+      Output paths of the build needs to match the expectations of the Cake-based build.
+      See https://github.com/ap0llo/shared-build#project-output-structure for details
   -->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,5 +57,5 @@
     <!-- When running in Azure Pipelines, use locked mode -->
     <RestoreLockedMode Condition=" '$(TF_BUILD)' == 'true' ">true</RestoreLockedMode>
   </PropertyGroup>
-  
+
 </Project>

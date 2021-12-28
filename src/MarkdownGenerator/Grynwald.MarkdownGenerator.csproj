@@ -4,7 +4,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-
   <!-- InheritDoc -->
   <ItemGroup>
     <PackageReference Include="SauceControl.InheritDoc" Version="1.3.0" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
