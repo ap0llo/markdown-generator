@@ -26,13 +26,16 @@ MarkdownGenerator is distributed as NuGet package.
 
 ## Building from source
 
-MarkdownGenerator is a .NET Standard library and can be built using the .NET SDK (tested with Visual Studio 15.7)
+MarkdownGenerator is a .NET Standard library.
+Building it from source requires the .NET 6 SDK (version 6.0.101 as specified in [global.json](./global.json)) and uses [Cake](https://cakebuild.net/) for the build.
 
-```bat
-  dotnet restore .\src\MarkdownGenerator.sln
+To execute the default task, run
 
-  dotnet build .\src\MarkdownGenerator.sln
+```ps1
+.\build.ps1
 ```
+
+This will build the project, run all tests and pack the NuGet package.
 
 ## Issues
 
@@ -66,10 +69,12 @@ Addititional dependencies (used for testing), in no specific order:
 - [ApprovalTests](https://github.com/approvals/ApprovalTests.Net)
 - [Moq](https://github.com/moq/moq4)
 - [Xunit.Combinatorial](https://github.com/AArnott/Xunit.Combinatorial)
+- [Cake](https://cakebuild.net/)
+- [Cake.BuildSystems.Module](https://github.com/cake-contrib/Cake.BuildSystems.Module)
 
 ## Versioning and Branching
 
-The version of this library is automatically derived from git and the information
+The version of the library is automatically derived from git and the information
 in `version.json` using [Nerdbank.GitVersioning](https://github.com/AArnott/Nerdbank.GitVersioning):
 
 - The master branch  always contains the latest version. Packages produced from
@@ -80,9 +85,10 @@ in `version.json` using [Nerdbank.GitVersioning](https://github.com/AArnott/Nerd
   commit hash included in the version string
 
 To create a new release branch use the [`nbgv` tool](https://www.nuget.org/packages/nbgv/)
-(at least version `3.0.4-beta`):
+(at least version `3.0.24`):
 
 ```ps1
-dotnet tool install --global nbgv --version 3.0.4-beta
+dotnet tool install --global nbgv 
 nbgv prepare-release
 ```
+
