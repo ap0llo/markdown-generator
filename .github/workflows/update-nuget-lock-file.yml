@@ -1,0 +1,38 @@
+name: Update NuGet lock files
+
+on:
+  push:
+    branches:
+    - renovate/*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set Environment Variables
+      run: |-
+        echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" >> $GITHUB_ENV
+        echo "DOTNET_NOLOGO=1" >> $GITHUB_ENV
+        echo "DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1" >> $GITHUB_ENV
+
+    - name: Check out repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        submodules: true
+
+    - name: Install .NET SDK
+      uses: actions/setup-dotnet@v1
+
+    - name: Update lock files
+      run: |-
+        dotnet restore
+
+    - name: Commit and push if lock file was changed
+      run: |-
+        git diff
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git diff --quiet || (git add *packages.lock.json && git commit -m "Update NuGet lock file")
+        git push
