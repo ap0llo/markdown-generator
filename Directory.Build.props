@@ -1,5 +1,10 @@
 <Project>
 
+	<!--
+		Configure Output paths :
+			Output paths of the build needs to match the expectations of the Cake-based build.
+			See https://github.com/ap0llo/shared-build#project-output-structure for details
+	-->
 	<PropertyGroup>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<BaseOutputPath Condition="'$(BUILD_BINARIESDIRECTORY)' != '' ">$(BUILD_BINARIESDIRECTORY)</BaseOutputPath>
@@ -9,9 +14,9 @@
 		<VSTestResultsDirectory>$(BaseOutputPath)TestResults/</VSTestResultsDirectory>
 	</PropertyGroup>
 
-	<!-- Nerdbank.GitVersioning -->	
+	<!-- Reference Nerdbank.GitVersioning -->
 	<ItemGroup>
-		<PackageReference Include="Nerdbank.GitVersioning" Version="3.4.244" PrivateAssets="all" />
+		<PackageReference Include="Nerdbank.GitVersioning" Version="3.5.54-alpha" PrivateAssets="all" />
 	</ItemGroup>
 
 	<!-- Compiler settings-->
@@ -27,7 +32,7 @@
 		<Deterministic>true</Deterministic>
 	</PropertyGroup>
 
-	<!-- SourceLink  (https://github.com/dotnet/sourcelink) -->
+	<!-- Reference SourceLink (see https://github.com/dotnet/sourcelink) -->
 	<PropertyGroup>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
         <!-- Do not generate a "RepositoryUrl" AssemblyMetadata attribute because that breaks the "PublicApiApproval" test -->

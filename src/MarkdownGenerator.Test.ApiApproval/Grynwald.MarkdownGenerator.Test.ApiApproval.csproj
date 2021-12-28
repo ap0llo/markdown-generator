@@ -10,7 +10,8 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
-    <PackageReference Include="PublicApiGenerator" Version="10.2.0" />    
+    <PackageReference Include="PublicApiGenerator" Version="10.2.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" PrivateAssets="All" />
   </ItemGroup>
 
   <!-- 
@@ -18,10 +19,10 @@
     deterministic builds break the logic to determine
     the output path for ApprovalTests.
   -->
-	<PropertyGroup>
-		<ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
-		<Deterministic>false</Deterministic>
-	</PropertyGroup>
+  <PropertyGroup>
+    <ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
+    <Deterministic>false</Deterministic>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MarkdownGenerator\Grynwald.MarkdownGenerator.csproj" />
