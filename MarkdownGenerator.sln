@@ -1,12 +1,13 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31808.319
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator", "MarkdownGenerator\Grynwald.MarkdownGenerator.csproj", "{B190C729-5CD5-46DE-A0F6-123657DBE873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator", "src\MarkdownGenerator\Grynwald.MarkdownGenerator.csproj", "{B190C729-5CD5-46DE-A0F6-123657DBE873}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test", "MarkdownGenerator.Test\Grynwald.MarkdownGenerator.Test.csproj", "{B5045F23-A55F-4313-93CF-6A57956C1489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test", "src\MarkdownGenerator.Test\Grynwald.MarkdownGenerator.Test.csproj", "{B5045F23-A55F-4313-93CF-6A57956C1489}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test.DocsVerification", "MarkdownGenerator.Test.DocsVerification\Grynwald.MarkdownGenerator.Test.DocsVerification.csproj", "{C12F9B8E-A5C7-4ECE-A6B3-36677C9DA617}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test.DocsVerification", "src\MarkdownGenerator.Test.DocsVerification\Grynwald.MarkdownGenerator.Test.DocsVerification.csproj", "{C12F9B8E-A5C7-4ECE-A6B3-36677C9DA617}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8BA16D5C-DD01-4C88-87E8-D00FC681EA2D}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,7 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.targets = Directory.Build.targets
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test.ApiApproval", "MarkdownGenerator.Test.ApiApproval\Grynwald.MarkdownGenerator.Test.ApiApproval.csproj", "{2D8B6BF8-A13A-4903-9D3F-50D4312E50D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grynwald.MarkdownGenerator.Test.ApiApproval", "src\MarkdownGenerator.Test.ApiApproval\Grynwald.MarkdownGenerator.Test.ApiApproval.csproj", "{2D8B6BF8-A13A-4903-9D3F-50D4312E50D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1FDF87AA-73B3-42A8-B83D-F57296D08E6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{5F288168-F0C9-48E5-A8F6-07910344FA7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj", "{E4259BC2-B69C-477A-98CB-8819E911389F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +46,18 @@ Global
 		{2D8B6BF8-A13A-4903-9D3F-50D4312E50D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D8B6BF8-A13A-4903-9D3F-50D4312E50D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D8B6BF8-A13A-4903-9D3F-50D4312E50D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4259BC2-B69C-477A-98CB-8819E911389F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4259BC2-B69C-477A-98CB-8819E911389F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B190C729-5CD5-46DE-A0F6-123657DBE873} = {1FDF87AA-73B3-42A8-B83D-F57296D08E6B}
+		{B5045F23-A55F-4313-93CF-6A57956C1489} = {1FDF87AA-73B3-42A8-B83D-F57296D08E6B}
+		{C12F9B8E-A5C7-4ECE-A6B3-36677C9DA617} = {1FDF87AA-73B3-42A8-B83D-F57296D08E6B}
+		{2D8B6BF8-A13A-4903-9D3F-50D4312E50D7} = {1FDF87AA-73B3-42A8-B83D-F57296D08E6B}
+		{E4259BC2-B69C-477A-98CB-8819E911389F} = {5F288168-F0C9-48E5-A8F6-07910344FA7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {738EFCB1-B764-42F3-A14A-AD91A91A5F72}

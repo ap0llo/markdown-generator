@@ -1,0 +1,60 @@
+<Project>
+
+  <!--
+    Configure Output paths :
+	  Output paths of the build needs to match the expectations of the Cake-based build.
+	  See https://github.com/ap0llo/shared-build#project-output-structure for details
+  -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <BaseOutputPath Condition="'$(BUILD_BINARIESDIRECTORY)' != '' ">$(BUILD_BINARIESDIRECTORY)</BaseOutputPath>
+    <BaseOutputPath Condition="'$(BaseOutputPath)' == '' ">$(MSBuildThisFileDirectory)Binaries/</BaseOutputPath>
+    <BaseOutputPath Condition="!HasTrailingSlash('BaseOutputPath')">$(BaseOutputPath)/</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)$(Configuration)/$(MSBuildProjectName)/</OutputPath>
+    <VSTestResultsDirectory>$(BaseOutputPath)TestResults/</VSTestResultsDirectory>
+  </PropertyGroup>
+
+  <!-- Reference Nerdbank.GitVersioning -->
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.54-alpha" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Compiler settings-->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Disable warning CS1591 (missing XML documentation comments) -->
+    <NoWarn>$(NoWarn),1591</NoWarn>
+  </PropertyGroup>
+
+  <!-- Reference SourceLink (see https://github.com/dotnet/sourcelink) -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- Do not generate a "RepositoryUrl" AssemblyMetadata attribute because that breaks the "PublicApiApproval" test -->
+    <GenerateRepositoryUrlAttribute>false</GenerateRepositoryUrlAttribute>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!--NuGet package properties -->
+  <PropertyGroup>
+    <Authors>Andreas Gruenwald</Authors>
+    <PackageProjectUrl>https://github.com/ap0llo/markdown-generator</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>A utility library to programatically generate markdown files</Description>
+    <Copyright>Copyright (c) 2018-2021 Andreas Gruenwald</Copyright>
+  </PropertyGroup>
+
+  <!-- Use NuGet lock file -->
+  <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <!-- When running in Azure Pipelines, use locked mode -->
+    <RestoreLockedMode Condition=" '$(TF_BUILD)' == 'true' ">true</RestoreLockedMode>
+  </PropertyGroup>
+  
+</Project>

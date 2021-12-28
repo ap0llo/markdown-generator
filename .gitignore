@@ -23,7 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-[Bb]uild/
+[Bb]inaries/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -339,3 +339,7 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
+# End of https://www.gitignore.io/api/fsharp,visualstudio
+
+# Cake Build tools directory
+tools/
