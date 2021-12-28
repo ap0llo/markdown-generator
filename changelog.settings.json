@@ -1,8 +1,5 @@
 {
+    "$schema": "https://raw.githubusercontent.com/ap0llo/changelog/master/schemas/configuration/schema.json",
     "changelog": {
-    
-        "integrations": {
-            "provider": "GitHub"
-        }
     }
 }
