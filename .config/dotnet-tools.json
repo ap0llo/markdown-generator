@@ -9,7 +9,7 @@
       ]
     },
     "grynwald.changelog": {
-      "version": "0.5.82-pre",
+      "version": "0.4.135",
       "commands": [
         "changelog"
       ]
