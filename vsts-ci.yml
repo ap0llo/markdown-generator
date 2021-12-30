@@ -26,5 +26,6 @@ jobs:
      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
      GITHUB_ACCESSTOKEN: $(GitHub.AccessToken)
      MYGET_APIKEY: $(MyGet.ApiKey)
+     NUGET_ORG_APIKEY: $(NuGetOrg.ApiKey)
      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
      DOTNET_CLI_TELEMETRY_OPTOUT: true
