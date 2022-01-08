@@ -10,9 +10,9 @@
       },
       "Grynwald.Utilities": {
         "type": "Direct",
-        "requested": "[1.5.54, )",
-        "resolved": "1.5.54",
-        "contentHash": "eieZsu+gKrp4Hr3BwmbxsZbzBclNV0VPLSv6UGg2VNndJRVNNB766JM9jFeEUUOlF4uLRkhcyr8k3Vfkm4nv2g=="
+        "requested": "[1.6.122, )",
+        "resolved": "1.6.122",
+        "contentHash": "mToOFiNgw43Tcvo1FA+hnNHEO4TrcK7QJi/pXony2B/4ui7d66/MVUrVWIGIxE1LT6jW776d74t/c3E99G9hLQ=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
