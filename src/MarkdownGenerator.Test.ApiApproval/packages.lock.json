@@ -49,12 +49,12 @@
       },
       "PublicApiGenerator": {
         "type": "Direct",
-        "requested": "[10.2.0, )",
-        "resolved": "10.2.0",
-        "contentHash": "l6l4bkgW1mucruurmVsvQDMlPQhXedPJ/2ZF4jVCLgrv+pWNpnWlYFC4RmPkJGlNqrO0iFVuK7DRsNSttjnwVA==",
+        "requested": "[10.3.0, )",
+        "resolved": "10.3.0",
+        "contentHash": "JUsbiQxsOWoQqayp3Ye/okdftKMPsynhDA/tGEWHWSi1HtgCqh3dRtXaVCGnTnAcqMHPel6/Lhj4tQD1hCDSlw==",
         "dependencies": {
-          "Mono.Cecil": "0.11.2",
-          "System.CodeDom": "4.7.0"
+          "Mono.Cecil": "0.11.4",
+          "System.CodeDom": "6.0.0"
         }
       },
       "xunit": {
@@ -257,8 +257,8 @@
       },
       "Mono.Cecil": {
         "type": "Transitive",
-        "resolved": "0.11.2",
-        "contentHash": "hZNAnXKQsOs/SZMFtT/e82/nA/iLgkeDy+sHD8xix4f0m9/3G0RNZplE1QHB+0n8QXq54jLqR/IPgVOkLapkyg=="
+        "resolved": "0.11.4",
+        "contentHash": "IC1h5g0NeJGHIUgzM1P82ld57knhP0IcQfrYITDPXlNpMYGUrsG5TxuaWTjaeqDNQMBDNZkB8L0rBnwsY6JHuQ=="
       },
       "NETStandard.Library": {
         "type": "Transitive",
@@ -530,8 +530,8 @@
       },
       "System.CodeDom": {
         "type": "Transitive",
-        "resolved": "5.0.0",
-        "contentHash": "JPJArwA1kdj8qDAkY2XGjSWoYnqiM7q/3yRNkt6n28Mnn95MuEGkZXUbPBf7qc3IjwrGY5ttQon7yqHZyQJmOQ=="
+        "resolved": "6.0.0",
+        "contentHash": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA=="
       },
       "System.Collections": {
         "type": "Transitive",
