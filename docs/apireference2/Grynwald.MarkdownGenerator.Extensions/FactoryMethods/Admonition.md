@@ -1,0 +1,162 @@
+# FactoryMethods.Admonition method (1 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (2 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, IEnumerable<MdBlock> content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdBlock](../../Grynwald.MarkdownGenerator/MdBlock.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (3 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, params MdBlock[] content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdBlock](../../Grynwald.MarkdownGenerator/MdBlock.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (4 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdContainerBlockBase content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdContainerBlockBase](../../Grynwald.MarkdownGenerator/MdContainerBlockBase.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (5 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdList content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdList](../../Grynwald.MarkdownGenerator/MdList.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (6 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdSpan title)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdSpan](../../Grynwald.MarkdownGenerator/MdSpan.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (7 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdSpan title, IEnumerable<MdBlock> content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdSpan](../../Grynwald.MarkdownGenerator/MdSpan.md)
+* class [MdBlock](../../Grynwald.MarkdownGenerator/MdBlock.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (8 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdSpan title, params MdBlock[] content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdSpan](../../Grynwald.MarkdownGenerator/MdSpan.md)
+* class [MdBlock](../../Grynwald.MarkdownGenerator/MdBlock.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (9 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdSpan title, MdContainerBlockBase content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdSpan](../../Grynwald.MarkdownGenerator/MdSpan.md)
+* class [MdContainerBlockBase](../../Grynwald.MarkdownGenerator/MdContainerBlockBase.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+---
+
+# FactoryMethods.Admonition method (10 of 10)
+
+```csharp
+public static MdAdmonition Admonition(string type, MdSpan title, MdList content)
+```
+
+## See Also
+
+* class [MdAdmonition](../MdAdmonition.md)
+* class [MdSpan](../../Grynwald.MarkdownGenerator/MdSpan.md)
+* class [MdList](../../Grynwald.MarkdownGenerator/MdList.md)
+* class [FactoryMethods](../FactoryMethods.md)
+* namespace [Grynwald.MarkdownGenerator.Extensions](../FactoryMethods.md.md)
+* assembly [Grynwald.MarkdownGenerator](../../Grynwald.MarkdownGenerator.md)
+
+<!-- DO NOT EDIT: generated by xmldocmd for Grynwald.MarkdownGenerator.dll -->
