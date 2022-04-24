@@ -4,12 +4,12 @@
     "net6.0": {
       "ApprovalTests": {
         "type": "Direct",
-        "requested": "[5.7.2, )",
-        "resolved": "5.7.2",
-        "contentHash": "JfcrUKA/YF3teVG6dxIsaf7JMA9JiyvccmcNY5IVsWp4Uil6Qhar3XvFtrqExDJUglkBIokYl+wvAvddsFBEsg==",
+        "requested": "[5.7.3, )",
+        "resolved": "5.7.3",
+        "contentHash": "3cApNvfCfFXukiVLq6yv0gSyMYSl8tP6NcIQjQyYGtosA8v/KXCxWi5uYQtgb390BXH7fCO6QDCztz1Ix31qMw==",
         "dependencies": {
-          "ApprovalUtilities": "5.7.2",
-          "DiffEngine": "8.5.3",
+          "ApprovalUtilities": "5.7.3",
+          "DiffEngine": "9.0.6",
           "EmptyFiles": "2.8.0",
           "Microsoft.Win32.Registry": "5.0.0",
           "TextCopy": "6.1.0"
@@ -76,8 +76,8 @@
       },
       "ApprovalUtilities": {
         "type": "Transitive",
-        "resolved": "5.7.2",
-        "contentHash": "0PM8wqHVFPrzvbUcg7pQS97HYm4lISg4LlUDLkkGWy8fwzhwWVAU7l8ZdFyLt/VYL0mzMglRyVKm9MGzmXG0gg==",
+        "resolved": "5.7.3",
+        "contentHash": "FFlA1u5b+sNP18bH6nAbQ+yDurb5AlSL0OMEh6QgKFhua9nTkoO+zmIH7j8g566L1Rzap6EjbxV9S9rzyuJs8g==",
         "dependencies": {
           "System.Data.SqlClient": "4.8.3",
           "System.Management": "6.0.0"
@@ -85,8 +85,8 @@
       },
       "DiffEngine": {
         "type": "Transitive",
-        "resolved": "8.5.3",
-        "contentHash": "DY/bh+mJJKXwmGR8RZcz8Pc2s2soCxE5+wnWfUJpil34ctnn7RPE5ww+4D/3d6UvRC89ZdGS7EPBYZOMGUs8mQ==",
+        "resolved": "9.0.6",
+        "contentHash": "alpx2vjGYFXTGqQbKzBjoG1U/kGNb0gw1RDwU16xRFvxGOZY/VgZ05HwAfD2SSZSt7Kyx7/kzx1OluRN39HBcQ==",
         "dependencies": {
           "EmptyFiles": "2.8.0",
           "System.Management": "5.0.0"
