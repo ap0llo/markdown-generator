@@ -43,9 +43,9 @@
       },
       "Nerdbank.GitVersioning": {
         "type": "Direct",
-        "requested": "[3.5.54-alpha, )",
-        "resolved": "3.5.54-alpha",
-        "contentHash": "k/sVSDMtXMSqACw2to3uW+h8AeS2mvcc6KspQG+OG8U3/ARhikFgMrw2nDbb0cRCL2Ox6aLzvt4smw5p2docXw=="
+        "requested": "[3.5.103, )",
+        "resolved": "3.5.103",
+        "contentHash": "gMzXNdd/cQWBTp+zaYmHaoTVSOQwOuFKGD26wJJSdJ95aQeMcNYzKW5KGlZj/HnyHJSMMa2xAO+7Y0FKdZuv0g=="
       },
       "PublicApiGenerator": {
         "type": "Direct",
