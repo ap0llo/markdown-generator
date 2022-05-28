@@ -39,14 +39,14 @@
       },
       "Grynwald.SharedBuild": {
         "type": "Direct",
-        "requested": "[2.0.4, )",
-        "resolved": "2.0.4",
-        "contentHash": "XossK0XccWfhR8QposmJZNuXuiDyM84C0AaneNiw0qgoGM4GVuuAIAcuBGaatLKoIb+2e/RSqvj4SqUEuxmJYw==",
+        "requested": "[2.1.56, )",
+        "resolved": "2.1.56",
+        "contentHash": "Z3T+rUpz3xoplMGOseezBtrmBB9mb7tqh48M/Z1XzETu7yls3iszoQp+l54xYgMVQFNbjlEZKsCBXHYnnlwQ1g==",
         "dependencies": {
-          "Cake.Frosting": "2.0.0",
-          "Cake.GitHubReleases": "1.0.10",
-          "Cake.GitVersioning": "3.5.50-alpha",
-          "Mono.Cecil": "0.11.4"
+          "Cake.Frosting": "2.2.0",
+          "Cake.GitVersioning": "3.5.107",
+          "Mono.Cecil": "0.11.4",
+          "Octokit": "0.51.0"
         }
       },
       "Microsoft.SourceLink.GitHub": {
@@ -106,14 +106,6 @@
         "contentHash": "kclac1Loq26Tl6+Co4K6hL9KeekwxuG4YPUL/N7TsEYme74b4ISHrffi6wT5M3FsAPgxGhMN7cLkxP7N5l98bQ==",
         "dependencies": {
           "Cake.Core": "2.2.0"
-        }
-      },
-      "Cake.GitHubReleases": {
-        "type": "Transitive",
-        "resolved": "1.0.10",
-        "contentHash": "eVeYhXAwxPfFXl/0F6LIlh+NmwFam3leqD9p8dI3hTIQr56ZXTAtlmDnkCk8oUbiAIW2y8KuHYDBDt19iMIENQ==",
-        "dependencies": {
-          "Octokit": "0.50.0"
         }
       },
       "Cake.NuGet": {
@@ -247,8 +239,8 @@
       },
       "Octokit": {
         "type": "Transitive",
-        "resolved": "0.50.0",
-        "contentHash": "J5vqespSvjxIAAtjG1Tc6ghBqyfRgDJtKnk/ifi4N0hD/f3JbPwyEDRT+Eelu/bS4C4M6mu5gt1WJqar+fByzg=="
+        "resolved": "0.51.0",
+        "contentHash": "p+8/X9y340TaqJCHGdizDqJ7EbAkGZU0cLeIgVByokdZs6I8VKXQ+f2g6992mMm5m+LHevTKcW5879AfrQ8nQg=="
       },
       "Spectre.Console": {
         "type": "Transitive",
