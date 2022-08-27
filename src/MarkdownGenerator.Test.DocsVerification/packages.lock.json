@@ -16,9 +16,9 @@
       },
       "Markdig": {
         "type": "Direct",
-        "requested": "[0.30.2, )",
-        "resolved": "0.30.2",
-        "contentHash": "rm5rfHGP0BZtcB31CmQeWLLPdpG6xA6xN92x2KcNrl+9MPJONq9u4dfG7VgnTOxdjDnuEkX6GCxMYS+LpoKGOQ=="
+        "requested": "[0.30.3, )",
+        "resolved": "0.30.3",
+        "contentHash": "IEw1su75GpAfYMeweYtVNfPlaSbCstqegFlz6QEVZ9MKPZWufke7BOBJWeVoOTF3875ozNE+xx3EN6N+8tVZgA=="
       },
       "Microsoft.CodeAnalysis.CSharp": {
         "type": "Direct",
