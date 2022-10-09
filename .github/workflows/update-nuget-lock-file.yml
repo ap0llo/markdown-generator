@@ -23,7 +23,7 @@ jobs:
         submodules: true
 
     - name: Install .NET SDK
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
 
     - name: Update lock files
       run: |-
