@@ -62,11 +62,10 @@
       },
       "Xunit.Combinatorial": {
         "type": "Direct",
-        "requested": "[1.4.1, )",
-        "resolved": "1.4.1",
-        "contentHash": "Dw9JIVL7LwSul0i8ugsZcImGMSUS2IbWjI1rjT1lwJn80VDJXPc1ECRdLtF9P3nkov2Xm/3IgMapNd6R2AeHJw==",
+        "requested": "[1.5.25, )",
+        "resolved": "1.5.25",
+        "contentHash": "wB5Knl4YznMl/vtfk3fv5OiTO5lKG2xjsk4kKjsvYPxNxYA4gR8rL0SKSJqhGOxUQGqAmkRragIK+sgMO5I61g==",
         "dependencies": {
-          "NETStandard.Library": "1.6.1",
           "xunit.extensibility.core": "2.2.0"
         }
       },
