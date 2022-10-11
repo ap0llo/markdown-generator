@@ -1,0 +1,7 @@
+build(deps): Update dependency 'grynwald.changelog' to version 0.4.135
+
+Downgrade reference to use a stable version of the changelog tool
+
+Updates-Dependency: grynwald.changelog
+Updates-dependency-from-version: 0.5.82-pre
+Updates-dependency-to-version: 0.4.135
