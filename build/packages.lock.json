@@ -10,9 +10,9 @@
       },
       "Cake.DotNetLocalTools.Module": {
         "type": "Direct",
-        "requested": "[1.0.2, )",
-        "resolved": "1.0.2",
-        "contentHash": "3svaw4E/EaMKsPmRb+S3e/DiDIVGWg2Gp/43PA15bZNGIcS6eLaYSD91hj4P1yz8kT6oEGvmw0H6mPohdAZZRA==",
+        "requested": "[3.0.12, )",
+        "resolved": "3.0.12",
+        "contentHash": "pPt7niH6R7mxK/guL5jSkAWICL1N+HRceXRAh1YJa73XZPYjPDGJ0lB56ztdeFJTIzL59ApYFY6nM66UcFStEw==",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
         }
