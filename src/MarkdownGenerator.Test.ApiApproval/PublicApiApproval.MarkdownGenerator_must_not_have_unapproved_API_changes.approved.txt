@@ -1,5 +1,5 @@
 ﻿[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Grynwald.MarkdownGenerator.Test")]
-[assembly: System.Runtime.Versioning.TargetFramework(".NETStandard,Version=v2.0", FrameworkDisplayName="")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETStandard,Version=v2.0", FrameworkDisplayName=".NET Standard 2.0")]
 namespace Grynwald.MarkdownGenerator
 {
     public sealed class DefaultTextFormatter : Grynwald.MarkdownGenerator.ITextFormatter
