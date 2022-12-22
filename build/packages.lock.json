@@ -10,25 +10,25 @@
       },
       "Cake.DotNetLocalTools.Module": {
         "type": "Direct",
-        "requested": "[1.0.2, )",
-        "resolved": "1.0.2",
-        "contentHash": "3svaw4E/EaMKsPmRb+S3e/DiDIVGWg2Gp/43PA15bZNGIcS6eLaYSD91hj4P1yz8kT6oEGvmw0H6mPohdAZZRA==",
+        "requested": "[3.0.12, )",
+        "resolved": "3.0.12",
+        "contentHash": "pPt7niH6R7mxK/guL5jSkAWICL1N+HRceXRAh1YJa73XZPYjPDGJ0lB56ztdeFJTIzL59ApYFY6nM66UcFStEw==",
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
         }
       },
       "Cake.Frosting": {
         "type": "Direct",
-        "requested": "[2.3.0, )",
-        "resolved": "2.3.0",
-        "contentHash": "RodNdMTmB4LpR4/T24GlpdB7x7SXbHtgFhl6VEVP5lPJhzgzwrxCbiBsuVyiLRHBnh3qD7HnmIRFt9HZhbQhFg==",
+        "requested": "[3.0.0, )",
+        "resolved": "3.0.0",
+        "contentHash": "GMXDdT9+t9TI1gPJHbA7iHXOPLGKQj4BdhqdE8yi6pg5T2mF5Bb8llZEs55v2V7rh7M5uzNm7Rz4b87N8gGj5w==",
         "dependencies": {
-          "Cake.Cli": "2.3.0",
-          "Cake.Common": "2.3.0",
-          "Cake.Core": "2.3.0",
-          "Cake.DotNetTool.Module": "2.3.0",
-          "Cake.NuGet": "2.3.0",
-          "Microsoft.Extensions.DependencyInjection": "6.0.1"
+          "Cake.Cli": "3.0.0",
+          "Cake.Common": "3.0.0",
+          "Cake.Core": "3.0.0",
+          "Cake.DotNetTool.Module": "3.0.0",
+          "Cake.NuGet": "3.0.0",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0"
         }
       },
       "Cake.GitVersioning": {
@@ -39,14 +39,14 @@
       },
       "Grynwald.SharedBuild": {
         "type": "Direct",
-        "requested": "[2.1.56, )",
-        "resolved": "2.1.56",
-        "contentHash": "Z3T+rUpz3xoplMGOseezBtrmBB9mb7tqh48M/Z1XzETu7yls3iszoQp+l54xYgMVQFNbjlEZKsCBXHYnnlwQ1g==",
+        "requested": "[2.2.42, )",
+        "resolved": "2.2.42",
+        "contentHash": "tSpRUBr2VqvUsgdcgYizujN3gq9J2Rlc0u77w9FOeIJXWal/RHFucJOo0A+lw0biVTbWm4e8mjGWLm0H1veeVA==",
         "dependencies": {
-          "Cake.Frosting": "2.2.0",
-          "Cake.GitVersioning": "3.5.107",
+          "Cake.Frosting": "3.0.0",
+          "Cake.GitVersioning": "3.5.119",
           "Mono.Cecil": "0.11.4",
-          "Octokit": "0.51.0"
+          "Octokit": "4.0.3"
         }
       },
       "Microsoft.SourceLink.GitHub": {
@@ -75,26 +75,27 @@
       },
       "Cake.Cli": {
         "type": "Transitive",
-        "resolved": "2.3.0",
-        "contentHash": "EvEsSgVtp2al07lmHIIu9aIHbRIrFa97AIvwPinH1e4GNZEk0kdeEtwXzTuT/4uoThiqslTyD7/vjPN5xhP/Iw==",
+        "resolved": "3.0.0",
+        "contentHash": "zWFGQx6HDnIQJHb8Wrbt1GpzexizMwMqKdgH+tUcY4h6IhIqeJ+UODEGTb8ikG5HtG0BxC74xIiA6z3pmXmKNA==",
         "dependencies": {
           "Autofac": "6.4.0",
-          "Cake.Core": "2.3.0",
-          "Spectre.Console": "0.44.0"
+          "Cake.Core": "3.0.0",
+          "Spectre.Console": "0.45.0",
+          "Spectre.Console.Cli": "0.45.0"
         }
       },
       "Cake.Common": {
         "type": "Transitive",
-        "resolved": "2.3.0",
-        "contentHash": "CnrIQHWg3G5Pe/bbmwJs4rV7aZqVfmW4syPGNw1j6XDucdu8elrJbI0EL7nZueOVZZNUACwggQ10Kf6XOchyrw==",
+        "resolved": "3.0.0",
+        "contentHash": "gs4/iOhCQTGH39TiYElQOt/VZx4E1Vq/IW2ePsxw5xQz5GKSzwv9dfqG7giHic9Wst7qZngFN7mzFCIvuG7e/Q==",
         "dependencies": {
-          "Cake.Core": "2.3.0"
+          "Cake.Core": "3.0.0"
         }
       },
       "Cake.Core": {
         "type": "Transitive",
-        "resolved": "2.3.0",
-        "contentHash": "Mniuvg2DOqmTljPjDurBVXKsjxNdAajyGMSE54c5NtiTEqdl1QozE/2ecsgaAyUqpQq2uCGLuELRa4kMrMNXag==",
+        "resolved": "3.0.0",
+        "contentHash": "d1/NImObNEiTe1BLX16Rfi0KK3oCVIMvLbFzEy8xlTh9wDCI/yTDwLZ8YgjhOG32MpBm0WbVDsJklK6nFvBcQg==",
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "Microsoft.Win32.Registry": "5.0.0"
@@ -102,18 +103,18 @@
       },
       "Cake.DotNetTool.Module": {
         "type": "Transitive",
-        "resolved": "2.3.0",
-        "contentHash": "6SsFLhe7ARGDuXJKqo1kih2DGsz3IiqEfZWhLmPz1GrPyZzY9misEK4l7mrtYKmU5iA/8TztjIRKLRUAbXPcyw==",
+        "resolved": "3.0.0",
+        "contentHash": "QE7WdTgiYeuk+pSy1n6y5imPqVpLcIoJDgArb3S0HMrHOffBvYJuIZHcVxQ0j2WlBajLBBrDR+dPHD67Mw0HPg==",
         "dependencies": {
-          "Cake.Core": "2.3.0"
+          "Cake.Core": "3.0.0"
         }
       },
       "Cake.NuGet": {
         "type": "Transitive",
-        "resolved": "2.3.0",
-        "contentHash": "RDw9oh6BpQNf4oNd5lpPDoR8IeL2b5j6VeqxCukHM43NaCLQ9KGY6S5M4RwrjZXr1qrUxEUWl13jqNJg0lIm1A==",
+        "resolved": "3.0.0",
+        "contentHash": "BBTVidyFbU3egGwAOdhNE3PZ3TYchOAXJdQnTkcBbUCrX0iTO+Vp1sDRKRCMPji9OxSNDUVlBAia1C2XnNJ/lw==",
         "dependencies": {
-          "Cake.Core": "2.3.0",
+          "Cake.Core": "3.0.0",
           "Newtonsoft.Json": "13.0.1",
           "NuGet.Common": "6.3.1",
           "NuGet.Frameworks": "6.3.1",
@@ -135,17 +136,16 @@
       },
       "Microsoft.Extensions.DependencyInjection": {
         "type": "Transitive",
-        "resolved": "6.0.1",
-        "contentHash": "vWXPg3HJQIpZkENn1KWq8SfbqVujVD7S7vIAyFXXqK5xkf1Vho+vG0bLBCHxU36lD1cLLtmGpfYf0B3MYFi9tQ==",
+        "resolved": "7.0.0",
+        "contentHash": "elNeOmkeX3eDVG6pYVeV82p29hr+UKDaBhrZyWvWLw/EVZSYEkZlQdkp0V39k/Xehs2Qa0mvoCvkVj3eQxNQ1Q==",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "Transitive",
-        "resolved": "6.0.0",
-        "contentHash": "xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg=="
+        "resolved": "7.0.0",
+        "contentHash": "h3j/QfmFN4S0w4C2A6X7arXij/M/OVw3uQHSOFxnND4DyAzO1F9eMX7Eti7lU/OkSthEE0WzRsfT/Dmx86jzCw=="
       },
       "Microsoft.NETCore.Platforms": {
         "type": "Transitive",
@@ -233,13 +233,24 @@
       },
       "Octokit": {
         "type": "Transitive",
-        "resolved": "0.51.0",
-        "contentHash": "p+8/X9y340TaqJCHGdizDqJ7EbAkGZU0cLeIgVByokdZs6I8VKXQ+f2g6992mMm5m+LHevTKcW5879AfrQ8nQg=="
+        "resolved": "4.0.3",
+        "contentHash": "KhRtKMEJfjwGKwpha1JalVlRrUP4WfhqG6b0VCiQ2w8JTa1LwhoRPWH9EpZ01Q8I9Qshu2kJu/1lMUOaR4yc3Q=="
       },
       "Spectre.Console": {
         "type": "Transitive",
-        "resolved": "0.44.0",
-        "contentHash": "QMpKtn5QV1j2nklqDwuRE/XwbDn5jxww+Mt5J6Jn3EeQIzaLcuLyUhCLh/mS8giN6uXbqOV1ep5HlUGxrV1ujQ=="
+        "resolved": "0.45.0",
+        "contentHash": "e//13o8/BCrWmwN26eJ4zCzD2iq7iUlqQd+nDI9nJUdnJ/rYAanYiNFZZ7YHwlv48IKuKtRYYP6/wPt1DG67ww==",
+        "dependencies": {
+          "System.Memory": "4.5.5"
+        }
+      },
+      "Spectre.Console.Cli": {
+        "type": "Transitive",
+        "resolved": "0.45.0",
+        "contentHash": "SZcYjwEmmYgmTDqOluWFYtURI9bgRtmx3tSdslHsMU9lKWkev3UHEkzDbOtu4XwY+hCn9NOjBRSDWNafa4fyCQ==",
+        "dependencies": {
+          "Spectre.Console": "0.45.0"
+        }
       },
       "System.Diagnostics.DiagnosticSource": {
         "type": "Transitive",
@@ -251,10 +262,10 @@
         "resolved": "5.0.0",
         "contentHash": "MTvUIktmemNB+El0Fgw9egyqT9AYSIk6DTJeoDSpc3GIHxHCMo8COqkWT1mptX5tZ1SlQ6HJZ0OsSvMth1c12w=="
       },
-      "System.Runtime.CompilerServices.Unsafe": {
+      "System.Memory": {
         "type": "Transitive",
-        "resolved": "6.0.0",
-        "contentHash": "/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg=="
+        "resolved": "4.5.5",
+        "contentHash": "XIWiDvKPXaTveaB7HVganDlOCRoj03l+jrwNvcge/t8vhGYKvqV+dMv6G4SAX2NoNmN0wZfVPTAlFwZcZvVOUw=="
       },
       "System.Security.AccessControl": {
         "type": "Transitive",
