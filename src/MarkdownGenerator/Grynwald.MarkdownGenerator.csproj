@@ -19,7 +19,7 @@
     <GenerateApiReferenceDocumentationOnBuild>true</GenerateApiReferenceDocumentationOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Grynwald.MdDocs.MSBuild" Version="0.4.179" PrivateAssets="all" />
+    <PackageReference Include="Grynwald.MdDocs.MSBuild" Version="0.5.180" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
