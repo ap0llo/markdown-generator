@@ -39,9 +39,9 @@
       },
       "Grynwald.SharedBuild": {
         "type": "Direct",
-        "requested": "[2.2.42, )",
-        "resolved": "2.2.42",
-        "contentHash": "tSpRUBr2VqvUsgdcgYizujN3gq9J2Rlc0u77w9FOeIJXWal/RHFucJOo0A+lw0biVTbWm4e8mjGWLm0H1veeVA==",
+        "requested": "[2.3.4, )",
+        "resolved": "2.3.4",
+        "contentHash": "ht61ECKu/lGYnVTRg8Q+cWK2R+/lsFIb6EBxKcr+u0DJ1HrxY0drr7BEucVbCGN2g+oS30A9sw7hH4xO7aFn6Q==",
         "dependencies": {
           "Cake.Frosting": "3.0.0",
           "Cake.GitVersioning": "3.5.119",
