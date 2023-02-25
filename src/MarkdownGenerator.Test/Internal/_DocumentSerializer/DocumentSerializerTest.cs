@@ -299,6 +299,36 @@ namespace Grynwald.MarkdownGenerator.Test.Internal
             );
 
         [Fact]
+        public void Code_blocks_are_serialized_as_expected_03() =>
+            AssertToStringEquals(
+                """
+                ```lang
+                Line 1
+                
+                Line 2
+                
+                
+                Line 3
+                
+                ```
+
+                """,
+                new MdDocument(new MdCodeBlock(
+                    """
+                    Line 1
+
+                    Line 2
+
+
+                    Line 3
+
+                    """,
+                    "lang"
+                ))
+            );
+
+
+        [Fact]
         public void Tables_are_serialized_as_expected_01() =>
             AssertToStringEquals(
                 "| Column1 | Column2 |\r\n" +

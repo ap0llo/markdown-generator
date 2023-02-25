@@ -7,7 +7,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 {
     internal partial class DocumentSerializer : IBlockVisitor
     {
-        private static readonly char[] s_LineBreakChars = "\r\n".ToCharArray();
+        private static readonly string[] s_LineBreaks = { "\n", "\r\n" };
 
         private readonly PrefixTextWriter m_Writer;
         private readonly MdSerializationOptions m_Options;
@@ -128,7 +128,7 @@ namespace Grynwald.MarkdownGenerator.Internal
         {
             m_Writer.RequestBlankLine();
 
-            var lines = paragraph.Text.ToString(m_Options).Split(s_LineBreakChars, StringSplitOptions.RemoveEmptyEntries);
+            var lines = paragraph.Text.ToString(m_Options).Split(s_LineBreaks, StringSplitOptions.RemoveEmptyEntries);
 
             // skip paragraph if it is empty
             if (lines.Length == 0)
@@ -278,7 +278,7 @@ namespace Grynwald.MarkdownGenerator.Internal
 
             m_Writer.WriteLine($"{codeFence}{codeBlock.InfoString ?? ""}");
 
-            var lines = codeBlock.Text.Split(s_LineBreakChars, StringSplitOptions.RemoveEmptyEntries);
+            var lines = codeBlock.Text.Split(s_LineBreaks, StringSplitOptions.None);
             foreach (var line in lines)
             {
                 m_Writer.WriteLine(line);
