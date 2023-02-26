@@ -4,9 +4,9 @@
     ".NETStandard,Version=v2.0": {
       "Grynwald.MdDocs.MSBuild": {
         "type": "Direct",
-        "requested": "[0.5.180, )",
-        "resolved": "0.5.180",
-        "contentHash": "LJ/EvxeW+cU1KxVwnTJP2VG7iz6You7uffSyapGbOiBHHIutv+W5TBFVAaWdJ9nAEd3iIUmm5NLGNdxo5A5Pcg=="
+        "requested": "[0.6.39, )",
+        "resolved": "0.6.39",
+        "contentHash": "IRF8cYctsWohspMKS6PpCcviVgSrX/Edr6RhTdj54aBCWmXDtHzFQF1Lkk4Z85nR25Ojyh3x3ttgAvDh9SHouA=="
       },
       "Microsoft.SourceLink.GitHub": {
         "type": "Direct",
