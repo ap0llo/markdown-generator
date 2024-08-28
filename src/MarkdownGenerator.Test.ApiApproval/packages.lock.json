@@ -4,15 +4,15 @@
     "net7.0": {
       "ApprovalTests": {
         "type": "Direct",
-        "requested": "[5.8.0, )",
-        "resolved": "5.8.0",
-        "contentHash": "Dy6yziy7hx49606dES7XFbK3qCd9s7b/r7Zl2dcqRmJpWq+vE8n5x0Tewk+RU9AafwVjuSsmmzK8B/4daD/mtw==",
+        "requested": "[5.9.0, )",
+        "resolved": "5.9.0",
+        "contentHash": "LECbm+8oMcI+H1xRDQjYnzEuAovUulF4Fh4jeO0Mw3JY6oXT8txPXStVYBOFgKz4ZexlXNOvwqfggRx2vpgygw==",
         "dependencies": {
-          "ApprovalUtilities": "5.8.0",
-          "DiffEngine": "11.0.0",
-          "EmptyFiles": "4.1.0",
+          "ApprovalUtilities": "5.9.0",
+          "DiffEngine": "12.2.1",
+          "EmptyFiles": "4.5.0",
           "Microsoft.Win32.Registry": "5.0.0",
-          "TextCopy": "6.2.0"
+          "TextCopy": "6.2.1"
         }
       },
       "coverlet.collector": {
@@ -76,26 +76,26 @@
       },
       "ApprovalUtilities": {
         "type": "Transitive",
-        "resolved": "5.8.0",
-        "contentHash": "LnuiN58ErncJK3mW7+mWnolv+vQrBLCGaVcL1Lx177KpVn8ivwmBN9WWMrqcSAU0kkrvZDA9bWxgKOciklCM6Q==",
+        "resolved": "5.9.0",
+        "contentHash": "2rKN7Rjcy8a3UtLgSSxe19chZ4RuOeeY0iiW6BO5lXrWJs9UtOmjxCc7yne3RCxR/M/xJ6boL6se1FQo0GwRJA==",
         "dependencies": {
           "System.Data.SqlClient": "4.8.5",
-          "System.Management": "7.0.0"
+          "System.Management": "6.0.2"
         }
       },
       "DiffEngine": {
         "type": "Transitive",
-        "resolved": "11.0.0",
-        "contentHash": "FKhanyE6mYmPe/MWWKKHc7Ol6WECHsE+WN6tK1L5FksrZd+DG4UMsc2luunnuUkVZ6bXi0XO6nyuy6HSXDmkiw==",
+        "resolved": "12.2.1",
+        "contentHash": "vFnI/YI5t7TG2gR/DZUiBluD9F0mQ7m9p2oW9O/pYzAui5Sngsp92W2KzM2PRlgXV2+utSpd+WCkkhx21ilq+w==",
         "dependencies": {
-          "EmptyFiles": "4.0.0",
-          "System.Management": "5.0.0"
+          "EmptyFiles": "4.5.0",
+          "System.Management": "6.0.2"
         }
       },
       "EmptyFiles": {
         "type": "Transitive",
-        "resolved": "4.1.0",
-        "contentHash": "mwnB0PowYoKVD0t/ImcAbwBNNHRpmRrbiuCSosy6m5YoGJ/29k45RTU/8arLrhcPWH1JVCwPfmMsW06/IdDaZA=="
+        "resolved": "4.5.0",
+        "contentHash": "utFjtKV+vPFPuOwSap9SH98RvdFGPW/xLlIkquj8qDQ+91P8P5V3+71in/lM0iSIYaeIDVhMFEOmxOxdSQf6Aw=="
       },
       "Microsoft.Build.Tasks.Git": {
         "type": "Transitive",
@@ -384,8 +384,8 @@
       },
       "System.CodeDom": {
         "type": "Transitive",
-        "resolved": "7.0.0",
-        "contentHash": "GLltyqEsE5/3IE+zYRP5sNa1l44qKl9v+bfdMcwg+M9qnQf47wK3H0SUR/T+3N4JEQXF3vV4CSuuo0rsg+nq2A=="
+        "resolved": "6.0.0",
+        "contentHash": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA=="
       },
       "System.Collections": {
         "type": "Transitive",
@@ -623,10 +623,10 @@
       },
       "System.Management": {
         "type": "Transitive",
-        "resolved": "7.0.0",
-        "contentHash": "A4jed4QUviDOm7fJNKAJObEAEkEUXmkGL/w0iyCYTzrl1rezTj8LGFHfsVst4Vb9JwFcTpboiDrvdST48avBpw==",
+        "resolved": "6.0.2",
+        "contentHash": "s6c9x2Kghd+ncEDnT6ApYVOacDXr/Y57oSUSx6wjegMOfKxhtrXn3PdASPNU59y3kB9OJ1yb3l5k6uKr3bhqew==",
         "dependencies": {
-          "System.CodeDom": "7.0.0"
+          "System.CodeDom": "6.0.0"
         }
       },
       "System.Net.Http": {
@@ -1126,8 +1126,8 @@
       },
       "TextCopy": {
         "type": "Transitive",
-        "resolved": "6.2.0",
-        "contentHash": "mpl+ssTDgROzmSkAoivi8HJdrEh5QCpXScP/vW2qIugfbaPI9eDNxbxxWDosVmKJSh4dfsALsSKqD6EJbE9awQ==",
+        "resolved": "6.2.1",
+        "contentHash": "ryejViUBmHQ2XMie2AiRBn7KVKu2Gh/hqrctGSAUf1BufwfPjr+MWuACNBaiG+40TMbWRDJZgV73Tpl9hggeRw==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         }
